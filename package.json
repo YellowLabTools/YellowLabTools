@@ -1,6 +1,10 @@
 {
-  "name": "jsspaghettiprofiler",
+  "name": "yellowlabtools",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gmetais/YellowLabTools.git"
+  },
   "dependencies": {
     "phantomas": "git+https://git@github.com/gmetais/phantomas.git#jquery-profiler",
     "express": "^4.6.1",
@@ -9,8 +13,5 @@
     "body-parser": "^1.5.0"
   },
   "devDependencies": {},
-  "engines": {
-    "node": ">=0.10.0"
-  },
   "scripts": {}
 }

@@ -1,3 +1,4 @@
+var settings    = require('./server_config/settings.json');
 var fs          = require('fs');
 var async       = require('async');
 var express     = require('express');
@@ -195,6 +196,6 @@ var taskQueue = async.queue(function queueWorker(task, callback) {
 
 
 // Launch the server
-server.listen(8383, function() {
+server.listen(settings.serverPort, function() {
     console.log('Listening on port %d', server.address().port);
 });
