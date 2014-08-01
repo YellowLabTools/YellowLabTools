@@ -1,0 +1,113 @@
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <title>Javascript Spaghetti Profiler</title>
+    <link rel="stylesheet" type="text/css" href="/public/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/results.css">
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/public/scripts/app.js"></script>
+    <script src="/public/scripts/resultsController.js"></script>
+    <script src="/public/scripts/filters.js"></script>
+</head>
+<body ng-app="Spaghetti" ng-controller="ResultsCtrl">
+    <h1>Javascript Spaghetti Profiler</h1>
+
+    <div ng-if="undefined">Untangling and counting the spaghettis...</div>
+
+    <div class="ng-cloak">
+        <div>Tested url: <a class="testedUrl" href="phantomasResults.url" target="_blank">{{phantomasResults.url}}</a></div>
+
+        <div ng-if="phantomasResults.error || !phantomasResults.javascript.data">
+            <h2>Error: {{phantomasResults.error}}</h2>
+            <div ng-if="phantomasResults.error == 252">Phantomas timed out</div>
+            <div ng-if="phantomasResults.error == 253">Phantomas config error</div>
+            <div ng-if="phantomasResults.error == 254">Phantomas failed to load page</div>
+            <div ng-if="phantomasResults.error == 255">Phantomas internal error</div>
+            <div ng-if="!phantomasResults.error && !phantomasResults.javascript.data">Javascript execution tree error</div>
+        </div>
+
+        <div ng-if="!phantomasResults.error" class="execution">
+            <h2>Javascript interactions with the DOM</h2>
+            <div class="filters">
+                <div>
+                    <input type="checkbox" ng-model="textFilterOn" />
+                    Filter by
+                    <input type="text" ng-model="textFilter" placeholder="search..." class="textFilter" ng-change="textFilterOn = true" />
+                </div>
+                <div>
+                    <input type="checkbox" ng-model="slowRequestsOn" id="slowRequests" />
+                    <label for="slowRequests">Requests slower than</label>
+                    <input type="number" value="5" min="0" ng-model="slowRequestsLimit" class="slowRequestsLimit"> ms
+                </div>
+            </div>
+            <div class="table">
+                <div class="headers">
+                    <div><!-- index --></div>
+                    <div>Type</div>
+                    <div>Params</div>
+                    <div><!-- details --></div>
+                    <div>Duration</div>
+                </div>
+                <div ng-repeat="node in phantomasResults.javascript.children"
+                     ng-if="(!slowRequestsOn || node.data.time > slowRequestsLimit) && (!textFilterOn || !textFilter.length || node.data.type.indexOf(textFilter) >= 0 || node.data.callDetails.arguments[0].indexOf(textFilter) >= 0)"
+                     ng-class="{showingDetails: node.data.showDetails, jsError: node.data.type == 'error'}">
+                    <div class="index">{{$index}}</div>
+                    <div class="type">{{node.data.type}}</div>
+                    <div class="value">{{node.data.callDetails.arguments[0]}}</div>
+                    <div class="details">
+                        <button ng-click="onNodeDetailsClick(node)">i</button>
+                        <div class="detailsOverlay" ng-show="node.data.showDetails">
+                            <div class="closeBtn" ng-click="onNodeDetailsClick(node)">✖</div>
+
+                            <div ng-if="node.data.callDetails.context.domElement">
+                                <h4>Called on DOM element</h4>
+                                <div>{{node.data.callDetails.context.domElement}}</div>
+                            </div>
+
+                            <div ng-if="node.data.callDetails.context.length == 1 && node.data.callDetails.context.firstElementPath">
+                                <h4>Called on 1 jQuery element</h4>
+                                <div>{{node.data.callDetails.context.firstElementPath}}</div>
+                            </div>
+
+                            <h4>Backtrace</h4>
+                            <div class="table">
+                                <div ng-repeat="trace in node.data.parsedBacktrace track by $index">
+                                    <div>{{trace.fnName || '(anonymous)'}}</div>
+                                    <div class="trace"><a href="{{trace.filePath}}" title="{{trace.filePath}}" target="_blank">{{trace.fileName || 'HTML'}}</a>:{{trace.line}}</div>
+                                </div>
+                                <div ng-if="node.data.parsedBacktrace.length == 0">
+                                    <div>can't find any backtrace :/</div>
+                                </div>
+                            </div>
+
+                            <div ng-if="node.children.length > 0">
+                                <h4>Sub processes</h4>
+                                <div class="table">
+                                    <div class="headers">
+                                        <div><!-- index --></div>
+                                        <div>Type</div>
+                                        <div>Params</div>
+                                        <div>Duration</div>
+                                    </div>
+                                    <div ng-repeat="node in node.children">
+                                        <div class="index">{{$index}}</div>
+                                        <div class="type">{{node.data.type}}</div>
+                                        <div class="value">{{node.data.callDetails.arguments[0]}}</div>
+                                        <div class="duration" ng-if="node.data.time != undefined">{{node.data.time}} ms <div ng-if="node.data.time > slowRequestsLimit" class="warningIcon"></div></div>
+                                        <div class="duration" ng-if="node.data.time == undefined"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="duration" ng-if="node.data.time != undefined">{{node.data.time}} ms <div ng-if="node.data.time > slowRequestsLimit" class="warningIcon"></div></div>
+                    <div class="duration" ng-if="node.data.time == undefined"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>var _phantomas_results = %%RESULTS%%;</script>
+</body>
+</html>

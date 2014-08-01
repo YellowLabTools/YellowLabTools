@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <title>Javascript Spaghetti Profiler</title>
+    <link rel="stylesheet" type="text/css" href="/public/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/launchTest.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>Javascript Spaghetti Profiler</h1>
+
+    <div id="status"></div>
+
+    <div>%%TEST_URL%%</div>
+
+    <script>
+        var testId = '%%TEST_ID%%';
+        var statusElement = document.getElementById('status');
+        var socket = io();
+        
+        function askStatus() {
+            socket.emit('waiting', testId);
+        }
+
+        socket.on('running', function() {
+            statusElement.innerHTML = 'Running';
+            setTimeout(askStatus, 200);
+        });
+        
+        socket.on('position', function(position) {
+            statusElement.innerHTML = 'Waiting behind ' + position + ' other tests';
+            setTimeout(askStatus, 2000);
+        });
+
+        socket.on('complete', function() {
+            statusElement.innerHTML = 'Test complete';
+            window.location.replace('/results/' + testId);
+        });
+
+        socket.on('404', function() {
+            statusElement.innerHTML = 'Test not found';
+        });
+
+        askStatus();
+    </script>
+</body>
+</html>

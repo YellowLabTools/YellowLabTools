@@ -1,0 +1,133 @@
+.testedUrl {
+    color: inherit;
+}
+
+h4 {
+    margin-bottom: 0.5em;
+}
+
+.execution {
+    margin-top: 3em;
+    padding: 1em;
+    background: #fff;
+    color: #000;
+    border-radius: 0.5em;
+    text-align: left;
+}
+
+.filters {
+    margin: 1em 0;
+    padding: 0.5em;
+    border: 1px dotted #aaa;
+}
+
+.slowRequestsLimit {
+    width: 3em;
+    font-size: 1em;
+    text-align: right;
+    border: 1px solid #aaa;
+}
+
+input.textFilter {
+    box-shadow: none;
+    font-size: 1em;
+    padding: 0 0.2em;
+    border: 1px solid #aaa;
+    border-radius: none;
+    width: 15em;
+}
+
+.table {
+    display: table;
+    width: 100%;
+    border-spacing: 0.25em;
+}
+
+.table > div {
+    display: table-row;
+}
+
+.table > .headers > div {
+    font-weight: bold;
+    padding: 0.5em 1em;
+}
+
+.table > div > div {
+    padding: 0.1em 1em;
+    background: #f2f2f2;
+    display: table-cell;
+    text-align: left;
+}
+.table > div.jsError > .type, .table > div.jsError > .value {
+    color: #e74c3c;
+    font-weight: bold;
+}
+.table > div.showingDetails > div {
+    background: #f1c40f;
+}
+
+.table > div > .index {
+    color: #bbb;
+}
+
+.table > div > .type {
+    white-space:nowrap;
+}
+
+.table > div > .value {
+    width: 70%;
+    word-break: break-all;
+}
+
+.table > div > .details {
+    position: relative;
+}
+.table > div > .details button {
+    color: #f1c40f;
+    font-weight: bold;
+    border: 2px solid #f1c40f;
+    border-radius: 50%;
+    background: transparent;
+    height: 2em;
+    width: 2em;
+    cursor: pointer;
+}
+
+.detailsOverlay {
+    position: absolute;
+    right: 3em;
+    top: -3em;
+    width: 45em;
+    padding: 0 1em 1em;
+    background: #fff;
+    border: 2px solid #f1c40f;
+    border-radius: 0.5em;
+    z-index: 1;
+}
+@media screen and (max-width: 1024px) {
+  .detailsOverlay {
+    width: 25em;
+}
+}
+.detailsOverlay .closeBtn {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    color: #f1c40f;
+    cursor: pointer;
+}
+.detailsOverlay .trace {
+    word-break: break-all;
+}
+
+.table > div > .duration {
+    text-align: center;
+    white-space:nowrap;
+}
+
+.warningIcon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><defs/><g fill="none" fill-rule="evenodd" id="Icons new Arranged Names Color" stroke="none" stroke-width="1"><g fill="#e74c3c" id="101 Warning"><path d="M14.4242327,6.14839275 C15.2942987,4.74072976 16.707028,4.74408442 17.5750205,6.14839275 L28.3601099,23.59738 C29.5216388,25.4765951 28.6755462,27 26.4714068,27 L5.5278464,27 C3.32321557,27 2.47386317,25.4826642 3.63914331,23.59738 Z M16,20 C16.5522847,20 17,19.5469637 17,19.0029699 L17,12.9970301 C17,12.4463856 16.5561352,12 16,12 C15.4477153,12 15,12.4530363 15,12.9970301 L15,19.0029699 C15,19.5536144 15.4438648,20 16,20 Z M16,24 C16.5522848,24 17,23.5522848 17,23 C17,22.4477152 16.5522848,22 16,22 C15.4477152,22 15,22.4477152 15,23 C15,23.5522848 15.4477152,24 16,24 Z M16,24" id="Triangle 29"/></g></g></svg>') no-repeat 0 3px;
+}

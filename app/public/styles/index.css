@@ -1,0 +1,29 @@
+.url {
+    width: 50%;
+}
+
+.launchBtn {
+    background: #e74c3c;
+    color: #fff;
+}
+
+input[type=submit], input.url {
+    padding: 0 0.5em;
+    margin: 0.5em;
+    font-size: 1.2em;
+    height: 2em;
+    border: 0 solid;
+    border-radius: 0.5em;
+    box-shadow: 0.1em 0.2em 0 0 #5e2846;
+    outline: none;
+}
+input[type=submit]:hover {
+    color: #ddd;
+}
+input[type=submit].clicked {
+    color: #ddd;
+    position: relative;
+    left: 0.1em;
+    top: 0.2em;
+    box-shadow: none;
+}
