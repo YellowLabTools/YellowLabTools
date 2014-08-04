@@ -29,14 +29,20 @@ exports.module = function(phantomas) {
         phantomas.incrMetric('jsErrors');
         phantomas.addOffender('jsErrors', msg + ' - ' + trace.join(' / '));
 
-        // TODO : send the error back to the browser ?
-        /*phantomas.pushContext({
-            type: 'error',
-            callDetails: {
-                arguments: [msg]
-            },
-            caller: trace[0],
-            backtrace: trace.join(' / ')
-        });*/
+        // Yeah, this is weird, i'm sending the error back to the browser...
+        phantomas.evaluate(function(msg, caller, trace) {
+            (function(phantomas) {
+
+                phantomas.pushContext({
+                    type: 'error',
+                    callDetails: {
+                        arguments: [msg]
+                    },
+                    caller: caller,
+                    backtrace: trace
+                });
+
+            })(window.__phantomas);
+        }, msg, trace[0], trace.join(' / '));
     });
 };
