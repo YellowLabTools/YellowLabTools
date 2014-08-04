@@ -65,8 +65,39 @@ app.post('/launchTest', function(req, res) {
 
             var options = {
                 timeout: 60,
-                'js-execution-tree': true,
-                reporter: 'json:pretty'
+                'js-deep-analysis': false,
+                reporter: 'json:pretty',
+                'skip-modules': [
+                    'ajaxRequests',
+                    'alerts',
+                    'cacheHits',
+                    'caching',
+                    'console',
+                    'cookies',
+                    'documentHeight',
+                    'domains',
+                    'domComplexity',
+                    'domMutations',
+                    'domQueries',
+                    'filmStrip',
+                    'jQuery',
+                    'jserrors',
+                    'har',
+                    'headers',
+                    'localStorage',
+                    'mainRequest',
+                    'pageSource',
+                    'redirects',
+                    'requestsStats',
+                    'screenshot',
+                    'staticAssets',
+                    'timeToFirst',
+                    'waitForSelector'
+                ].join(','),
+                'include-dirs': [
+                    'phantomas_custom/core',
+                    'phantomas_custom/modules'
+                ].join(',')
             };
 
             console.log('Adding test ' + testId + ' on ' + url + ' to the queue');

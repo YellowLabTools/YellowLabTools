@@ -7,11 +7,15 @@ app.controller('ResultsCtrl', function ($scope) {
     $scope.slowRequestsOn = false;
     $scope.slowRequestsLimit = 5;
 
+    if ($scope.phantomasResults.offenders && $scope.phantomasResults.offenders.javascriptExecutionTree) {
+        $scope.javascript = JSON.parse($scope.phantomasResults.offenders.javascriptExecutionTree);
+    }
+
     $scope.onNodeDetailsClick = function(node) {
         var isOpen = node.data.showDetails;
         if (!isOpen) {
             // Close all other nodes
-            $scope.phantomasResults.javascript.children.forEach(function(currentNode) {
+            $scope.javascript.children.forEach(function(currentNode) {
                 currentNode.data.showDetails = false;
             });
 

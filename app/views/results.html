@@ -18,13 +18,13 @@
     <div class="ng-cloak">
         <div>Tested url: <a class="testedUrl" href="phantomasResults.url" target="_blank">{{phantomasResults.url}}</a></div>
 
-        <div ng-if="phantomasResults.error || !phantomasResults.javascript.data">
+        <div ng-if="phantomasResults.error || !javascript">
             <h2>Error: {{phantomasResults.error}}</h2>
             <div ng-if="phantomasResults.error == 252">Phantomas timed out</div>
             <div ng-if="phantomasResults.error == 253">Phantomas config error</div>
             <div ng-if="phantomasResults.error == 254">Phantomas failed to load page</div>
             <div ng-if="phantomasResults.error == 255">Phantomas internal error</div>
-            <div ng-if="!phantomasResults.error && !phantomasResults.javascript.data">Javascript execution tree error</div>
+            <div ng-if="!phantomasResults.error && !javascript">Javascript execution tree error</div>
         </div>
 
         <div ng-if="!phantomasResults.error" class="execution">
@@ -49,12 +49,26 @@
                     <div><!-- details --></div>
                     <div>Duration</div>
                 </div>
-                <div ng-repeat="node in phantomasResults.javascript.children"
-                     ng-if="(!slowRequestsOn || node.data.time > slowRequestsLimit) && (!textFilterOn || !textFilter.length || node.data.type.indexOf(textFilter) >= 0 || node.data.callDetails.arguments[0].indexOf(textFilter) >= 0)"
-                     ng-class="{showingDetails: node.data.showDetails, jsError: node.data.type == 'error'}">
+                <div ng-repeat="node in javascript.children"
+                     ng-if="(!slowRequestsOn || node.data.time > slowRequestsLimit)
+                            && (!textFilterOn 
+                                || !textFilter.length 
+                                || node.data.type.indexOf(textFilter) >= 0 
+                                || node.data.callDetails.arguments[0].indexOf(textFilter) >= 0
+                                || node.data.callDetails.arguments[1].indexOf(textFilter) >= 0
+                                || node.data.callDetails.arguments[2].indexOf(textFilter) >= 0
+                                || node.data.callDetails.arguments[3].indexOf(textFilter) >= 0)"
+                     ng-class="{showingDetails: node.data.showDetails, jsError: node.data.type == 'error' || node.data.type == 'jQuery version change'}">
                     <div class="index">{{$index}}</div>
                     <div class="type">{{node.data.type}}</div>
-                    <div class="value">{{node.data.callDetails.arguments[0]}}</div>
+
+                    <div class="value">
+                        {{node.data.callDetails.arguments[0]}}
+                        <span ng-if="node.data.callDetails.arguments.length > 1"> : {{node.data.callDetails.arguments[1]}}</span>
+                        <span ng-if="node.data.callDetails.arguments.length > 2"> : {{node.data.callDetails.arguments[2]}}</span>
+                        <span ng-if="node.data.callDetails.arguments.length > 3"> : {{node.data.callDetails.arguments[3]}}</span>
+                    </div>
+                    
                     <div class="details">
                         <button ng-click="onNodeDetailsClick(node)">i</button>
                         <div class="detailsOverlay" ng-show="node.data.showDetails">
