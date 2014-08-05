@@ -110,7 +110,7 @@ exports.module = function(phantomas) {
                     // Save given data in the current context and jump change current context to its parent
                     function leaveContext() {
                         if (depth === 1 || deepAnalysis) {
-                            currentContext.time = Date.now() - currentContext.data.timestamp;
+                            currentContext.data.time = Date.now() - currentContext.data.timestamp;
                             var parent = currentContext.parent;
                             if (parent === null) {
                                 console.error('Error: trying to close root context in ContextTree');
