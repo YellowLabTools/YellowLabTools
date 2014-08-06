@@ -92,6 +92,10 @@ input.textFilter {
     width: 2em;
     cursor: pointer;
 }
+.table > div > .details button.warningDetails {
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
 
 .detailsOverlay {
     position: absolute;
@@ -115,6 +119,10 @@ input.textFilter {
     right: 0.5em;
     color: #f1c40f;
     cursor: pointer;
+}
+.detailsOverlay .advice {
+    color: #e74c3c;
+    font-weight: bold;
 }
 .detailsOverlay .trace {
     word-break: break-all;
