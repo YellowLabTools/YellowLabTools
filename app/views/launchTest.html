@@ -28,7 +28,7 @@
         });
         
         socket.on('position', function(position) {
-            statusElement.innerHTML = 'Waiting behind ' + position + ' other tests';
+            statusElement.innerHTML = 'Waiting behind ' + (position + 1) + ' other tests';
             setTimeout(askStatus, 2000);
         });
 
