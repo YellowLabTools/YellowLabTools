@@ -29,8 +29,12 @@ app.controller('ResultsCtrl', function ($scope) {
     };
 
     function parseBacktrace(str) {
-        var splited = str.split(' / ');
+        if (!str) {
+            return null;
+        }
+
         var out = [];
+        var splited = str.split(' / ');
         splited.forEach(function(trace) {
             var result = /^(\S*)\s?\(?(https?:\/\/\S+):(\d+)\)?$/g.exec(trace);
             if (result && result[2].length > 0) {
