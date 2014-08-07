@@ -2,18 +2,19 @@
  * Analyzes DOM queries done via native DOM methods
  */
 /* global Element: true, Document: true, Node: true, window: true */
-'use strict';
 
 exports.version = '0.7.a';
 
 exports.module = function(phantomas) {
-        phantomas.setMetric('DOMqueries'); // @desc number of all DOM queries @offenders
-        phantomas.setMetric('DOMqueriesById'); // @desc number of document.getElementById calls
-        phantomas.setMetric('DOMqueriesByClassName'); // @desc number of document.getElementsByClassName calls
-        phantomas.setMetric('DOMqueriesByTagName'); // @desc number of document.getElementsByTagName calls
-        phantomas.setMetric('DOMqueriesByQuerySelectorAll'); // @desc number of document.querySelector(All) calls
-        phantomas.setMetric('DOMinserts'); // @desc number of DOM nodes inserts
-        phantomas.setMetric('DOMqueriesDuplicated'); // @desc number of duplicated DOM queries
+    'use strict';
+
+    phantomas.setMetric('DOMqueries'); // @desc number of all DOM queries @offenders
+    phantomas.setMetric('DOMqueriesById'); // @desc number of document.getElementById calls
+    phantomas.setMetric('DOMqueriesByClassName'); // @desc number of document.getElementsByClassName calls
+    phantomas.setMetric('DOMqueriesByTagName'); // @desc number of document.getElementsByTagName calls
+    phantomas.setMetric('DOMqueriesByQuerySelectorAll'); // @desc number of document.querySelector(All) calls
+    phantomas.setMetric('DOMinserts'); // @desc number of DOM nodes inserts
+    phantomas.setMetric('DOMqueriesDuplicated'); // @desc number of duplicated DOM queries
 
     // fake native DOM functions
     phantomas.once('init', function() {
@@ -43,6 +44,8 @@ exports.module = function(phantomas) {
 
                 // selectors by class name
                 function selectorClassNameSpyBefore(className) {
+                    /*jshint validthis: true */
+
                     phantomas.incrMetric('DOMqueriesByClassName');
                     phantomas.addOffender('DOMqueriesByClassName', '.' + className);
                     querySpy('class', '.' + className, 'getElementsByClassName');
@@ -65,6 +68,8 @@ exports.module = function(phantomas) {
 
                 // selectors by tag name
                 function selectorTagNameSpyBefore(tagName) {
+                    /*jshint validthis: true */
+
                     phantomas.incrMetric('DOMqueriesByTagName');
                     phantomas.addOffender('DOMqueriesByTagName', tagName);
                     querySpy('tag name', tagName, 'getElementsByTagName');
@@ -93,6 +98,8 @@ exports.module = function(phantomas) {
                 }
 
                 function selectorQuerySpyBefore(selector) {
+                    /*jshint validthis: true */
+
                     selectorQuerySpy(selector);
 
                     phantomas.enterContext({
@@ -109,6 +116,8 @@ exports.module = function(phantomas) {
                 }
 
                 function selectorAllQuerySpyBefore(selector) {
+                    /*jshint validthis: true */
+
                     selectorQuerySpy(selector);
 
                     phantomas.enterContext({
@@ -132,7 +141,8 @@ exports.module = function(phantomas) {
 
                 // count DOM inserts
                 function appendChild(child) {
-                    /* jshint validthis: true */
+                    /*jshint validthis: true */
+
                     // ignore appending to the node that's not yet added to DOM tree
                     if (!this.parentNode) {
                         return;
@@ -154,6 +164,8 @@ exports.module = function(phantomas) {
                 }
 
                 function appendChildSpyBefore(child) {
+                    /*jshint validthis: true */
+
                     appendChild(child);
 
                     phantomas.enterContext({
@@ -170,6 +182,8 @@ exports.module = function(phantomas) {
                 }
 
                 function insertBeforeSpyBefore(child) {
+                    /*jshint validthis: true */
+                    
                     appendChild(child);
 
                     phantomas.enterContext({

@@ -5,17 +5,19 @@
  * @see http://code.jquery.com/jquery-2.0.3.js
  */
 /* global document: true, window: true */
-'use strict';
+/* jshint -W030 */
 
 exports.version = '0.2.a';
 
 exports.module = function(phantomas) {
-        phantomas.setMetric('jQueryVersion', ''); // @desc version of jQuery framework (if loaded) [string]
-        phantomas.setMetric('jQueryOnDOMReadyFunctions'); // @desc number of functions bound to onDOMReady event
-        phantomas.setMetric('jQuerySizzleCalls'); // @desc number of calls to Sizzle (including those that will be resolved using querySelectorAll)
-        phantomas.setMetric('jQuerySizzleCallsDuplicated'); // @desc number of calls on the same Sizzle request
-        phantomas.setMetric('jQueryBindOnMultipleElements'); //@desc number of calls to jQuery bind function on 2 or more elements
-        phantomas.setMetric('jQueryDifferentVersions'); //@desc number of different jQuery versions loaded on the page (not counting iframes)
+    'use strict';
+
+    phantomas.setMetric('jQueryVersion', ''); // @desc version of jQuery framework (if loaded) [string]
+    phantomas.setMetric('jQueryOnDOMReadyFunctions'); // @desc number of functions bound to onDOMReady event
+    phantomas.setMetric('jQuerySizzleCalls'); // @desc number of calls to Sizzle (including those that will be resolved using querySelectorAll)
+    phantomas.setMetric('jQuerySizzleCallsDuplicated'); // @desc number of calls on the same Sizzle request
+    phantomas.setMetric('jQueryBindOnMultipleElements'); //@desc number of calls to jQuery bind function on 2 or more elements
+    phantomas.setMetric('jQueryDifferentVersions'); //@desc number of different jQuery versions loaded on the page (not counting iframes)
 
     var jQueryFunctions = [
         // DOM manipulations
@@ -244,7 +246,7 @@ exports.module = function(phantomas) {
                                     arg = 'false';
                                 }
 
-                                if (arg == null) {
+                                if (arg === null) {
                                     arg = 'null';
                                 }
 

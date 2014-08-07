@@ -3,11 +3,11 @@
  *
  * Run phantomas with --js-execution-tree option to use this module
  */
-'use strict';
 
 exports.version = '0.1';
 
 exports.module = function(phantomas) {
+    'use strict';
 
     phantomas.setMetric('javascriptExecutionTree'); // @desc number of duplicated DOM queries
 

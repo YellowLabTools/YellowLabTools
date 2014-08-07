@@ -16,7 +16,7 @@
     <div ng-if="undefined">Untangling and counting the spaghettis...</div>
 
     <div class="ng-cloak">
-        <div>Tested url: <a class="testedUrl" href="phantomasResults.url" target="_blank">{{phantomasResults.url}}</a></div>
+        <div>Tested url: <a class="testedUrl" href="{{phantomasResults.url}}" target="_blank">{{phantomasResults.url}}</a></div>
 
         <div ng-if="phantomasResults.error || !javascript">
             <h2>Error: {{phantomasResults.error}}</h2>
@@ -74,7 +74,7 @@
                                 ng-class="{
                                     'warningDetails': node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5
                                 }"
-                                ng-if="node.data.type != 'script loaded'">i</button>
+                                ng-if="node.data.type != 'script loaded' && node.data.type != 'jQuery loaded'">i</button>
                         <div class="detailsOverlay" ng-show="node.data.showDetails">
                             <div class="closeBtn" ng-click="onNodeDetailsClick(node)">✖</div>
 
@@ -125,14 +125,17 @@
                                             <span ng-if="node.data.callDetails.arguments.length > 2"> : {{node.data.callDetails.arguments[2]}}</span>
                                             <span ng-if="node.data.callDetails.arguments.length > 3"> : {{node.data.callDetails.arguments[3]}}</span>
                                         </div>
-                                        <div class="duration" ng-if="node.data.time != undefined">{{node.data.time}} ms <div ng-if="node.data.time > slowRequestsLimit" class="warningIcon"></div></div>
+                                        <div class="duration" ng-if="node.data.time != undefined">{{node.data.time}} ms</div>
                                         <div class="duration" ng-if="node.data.time == undefined"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="duration" ng-if="node.data.time != undefined">{{node.data.time}} ms <div ng-if="node.data.time > slowRequestsLimit" class="warningIcon"></div></div>
+                    <div class="duration" ng-if="node.data.time != undefined">
+                        {{node.data.time}} ms
+                        <div ng-if="node.data.time > slowRequestsLimit" class="warningIcon" title="Slower than {{slowRequestsLimit}} ms"></div>
+                    </div>
                     <div class="duration" ng-if="node.data.time == undefined"></div>
                 </div>
             </div>

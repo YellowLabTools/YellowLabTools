@@ -2,11 +2,11 @@
  * Analyzes DOM complexity
  */
 /* global document: true, Node: true, window: true */
-'use strict';
 
 exports.version = '0.3.a';
 
 exports.module = function(phantomas) {
+    'use strict';
 
     // total length of HTML comments (including <!-- --> brackets)
     phantomas.setMetric('commentsSize'); // @desc the size of HTML comments on the page @offenders

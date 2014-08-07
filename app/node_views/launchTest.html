@@ -21,15 +21,13 @@
         function askStatus() {
             socket.emit('waiting', testId);
         }
-
-        socket.on('running', function() {
-            statusElement.innerHTML = 'Running';
-            setTimeout(askStatus, 200);
-        });
         
         socket.on('position', function(position) {
-            statusElement.innerHTML = 'Waiting behind ' + (position + 1) + ' other tests';
-            setTimeout(askStatus, 2000);
+            if (position === 0) {
+                statusElement.innerHTML = 'Running';
+            } else {
+                statusElement.innerHTML = 'Waiting behind ' + (position) + ' other tests';
+            }
         });
 
         socket.on('complete', function() {

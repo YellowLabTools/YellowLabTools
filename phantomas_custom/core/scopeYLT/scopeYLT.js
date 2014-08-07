@@ -6,11 +6,11 @@
  * @see http://code.jquery.com/jquery-2.0.3.js
  */
 /* global document: true, window: true */
-'use strict';
 
 exports.version = '0.1';
 
 exports.module = function(phantomas) {
+    'use strict';
 
     phantomas.once('init', function() {
         phantomas.evaluate(function(deepAnalysis) {
@@ -43,8 +43,7 @@ exports.module = function(phantomas) {
                             
                             // Before
                             if (enabled) {
-                                var args = Array.prototype.slice.call(arguments);
-                                callbackBefore.apply(this, args);
+                                callbackBefore.apply(this, arguments);
                             }
 
                             // Execute
@@ -56,8 +55,7 @@ exports.module = function(phantomas) {
 
                                 // After
                                 if (enabled && callbackAfter) {
-                                    var args = Array.prototype.slice.call(arguments);
-                                    callbackAfter.apply(this, args);
+                                    callbackAfter.apply(this, arguments);
                                 }
                             }
 
@@ -158,7 +156,7 @@ exports.module = function(phantomas) {
                             var child = new ContextTreeNode(this, data);
                             this.children.push(child);
                             return child;
-                        }
+                        };
                     }
 
                     phantomas.log('Adding some contextTree functions to phantomas');
