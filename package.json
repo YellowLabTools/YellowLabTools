@@ -12,6 +12,10 @@
     "socket.io": "^1.0.6",
     "body-parser": "^1.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "matchdep": "^0.3.0"
+  },
   "scripts": {}
 }
