@@ -51,10 +51,13 @@ var testQueue = function() {
         return position;
     };
 
-    // Forward testComplete
     this.testComplete = function(testId) {
         self.emit('testComplete', testId);
     };
+
+    this.testFailed = function(testId) {
+        self.emit('testFailed', testId);
+    }
 };
 
 // extend the EventEmitter class using our Radio class

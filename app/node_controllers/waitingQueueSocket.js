@@ -18,6 +18,13 @@ var waitingQueueSocket = function(socket, testQueue) {
             }
         });
 
+        testQueue.on('testFailed', function(id) {
+            if (testId === id) {
+                socket.emit('failed');
+                console.log('Sending failed event to test id ' + testId);
+            }
+        });
+
         testQueue.on('queueMoving', function() {
             var positionInQueue = testQueue.indexOf(testId);
             if (positionInQueue >= 0) {

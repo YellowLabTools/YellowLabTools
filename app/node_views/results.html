@@ -7,7 +7,7 @@
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/public/scripts/app.js"></script>
-    <script src="/public/scripts/resultsController.js"></script>
+    <script src="/public/scripts/resultsCtrl.js"></script>
     <script src="/public/scripts/filters.js"></script>
 </head>
 <body ng-app="Spaghetti" ng-controller="ResultsCtrl">
@@ -18,13 +18,13 @@
     <div class="ng-cloak">
         <div>Tested url: <a class="testedUrl" href="{{phantomasResults.url}}" target="_blank">{{phantomasResults.url}}</a></div>
 
-        <div ng-if="phantomasResults.error || !javascript">
+        <div ng-if="phantomasResults.error">
             <h2>Error: {{phantomasResults.error}}</h2>
             <div ng-if="phantomasResults.error == 252">Phantomas timed out</div>
             <div ng-if="phantomasResults.error == 253">Phantomas config error</div>
             <div ng-if="phantomasResults.error == 254">Phantomas failed to load page</div>
             <div ng-if="phantomasResults.error == 255">Phantomas internal error</div>
-            <div ng-if="!phantomasResults.error && !javascript">Javascript execution tree error</div>
+            <div ng-if="phantomasResults.error == 1001">Javascript execution tree error</div>
         </div>
 
         <div ng-if="!phantomasResults.error" class="execution">

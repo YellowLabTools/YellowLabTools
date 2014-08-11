@@ -2,7 +2,7 @@
  * Yellow Lab Tools main file
  */
 
-var q               = require ('q');
+var async           = require('async');
 var phantomas       = require('phantomas');
 
 var PhantomasWrapper = function() {
@@ -59,7 +59,28 @@ var PhantomasWrapper = function() {
         };
 
         // It's time to launch the test!!!
-        phantomas(task.url, options, callback);
+        var triesNumber = 3;
+
+        async.retry(triesNumber, function(cb) {
+            phantomas(task.url, options, function(err, json, results) {
+                console.log('Returning from Phantomas');
+
+                // Adding some YellowLabTools errors here
+                if (!json.metrics.javascriptExecutionTree) {
+                    err = 1001;
+                }
+
+                if (err) {
+                    console.log('Attempt failed for test id ' + task.testId + '. Error code ' + err);
+                }
+                cb(err, {json: json, results: results});
+            });
+        }, function(err, data) {
+            if (err) {
+                console.log('All ' + triesNumber + ' attemps failed for test id ' + task.testId);
+            }
+            callback(err, data.json, data.results);
+        });
 
     };
 };

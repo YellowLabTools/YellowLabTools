@@ -65,7 +65,7 @@ var launchTestController = function(req, res, testQueue) {
 
     ], function(err) {
         if (err) {
-            console.log('An error occured while launching the phantomas test : ', err);
+            console.log('An error occured in the phantomas test: ', err);
 
             fs.writeFile(phantomasResultsPath, JSON.stringify({url: url, error: err}, null, 4), function(err) {
                 if (err) {
@@ -73,6 +73,7 @@ var launchTestController = function(req, res, testQueue) {
                     console.log(err);
                 }
             });
+            testQueue.testFailed(testId);
         } else {
             testQueue.testComplete(testId);
         }

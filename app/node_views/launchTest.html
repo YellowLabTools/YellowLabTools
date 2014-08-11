@@ -35,6 +35,11 @@
             window.location.replace('/results/' + testId);
         });
 
+        socket.on('failed', function() {
+            statusElement.innerHTML = 'Test failed';
+            window.location.replace('/results/' + testId);
+        });
+
         socket.on('404', function() {
             statusElement.innerHTML = 'Test not found';
         });

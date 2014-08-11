@@ -20,13 +20,13 @@ exports.module = function(phantomas) {
     phantomas.once('init', function() {
         phantomas.evaluate(function() {
             (function(phantomas) {
-                function querySpy(type, query, fnName) {
-                    phantomas.emit('domQuery', type, query, fnName); // @desc DOM query has been made
+                function querySpy(type, query, fnName, context) {
+                    phantomas.emit('domQuery', type, query, fnName, context); // @desc DOM query has been made
                 }
 
                 phantomas.spy(Document.prototype, 'getElementById', function(id) {
                     phantomas.incrMetric('DOMqueriesById');
-                    querySpy('id', '#' + id, 'getElementById');
+                    querySpy('id', '#' + id, 'getElementById', '#document');
 
                     phantomas.enterContext({
                         type: 'getElementById',
@@ -46,15 +46,17 @@ exports.module = function(phantomas) {
                 function selectorClassNameSpyBefore(className) {
                     /*jshint validthis: true */
 
+                    var context = phantomas.getDOMPath(this);
+
                     phantomas.incrMetric('DOMqueriesByClassName');
                     phantomas.addOffender('DOMqueriesByClassName', '.' + className);
-                    querySpy('class', '.' + className, 'getElementsByClassName');
+                    querySpy('class', '.' + className, 'getElementsByClassName', context);
 
                     phantomas.enterContext({
                         type: 'getElementsByClassName',
                         callDetails: {
                             context: {
-                                domElement: phantomas.getDOMPath(this)
+                                domElement: context
                             },
                             arguments: ['.' + className]
                         },
@@ -70,15 +72,17 @@ exports.module = function(phantomas) {
                 function selectorTagNameSpyBefore(tagName) {
                     /*jshint validthis: true */
 
+                    var context = phantomas.getDOMPath(this);
+
                     phantomas.incrMetric('DOMqueriesByTagName');
                     phantomas.addOffender('DOMqueriesByTagName', tagName);
-                    querySpy('tag name', tagName, 'getElementsByTagName');
+                    querySpy('tag name', tagName, 'getElementsByTagName', context);
 
                     phantomas.enterContext({
                         type: 'getElementsByTagName',
                         callDetails: {
                             context: {
-                                domElement: phantomas.getDOMPath(this)
+                                domElement: context
                             },
                             arguments: [tagName]
                         },
@@ -91,7 +95,7 @@ exports.module = function(phantomas) {
                 phantomas.spy(Element.prototype, 'getElementsByTagName', selectorTagNameSpyBefore, phantomas.leaveContext);
 
                 // selector queries
-                function selectorQuerySpy(selector) {
+                function selectorQuerySpy(selector, context) {
                     phantomas.incrMetric('DOMqueriesByQuerySelectorAll');
                     phantomas.addOffender('DOMqueriesByQuerySelectorAll', selector);
                     querySpy('selector', selector, 'querySelectorAll');
@@ -100,13 +104,14 @@ exports.module = function(phantomas) {
                 function selectorQuerySpyBefore(selector) {
                     /*jshint validthis: true */
 
-                    selectorQuerySpy(selector);
+                    var context = phantomas.getDOMPath(this);
+                    selectorQuerySpy(selector, context);
 
                     phantomas.enterContext({
                         type: 'querySelector',
                         callDetails: {
                             context: {
-                                domElement: phantomas.getDOMPath(this)
+                                domElement: context
                             },
                             arguments: [selector]
                         },
@@ -118,13 +123,14 @@ exports.module = function(phantomas) {
                 function selectorAllQuerySpyBefore(selector) {
                     /*jshint validthis: true */
 
-                    selectorQuerySpy(selector);
+                    var context = phantomas.getDOMPath(this);
+                    selectorQuerySpy(selector, context);
 
                     phantomas.enterContext({
                         type: 'querySelectorAll',
                         callDetails: {
                             context: {
-                                domElement: phantomas.getDOMPath(this)
+                                domElement: context
                             },
                             arguments: [selector]
                         },
@@ -140,16 +146,13 @@ exports.module = function(phantomas) {
 
 
                 // count DOM inserts
-                function appendChild(child) {
+                function appendChild(child, context, appended) {
                     /*jshint validthis: true */
 
                     // ignore appending to the node that's not yet added to DOM tree
                     if (!this.parentNode) {
                         return;
                     }
-
-                    var destNodePath = phantomas.getDOMPath(this),
-                        appendedNodePath = phantomas.getDOMPath(child);
 
                     // don't count elements added to fragments as a DOM inserts (issue #350)
                     // DocumentFragment > div[0]
@@ -158,23 +161,25 @@ exports.module = function(phantomas) {
                     }
 
                     phantomas.incrMetric('DOMinserts');
-                    phantomas.addOffender('DOMinserts', '"%s" appended to "%s"', appendedNodePath, destNodePath);
+                    phantomas.addOffender('DOMinserts', '"%s" appended to "%s"', appended, context);
 
-                    phantomas.log('DOM insert: node "%s" appended to "%s"', appendedNodePath, destNodePath);
+                    phantomas.log('DOM insert: node "%s" appended to "%s"', appended, context);
                 }
 
                 function appendChildSpyBefore(child) {
                     /*jshint validthis: true */
 
-                    appendChild(child);
+                    var context = phantomas.getDOMPath(this);
+                    var appended = phantomas.getDOMPath(child);
+                    appendChild(child, context, appended);
 
                     phantomas.enterContext({
                         type: 'appendChild',
                         callDetails: {
                             context: {
-                                domElement: phantomas.getDOMPath(this)
+                                domElement: context
                             },
-                            arguments: [phantomas.getDOMPath(child)]
+                            arguments: [appended]
                         },
                         caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
@@ -184,15 +189,17 @@ exports.module = function(phantomas) {
                 function insertBeforeSpyBefore(child) {
                     /*jshint validthis: true */
                     
-                    appendChild(child);
+                    var context = phantomas.getDOMPath(this);
+                    var appended = phantomas.getDOMPath(child);
+                    appendChild(child, context, appended);
 
                     phantomas.enterContext({
                         type: 'insertBefore',
                         callDetails: {
                             context: {
-                                domElement: phantomas.getDOMPath(this)
+                                domElement: context
                             },
-                            arguments: [phantomas.getDOMPath(child)]
+                            arguments: [appended]
                         },
                         caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
@@ -210,11 +217,18 @@ exports.module = function(phantomas) {
     var Collection = require('../../../node_modules/phantomas/lib/collection'),
         DOMqueries = new Collection();
 
-    phantomas.on('domQuery', function(type, query, fnName) {
-        phantomas.log('DOM query: by %s - "%s" (using %s)', type, query, fnName);
+    phantomas.on('domQuery', function(type, query, fnName, context) {
+        phantomas.log('DOM query: by %s - "%s" (using %s on context %s)', type, query, fnName, context);
         phantomas.incrMetric('DOMqueries');
 
-        DOMqueries.push(type + ' "' + query + '"');
+        var domQuery = {
+            type: type,
+            query: query,
+            fnName: fnName,
+            context: context
+        };
+
+        DOMqueries.push(JSON.stringify(domQuery));
     });
 
     phantomas.on('report', function() {
