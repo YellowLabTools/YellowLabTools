@@ -3,13 +3,13 @@
 # APT-GET
 sudo apt-get update
 sudo apt-get install lsb-release -y --force-yes
-sudo apt-get install curl git -y --force-yes
+sudo apt-get install curl git python-software-properties -y --force-yes
 
 # Installation of NodeJS
-curl https://raw.githubusercontent.com/creationix/nvm/v0.12.2/install.sh | bash
+sudo add-apt-repository -y ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install -y nodejs
 source ~/.profile
-nvm install v0.10.30
-nvm use v0.10.30
 
 # Installation of some packages globally
 npm install bower -g
@@ -22,7 +22,7 @@ cd /space
 git clone https://github.com/gmetais/YellowLabTools.git --branch master
 cd YellowLabTools
 npm install
-bower install --config.interactive=false
+bower install --config.interactive=false --allow-root
 
 # Start the server
 rm server_config/settings.json
