@@ -37,6 +37,7 @@ exports.module = function(phantomas) {
                 var runner = new phantomas.nodeRunner(),
                     whitespacesRegExp = /^\s+$/,
                     DOMelementMaxDepth = 0,
+                    DOMelementMaxDepthElts = [],
                     size = 0;
 
                 // include all nodes
@@ -58,7 +59,13 @@ exports.module = function(phantomas) {
 
                         case Node.ELEMENT_NODE:
                             phantomas.incrMetric('DOMelementsCount');
-                            DOMelementMaxDepth = Math.max(DOMelementMaxDepth, depth);
+                            
+                            if (depth > DOMelementMaxDepth) {
+                                DOMelementMaxDepth = depth;
+                                DOMelementMaxDepthElts = [phantomas.getDOMPath(node)];
+                            } else if (depth === DOMelementMaxDepth) {
+                                DOMelementMaxDepthElts.push(phantomas.getDOMPath(node));
+                            }
 
                             if (node.id) {
                                 // Send id to a collection so that duplicated ids can be counted
@@ -105,6 +112,9 @@ exports.module = function(phantomas) {
                 });
 
                 phantomas.setMetric('DOMelementMaxDepth', DOMelementMaxDepth);
+                DOMelementMaxDepthElts.forEach(function(path) {
+                    phantomas.addOffender('DOMelementMaxDepth', path);
+                });
 
                 phantomas.spyEnabled(false, 'counting iframes and images');
 
