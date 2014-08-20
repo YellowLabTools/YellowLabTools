@@ -58,6 +58,14 @@ var PhantomasWrapper = function() {
             ].join(',')
         };
 
+        // Output the command line for debugging purpose
+        console.log('If you want to reproduce the phantomas with command line:');
+        var optionsString = '';
+        for (var opt in options) {
+            optionsString += ' ' + '--' + opt + '=' + options[opt];
+        }
+        console.log('node node_modules/phantomas/bin/phantomas.js --url=' + task.url + optionsString + ' --verbose');
+
         // It's time to launch the test!!!
         var triesNumber = 3;
 
