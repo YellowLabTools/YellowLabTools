@@ -146,17 +146,17 @@ exports.module = function(phantomas) {
 
 
                 // count DOM inserts
-                function appendChild(child, context, appended) {
+                function appendChild(child, element, context, appended) {
                     /*jshint validthis: true */
 
                     // ignore appending to the node that's not yet added to DOM tree
-                    if (!this.parentNode) {
+                    if (!element.parentNode) {
                         return;
                     }
 
                     // don't count elements added to fragments as a DOM inserts (issue #350)
                     // DocumentFragment > div[0]
-                    if (destNodePath.indexOf('DocumentFragment') === 0) {
+                    if (context.indexOf('DocumentFragment') === 0) {
                         return;
                     }
 
@@ -171,7 +171,7 @@ exports.module = function(phantomas) {
 
                     var context = phantomas.getDOMPath(this);
                     var appended = phantomas.getDOMPath(child);
-                    appendChild(child, context, appended);
+                    appendChild(child, this, context, appended);
 
                     phantomas.enterContext({
                         type: 'appendChild',
@@ -191,7 +191,7 @@ exports.module = function(phantomas) {
                     
                     var context = phantomas.getDOMPath(this);
                     var appended = phantomas.getDOMPath(child);
-                    appendChild(child, context, appended);
+                    appendChild(child, this, context, appended);
 
                     phantomas.enterContext({
                         type: 'insertBefore',
