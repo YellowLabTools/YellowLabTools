@@ -59,7 +59,7 @@ var PhantomasWrapper = function() {
         };
 
         // Output the command line for debugging purpose
-        console.log('If you want to reproduce the phantomas with command line:');
+        console.log('If you want to reproduce the phantomas task only, copy the following command line:');
         var optionsString = '';
         for (var opt in options) {
             optionsString += ' ' + '--' + opt + '=' + options[opt];
