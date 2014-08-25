@@ -74,7 +74,7 @@ var PhantomasWrapper = function() {
                 console.log('Returning from Phantomas');
 
                 // Adding some YellowLabTools errors here
-                if (!json.metrics.javascriptExecutionTree) {
+                if (!json || !json.metrics || !json.metrics.javascriptExecutionTree) {
                     err = 1001;
                 }
 
