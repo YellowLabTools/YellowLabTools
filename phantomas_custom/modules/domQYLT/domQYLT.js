@@ -163,7 +163,7 @@ exports.module = function(phantomas) {
                     phantomas.incrMetric('DOMinserts');
                     phantomas.addOffender('DOMinserts', '"%s" appended to "%s"', appended, context);
 
-                    phantomas.log('DOM insert: node "%s" appended to "%s"', appended, context);
+                    //phantomas.log('DOM insert: node "%s" appended to "%s"', appended, context);
                 }
 
                 function appendChildSpyBefore(child) {
@@ -218,7 +218,7 @@ exports.module = function(phantomas) {
         DOMqueries = new Collection();
 
     phantomas.on('domQuery', function(type, query, fnName, context) {
-        phantomas.log('DOM query: by %s - "%s" (using %s on context %s)', type, query, fnName, context);
+        //phantomas.log('DOM query: by %s - "%s" (using %s on context %s)', type, query, fnName, context);
         phantomas.incrMetric('DOMqueries');
 
         var domQuery = {
