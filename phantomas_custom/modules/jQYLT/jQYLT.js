@@ -63,8 +63,6 @@ exports.module = function(phantomas) {
         'delegate',
         'undelegate',
         'one',
-        'trigger',
-        'triggerHandler',
         'unbind',
 
         // more events
