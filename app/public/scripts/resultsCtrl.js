@@ -25,6 +25,10 @@ app.controller('ResultsCtrl', function ($scope) {
         });
     }
 
+    $scope.setView = function(viewName) {
+        $scope.view = viewName;
+    };
+
     $scope.onNodeDetailsClick = function(node) {
         var isOpen = node.data.showDetails;
         if (!isOpen) {

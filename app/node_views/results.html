@@ -19,9 +19,9 @@
 
         <div class="resultsMenu">
             <a class="menuItem" href="/"><span>New test<span></a>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="view = 'summary'"><span>Summary</span></div>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="view = 'metrics'"><span>Metrics</span></div>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="view = 'execution'"><span>Spaghetti</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="setView('summary')"><span>Summary</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="setView('metrics')"><span>Metrics</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="setView('execution')"><span>Spaghetti</span></div>
         </div>
 
         <div ng-if="phantomasResults.error">
