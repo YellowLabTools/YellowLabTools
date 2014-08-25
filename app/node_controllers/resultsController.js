@@ -20,6 +20,10 @@ var resultsController = function(req, res) {
             fs.readFile('./app/node_views/results.html', {encoding: 'utf8'}, callback);
         },
 
+        phantomasMetadata: function(callback) {
+            fs.readFile('./node_modules/phantomas/lib/metadata/metadata.json', {encoding: 'utf8'}, callback);
+        },
+
         phantomasResults: function(callback) {
             fs.readFile(phantomasResultsPath, {encoding: 'utf8'}, callback);
         }
@@ -31,6 +35,7 @@ var resultsController = function(req, res) {
         }
 
         var html = results.htmlTemplate;
+        html = html.replace('%%METADATA%%', results.phantomasMetadata);
         html = html.replace('%%RESULTS%%', results.phantomasResults);
 
         res.setHeader('Content-Type', 'text/html');
