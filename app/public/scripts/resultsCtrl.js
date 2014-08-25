@@ -4,11 +4,25 @@ app.controller('ResultsCtrl', function ($scope) {
     // Grab results from nodeJS served page
     $scope.phantomasResults = window._phantomas_results;
 
+    $scope.view = 'summary';
     $scope.slowRequestsOn = false;
     $scope.slowRequestsLimit = 5;
 
     if ($scope.phantomasResults.offenders && $scope.phantomasResults.offenders.javascriptExecutionTree) {
         $scope.javascript = JSON.parse($scope.phantomasResults.offenders.javascriptExecutionTree);
+    
+        // Read the main elements of the tree and sum the total time
+        $scope.totalJSTime = 0;
+        treeRunner($scope.javascript, function(node) {
+            if (node.data.time) {
+                $scope.totalJSTime += node.data.time;
+            }
+            
+            if (node.data.type !== 'main') {
+                // Don't check the children
+                return false;
+            }
+        });
     }
 
     $scope.onNodeDetailsClick = function(node) {
@@ -51,6 +65,15 @@ app.controller('ResultsCtrl', function ($scope) {
             }
         });
         return out;
+    }
+
+    // Goes on every node of the tree and calls the function fn. If fn returns false on a node, its children won't be checked.
+    function treeRunner(node, fn) {
+        if (fn(node) !== false && node.children) {
+            node.children.forEach(function(child) {
+                treeRunner(child, fn);
+            });
+        }
     }
 
 });

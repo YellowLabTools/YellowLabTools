@@ -5,18 +5,24 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/main.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/results.css">
     <script src="/bower_components/angular/angular.min.js"></script>
-    <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/public/scripts/app.js"></script>
     <script src="/public/scripts/resultsCtrl.js"></script>
     <script src="/public/scripts/filters.js"></script>
 </head>
-<body ng-app="Spaghetti" ng-controller="ResultsCtrl">
+<body ng-app="YellowLabTools" ng-controller="ResultsCtrl">
     <h1>Javascript Spaghetti Profiler</h1>
 
     <div ng-if="undefined">Untangling and counting the spaghettis...</div>
 
     <div class="ng-cloak">
-        <div>Tested url: <a class="testedUrl" href="{{phantomasResults.url}}" target="_blank">{{phantomasResults.url}}</a></div>
+        <div>Tested url: &nbsp; <a class="testedUrl" href="{{phantomasResults.url}}" target="_blank">{{phantomasResults.url}}</a></div>
+
+        <div class="resultsMenu">
+            <a class="menuItem" href="/"><span>New test<span></a>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="view = 'summary'"><span>Summary</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="view = 'metrics'"><span>Metrics</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="view = 'execution'"><span>Spaghetti</span></div>
+        </div>
 
         <div ng-if="phantomasResults.error">
             <h2>Error: {{phantomasResults.error}}</h2>
@@ -27,7 +33,34 @@
             <div ng-if="phantomasResults.error == 1001">Javascript execution tree error</div>
         </div>
 
-        <div ng-if="!phantomasResults.error" class="execution">
+        <div ng-show="view == 'summary' && !phantomasResults.error" class="summary">
+            <h2>Summary</h2>
+            <div>Javascript manipulation time: {{totalJSTime}} ms</div>
+            <div>Javascript onDOMReady time: {{phantomasResults.metrics.domContentLoadedEnd - phantomasResults.metrics.domContentLoaded}} ms</div>
+            <div>Scripts count: {{phantomasResults.metrics.jsCount}}</div>
+            <div>DOM elements count: {{phantomasResults.metrics.DOMelementsCount}}</div>
+            <div>DOM max depth: {{phantomasResults.metrics.DOMelementMaxDepth}}</div>
+            <div>DOM queries: {{phantomasResults.metrics.DOMqueries}}</div>
+            <div>DOM inserts: {{phantomasResults.metrics.DOMinserts}}</div>
+            <div>Events bound: {{phantomasResults.metrics.eventsBound}}</div>
+            <div>document.write() calls: {{phantomasResults.metrics.documentWriteCalls}}</div>
+            <div>eval calls: {{phantomasResults.metrics.evalCalls}}</div>
+            <div>Javascript errors: {{phantomasResults.metrics.jsErrors}}</div>
+            <div ng-if="phantomasResults.metrics.jQueryDifferentVersions == 1">jQuery version: {{phantomasResults.metrics.jQueryVersion}}</div>
+            <div ng-if="phantomasResults.metrics.jQueryDifferentVersions > 1">
+                Number of jQuery versions loaded: {{phantomasResults.metrics.jQueryDifferentVersions}}
+                (<span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span>)
+            </div>
+        </div>
+
+        <div ng-show="view == 'metrics' && !phantomasResults.error" class="metrics">
+            <h2>Metrics</h2>
+            <ul>
+                <li ng-repeat="(key,val) in phantomasResults.metrics">{{key}}: {{val}}</li>
+            </ul>
+        </div>
+
+        <div ng-show="view == 'execution' && !phantomasResults.error" class="execution">
             <h2>Javascript interactions with the DOM</h2>
             <div class="filters">
                 <div>
@@ -143,6 +176,12 @@
     </div>
 
 
-    <script>var _phantomas_results = %%RESULTS%%;</script>
+    <script>
+
+        var _phantomas_results = %%RESULTS%%;
+
+        var _phantomas_metadata = %%METADATA%%;
+
+    </script>
 </body>
 </html>
