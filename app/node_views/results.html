@@ -20,8 +20,8 @@
         <div class="resultsMenu">
             <a class="menuItem" href="/"><span>New test<span></a>
             <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="setView('summary')"><span>Summary</span></div>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="setView('metrics')"><span>Metrics</span></div>
             <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="setView('execution')"><span>Spaghetti</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="setView('metrics')"><span>Metrics</span></div>
         </div>
 
         <div ng-if="phantomasResults.error">
@@ -51,13 +51,6 @@
                 Number of jQuery versions loaded: {{phantomasResults.metrics.jQueryDifferentVersions}}
                 (<span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span>)
             </div>
-        </div>
-
-        <div ng-show="view == 'metrics' && !phantomasResults.error" class="metrics">
-            <h2>Metrics</h2>
-            <ul>
-                <li ng-repeat="(key,val) in phantomasResults.metrics">{{key}}: {{val}}</li>
-            </ul>
         </div>
 
         <div ng-show="view == 'execution' && !phantomasResults.error" class="execution">
@@ -173,6 +166,35 @@
                 </div>
             </div>
         </div>
+
+        <div ng-show="view == 'metrics' && !phantomasResults.error" class="metrics">
+            <h2>Metrics</h2>
+            
+            <h3>Phantomas report</h3>
+            <div ng-repeat="(moduleName, module) in metricsModule">
+                <h4>{{moduleName}}</h4>
+                <div ng-repeat="(metricName, metric) in module" ng-if="phantomasResults.metrics[metricName] >= 0" class="module" id="metric_{{metricName}}">
+                    <div class="value">
+                        {{metricName}}: {{phantomasResults.metrics[metricName]}}
+                        <span ng-if="metric.unit == 'ms' || metric.unit == 'bytes'">{{metric.unit}}</span>
+                    </div>
+                    <div class="legend">
+                        {{metric.desc}}
+                        <span ng-if="metric.unreliable">(unreliable)</span>
+                    </div>
+                    <div ng-if="phantomasResults.offenders[metricName]" class="offenders">
+                        <div ng-if="!metric.showingOffenders" ng-click="metric.showingOffenders = true">Show offenders</div>
+                        <div ng-if="metric.showingOffenders" ng-click="metric.showingOffenders = false">Hide offenders</div>
+                        <ul ng-if="metric.showingOffenders">
+                            <li ng-repeat="offender in phantomasResults.offenders[metricName] track by $index">
+                                {{offender}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
 
