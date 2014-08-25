@@ -54,7 +54,7 @@
         </div>
 
         <div ng-show="view == 'execution' && !phantomasResults.error" class="execution">
-            <h2>Javascript interactions with the DOM</h2>
+            <h2>Javascript Spaghetti Profiler (interactions with the DOM)</h2>
             <div class="filters">
                 <div>
                     <input type="checkbox" ng-model="textFilterOn" />
@@ -168,9 +168,9 @@
         </div>
 
         <div ng-show="view == 'metrics' && !phantomasResults.error" class="metrics">
-            <h2>Metrics</h2>
+            <h2>Metrics from Phantomas report</h2>
+            <p>Phantomas is a web performance metrics collector. You can it find <a href="https://github.com/macbre/phantomas" target="_blank">here</a>.</p>
             
-            <h3>Phantomas report</h3>
             <div ng-repeat="(moduleName, module) in metricsModule">
                 <h4>{{moduleName}}</h4>
                 <div ng-repeat="(metricName, metric) in module" ng-if="phantomasResults.metrics[metricName] >= 0" class="module" id="metric_{{metricName}}">
@@ -194,7 +194,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 
