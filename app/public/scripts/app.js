@@ -1,3 +1,3 @@
-angular.module('Spaghetti', [
+angular.module('YellowLabTools', [
   'Results'
 ]);
