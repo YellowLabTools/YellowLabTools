@@ -37,6 +37,7 @@ var PhantomasWrapper = function() {
                 'domComplexity',
                 'domMutations',
                 'domQueries',
+                'eventListeners',
                 'filmStrip',
                 'jQuery',
                 'jserrors',
