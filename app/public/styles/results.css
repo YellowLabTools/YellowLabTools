@@ -40,6 +40,34 @@ h4 {
     text-align: left;
 }
 
+
+.metrics h4 {
+    padding-left: 2em;
+}
+
+.metrics .module {
+    padding-left: 4em;
+    padding-top: 0.5em;
+}
+
+.metrics .legend {
+    font-style: italic;
+    color: #aaa;
+}
+
+.metrics .offenders {
+    padding-left: 0em;
+    font-size: 0.8em;
+}
+
+.metrics .offenders div {
+    cursor: pointer;
+}
+
+.metrics .offenders ul {
+    margin-top: 0.5em;
+}
+
 .filters {
     margin: 1em 0;
     padding: 0.5em;
