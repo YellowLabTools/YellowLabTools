@@ -9,6 +9,7 @@ var app                     = express();
 var server                  = require('http').createServer(app);
 var io                      = require('socket.io').listen(server);
 var bodyParser              = require('body-parser');
+var compress                = require('compression');
 
 // Internals
 var indexController         = require('./app/node_controllers/indexController');
@@ -17,6 +18,7 @@ var resultsController       = require('./app/node_controllers/resultsController'
 var waitingQueueSocket      = require('./app/node_controllers/waitingQueueSocket');
 var testQueue               = require('./app/lib/testQueue');
 
+app.use(compress());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
