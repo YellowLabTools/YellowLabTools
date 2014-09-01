@@ -6,39 +6,15 @@ app.controller('ResultsCtrl', function ($scope) {
     $scope.phantomasMetadata = window._phantomas_metadata.metrics;
 
     $scope.view = 'summary';
-    $scope.slowRequestsOn = false;
-    $scope.slowRequestsLimit = 5;
 
-    if ($scope.phantomasResults.offenders && $scope.phantomasResults.offenders.javascriptExecutionTree) {
-        
+    if ($scope.phantomasResults.metrics && $scope.phantomasResults.offenders && $scope.phantomasResults.offenders.javascriptExecutionTree) {
+
         // Get the execution tree from the offenders
         $scope.javascript = JSON.parse($scope.phantomasResults.offenders.javascriptExecutionTree);
-    
-        // Read the main elements of the tree and sum the total time
-        $scope.totalJSTime = 0;
-        treeRunner($scope.javascript, function(node) {
-            if (node.data.time) {
-                $scope.totalJSTime += node.data.time;
-            }
-            
-            if (node.data.type !== 'main') {
-                // Don't check the children
-                return false;
-            }
-        });
-    }
 
-    if ($scope.phantomasResults.metrics && $scope.phantomasResults.offenders) {
-
-        // Get the Phantomas modules from metadata
-        $scope.metricsModule = {};
-        for (var metricName in $scope.phantomasMetadata) {
-            var metric = $scope.phantomasMetadata[metricName];
-            if (!$scope.metricsModule[metric.module]) {
-                $scope.metricsModule[metric.module] = {};
-            }
-            $scope.metricsModule[metric.module][metricName] = metric;
-        }
+        initSummaryView();
+        initExecutionView();
+        initMetricsView();
 
     }
 
@@ -62,6 +38,96 @@ app.controller('ResultsCtrl', function ($scope) {
         }
         node.data.showDetails = !isOpen;
     };
+
+    function initSummaryView() {
+
+        // Read the main elements of the tree and sum the total time
+        $scope.totalJSTime = 0;
+        treeRunner($scope.javascript, function(node) {
+            if (node.data.time) {
+                $scope.totalJSTime += node.data.time;
+            }
+            
+            if (node.data.type !== 'main') {
+                // Don't check the children
+                return false;
+            }
+        });
+
+        $scope.notations = {
+            domComplexity: 'A',
+            domManipulations: 'A',
+            duplicatedDomQueries: 'A'
+        };
+
+        var domComplexityScore = $scope.phantomasResults.metrics.DOMelementsCount;
+        if (domComplexityScore > 500) {
+            $scope.notations.domComplexity = 'B';
+        }
+        if (domComplexityScore > 1000) {
+            $scope.notations.domComplexity = 'C';
+        }
+        if (domComplexityScore > 1500) {
+            $scope.notations.domComplexity = 'D';
+        }
+        if (domComplexityScore > 2000) {
+            $scope.notations.domComplexity = 'E';
+        }
+        if (domComplexityScore > 3000) {
+            $scope.notations.domComplexity = 'F';
+        }
+
+        var domManipulationsScore = $scope.phantomasResults.metrics.DOMinserts + $scope.phantomasResults.metrics.DOMqueries * 0.5 + $scope.totalJSTime;
+        if (domManipulationsScore > 50) {
+            $scope.notations.domManipulations = 'B';
+        }
+        if (domManipulationsScore > 100) {
+            $scope.notations.domManipulations = 'C';
+        }
+        if (domManipulationsScore > 200) {
+            $scope.notations.domManipulations = 'D';
+        }
+        if (domManipulationsScore > 500) {
+            $scope.notations.domManipulations = 'E';
+        }
+        if (domManipulationsScore > 1000) {
+            $scope.notations.domManipulations = 'F';
+        }
+
+        var duplicatedDomQueries = $scope.phantomasResults.metrics.DOMqueriesDuplicated;
+        if (duplicatedDomQueries > 5) {
+            $scope.notations.duplicatedDomQueries = 'B';
+        }
+        if (duplicatedDomQueries > 10) {
+            $scope.notations.duplicatedDomQueries = 'C';
+        }
+        if (duplicatedDomQueries > 20) {
+            $scope.notations.duplicatedDomQueries = 'D';
+        }
+        if (duplicatedDomQueries > 50) {
+            $scope.notations.duplicatedDomQueries = 'E';
+        }
+        if (duplicatedDomQueries > 100) {
+            $scope.notations.duplicatedDomQueries = 'F';
+        }
+    }
+
+    function initExecutionView() {
+        $scope.slowRequestsOn = false;
+        $scope.slowRequestsLimit = 5;
+    }
+
+    function initMetricsView() {
+        // Get the Phantomas modules from metadata
+        $scope.metricsModule = {};
+        for (var metricName in $scope.phantomasMetadata) {
+            var metric = $scope.phantomasMetadata[metricName];
+            if (!$scope.metricsModule[metric.module]) {
+                $scope.metricsModule[metric.module] = {};
+            }
+            $scope.metricsModule[metric.module][metricName] = metric;
+        }
+    }
 
     function parseBacktrace(str) {
         if (!str) {

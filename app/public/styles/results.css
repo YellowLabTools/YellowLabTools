@@ -40,6 +40,56 @@ h4 {
     text-align: left;
 }
 
+.notations {
+    display: table;
+    width: 25em;
+    margin: 0 auto;
+    border-spacing: 0.5em;
+}
+.notations > div {
+    display: table-row;
+}
+.notations > div > div {
+    display: table-cell;
+    height: 2.5em;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.notations .A, .notations .B, .notations .C, .notations .D, .notations .E, .notations .F, .notations .NA {
+    width: 2.5em;
+    font-size: 2em;
+    text-align: center;
+    border-radius: 0.5em;
+}
+.notations .A {
+    /* green */
+    background: #00DB61;
+}
+.notations .B {
+    /* green */
+    background: #CAD63D;
+}
+.notations .C {
+    /* yellow */
+    background: #FFD119;
+}
+.notations .D {
+    /* orange */
+    background: #FFA319;
+}
+.notations .E {
+    /* red */
+    background: #FF6600;
+}
+.notations .F {
+    /* red */
+    background: #FF1919;
+}
+.notations .NA {
+    /* Non applicable */
+    background: #CCC;
+}
+
 
 .metrics h4 {
     padding-left: 2em;
@@ -155,6 +205,7 @@ input.textFilter {
     right: 3em;
     top: -3em;
     width: 45em;
+    min-height: 1em;
     padding: 0 1em 1em;
     background: #fff;
     border: 2px solid #f1c40f;

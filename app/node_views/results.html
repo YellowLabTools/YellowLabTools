@@ -35,6 +35,24 @@
 
         <div ng-show="view == 'summary' && !phantomasResults.error" class="summary">
             <h2>Summary</h2>
+            
+            <div class="notations">
+                <div>
+                    <div ng-class="notations.domComplexity">{{notations.domComplexity}}</div>
+                    <div>DOM size</div>
+                </div>
+                <div>
+                    <div ng-class="notations.domManipulations">{{notations.domManipulations}}</div>
+                    <div>DOM read and write Requests</div>
+                </div>
+                <div>
+                    <div ng-class="notations.duplicatedDomQueries">{{notations.duplicatedDomQueries}}</div>
+                    <div>Duplicated DOM queries</div>
+                </div>
+            </div>
+
+
+
             <div>Javascript manipulation time: {{totalJSTime}} ms</div>
             <div>Javascript onDOMReady time: {{phantomasResults.metrics.domContentLoadedEnd - phantomasResults.metrics.domContentLoaded}} ms</div>
             <div>Scripts count: {{phantomasResults.metrics.jsCount}}</div>
@@ -42,6 +60,7 @@
             <div>DOM max depth: {{phantomasResults.metrics.DOMelementMaxDepth}}</div>
             <div>DOM queries: {{phantomasResults.metrics.DOMqueries}}</div>
             <div>DOM inserts: {{phantomasResults.metrics.DOMinserts}}</div>
+            <div>Duplicated DOM queries: {{phantomasResults.metrics.DOMqueriesDuplicated}}</div>
             <div>Events bound: {{phantomasResults.metrics.eventsBound}}</div>
             <div>document.write() calls: {{phantomasResults.metrics.documentWriteCalls}}</div>
             <div>eval calls: {{phantomasResults.metrics.evalCalls}}</div>
@@ -74,6 +93,7 @@
                     <div>Params</div>
                     <div><!-- details --></div>
                     <div>Duration</div>
+                    <div>Start time</div>
                 </div>
                 <div ng-repeat="node in javascript.children"
                      ng-if="(!slowRequestsOn || node.data.time > slowRequestsLimit)
@@ -163,20 +183,21 @@
                         <div ng-if="node.data.time > slowRequestsLimit" class="warningIcon" title="Slower than {{slowRequestsLimit}} ms"></div>
                     </div>
                     <div class="duration" ng-if="node.data.time == undefined"></div>
+                    <div class="startTime">{{node.data.timestamp}}</div>
                 </div>
             </div>
         </div>
 
         <div ng-show="view == 'metrics' && !phantomasResults.error" class="metrics">
             <h2>Metrics from Phantomas report</h2>
-            <p>Phantomas is a web performance metrics collector. You can it find <a href="https://github.com/macbre/phantomas" target="_blank">here</a>.</p>
+            <p><a href="https://github.com/macbre/phantomas" target="_blank">Phantomas</a> is a web performance metrics collector. You can find here the (almost) entire list of metrics from Phantomas.</p>
             
             <div ng-repeat="(moduleName, module) in metricsModule">
                 <h4>{{moduleName}}</h4>
                 <div ng-repeat="(metricName, metric) in module" ng-if="phantomasResults.metrics[metricName] >= 0" class="module" id="metric_{{metricName}}">
                     <div class="value">
                         {{metricName}}: {{phantomasResults.metrics[metricName]}}
-                        <span ng-if="metric.unit == 'ms' || metric.unit == 'bytes'">{{metric.unit}}</span>
+                        <span ng-if="metric.unit == 'ms' || metric.unit == 'bytes' || metric.unit == '%'">{{metric.unit}}</span>
                     </div>
                     <div class="legend">
                         {{metric.desc}}
