@@ -12,8 +12,14 @@ exports.version = '0.1';
 exports.module = function(phantomas) {
     'use strict';
 
+    var responseEndTime = Date.now();
+
+    phantomas.on('responseEnd', function() {
+        responseEndTime = Date.now();
+    });
+
     phantomas.once('init', function() {
-        phantomas.evaluate(function(deepAnalysis) {
+        phantomas.evaluate(function(responseEndTime, deepAnalysis) {
             (function(phantomas) {
     
                 // Overwritting phantomas spy function
@@ -91,7 +97,7 @@ exports.module = function(phantomas) {
                     // Add a child but don't enter his context
                     function pushContext(data) {
                         if (depth === 0 || deepAnalysis) {
-                            data.timestamp = Date.now();
+                            data.timestamp = Date.now() - responseEndTime;
                             currentContext.addChild(data);
                         }
                     }
@@ -99,7 +105,7 @@ exports.module = function(phantomas) {
                     // Add a child to the current context and enter his context
                     function enterContext(data) {
                         if (depth === 0 || deepAnalysis) {
-                            data.timestamp = Date.now();
+                            data.timestamp = Date.now() - responseEndTime;
                             currentContext = currentContext.addChild(data);
                         }
                         depth ++;
@@ -108,7 +114,7 @@ exports.module = function(phantomas) {
                     // Save given data in the current context and jump change current context to its parent
                     function leaveContext() {
                         if (depth === 1 || deepAnalysis) {
-                            currentContext.data.time = Date.now() - currentContext.data.timestamp;
+                            currentContext.data.time = Date.now() - currentContext.data.timestamp - responseEndTime;
                             var parent = currentContext.parent;
                             if (parent === null) {
                                 console.error('Error: trying to close root context in ContextTree');
@@ -169,6 +175,6 @@ exports.module = function(phantomas) {
                 })();
 
             })(window.__phantomas);
-        }, phantomas.getParam('js-deep-analysis'));
+        }, responseEndTime, phantomas.getParam('js-deep-analysis'));
     });
 };
