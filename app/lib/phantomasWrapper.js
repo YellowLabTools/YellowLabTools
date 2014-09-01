@@ -52,7 +52,8 @@ var PhantomasWrapper = function() {
                 'screenshot',
                 //'staticAssets',
                 //'timeToFirst',
-                'waitForSelector'
+                'waitForSelector',
+                'windowPerformance'
             ].join(','),
             'include-dirs': [
                 'phantomas_custom/core',
