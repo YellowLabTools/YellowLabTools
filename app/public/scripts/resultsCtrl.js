@@ -57,40 +57,45 @@ app.controller('ResultsCtrl', function ($scope) {
         $scope.notations = {
             domComplexity: 'A',
             domManipulations: 'A',
-            duplicatedDomQueries: 'A'
+            duplicatedDomQueries: 'A',
+            badPractices: 'A'
         };
 
-        var domComplexityScore = $scope.phantomasResults.metrics.DOMelementsCount;
-        if (domComplexityScore > 500) {
+        var domComplexityScore = $scope.phantomasResults.metrics.DOMelementsCount
+                               + Math.sqrt($scope.phantomasResults.metrics.DOMelementMaxDepth)
+                               + $scope.phantomasResults.metrics.iframesCount * 100;
+        if (domComplexityScore > 1000) {
             $scope.notations.domComplexity = 'B';
         }
-        if (domComplexityScore > 1000) {
+        if (domComplexityScore > 1500) {
             $scope.notations.domComplexity = 'C';
         }
-        if (domComplexityScore > 1500) {
+        if (domComplexityScore > 2500) {
             $scope.notations.domComplexity = 'D';
         }
-        if (domComplexityScore > 2000) {
+        if (domComplexityScore > 3500) {
             $scope.notations.domComplexity = 'E';
         }
-        if (domComplexityScore > 3000) {
+        if (domComplexityScore > 5000) {
             $scope.notations.domComplexity = 'F';
         }
 
-        var domManipulationsScore = $scope.phantomasResults.metrics.DOMinserts + $scope.phantomasResults.metrics.DOMqueries * 0.5 + $scope.totalJSTime;
-        if (domManipulationsScore > 50) {
+        var domManipulationsScore = $scope.phantomasResults.metrics.DOMinserts
+                                  + $scope.phantomasResults.metrics.DOMqueries * 0.5
+                                  + $scope.totalJSTime;
+        if (domManipulationsScore > 100) {
             $scope.notations.domManipulations = 'B';
         }
-        if (domManipulationsScore > 100) {
+        if (domManipulationsScore > 200) {
             $scope.notations.domManipulations = 'C';
         }
-        if (domManipulationsScore > 200) {
+        if (domManipulationsScore > 300) {
             $scope.notations.domManipulations = 'D';
         }
         if (domManipulationsScore > 500) {
             $scope.notations.domManipulations = 'E';
         }
-        if (domManipulationsScore > 1000) {
+        if (domManipulationsScore > 800) {
             $scope.notations.domManipulations = 'F';
         }
 
@@ -101,14 +106,35 @@ app.controller('ResultsCtrl', function ($scope) {
         if (duplicatedDomQueries > 10) {
             $scope.notations.duplicatedDomQueries = 'C';
         }
-        if (duplicatedDomQueries > 20) {
+        if (duplicatedDomQueries > 15) {
             $scope.notations.duplicatedDomQueries = 'D';
         }
-        if (duplicatedDomQueries > 50) {
+        if (duplicatedDomQueries > 25) {
             $scope.notations.duplicatedDomQueries = 'E';
         }
-        if (duplicatedDomQueries > 100) {
+        if (duplicatedDomQueries > 50) {
             $scope.notations.duplicatedDomQueries = 'F';
+        }
+
+        var badPracticesScore = $scope.phantomasResults.metrics.documentWriteCalls * 3
+                              + $scope.phantomasResults.metrics.evalCalls * 3
+                              + $scope.phantomasResults.metrics.jsErrors * 10
+                              + $scope.phantomasResults.metrics.consoleMessages;
+        console.log($scope.phantomasResults.metrics.consoleMessages);
+        if (badPracticesScore > 5) {
+            $scope.notations.badPractices = 'B';
+        }
+        if (badPracticesScore > 10) {
+            $scope.notations.badPractices = 'C';
+        }
+        if (badPracticesScore > 15) {
+            $scope.notations.badPractices = 'D';
+        }
+        if (badPracticesScore > 25) {
+            $scope.notations.badPractices = 'E';
+        }
+        if (badPracticesScore > 40) {
+            $scope.notations.badPractices = 'F';
         }
     }
 
