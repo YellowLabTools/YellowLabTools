@@ -59,7 +59,7 @@ app.controller('ResultsCtrl', function ($scope) {
         if ($scope.phantomasResults.offenders.DOMqueriesDuplicated) {
             var regex = /^{.*}: (\d+) queries$/;
             $scope.phantomasResults.offenders.DOMqueriesDuplicated.forEach(function(query) {
-                $scope.duplicatedQueriesCountAll += parseInt(regex.exec(query)[1], 10);
+                $scope.duplicatedQueriesCountAll += parseInt(regex.exec(query)[1], 10) - 1;
             });
         }
 
