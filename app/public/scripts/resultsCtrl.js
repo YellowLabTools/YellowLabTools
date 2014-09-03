@@ -54,6 +54,15 @@ app.controller('ResultsCtrl', function ($scope) {
             }
         });
 
+        // Read all the duplicated queries and calculate a more appropriated score
+        $scope.duplicatedQueriesCountAll = 0;
+        if ($scope.phantomasResults.offenders.DOMqueriesDuplicated) {
+            var regex = /^{.*}: (\d+) queries$/;
+            $scope.phantomasResults.offenders.DOMqueriesDuplicated.forEach(function(query) {
+                $scope.duplicatedQueriesCountAll += parseInt(regex.exec(query)[1], 10);
+            });
+        }
+
         $scope.notations = {
             domComplexity: 'A',
             domManipulations: 'A',
@@ -99,20 +108,20 @@ app.controller('ResultsCtrl', function ($scope) {
             $scope.notations.domManipulations = 'F';
         }
 
-        var duplicatedDomQueries = $scope.phantomasResults.metrics.DOMqueriesDuplicated;
-        if (duplicatedDomQueries > 5) {
+        var duplicatedDomQueries = $scope.duplicatedQueriesCountAll;
+        if (duplicatedDomQueries > 20) {
             $scope.notations.duplicatedDomQueries = 'B';
         }
-        if (duplicatedDomQueries > 10) {
+        if (duplicatedDomQueries > 50) {
             $scope.notations.duplicatedDomQueries = 'C';
         }
-        if (duplicatedDomQueries > 15) {
+        if (duplicatedDomQueries > 100) {
             $scope.notations.duplicatedDomQueries = 'D';
         }
-        if (duplicatedDomQueries > 25) {
+        if (duplicatedDomQueries > 200) {
             $scope.notations.duplicatedDomQueries = 'E';
         }
-        if (duplicatedDomQueries > 50) {
+        if (duplicatedDomQueries > 500) {
             $scope.notations.duplicatedDomQueries = 'F';
         }
 
@@ -120,7 +129,6 @@ app.controller('ResultsCtrl', function ($scope) {
                               + $scope.phantomasResults.metrics.evalCalls * 3
                               + $scope.phantomasResults.metrics.jsErrors * 10
                               + $scope.phantomasResults.metrics.consoleMessages;
-        console.log($scope.phantomasResults.metrics.consoleMessages);
         if (badPracticesScore > 5) {
             $scope.notations.badPractices = 'B';
         }
