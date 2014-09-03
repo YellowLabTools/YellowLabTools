@@ -114,7 +114,12 @@
         </div>
 
         <div ng-show="view == 'execution' && !phantomasResults.error" class="execution">
-            <h2>Javascript Spaghetti Profiler (interactions with the DOM)</h2>
+            <h2>Javascript Spaghetti Profiler</h2>
+            <p>
+                The table below shows the interactions between Javascript and the DOM. It is usefull to understand what's going on when the page loads.
+                <br>
+                The tool is slower than a real browser, so durations are a little exagerated.
+            </p>
             <div class="filters">
                 <div>
                     <input type="checkbox" ng-model="textFilterOn" />
