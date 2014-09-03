@@ -69,6 +69,7 @@ app.controller('ResultsCtrl', function ($scope) {
             duplicatedDomQueries: 'A',
             eventsBound: 'A',
             badPractices: 'A',
+            scripts: 'A',
             jQueryLoading: 'A'
         };
 
@@ -110,6 +111,23 @@ app.controller('ResultsCtrl', function ($scope) {
             $scope.notations.domManipulations = 'F';
         }
 
+        var duplicatedDomQueries = $scope.duplicatedQueriesCountAll;
+        if (duplicatedDomQueries > 10) {
+            $scope.notations.duplicatedDomQueries = 'B';
+        }
+        if (duplicatedDomQueries > 50) {
+            $scope.notations.duplicatedDomQueries = 'C';
+        }
+        if (duplicatedDomQueries > 100) {
+            $scope.notations.duplicatedDomQueries = 'D';
+        }
+        if (duplicatedDomQueries > 200) {
+            $scope.notations.duplicatedDomQueries = 'E';
+        }
+        if (duplicatedDomQueries > 500) {
+            $scope.notations.duplicatedDomQueries = 'F';
+        }
+
         var eventsBoundScore = $scope.phantomasResults.metrics.eventsBound;
         if (eventsBoundScore > 50) {
             $scope.notations.eventsBound = 'B';
@@ -125,23 +143,6 @@ app.controller('ResultsCtrl', function ($scope) {
         }
         if (eventsBoundScore > 1000) {
             $scope.notations.eventsBound = 'F';
-        }
-
-        var duplicatedDomQueries = $scope.duplicatedQueriesCountAll;
-        if (duplicatedDomQueries > 20) {
-            $scope.notations.duplicatedDomQueries = 'B';
-        }
-        if (duplicatedDomQueries > 50) {
-            $scope.notations.duplicatedDomQueries = 'C';
-        }
-        if (duplicatedDomQueries > 100) {
-            $scope.notations.duplicatedDomQueries = 'D';
-        }
-        if (duplicatedDomQueries > 200) {
-            $scope.notations.duplicatedDomQueries = 'E';
-        }
-        if (duplicatedDomQueries > 500) {
-            $scope.notations.duplicatedDomQueries = 'F';
         }
 
         var badPracticesScore = $scope.phantomasResults.metrics.documentWriteCalls * 3
@@ -162,6 +163,23 @@ app.controller('ResultsCtrl', function ($scope) {
         }
         if (badPracticesScore > 40) {
             $scope.notations.badPractices = 'F';
+        }
+
+        var scriptsScore = $scope.phantomasResults.metrics.jsCount;
+        if (scriptsScore > 4) {
+            $scope.notations.scripts = 'B';
+        }
+        if (scriptsScore > 8) {
+            $scope.notations.scripts = 'C';
+        }
+        if (scriptsScore > 12) {
+            $scope.notations.scripts = 'D';
+        }
+        if (scriptsScore > 16) {
+            $scope.notations.scripts = 'E';
+        }
+        if (scriptsScore > 20) {
+            $scope.notations.scripts = 'F';
         }
 
         $scope.notations.jQueryLoading = 'NA';

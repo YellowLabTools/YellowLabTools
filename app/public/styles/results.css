@@ -42,9 +42,15 @@ h4 {
 
 .notations {
     display: table;
-    width: 25em;
-    margin: 0 auto;
+    width: 40em;
+    margin-left: 6em;
     border-spacing: 0.5em;
+}
+@media screen and (max-width: 800px) {
+    .notations {
+        width: 30em;
+        margin-left: 0;
+    }
 }
 .notations > div {
     display: table-row;
@@ -53,13 +59,21 @@ h4 {
     display: table-cell;
     height: 2.5em;
     vertical-align: middle;
+}
+.notations .notation {
     font-weight: bold;
+    text-align: center;
+}
+.notations .criteria {
+    padding-top: 0.9em;
+    font-weight: normal;
 }
 .notations .A, .notations .B, .notations .C, .notations .D, .notations .E, .notations .F, .notations .NA {
     width: 2.5em;
     font-size: 2em;
     text-align: center;
     border-radius: 0.5em;
+    font-weight: bold;
 }
 .notations .A {
     /* green */

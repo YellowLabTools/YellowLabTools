@@ -39,48 +39,77 @@
             <div class="notations">
                 <div>
                     <div ng-class="notations.domComplexity">{{notations.domComplexity}}</div>
-                    <div>DOM complexity</div>
+                    <div class="notation">DOM complexity</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.DOMelementsCount">DOM elements count: {{phantomasResults.metrics.DOMelementsCount}}</li>
+                            <li ng-if="phantomasResults.metrics.DOMelementMaxDepth">DOM max depth: {{phantomasResults.metrics.DOMelementMaxDepth}}</li>
+                            <li ng-if="phantomasResults.metrics.iframesCount">Number of iframes: {{phantomasResults.metrics.iframesCount}}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div>
                     <div ng-class="notations.domManipulations">{{notations.domManipulations}}</div>
-                    <div>DOM read and write Requests</div>
-                </div>
-                <div>
-                    <div ng-class="notations.eventsBound">{{notations.eventsBound}}</div>
-                    <div>Events bound</div>
+                    <div class="notation">DOM read and write</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.DOMinserts">DOM inserts: {{phantomasResults.metrics.DOMinserts}}</li>
+                            <li ng-if="phantomasResults.metrics.DOMqueries">DOM queries: {{phantomasResults.metrics.DOMqueries}}</li>
+                            <li ng-if="totalJSTime">Time it took: {{totalJSTime}} ms</li>
+                        </ul>
+                    </div>
                 </div>
                 <div>
                     <div ng-class="notations.duplicatedDomQueries">{{notations.duplicatedDomQueries}}</div>
-                    <div>Duplicated DOM queries</div>
+                    <div class="notation">Duplicated DOM queries</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="duplicatedQueriesCountAll">Avoidable queries: {{duplicatedQueriesCountAll}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div ng-class="notations.eventsBound">{{notations.eventsBound}}</div>
+                    <div class="notation">Events bound</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.eventsBound">Events bound: {{phantomasResults.metrics.eventsBound}}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div>
                     <div ng-class="notations.badPractices">{{notations.badPractices}}</div>
-                    <div>Evil Javascript</div>
+                    <div class="notation">Evil Javascript</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.jsErrors">Javascript errors: {{phantomasResults.metrics.jsErrors}}</li>
+                            <li ng-if="phantomasResults.metrics.evalCalls">eval calls: {{phantomasResults.metrics.evalCalls}}</li>
+                            <li ng-if="phantomasResults.metrics.documentWriteCalls">document.write calls: {{phantomasResults.metrics.documentWriteCalls}}</li>
+                            <li ng-if="phantomasResults.metrics.consoleMessages">Console messages: {{phantomasResults.metrics.consoleMessages}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div ng-class="notations.scripts">{{notations.scripts}}</div>
+                    <div class="notation">Scripts loaded</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.jsCount">Scripts count: {{phantomasResults.metrics.jsCount}}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div>
                     <div ng-class="notations.jQueryLoading">{{notations.jQueryLoading}}</div>
-                    <div>jQuery version</div>
+                    <div class="notation">jQuery version</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.jQueryDifferentVersions == 1">jQuery version: {{phantomasResults.metrics.jQueryVersion}}</li>
+                            <li ng-if="phantomasResults.metrics.jQueryDifferentVersions > 1">{{phantomasResults.metrics.jQueryDifferentVersions}} versions loaded: 
+                                <span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-
-
-
-            <div>Javascript manipulation time: {{totalJSTime}} ms</div>
-            <div>Javascript onDOMReady time: {{phantomasResults.metrics.domContentLoadedEnd - phantomasResults.metrics.domContentLoaded}} ms</div>
-            <div>Scripts count: {{phantomasResults.metrics.jsCount}}</div>
-            <div>DOM elements count: {{phantomasResults.metrics.DOMelementsCount}}</div>
-            <div>DOM max depth: {{phantomasResults.metrics.DOMelementMaxDepth}}</div>
-            <div>DOM queries: {{phantomasResults.metrics.DOMqueries}}</div>
-            <div>DOM inserts: {{phantomasResults.metrics.DOMinserts}}</div>
-            <div>Duplicated DOM queries: {{phantomasResults.metrics.DOMqueriesDuplicated}}</div>
-            <div>Events bound: {{phantomasResults.metrics.eventsBound}}</div>
-            <div>document.write() calls: {{phantomasResults.metrics.documentWriteCalls}}</div>
-            <div>eval calls: {{phantomasResults.metrics.evalCalls}}</div>
-            <div>Javascript errors: {{phantomasResults.metrics.jsErrors}}</div>
-            <div ng-if="phantomasResults.metrics.jQueryDifferentVersions == 1">jQuery version: {{phantomasResults.metrics.jQueryVersion}}</div>
-            <div ng-if="phantomasResults.metrics.jQueryDifferentVersions > 1">
-                Number of jQuery versions loaded: {{phantomasResults.metrics.jQueryDifferentVersions}}
-                (<span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span>)
             </div>
         </div>
 
@@ -105,7 +134,7 @@
                     <div>Params</div>
                     <div><!-- details --></div>
                     <div>Duration</div>
-                    <div>Start time</div>
+                    <div>Timestamp</div>
                 </div>
                 <div ng-repeat="node in javascript.children"
                      ng-if="(!slowRequestsOn || node.data.time > slowRequestsLimit)
