@@ -7,7 +7,7 @@ exports.version = '0.0';
 exports.module = function(phantomas) {
     'use strict';
     
-    phantomas.on('recv', function(entry, res) {
+    /*phantomas.on('recv', function(entry, res) {
         if (!entry.isJS) {
             return;
         }
@@ -25,5 +25,5 @@ exports.module = function(phantomas) {
 
             })(window.__phantomas);
         }, entry.url);
-    });
+    });*/
 };
