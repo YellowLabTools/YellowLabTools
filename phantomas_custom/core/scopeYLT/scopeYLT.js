@@ -56,7 +56,8 @@ exports.module = function(phantomas) {
                             try {
                                 result = origFn.apply(this, arguments);
                             } catch(e) {
-                                phantomas.log('Error catched on spyed function "' + fn + '"": ' + e);
+                                phantomas.log('Error catched on spyed function "' + fn + '": ' + e);
+                                phantomas.log(arguments);
                             } finally {
 
                                 // After

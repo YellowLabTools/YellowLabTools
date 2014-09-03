@@ -81,6 +81,12 @@ var PhantomasWrapper = function() {
                     err = 1001;
                 }
 
+                // Don't cancel test if it is a timeout
+                if (err === 252) {
+                    console.log('Timeout after ' + options.timeout + ' seconds. But it\'s not a problem, the test is valid.');
+                    err = null;
+                }
+
                 if (err) {
                     console.log('Attempt failed for test id ' + task.testId + '. Error code ' + err);
                 }
