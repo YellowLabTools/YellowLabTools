@@ -74,21 +74,21 @@ app.controller('ResultsCtrl', function ($scope) {
         };
 
         var domComplexityScore = $scope.phantomasResults.metrics.DOMelementsCount
-                               + Math.sqrt($scope.phantomasResults.metrics.DOMelementMaxDepth)
-                               + $scope.phantomasResults.metrics.iframesCount * 100;
+                               + Math.pow($scope.phantomasResults.metrics.DOMelementMaxDepth, 2)
+                               + $scope.phantomasResults.metrics.iframesCount * 50;
         if (domComplexityScore > 1000) {
             $scope.notations.domComplexity = 'B';
         }
         if (domComplexityScore > 1500) {
             $scope.notations.domComplexity = 'C';
         }
-        if (domComplexityScore > 2500) {
+        if (domComplexityScore > 2000) {
             $scope.notations.domComplexity = 'D';
         }
-        if (domComplexityScore > 3500) {
+        if (domComplexityScore > 3000) {
             $scope.notations.domComplexity = 'E';
         }
-        if (domComplexityScore > 5000) {
+        if (domComplexityScore > 4000) {
             $scope.notations.domComplexity = 'F';
         }
 
