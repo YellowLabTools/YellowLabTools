@@ -60,7 +60,7 @@ var testQueue = function() {
     }
 };
 
-// extend the EventEmitter class using our Radio class
+// extend the EventEmitter class
 util.inherits(testQueue, EventEmitter);
 
 module.exports = new testQueue();
