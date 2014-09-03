@@ -77,13 +77,14 @@ var PhantomasWrapper = function() {
                 console.log('Returning from Phantomas');
 
                 // Adding some YellowLabTools errors here
-                if (!json || !json.metrics || !json.metrics.javascriptExecutionTree) {
+                if (json && json.metrics && !json.metrics.javascriptExecutionTree) {
                     err = 1001;
                 }
 
                 if (err) {
                     console.log('Attempt failed for test id ' + task.testId + '. Error code ' + err);
                 }
+
                 cb(err, {json: json, results: results});
             });
         }, function(err, data) {
