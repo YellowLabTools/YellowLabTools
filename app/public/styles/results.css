@@ -179,6 +179,9 @@ input.textFilter {
     color: #e74c3c;
     font-weight: bold;
 }
+.table > div.windowPerformance > div {
+    background: #EBD8E2;
+}
 .table > div.showingDetails > div {
     background: #f1c40f;
 }

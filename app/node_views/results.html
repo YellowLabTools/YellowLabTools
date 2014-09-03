@@ -145,7 +145,11 @@
                                 || node.data.callDetails.arguments[1].indexOf(textFilter) >= 0
                                 || node.data.callDetails.arguments[2].indexOf(textFilter) >= 0
                                 || node.data.callDetails.arguments[3].indexOf(textFilter) >= 0)"
-                     ng-class="{showingDetails: node.data.showDetails, jsError: node.data.type == 'error' || node.data.type == 'jQuery version change'}">
+                     ng-class="{
+                                    showingDetails: node.data.showDetails,
+                                    jsError: node.data.type == 'error' || node.data.type == 'jQuery version change',
+                                    windowPerformance: node.data.type == 'domInteractive' || node.data.type == 'domContentLoaded' || node.data.type == 'domContentLoadedEnd' || node.data.type == 'domComplete'
+                                }">
                     <div class="index">{{$index}}</div>
                     <div class="type">{{node.data.type}}</div>
 
