@@ -5,7 +5,7 @@
 var async   = require('async');
 var fs      = require ('fs');
 
-var launchTestController = function(req, res, testQueue) {
+var launchTestController = function(req, res, testQueue, googleAnalyticsId) {
     'use strict';
 
     // Generate test id
@@ -34,6 +34,7 @@ var launchTestController = function(req, res, testQueue) {
 
             html = html.replace('%%TEST_URL%%', url);
             html = html.replace('%%TEST_ID%%', testId);
+            html = html.replace('%%GA_ID%%', googleAnalyticsId);
 
             res.setHeader('Content-Type', 'text/html');
             res.send(html);

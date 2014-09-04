@@ -32,9 +32,9 @@ app.all('*', function(req, res, next) {
 });
 
 // Routes definition
-app.get('/',                    indexController);
-app.post('/launchTest',         function(req, res) { launchTestController(req, res, testQueue); });
-app.get('/results/:testId',     resultsController);
+app.get('/',                    function(req, res) { indexController(req, res, settings.googleAnalyticsId); });
+app.post('/launchTest',         function(req, res) { launchTestController(req, res, testQueue, settings.googleAnalyticsId); });
+app.get('/results/:testId',     function(req, res) { resultsController(req, res, settings.googleAnalyticsId); });
 
 
 // Static files

@@ -1,3 +1,4 @@
 {
-    "serverPort": 8383
+    "serverPort": 8383,
+    "googleAnalyticsId": ""
 }

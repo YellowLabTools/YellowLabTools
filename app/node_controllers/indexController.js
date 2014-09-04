@@ -5,7 +5,7 @@
 var async   = require('async');
 var fs      = require ('fs');
 
-var indexController = function(req, res) {
+var indexController = function(req, res, googleAnalyticsId) {
     'use strict';
 
     async.parallel({
@@ -15,8 +15,11 @@ var indexController = function(req, res) {
         }
 
     }, function(err, results) {
+        var html = results.htmlTemplate;
+        html = html.replace('%%GA_ID%%', googleAnalyticsId);
+
         res.setHeader('Content-Type', 'text/html');
-        res.send(results.htmlTemplate);
+        res.send(html);
     });
  };
 

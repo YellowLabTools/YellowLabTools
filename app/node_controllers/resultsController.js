@@ -5,7 +5,7 @@
 var async   = require('async');
 var fs      = require ('fs');
 
-var resultsController = function(req, res) {
+var resultsController = function(req, res, googleAnalyticsId) {
     'use strict';
 
     var testId = req.params.testId;
@@ -37,6 +37,7 @@ var resultsController = function(req, res) {
         var html = results.htmlTemplate;
         html = html.replace('%%METADATA%%', results.phantomasMetadata);
         html = html.replace('%%RESULTS%%', results.phantomasResults);
+        html = html.replace('%%GA_ID%%', googleAnalyticsId);
 
         res.setHeader('Content-Type', 'text/html');
         res.send(html);

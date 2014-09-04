@@ -17,5 +17,18 @@
     <div class="footer">
         <p><b>Yellow Lab Tools</b> is an open source project by <a href="http://www.gaelmetais.com" target="_blank">Gaël Métais</a>, based on <a href="https://github.com/macbre/phantomas" target="_blank">Phantomas</a>.<br>If you like it, <a href="https://github.com/gmetais/YellowLabTools" target="_blank" class="star">give it a <span>&#9733;</span> on GitHub</a>!</p>
     </div>
+
+    <script>
+        var GA_ID = '%%GA_ID%%';
+        if (GA_ID.length > 0 && window.location.host === 'yellowlab.tools') {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', GA_ID, 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
 </body>
 </html>

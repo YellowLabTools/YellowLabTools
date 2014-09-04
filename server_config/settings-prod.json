@@ -1,3 +1,4 @@
 {
-    "serverPort": 80
+    "serverPort": 80,
+    "googleAnalyticsId": "UA-54493828-1"
 }
