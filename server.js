@@ -22,6 +22,15 @@ app.use(compress());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
+// Redirect www.yellowlab.tools to yellowlab.tools (for SEO)
+app.all('*', function(req, res, next) {
+    if (req.hostname.match(/^www\.yellowlab\.tools/) !== null ) {
+        res.redirect('http://' + req.hostname.replace(/^www\.yellowlab\.tools/, 'yellowlab.tools') + req.url);
+    } else {
+        next();
+    }
+})
+
 // Routes definition
 app.get('/',                    indexController);
 app.post('/launchTest',         function(req, res) { launchTestController(req, res, testQueue); });
