@@ -24,12 +24,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Redirect www.yellowlab.tools to yellowlab.tools (for SEO)
 app.all('*', function(req, res, next) {
-    if (req.hostname.match(/^www\.yellowlab\.tools/) !== null ) {
+    if (req.hostname && req.hostname.match(/^www\.yellowlab\.tools/) !== null) {
         res.redirect('http://' + req.hostname.replace(/^www\.yellowlab\.tools/, 'yellowlab.tools') + req.url);
     } else {
         next();
     }
-})
+});
 
 // Routes definition
 app.get('/',                    indexController);
@@ -47,7 +47,11 @@ io.on('connection', function(socket){
     waitingQueueSocket(socket, testQueue);
 });
 
-
+// Create the results folder if it doesn't exist
+var resultsPath = 'results';
+if (!fs.existsSync(resultsPath)) {
+    fs.mkdirSync(resultsPath);
+}
 
 // Launch the server
 server.listen(settings.serverPort, function() {
