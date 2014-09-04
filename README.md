@@ -31,6 +31,7 @@ cd YellowLabTools
 npm install
 bower install
 ```
+If `npm install` fails, try this command `npm install -g node-gyp` and retry `npm install` after.
 
 3) Launch the server
 ```shell
