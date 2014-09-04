@@ -73,9 +73,9 @@ app.controller('ResultsCtrl', function ($scope) {
             jQueryLoading: 'A'
         };
 
-        var domComplexityScore = $scope.phantomasResults.metrics.DOMelementsCount
-                               + Math.pow($scope.phantomasResults.metrics.DOMelementMaxDepth, 2)
-                               + $scope.phantomasResults.metrics.iframesCount * 50;
+        var domComplexityScore = $scope.phantomasResults.metrics.DOMelementsCount +
+                                 Math.pow($scope.phantomasResults.metrics.DOMelementMaxDepth, 2) +
+                                 $scope.phantomasResults.metrics.iframesCount * 50;
         if (domComplexityScore > 1000) {
             $scope.notations.domComplexity = 'B';
         }
@@ -92,9 +92,9 @@ app.controller('ResultsCtrl', function ($scope) {
             $scope.notations.domComplexity = 'F';
         }
 
-        var domManipulationsScore = $scope.phantomasResults.metrics.DOMinserts
-                                  + $scope.phantomasResults.metrics.DOMqueries * 0.5
-                                  + $scope.totalJSTime;
+        var domManipulationsScore = $scope.phantomasResults.metrics.DOMinserts +
+                                    $scope.phantomasResults.metrics.DOMqueries * 0.5 +
+                                    $scope.totalJSTime;
         if (domManipulationsScore > 100) {
             $scope.notations.domManipulations = 'B';
         }
@@ -145,10 +145,10 @@ app.controller('ResultsCtrl', function ($scope) {
             $scope.notations.eventsBound = 'F';
         }
 
-        var badPracticesScore = $scope.phantomasResults.metrics.documentWriteCalls * 3
-                              + $scope.phantomasResults.metrics.evalCalls * 3
-                              + $scope.phantomasResults.metrics.jsErrors * 10
-                              + $scope.phantomasResults.metrics.consoleMessages;
+        var badPracticesScore = $scope.phantomasResults.metrics.documentWriteCalls * 3 +
+                                $scope.phantomasResults.metrics.evalCalls * 3 +
+                                $scope.phantomasResults.metrics.jsErrors * 10 +
+                                $scope.phantomasResults.metrics.consoleMessages;
         if (badPracticesScore > 5) {
             $scope.notations.badPractices = 'B';
         }
@@ -186,24 +186,24 @@ app.controller('ResultsCtrl', function ($scope) {
         if ($scope.phantomasResults.metrics.jQueryDifferentVersions > 1) {
             $scope.notations.jQueryLoading = 'F';
         } else if ($scope.phantomasResults.metrics.jQueryVersion) {
-            if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.10.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.11.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.12.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.0.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.1.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.2.') === 0) {
+            if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.10.') === 0 ||
+                $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.11.') === 0 ||
+                $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.12.') === 0 ||
+                $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.0.') === 0 ||
+                $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.1.') === 0 ||
+                $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.2.') === 0) {
                 $scope.notations.jQueryLoading = 'A';
-            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.8.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.9.') === 0) {
+            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.8.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.9.') === 0) {
                 $scope.notations.jQueryLoading = 'B';
-            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.6.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.7.') === 0) {
+            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.6.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.7.') === 0) {
                 $scope.notations.jQueryLoading = 'C';
-            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.4.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.5.') === 0) {
+            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.4.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.5.') === 0) {
                 $scope.notations.jQueryLoading = 'D';
-            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.2.') === 0
-             || $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.3.') === 0) {
+            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.2.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.3.') === 0) {
                 $scope.notations.jQueryLoading = 'E';
             }
         }

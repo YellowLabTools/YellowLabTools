@@ -57,7 +57,7 @@ var testQueue = function() {
 
     this.testFailed = function(testId) {
         self.emit('testFailed', testId);
-    }
+    };
 };
 
 // extend the EventEmitter class

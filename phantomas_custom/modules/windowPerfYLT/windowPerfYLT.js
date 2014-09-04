@@ -5,11 +5,12 @@
  * @see https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp
  */
 /* global document: true, window: true */
-'use strict';
 
 exports.version = '1.0.a';
 
 exports.module = function(phantomas) {
+    'use strict';
+    
     // times below are calculated relative to performance.timing.responseEnd (#117)
     phantomas.setMetric('domInteractive');      // @desc time it took to parse the HTML and construct the DOM
     phantomas.setMetric('domContentLoaded');    // @desc time it took to construct both DOM and CSSOM, no stylesheets that are blocking JavaScript execution (i.e. onDOMReady)
