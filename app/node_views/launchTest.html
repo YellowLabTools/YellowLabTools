@@ -7,11 +7,15 @@
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <h1>Javascript Spaghetti Profiler</h1>
+    <h1>Yellow Lab <span class="icon-lab"></span> Tools</h1>
 
     <div id="status"></div>
 
     <div>%%TEST_URL%%</div>
+
+    <div class="footer">
+        <p><b>Yellow Lab Tools</b> is an open source project by <a href="http://www.gaelmetais.com" target="_blank">Gaël Métais</a>, based on <a href="https://github.com/macbre/phantomas" target="_blank">Phantomas</a>.<br>If you like it, <a href="https://github.com/gmetais/YellowLabTools" target="_blank" class="star">give it a <span>&#9733;</span> on GitHub</a>!</p>
+    </div>
 
     <script>
         var testId = '%%TEST_ID%%';
@@ -24,7 +28,7 @@
         
         socket.on('position', function(position) {
             if (position === 0) {
-                statusElement.innerHTML = 'Running';
+                statusElement.innerHTML = 'Test is running...';
             } else {
                 statusElement.innerHTML = 'Waiting behind ' + (position) + ' other tests';
             }

@@ -1,7 +1,3 @@
-h1 span {
-    color: #ffa319;
-}
-
 .promess {
     padding: 0em 2em 3em;
     font-weight: normal;
@@ -36,18 +32,4 @@ input[type=submit].clicked {
     left: 0.1em;
     top: 0.2em;
     box-shadow: none;
-}
-
-.footer {
-    padding: 3em;
-    color: #5e2846;
-}
-.footer a {
-    color: inherit;
-}
-.footer .star {
-    font-weight: bold;
-}
-.footer .star span {
-    font-size: 1.2em;
 }
