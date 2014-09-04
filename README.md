@@ -16,47 +16,7 @@ And then it is wrapped inside a small NodeJS server to get an interface (inspire
 
 ## Install your own instance
 
-### Method 1: Manual installation
-
-You need this 3 brothers: [Git](http://git-scm.com/downloads), [NodeJS](http://nodejs.org/download/) and [Bower](http://bower.io/#install-bower). Click on the links to know how to install them.
-
-1) Clone this repository somewhere on your computer:
-```shell
-git clone https://github.com/gmetais/YellowLabTools.git
-```
-
-2) Get inside the newly created folder and install the dependencies:
-```shell
-cd YellowLabTools
-npm install
-bower install
-```
-If `npm install` fails, try this command `npm install -g node-gyp` and retry `npm install` after.
-
-3) Launch the server
-```shell
-node server.js
-```
-
-4) Open you browser to [http://localhost:8383](http://localhost:8383). The default port 8383 can be changed in `server_config/settings.json`.
-
-
-### Method 2: In a virtual machine with Vagrant
-
-You need VirtualBox & Vagrant.
-
-1) Clone this repository somewhere on your computer:
-```shell
-git clone https://github.com/gmetais/YellowLabTools.git
-```
-
-2) Get inside the newly created folder and build the virtual machine:
-```shell
-cd YellowLabTools
-vagrant up
-```
-
-3) Open your browser to [http://10.10.10.10](http://10.10.10.10) and have fun.
+If your project is not accessible from outside, or if you want to fork and improve the tool, you can build your own instance. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Install-your-own-instance).
 
 
 ## License
