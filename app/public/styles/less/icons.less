@@ -1,0 +1,56 @@
+@warning-font-family: "fontsmith-icons";
+@warning-value: "\e000";
+@warning: '"fontsmith-icons"' '"\\e000"';
+@arrow-left3-font-family: "fontsmith-icons";
+@arrow-left3-value: "\e006";
+@arrow-left3: '"fontsmith-icons"' '"\\e006"';
+@drawer3-font-family: "fontsmith-icons";
+@drawer3-value: "\e005";
+@drawer3: '"fontsmith-icons"' '"\\e005"';
+@list-font-family: "fontsmith-icons";
+@list-value: "\e003";
+@list: '"fontsmith-icons"' '"\\e003"';
+@lab-font-family: "fontsmith-icons";
+@lab-value: "\e004";
+@lab: '"fontsmith-icons"' '"\\e004"';
+@tree-font-family: "fontsmith-icons";
+@tree-value: "\e001";
+@tree: '"fontsmith-icons"' '"\\e001"';
+@question-font-family: "fontsmith-icons";
+@question-value: "\e002";
+@question: '"fontsmith-icons"' '"\\e002"';
+
+.icon-font-family(@char) {
+  font-family: ~`@{char}[0]`;
+}
+
+.icon-font() {
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-content(@char) {
+  content: ~`@{char}[1]`;
+}
+
+.icon(@char) {
+  .icon-font-family(@char);
+  .icon-font();
+
+  &:before {
+    .icon-content(@char);
+  }
+}
+
+@font-face {
+  font-family: "fontsmith-icons";
+  src:url("/public/fonts/icons.woff") format("woff"),
+    ;
+  font-weight: normal;
+  font-style: normal;
+}

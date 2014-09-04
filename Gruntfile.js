@@ -4,6 +4,30 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         
+        font: {
+            icons: {
+                src: ['app/public/fonts/svg-icons/*.svg'],
+                destCss: 'app/public/styles/less/icons.less',
+                destFonts: 'app/public/fonts/icons.woff',
+
+                // Optional: Custom routing of font filepaths for CSS
+                cssRouter: function (fontpath) {
+                    var pathArray = fontpath.split('/');
+                    var fileName = pathArray[pathArray.length - 1];
+                    return '/public/fonts/' + fileName;
+                }
+            }
+        },
+        less: {
+            icons: {
+                files: {
+                    'app/public/styles/main.css': [
+                        //'app/public/styles/less/icons.less',
+                        'app/public/styles/less/main.less'
+                    ]
+                }
+            }
+        },
         jshint: {
             all: [
                 '*.js',
@@ -14,6 +38,9 @@ module.exports = function(grunt) {
             ]
         },
         clean: {
+            icons: {
+                src: ['tmp']
+            },
             coverage: {
                 src: ['coverage/']
             }
@@ -53,6 +80,12 @@ module.exports = function(grunt) {
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+    grunt.registerTask('build', [
+        'jshint',
+        'font:icons',
+        'less:icons',
+        'clean:icons'
+    ]);
 
     grunt.registerTask('hint', [
         'jshint'

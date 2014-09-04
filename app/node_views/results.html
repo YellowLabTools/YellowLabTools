@@ -18,10 +18,10 @@
         <div>Tested url: &nbsp; <a class="testedUrl" href="{{phantomasResults.url}}" target="_blank">{{phantomasResults.url}}</a></div>
 
         <div class="resultsMenu">
-            <a class="menuItem" href="/"><span>New test<span></a>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="setView('summary')"><span>Summary</span></div>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="setView('execution')"><span>Spaghetti</span></div>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="setView('metrics')"><span>Metrics</span></div>
+            <a class="menuItem back" href="/"><div class="icon-back"></div><span>New test<span></a>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="setView('summary')"><div class="icon-summary"></div><span>Summary</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="setView('execution')"><div class="icon-spaghetti"></div><span>Spaghetti</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="setView('metrics')"><div class="icon-metrics"></div><span>Metrics</span></div>
         </div>
 
         <div ng-if="phantomasResults.error">
@@ -166,11 +166,9 @@
                     </div>
                     
                     <div class="details">
-                        <button ng-click="onNodeDetailsClick(node)" 
-                                ng-class="{
-                                    'warningDetails': node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5
-                                }"
-                                ng-if="node.data.type != 'script loaded' && node.data.type != 'jQuery loaded'">i</button>
+                        <div class="icon-question"
+                                ng-click="onNodeDetailsClick(node)"
+                                ng-if="node.data.type != 'script loaded' && node.data.type != 'jQuery loaded'"></div>
                         <div class="detailsOverlay" ng-show="node.data.showDetails">
                             <div class="closeBtn" ng-click="onNodeDetailsClick(node)">✖</div>
 
@@ -230,7 +228,7 @@
                     </div>
                     <div class="duration" ng-if="node.data.time != undefined">
                         {{node.data.time}} ms
-                        <div ng-if="node.data.time > slowRequestsLimit" class="warningIcon" title="Slower than {{slowRequestsLimit}} ms"></div>
+                        <span ng-if="node.data.time > slowRequestsLimit" class="icon-warning" title="Slower than {{slowRequestsLimit}} ms"></span>
                     </div>
                     <div class="duration" ng-if="node.data.time == undefined"></div>
                     <div class="startTime">{{node.data.timestamp}}</div>

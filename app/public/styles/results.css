@@ -6,21 +6,32 @@
     display: inline-block;
     margin: 1em;
     width: 8em;
-    height: 8em;
-    background: #fff;
+    height: 7em;
+    color: #fff;
+    border: 3px solid #fff;
     border-radius: 0.5em;
-    color: #9c4274;
     cursor: pointer;
     text-decoration: none;
 }
-
-.resultsMenu .active, .resultsMenu .menuItem:hover {
-    color: #e74c3c;
+.resultsMenu .back {
+    color: #5e2846;
+    border-color: #5e2846;
+}
+.resultsMenu .menuItem div {
+    padding-top: 0.5em;
+    font-size: 3em;
+}
+.resultsMenu .active, .resultsMenu .menuItem.active:hover {
+    color: #ffa319;
+    border-color: #ffa319;
+}
+.resultsMenu .menuItem:hover {
+    color: #ffa319;
 }
 
 .resultsMenu span {
     position: relative;
-    top: 6em;
+    top: 0.5em;
 }
 
 .testedUrl {
@@ -202,19 +213,9 @@ input.textFilter {
 .table > div > .details {
     position: relative;
 }
-.table > div > .details button {
+.table .details .icon-question {
     color: #f1c40f;
-    font-weight: bold;
-    border: 2px solid #f1c40f;
-    border-radius: 50%;
-    background: transparent;
-    height: 2em;
-    width: 2em;
     cursor: pointer;
-}
-.table > div > .details button.warningDetails {
-    color: #e74c3c;
-    border-color: #e74c3c;
 }
 
 .detailsOverlay {
@@ -254,9 +255,6 @@ input.textFilter {
     white-space:nowrap;
 }
 
-.warningIcon {
-    display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
-    background: url('data:image/svg+xml;utf8,<svg version="1.1" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><defs/><g fill="none" fill-rule="evenodd" id="Icons new Arranged Names Color" stroke="none" stroke-width="1"><g fill="#e74c3c" id="101 Warning"><path d="M14.4242327,6.14839275 C15.2942987,4.74072976 16.707028,4.74408442 17.5750205,6.14839275 L28.3601099,23.59738 C29.5216388,25.4765951 28.6755462,27 26.4714068,27 L5.5278464,27 C3.32321557,27 2.47386317,25.4826642 3.63914331,23.59738 Z M16,20 C16.5522847,20 17,19.5469637 17,19.0029699 L17,12.9970301 C17,12.4463856 16.5561352,12 16,12 C15.4477153,12 15,12.4530363 15,12.9970301 L15,19.0029699 C15,19.5536144 15.4438648,20 16,20 Z M16,24 C16.5522848,24 17,23.5522848 17,23 C17,22.4477152 16.5522848,22 16,22 C15.4477152,22 15,22.4477152 15,23 C15,23.5522848 15.4477152,24 16,24 Z M16,24" id="Triangle 29"/></g></g></svg>') no-repeat 0 3px;
+.table .icon-warning {
+    color: #e74c3c;
 }
