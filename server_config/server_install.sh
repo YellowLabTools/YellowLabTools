@@ -21,7 +21,7 @@ sudo chown $USER /space
 cd /space
 git clone https://github.com/gmetais/YellowLabTools.git --branch master
 cd YellowLabTools
-npm install
+npm install --production
 bower install --config.interactive=false --allow-root
 
 # Start the server
