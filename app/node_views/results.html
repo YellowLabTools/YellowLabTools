@@ -31,6 +31,7 @@
             <div ng-if="phantomasResults.error == 254">Phantomas failed to load page</div>
             <div ng-if="phantomasResults.error == 255">Phantomas internal error</div>
             <div ng-if="phantomasResults.error == 1001">Javascript execution tree error</div>
+            <div ng-if="phantomasResults.error == 1002">JSON undefined error</div>
         </div>
 
         <div ng-show="view == 'summary' && !phantomasResults.error" class="summary">

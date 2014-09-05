@@ -87,6 +87,11 @@ var PhantomasWrapper = function() {
                     err = null;
                 }
 
+                // Strange bug: no err but no json either
+                if (!json && json == 'undefined') {
+                    err = 1002;
+                }
+
                 if (err) {
                     console.log('Attempt failed for test id ' + task.testId + '. Error code ' + err);
                 }
