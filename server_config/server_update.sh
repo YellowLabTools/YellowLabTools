@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
+cd /space/YellowLabTools
+
 # Stop the server
 forever stopall
 
-cd /space/YellowLabTools
 # Keep the settings.json file
 git stash
 git pull
