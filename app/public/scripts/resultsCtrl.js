@@ -57,9 +57,12 @@ app.controller('ResultsCtrl', function ($scope) {
         // Read all the duplicated queries and calculate a more appropriated score
         $scope.duplicatedQueriesCountAll = 0;
         if ($scope.phantomasResults.offenders.DOMqueriesDuplicated) {
-            var regex = /^{.*}: (\d+) queries$/;
+            var regex = /^{.*}: *(\d+) queries$/;
             $scope.phantomasResults.offenders.DOMqueriesDuplicated.forEach(function(query) {
-                $scope.duplicatedQueriesCountAll += parseInt(regex.exec(query)[1], 10) - 1;
+                var regexResult = regex.exec(query);
+                if (regexResult) {
+                    $scope.duplicatedQueriesCountAll += parseInt(regexResult[1], 10) - 1;
+                }
             });
         }
 
