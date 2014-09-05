@@ -221,14 +221,7 @@ exports.module = function(phantomas) {
         //phantomas.log('DOM query: by %s - "%s" (using %s on context %s)', type, query, fnName, context);
         phantomas.incrMetric('DOMqueries');
 
-        var domQuery = {
-            type: type,
-            query: query,
-            fnName: fnName,
-            context: context
-        };
-
-        DOMqueries.push(JSON.stringify(domQuery));
+        DOMqueries.push(type + ' "' + query + '" with ' + fnName + ' (in context ' + context + ')');
     });
 
     phantomas.on('report', function() {
