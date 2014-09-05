@@ -81,16 +81,16 @@ var PhantomasWrapper = function() {
                     err = 1001;
                 }
 
-                // Don't cancel test if it is a timeout
-                if (err === 252) {
+                // Don't cancel test if it is a timeout and we've got some results
+                if (err === 252 && json) {
                     console.log('Timeout after ' + options.timeout + ' seconds. But it\'s not a problem, the test is valid.');
                     err = null;
                 }
 
                 // Strange bug: no err but no json either
-                if (!json && json == 'undefined') {
+                /*if (!json && json == 'undefined') {
                     err = 1002;
-                }
+                }*/
 
                 if (err) {
                     console.log('Attempt failed for test id ' + task.testId + '. Error code ' + err);
