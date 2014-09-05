@@ -5,6 +5,9 @@ Online tool designed to help Front-End developers optimize their website
 [![Dependency Status](https://gemnasium.com/gmetais/YellowLabTools.svg)](https://gemnasium.com/gmetais/YellowLabTools)
 
 
+### Access the tool here: [http://yellowlab.tools](http://yellowlab.tools)
+
+
 ## How it works
 
 The tool is based on the fabulous [Phantomas](https://github.com/macbre/phantomas) by Maciej Brencz, that loads a page and collects many web performance metrics.
