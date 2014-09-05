@@ -250,7 +250,7 @@ input.textFilter {
     word-break: break-all;
 }
 
-.table > div > .duration {
+.table > div > .duration, .table > div > .startTime {
     text-align: center;
     white-space:nowrap;
 }
