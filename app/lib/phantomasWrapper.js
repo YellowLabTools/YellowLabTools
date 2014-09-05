@@ -82,9 +82,7 @@ var PhantomasWrapper = function() {
                 }
 
                 if (!json || !json.metrics) {
-                    console.log('IIIIIIIIIIK');
-                    console.log(err);
-                    console.log(json);
+                    err = 1002;
                 }
 
                 // Don't cancel test if it is a timeout and we've got some results
