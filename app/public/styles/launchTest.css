@@ -14,5 +14,6 @@
 
 .waiting .icon-lab {
     -webkit-animation: rotating 3s linear 0s infinite;
+    -webkit-transform: translateZ(0);
     animation: rotating 3s linear 0s infinite;
 }
