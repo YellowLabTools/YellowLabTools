@@ -33,20 +33,32 @@
                 statusElement.innerHTML = 'Waiting behind ' + (position) + ' other tests';
             }
             sendPositionInQueueToGA(position);
+
+            // Rotate the spinner
+            document.body.className = 'waiting';
         });
 
         socket.on('complete', function() {
             statusElement.innerHTML = 'Test complete';
             window.location.replace('/results/' + testId);
+
+            // Stop the spinner
+            document.body.className = '';
         });
 
         socket.on('failed', function() {
             statusElement.innerHTML = 'Test failed';
             window.location.replace('/results/' + testId);
+
+            // Stop the spinner
+            document.body.className = '';
         });
 
         socket.on('404', function() {
             statusElement.innerHTML = 'Test not found';
+
+            // Stop the spinner
+            document.body.className = '';
         });
 
         askStatus();
