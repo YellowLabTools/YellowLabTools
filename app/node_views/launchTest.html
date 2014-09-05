@@ -62,6 +62,13 @@
             document.body.className = '';
         });
 
+        socket.on('reconnect_error', function() {
+            statusElement.innerHTML = "Server reboot. Please start a new test."
+
+            // Stop the spinner
+            document.body.className = '';
+        });
+
         askStatus();
 
 

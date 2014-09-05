@@ -69,6 +69,13 @@ var PhantomasWrapper = function() {
         }
         console.log('node node_modules/phantomas/bin/phantomas.js --url=' + task.url + optionsString + ' --verbose');
 
+        // Kill the application if nothing happens for 10 minutes
+        var killer = setTimeout(function() {
+            console.log('Killing the server because the test ' + task.testId + ' on ' + task.url + ' was launched 10 minutes ago');
+            // Forever will restart the server
+            process.exit(1);
+        }, 600000);
+
         // It's time to launch the test!!!
         var triesNumber = 3;
 
@@ -98,6 +105,9 @@ var PhantomasWrapper = function() {
                 cb(err, {json: json, results: results});
             });
         }, function(err, data) {
+
+            clearTimeout(killer);
+
             if (err) {
                 console.log('All ' + triesNumber + ' attemps failed for test id ' + task.testId);
             }
