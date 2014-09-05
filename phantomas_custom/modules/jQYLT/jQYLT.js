@@ -111,6 +111,11 @@ exports.module = function(phantomas) {
             (function(phantomas) {
                 var jQuery;
 
+function get_type(thing){
+    if(thing===null)return "[object Null]"; // special case
+    return Object.prototype.toString.call(thing);
+}
+
                 // TODO: create a helper - phantomas.spyGlobalVar() ?
                 window.__defineSetter__('jQuery', function(val) {
                     var version;
@@ -220,15 +225,25 @@ exports.module = function(phantomas) {
                             // Clean args
                             args = [].slice.call(arguments);
                             args.forEach(function(arg, index) {
-                                if (arg instanceof jQuery) {
-                                    arg = phantomas.getDOMPath(arg[0]) || 'unknown';
-                                }
-
+                                
                                 if (arg instanceof Object) {
-                                    try {
-                                        arg = JSON.stringify(arg);
-                                    } catch(e) {
-                                        arg = '[Object]';
+                                    
+                                    if (arg instanceof jQuery || (arg.jquery && arg.jquery.length > 0)) {
+                                        
+                                        arg = phantomas.getDOMPath(arg[0]) || 'unknown';
+
+                                    } else if (arg instanceof HTMLElement) {
+                                        
+                                        arg = phantomas.getDOMPath(arg) || 'unknown';
+
+                                    } else {
+                                        
+                                        try {
+                                            arg = JSON.stringify(arg);
+                                        } catch(e) {
+                                            arg = '[Object]';
+                                        }
+                                        
                                     }
                                 }
 
