@@ -6,12 +6,12 @@
     "url": "git://github.com/gmetais/YellowLabTools.git"
   },
   "dependencies": {
-    "phantomas": "^1.5.0",
-    "express": "^4.8.7",
-    "async": "^0.9.0",
-    "socket.io": "^1.0.6",
-    "body-parser": "^1.6.7",
-    "compression": "^1.0.11"
+    "phantomas": "1.5.0",
+    "express": "~4.8.8",
+    "async": "~0.9.0",
+    "socket.io": "~1.1.0",
+    "body-parser": "~1.8.0",
+    "compression": "1.0.11"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
