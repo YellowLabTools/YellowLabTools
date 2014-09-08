@@ -215,6 +215,56 @@ app.controller('ResultsCtrl', function ($scope) {
     function initExecutionView() {
         $scope.slowRequestsOn = false;
         $scope.slowRequestsLimit = 5;
+
+
+        // Now read the tree and display it on a timeline
+        
+        // Split the timeline into 200 intervals
+        var numberOfIntervals = 200;
+        var lastEvent = $scope.javascript.children[$scope.javascript.children.length - 1];
+        var endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
+        $scope.timelineIntervalDuration = endTime / numberOfIntervals;
+        
+        // Pre-filled array of 100 elements
+        $scope.timeline = Array.apply(null, new Array(numberOfIntervals)).map(Number.prototype.valueOf,0);
+
+        treeRunner($scope.javascript, function(node) {
+            
+            if (node.data.time) {
+                
+                // If a node is between two intervals, split it. That's the meaning of the following dirty algorithm.
+
+                var startInterval = Math.floor(node.data.timestamp / $scope.timelineIntervalDuration);
+                var endInterval = Math.floor((node.data.timestamp + node.data.time) / $scope.timelineIntervalDuration);
+
+                if (startInterval === endInterval) {
+                    
+                    $scope.timeline[startInterval] += node.data.time;
+
+                } else {
+                    
+                    var timeToDispatch = node.data.time;
+                    
+                    var startIntervalPart = ((startInterval + 1) * $scope.timelineIntervalDuration) - node.data.timestamp;
+                    $scope.timeline[startInterval] += startIntervalPart;
+                    timeToDispatch -= startIntervalPart;
+                    
+                    var currentInterval = startInterval;
+                    while(currentInterval < endInterval && currentInterval + 1 < numberOfIntervals) {
+                        currentInterval ++;
+                        var currentIntervalPart = Math.min(timeToDispatch, $scope.timelineIntervalDuration);
+                        $scope.timeline[currentInterval] = currentIntervalPart;
+                        timeToDispatch -= currentIntervalPart;
+                    }
+                }
+            }
+            
+            if (node.data.type !== 'main') {
+                // Don't check the children
+                return false;
+            }
+        });
+        $scope.timelineMax = Math.max.apply(Math, $scope.timeline);
     }
 
     function initMetricsView() {

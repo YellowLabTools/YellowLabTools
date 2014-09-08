@@ -115,6 +115,67 @@ h4 {
     background: #CCC;
 }
 
+.timeline {
+    margin: 2em 0 5em;
+}
+.timeline .chart {
+    height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #000;
+}
+.timeline .interval {
+    position: relative;
+    display: inline-block;
+    height: 100px;
+    width: 0.5%;
+}
+.timeline .interval > div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.timeline .domCreation.interval {
+    background: #FFE0CC;
+}
+.timeline .domCreation .color {
+    background: #FF6600;
+}
+.timeline .domContentLoaded.interval {
+    background: #E0FFD1;
+}
+.timeline .domContentLoaded .color {
+    background: #99FF66;
+}
+.timeline .domContentLoadedEnd.interval {
+    background: #D8F0F0;
+}
+.timeline .domContentLoadedEnd .color {
+    background: #7ECCCC;
+}
+.timeline .domComplete.interval {
+    background: #EDE3FF;
+}
+.timeline .domComplete .color {
+    background: #C2A3FF;
+}
+.timeline .legend {
+    display: table;
+    width: 100%;
+}
+.timeline .legend > div {
+    display: table-cell;
+    margin-top: 1em;
+}
+.timeline .legend .color {
+    display: inline-block;
+    position: relative;
+    top: 0.4em;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 0.5em;
+    margin: 0 0.2em 0 1em;
+}
+
 
 .metrics h4 {
     padding-left: 2em;

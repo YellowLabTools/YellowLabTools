@@ -116,6 +116,33 @@
         </div>
 
         <div ng-show="view == 'execution' && !phantomasResults.error" class="execution">
+            <h2>Javascript Spaghetti Timeline</h2>
+            <p>
+                This graph gives a quick view of when the Javascript interactions with the DOM occur during the loading of the page.
+            </p>
+            <div class="timeline">
+                <div class="chart">
+                    <div ng-repeat="duration in timeline track by $index"
+                         class="interval"
+                         ng-class="{
+                                    domCreation: $index * timelineIntervalDuration < phantomasResults.metrics.domInteractive,
+                                    domContentLoaded: $index * timelineIntervalDuration >= phantomasResults.metrics.domContentLoaded
+                                                    && $index * timelineIntervalDuration < phantomasResults.metrics.domContentLoadedEnd,
+                                    domContentLoadedEnd: $index * timelineIntervalDuration >= phantomasResults.metrics.domContentLoadedEnd
+                                                    && $index * timelineIntervalDuration < phantomasResults.metrics.domComplete,
+                                    domComplete: $index * timelineIntervalDuration >= phantomasResults.metrics.domComplete
+                         }">
+                        <div style="height: {{100 * duration / timelineMax | number: 0}}px" class="color"></div>
+                    </div>
+                </div>
+                <div class="legend">
+                    <div class="domCreation"><div class="color"></div>DOM creation</div>
+                    <div class="domContentLoaded"><div class="color"></div>DOM content loaded event</div>
+                    <div class="domContentLoadedEnd"><div class="color"></div>Page completion</div>
+                    <div class="domComplete"><div class="color"></div>Page completed</div>
+                </div>
+            </div>
+
             <h2>Javascript Spaghetti Profiler</h2>
             <p>
                 The table below shows the interactions between Javascript and the DOM. It is usefull to understand what's going on when the page loads.
