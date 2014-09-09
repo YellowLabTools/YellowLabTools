@@ -144,7 +144,7 @@ h4 {
     background: #E0FFD1;
 }
 .timeline .domContentLoaded .color {
-    background: #99FF66;
+    background: #A7E846;
 }
 .timeline .domContentLoadedEnd.interval {
     background: #D8F0F0;
@@ -172,7 +172,7 @@ h4 {
     top: 0.4em;
     height: 1.5em;
     width: 1.5em;
-    border-radius: 0.5em;
+    border-radius: 0.2em;
     margin: 0 0.2em 0 1em;
 }
 

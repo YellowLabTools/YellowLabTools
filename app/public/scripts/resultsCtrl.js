@@ -216,6 +216,10 @@ app.controller('ResultsCtrl', function ($scope) {
         $scope.slowRequestsOn = false;
         $scope.slowRequestsLimit = 5;
 
+        if (!$scope.javascript.children) {
+            return;
+        }
+
 
         // Now read the tree and display it on a timeline
         
