@@ -34,9 +34,14 @@ var resultsController = function(req, res, googleAnalyticsId) {
             return res.status(404).send('Sorry, test not found...');
         }
 
+        // Escape "</script>" because it can interfer with the HTML parser
+        var phantomasResults = results.phantomasResults;
+        phantomasResults = phantomasResults.replace('</script>', '\\u003c/script>');
+
+
         var html = results.htmlTemplate;
         html = html.replace('%%METADATA%%', results.phantomasMetadata);
-        html = html.replace('%%RESULTS%%', results.phantomasResults);
+        html = html.replace('%%RESULTS%%', phantomasResults);
         html = html.replace('%%GA_ID%%', googleAnalyticsId);
 
         res.setHeader('Content-Type', 'text/html');
