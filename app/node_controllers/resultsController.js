@@ -36,8 +36,7 @@ var resultsController = function(req, res, googleAnalyticsId) {
 
         // Escape "</script>" because it can interfer with the HTML parser
         var phantomasResults = results.phantomasResults;
-        phantomasResults = phantomasResults.replace('</script>', '\\u003c/script>');
-
+        phantomasResults = phantomasResults.replace(/<\/script>/g, '\\u003c/script>');
 
         var html = results.htmlTemplate;
         html = html.replace('%%METADATA%%', results.phantomasMetadata);
