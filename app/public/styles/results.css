@@ -150,17 +150,11 @@ h4 {
     bottom: 0;
     width: 100%;
 }
-.timeline .domCreation.interval {
-    background: #FFE0CC;
+.timeline .domComplete.interval {
+    background: #EDE3FF;
 }
-.timeline .domCreation .color {
-    background: #FF6600;
-}
-.timeline .domContentLoaded.interval {
-    background: #E0FFD1;
-}
-.timeline .domContentLoaded .color {
-    background: #A7E846;
+.timeline .domComplete .color {
+    background: #C2A3FF;
 }
 .timeline .domContentLoadedEnd.interval {
     background: #D8F0F0;
@@ -168,12 +162,19 @@ h4 {
 .timeline .domContentLoadedEnd .color {
     background: #7ECCCC;
 }
-.timeline .domComplete.interval {
-    background: #EDE3FF;
+.timeline .domContentLoaded.interval {
+    background: #E0FFD1;
 }
-.timeline .domComplete .color {
-    background: #C2A3FF;
+.timeline .domContentLoaded .color {
+    background: #A7E846;
 }
+.timeline .domCreation.interval {
+    background: #FFE0CC;
+}
+.timeline .domCreation .color {
+    background: #FF6600;
+}
+
 .timeline .legend {
     display: table;
     width: 100%;
