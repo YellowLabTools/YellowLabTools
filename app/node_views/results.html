@@ -122,24 +122,36 @@
             </p>
             <div class="timeline">
                 <div class="chart">
-                    <div ng-repeat="duration in timeline track by $index"
-                         class="interval"
-                         ng-class="{
-                                    domCreation: $index * timelineIntervalDuration < phantomasResults.metrics.domInteractive,
-                                    domContentLoaded: $index * timelineIntervalDuration >= phantomasResults.metrics.domContentLoaded
-                                                    && $index * timelineIntervalDuration < phantomasResults.metrics.domContentLoadedEnd,
-                                    domContentLoadedEnd: $index * timelineIntervalDuration >= phantomasResults.metrics.domContentLoadedEnd
-                                                    && $index * timelineIntervalDuration < phantomasResults.metrics.domComplete,
-                                    domComplete: $index * timelineIntervalDuration >= phantomasResults.metrics.domComplete
-                         }">
-                        <div style="height: {{100 * duration / timelineMax | number: 0}}px" class="color"></div>
+                    <div class="chartPoints">
+                        <div ng-repeat="duration in timeline track by $index"
+                             class="interval"
+                             ng-class="{
+                                        domCreation: $index * timelineIntervalDuration < phantomasResults.metrics.domInteractive,
+                                        domContentLoaded: $index * timelineIntervalDuration >= phantomasResults.metrics.domContentLoaded
+                                                        && $index * timelineIntervalDuration < phantomasResults.metrics.domContentLoadedEnd,
+                                        domContentLoadedEnd: $index * timelineIntervalDuration >= phantomasResults.metrics.domContentLoadedEnd
+                                                        && $index * timelineIntervalDuration < phantomasResults.metrics.domComplete,
+                                        domComplete: $index * timelineIntervalDuration >= phantomasResults.metrics.domComplete
+                             }">
+                            <div style="height: {{100 * duration / timelineMax | number: 0}}px" class="color"></div>
+                        </div>
                     </div>
+                    <div class="startTime">0 ms</div>
+                    <div class="endTime">{{endTime}} ms</div>
                 </div>
                 <div class="legend">
-                    <div class="domCreation"><div class="color"></div>DOM creation</div>
-                    <div class="domContentLoaded"><div class="color"></div>DOM content loaded event</div>
-                    <div class="domContentLoadedEnd"><div class="color"></div>Page completion</div>
-                    <div class="domComplete"><div class="color"></div>Page is complete</div>
+                    <div class="titles">
+                        <div class="domCreation"><div class="color"></div>DOM creation</div>
+                        <div class="domContentLoaded"><div class="color"></div>DOM content loaded event</div>
+                        <div class="domContentLoadedEnd"><div class="color"></div>Page completion</div>
+                        <div class="domComplete"><div class="color"></div>Page is complete</div>
+                    </div>
+                    <div class="tips">
+                        <div>Executing Javascript and DOM queries here is a <b>bad practice</b> and slows down the DOM construction.</div>
+                        <div>Also known as "document ready". This is where you should execute <b>top-priority</b> scripts, like binding action buttons or launch a video player.</div>
+                        <div>Here you can execute <b>mid-priority</b> tasks. Loading a script with createElement('script') is one way to do so.</div>
+                        <div>The page is fully loaded, it's time for low <b>priority things</b> : trackers, social plugins, easter egg...</div>
+                    </div>
                 </div>
             </div>
 

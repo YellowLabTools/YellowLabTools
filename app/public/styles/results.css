@@ -119,9 +119,25 @@ h4 {
     margin: 2em 0 5em;
 }
 .timeline .chart {
-    height: 100px;
+    position: relative;
     width: 100%;
     border-bottom: 1px solid #000;
+}
+.timeline .startTime, .timeline .endTime {
+    position: absolute;
+    bottom: 0.5em;
+    font-size: 0.8em;
+}
+.timeline .startTime {
+    left: 0em;
+}
+.timeline .endTime {
+    right: 0em;
+}
+.timeline .chartPoints {
+    height: 100px;
+    width: 99%;
+    margin: 0 auto;
 }
 .timeline .interval {
     position: relative;
@@ -161,10 +177,23 @@ h4 {
 .timeline .legend {
     display: table;
     width: 100%;
+    margin-top: 1em;
 }
 .timeline .legend > div {
+    display: table-row;
+}
+.timeline .legend > div > div {
     display: table-cell;
     margin-top: 1em;
+}
+.timeline .titles {
+    font-weight: bold;
+}
+.timeline .tips {
+    font-size: 0.7em;
+}
+.timeline .tips > div {
+    padding: 1em 1.5em;
 }
 .timeline .legend .color {
     display: inline-block;
@@ -173,7 +202,7 @@ h4 {
     height: 1.5em;
     width: 1.5em;
     border-radius: 0.2em;
-    margin: 0 0.2em 0 1em;
+    margin: 0 0.4em 0 1em;
 }
 
 

@@ -226,8 +226,8 @@ app.controller('ResultsCtrl', function ($scope) {
         // Split the timeline into 200 intervals
         var numberOfIntervals = 200;
         var lastEvent = $scope.javascript.children[$scope.javascript.children.length - 1];
-        var endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
-        $scope.timelineIntervalDuration = endTime / numberOfIntervals;
+        $scope.endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
+        $scope.timelineIntervalDuration = $scope.endTime / numberOfIntervals;
         
         // Pre-filled array of 100 elements
         $scope.timeline = Array.apply(null, new Array(numberOfIntervals)).map(Number.prototype.valueOf,0);
