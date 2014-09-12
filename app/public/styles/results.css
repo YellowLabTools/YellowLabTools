@@ -135,13 +135,14 @@ h4 {
     right: 0em;
 }
 .timeline .chartPoints {
+    display: table;
     height: 100px;
     width: 99%;
     margin: 0 auto;
 }
 .timeline .interval {
+    display: table-cell;
     position: relative;
-    display: inline-block;
     height: 100px;
     width: 0.5%;
 }
