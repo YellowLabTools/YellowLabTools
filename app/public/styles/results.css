@@ -289,7 +289,7 @@ input.textFilter {
   color: #e74c3c;
   font-weight: bold;
 }
-.table > div.windowPerformance > div, .table > div.windowPerformance > div.startTime {
+.table > div.windowPerformance > div {
   background: #EBD8E2;
 }
 .table > div.showingDetails > div {
