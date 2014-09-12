@@ -275,7 +275,14 @@
                         <span ng-if="node.data.time > slowRequestsLimit" class="icon-warning" title="Slower than {{slowRequestsLimit}} ms"></span>
                     </div>
                     <div class="duration" ng-if="node.data.time == undefined"></div>
-                    <div class="startTime">{{node.data.timestamp | number: 0}}</div>
+                    <div class="startTime" ng-class="{
+                            domCreation: node.data.timestamp < phantomasResults.metrics.domInteractive,
+                            domContentLoaded: node.data.timestamp >= phantomasResults.metrics.domContentLoaded
+                                            && node.data.timestamp < phantomasResults.metrics.domContentLoadedEnd,
+                            domContentLoadedEnd: node.data.timestamp >= phantomasResults.metrics.domContentLoadedEnd
+                                            && node.data.timestamp < phantomasResults.metrics.domComplete,
+                            domComplete: node.data.timestamp >= phantomasResults.metrics.domComplete
+                        }">{{node.data.timestamp | number: 0}}</div>
                 </div>
             </div>
         </div>
