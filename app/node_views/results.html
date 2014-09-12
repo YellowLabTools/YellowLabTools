@@ -134,10 +134,13 @@
                                         domComplete: $index * timelineIntervalDuration >= phantomasResults.metrics.domComplete
                              }">
                             <div style="height: {{100 * duration / timelineMax | number: 0}}px" class="color"></div>
+                            <div class="tooltip detailsOverlay">
+                                <div>Timestamp: {{$index * timelineIntervalDuration | number: 0}} ms</div>
+                            </div>
                         </div>
                     </div>
                     <div class="startTime">0 ms</div>
-                    <div class="endTime">{{endTime}} ms</div>
+                    <div class="endTime">{{endTime | number: 0}} ms</div>
                 </div>
                 <div class="legend">
                     <div class="titles">
@@ -272,7 +275,7 @@
                         <span ng-if="node.data.time > slowRequestsLimit" class="icon-warning" title="Slower than {{slowRequestsLimit}} ms"></span>
                     </div>
                     <div class="duration" ng-if="node.data.time == undefined"></div>
-                    <div class="startTime">{{node.data.timestamp}}</div>
+                    <div class="startTime">{{node.data.timestamp | number: 0}}</div>
                 </div>
             </div>
         </div>

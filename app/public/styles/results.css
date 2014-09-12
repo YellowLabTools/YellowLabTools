@@ -145,10 +145,16 @@ h4 {
     height: 100px;
     width: 0.5%;
 }
-.timeline .interval > div {
+.timeline .interval .color {
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+.timeline div.interval:hover {
+    background: #9C4274;
+}
+.timeline .interval:hover .color {
+    background: #F04DA7;
 }
 .timeline .domComplete.interval {
     background: #EDE3FF;
@@ -173,6 +179,17 @@ h4 {
 }
 .timeline .domCreation .color {
     background: #FF6600;
+}
+.timeline .tooltip.detailsOverlay {
+    position: absolute;
+    display: none;
+    width: auto;
+    padding: 0.5em 1em;
+    top: 1em;
+    right: 1em;
+}
+.timeline .interval:hover .tooltip {
+    display: block;
 }
 
 .timeline .legend {
