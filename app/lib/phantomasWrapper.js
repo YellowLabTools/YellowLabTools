@@ -25,6 +25,7 @@ var PhantomasWrapper = function() {
 
             // Mandatory
             reporter: 'json:pretty',
+            'analyze-css': true,
             'skip-modules': [
                 //'ajaxRequests',
                 //'alerts',

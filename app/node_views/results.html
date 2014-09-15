@@ -112,6 +112,32 @@
                         </ul>
                     </div>
                 </div>
+                <div>
+                    <div ng-class="notations.cssComplexity">{{notations.cssComplexity}}</div>
+                    <div class="notation">CSS complexity</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.cssRules">Rules count: {{phantomasResults.metrics.cssRules}}</li>
+                            <li ng-if="phantomasResults.metrics.cssComplexSelectors">Complex selectors: {{phantomasResults.metrics.cssComplexSelectors}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div ng-class="notations.badCss">{{notations.badCss}}</div>
+                    <div class="notation">Bad CSS</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.cssDuplicatedSelectors">Duplicated selectors: {{phantomasResults.metrics.cssDuplicatedSelectors}}</li>
+                            <li ng-if="phantomasResults.metrics.cssEmptyRules">Empty rules: {{phantomasResults.metrics.cssEmptyRules}}</li>
+                            <li ng-if="phantomasResults.metrics.cssExpressions">CSS expressions: {{phantomasResults.metrics.cssExpressions}}</li>
+                            <li ng-if="phantomasResults.metrics.cssImportants">Uses of !important: {{phantomasResults.metrics.cssImportants}}</li>
+                            <li ng-if="phantomasResults.metrics.cssOldIEFixes">Old IE fixes: {{phantomasResults.metrics.cssOldIEFixes}}</li>
+                            <li ng-if="phantomasResults.metrics.cssOldPropertyPrefixes">Old prefixes: {{phantomasResults.metrics.cssOldPropertyPrefixes}}</li>
+                            <li ng-if="phantomasResults.metrics.cssUniversalSelectors">Universal * selectors: {{phantomasResults.metrics.cssUniversalSelectors}}</li>
+                            <li ng-if="phantomasResults.metrics.cssRedundantBodySelectors">Redundant body selectors: {{phantomasResults.metrics.cssRedundantBodySelectors}}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
