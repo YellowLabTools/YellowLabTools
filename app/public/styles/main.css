@@ -56,7 +56,7 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-lab:before {
-  content: "\e004";
+  content: "\e003";
 }
 .icon-question {
   font-family: "fontsmith-icons";
@@ -69,7 +69,7 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-question:before {
-  content: "\e002";
+  content: "\e001";
 }
 .icon-warning {
   font-family: "fontsmith-icons";
@@ -108,7 +108,7 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-summary:before {
-  content: "\e003";
+  content: "\e002";
 }
 .icon-spaghetti {
   font-family: "fontsmith-icons";
@@ -121,7 +121,7 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-spaghetti:before {
-  content: "\e001";
+  content: "\e005";
 }
 .icon-metrics {
   font-family: "fontsmith-icons";
@@ -134,5 +134,5 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-metrics:before {
-  content: "\e005";
+  content: "\e004";
 }

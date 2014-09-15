@@ -179,6 +179,12 @@ h4 {
 .timeline .domContentLoaded .color {
   background: #a7e846;
 }
+.timeline .domInteractive.interval {
+  background: #fffccc;
+}
+.timeline .domInteractive .color {
+  background: #ffe433;
+}
 .timeline .domCreation.interval {
   background: #ffe0cc;
 }
@@ -205,26 +211,29 @@ h4 {
   display: table-row;
 }
 .timeline .legend > div > div {
+  position: relative;
   display: table-cell;
   margin-top: 1em;
 }
 .timeline .titles {
   font-weight: bold;
 }
+.timeline .titles > div {
+  padding: 0 1em 0 2em;
+}
 .timeline .tips {
   font-size: 0.7em;
 }
 .timeline .tips > div {
-  padding: 1em 1.5em;
+  padding: 1em 1em 0 0;
 }
 .timeline .legend .color {
-  display: inline-block;
-  position: relative;
-  top: 0.4em;
+  display: block;
+  position: absolute;
+  left: 0;
   height: 1.5em;
   width: 1.5em;
   border-radius: 0.2em;
-  margin: 0 0.4em 0 1em;
 }
 .metrics h4 {
   padding-left: 2em;
@@ -289,7 +298,8 @@ input.textFilter {
   color: #e74c3c;
   font-weight: bold;
 }
-.table > div.windowPerformance > div {
+.table > div.windowPerformance > div,
+.table > div.windowPerformance > div.startTime {
   background: #EBD8E2;
 }
 .table > div.showingDetails > div {
@@ -356,6 +366,9 @@ input.textFilter {
 }
 .table > div > .startTime.domContentLoaded {
   background: #e0ffd1;
+}
+.table > div > .startTime.domInteractive {
+  background: #fffccc;
 }
 .table > div > .startTime.domCreation {
   background: #ffe0cc;

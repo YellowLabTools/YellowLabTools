@@ -8,7 +8,8 @@
 @domContentLoadedEndBg: #D8F0F0;
 @domCompleteColor: #C2A3FF;
 @domCompleteBg: #EDE3FF;
-
+@domInteractiveColor: #FFE433;
+@domInteractiveBg: #FFFCCC;
 
 
 .resultsMenu {
@@ -188,6 +189,12 @@ h4 {
 .timeline .domContentLoaded .color {
     background: @domContentLoadedColor;
 }
+.timeline .domInteractive.interval {
+    background: @domInteractiveBg;
+}
+.timeline .domInteractive .color {
+    background: @domInteractiveColor;
+}
 .timeline .domCreation.interval {
     background: @domCreationBg;
 }
@@ -215,26 +222,29 @@ h4 {
     display: table-row;
 }
 .timeline .legend > div > div {
+    position: relative;
     display: table-cell;
     margin-top: 1em;
 }
 .timeline .titles {
     font-weight: bold;
 }
+.timeline .titles > div {
+    padding: 0 1em 0 2em;
+}
 .timeline .tips {
     font-size: 0.7em;
 }
 .timeline .tips > div {
-    padding: 1em 1.5em;
+    padding: 1em 1em 0 0;
 }
 .timeline .legend .color {
-    display: inline-block;
-    position: relative;
-    top: 0.4em;
+    display: block;
+    position: absolute;
+    left: 0;
     height: 1.5em;
     width: 1.5em;
     border-radius: 0.2em;
-    margin: 0 0.4em 0 1em;
 }
 
 
@@ -312,7 +322,7 @@ input.textFilter {
     color: #e74c3c;
     font-weight: bold;
 }
-.table > div.windowPerformance > div {
+.table > div.windowPerformance > div, .table > div.windowPerformance > div.startTime {
     background: #EBD8E2;
 }
 .table > div.showingDetails > div {
@@ -384,6 +394,9 @@ input.textFilter {
 }
 .table > div > .startTime.domContentLoaded {
     background: @domContentLoadedBg;
+}
+.table > div > .startTime.domInteractive {
+    background: @domInteractiveBg;
 }
 .table > div > .startTime.domCreation {
     background: @domCreationBg;

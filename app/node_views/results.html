@@ -21,7 +21,7 @@
         <div class="resultsMenu">
             <a class="menuItem back" href="/"><div class="icon-back"></div><span>New test<span></a>
             <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="setView('summary')"><div class="icon-summary"></div><span>Summary</span></div>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="setView('execution')"><div class="icon-spaghetti"></div><span>Spaghetti</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="setView('execution')"><div class="icon-spaghetti"></div><span>Timeline</span></div>
             <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="setView('metrics')"><div class="icon-metrics"></div><span>Metrics</span></div>
         </div>
 
@@ -116,7 +116,7 @@
         </div>
 
         <div ng-show="view == 'execution' && !phantomasResults.error" class="execution">
-            <h2>Javascript Spaghetti Timeline</h2>
+            <h2>Javascript Timeline</h2>
             <p>
                 This graph gives a quick view of when the Javascript interactions with the DOM occur during the loading of the page.
             </p>
@@ -127,6 +127,8 @@
                              class="interval"
                              ng-class="{
                                         domCreation: $index * timelineIntervalDuration < phantomasResults.metrics.domInteractive,
+                                        domInteractive: $index * timelineIntervalDuration >= phantomasResults.metrics.domInteractive
+                                                        && $index * timelineIntervalDuration < phantomasResults.metrics.domContentLoaded,
                                         domContentLoaded: $index * timelineIntervalDuration >= phantomasResults.metrics.domContentLoaded
                                                         && $index * timelineIntervalDuration < phantomasResults.metrics.domContentLoadedEnd,
                                         domContentLoadedEnd: $index * timelineIntervalDuration >= phantomasResults.metrics.domContentLoadedEnd
@@ -145,12 +147,14 @@
                 <div class="legend">
                     <div class="titles">
                         <div class="domCreation"><div class="color"></div>DOM creation</div>
+                        <div class="domInteractive"><div class="color"></div>DOM interactive</div>
                         <div class="domContentLoaded"><div class="color"></div>DOM content loaded event</div>
                         <div class="domContentLoadedEnd"><div class="color"></div>Page completion</div>
                         <div class="domComplete"><div class="color"></div>Page is complete</div>
                     </div>
                     <div class="tips">
                         <div>Executing Javascript and DOM queries here is a <b>bad practice</b> and slows down the DOM construction.</div>
+                        <div>Some frameworks do things here, but it's not reliable and should be avoided.</div>
                         <div>Also known as "document ready". This is where you should execute <b>top-priority</b> scripts, like binding action buttons or launch a video player.</div>
                         <div>Here you can execute <b>mid-priority</b> tasks. Loading a script with createElement('script') is one way to do so.</div>
                         <div>The page is considered loaded, it's time for low <b>priority things</b> : trackers, social plugins, easter egg...</div>
@@ -158,7 +162,7 @@
                 </div>
             </div>
 
-            <h2>Javascript Spaghetti Profiler</h2>
+            <h2>Javascript Profiler</h2>
             <p>
                 The table below shows the interactions between Javascript and the DOM. It is usefull to understand what's going on when the page loads.
                 <br>
@@ -277,6 +281,8 @@
                     <div class="duration" ng-if="node.data.time == undefined"></div>
                     <div class="startTime" ng-class="{
                             domCreation: node.data.timestamp < phantomasResults.metrics.domInteractive,
+                            domInteractive: node.data.timestamp >= phantomasResults.metrics.domInteractive
+                                            && node.data.timestamp < phantomasResults.metrics.domContentLoaded,
                             domContentLoaded: node.data.timestamp >= phantomasResults.metrics.domContentLoaded
                                             && node.data.timestamp < phantomasResults.metrics.domContentLoadedEnd,
                             domContentLoadedEnd: node.data.timestamp >= phantomasResults.metrics.domContentLoadedEnd
