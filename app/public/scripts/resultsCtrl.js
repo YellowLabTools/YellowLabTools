@@ -75,7 +75,8 @@ app.controller('ResultsCtrl', function ($scope) {
             scripts: getScriptsScore(),
             jQueryLoading: getJQueryLoadingScore(),
             cssComplexity: getCSSComplexityScore(),
-            badCss: getBadCssScore()
+            badCss: getBadCssScore(),
+            cssCount: cssCountScore()
         };
     }
 
@@ -153,22 +154,22 @@ app.controller('ResultsCtrl', function ($scope) {
 
     function getDomComplexityScore() {
         var note = 'A';
-        var domComplexityScore = $scope.phantomasResults.metrics.DOMelementsCount +
-                                 Math.pow($scope.phantomasResults.metrics.DOMelementMaxDepth, 2) +
-                                 $scope.phantomasResults.metrics.iframesCount * 50;
-        if (domComplexityScore > 1000) {
+        var score = $scope.phantomasResults.metrics.DOMelementsCount +
+                    Math.pow($scope.phantomasResults.metrics.DOMelementMaxDepth, 2) +
+                    $scope.phantomasResults.metrics.iframesCount * 50;
+        if (score > 1000) {
             note = 'B';
         }
-        if (domComplexityScore > 1500) {
+        if (score > 1500) {
             note = 'C';
         }
-        if (domComplexityScore > 2000) {
+        if (score > 2000) {
             note = 'D';
         }
-        if (domComplexityScore > 3000) {
+        if (score > 3000) {
             note = 'E';
         }
-        if (domComplexityScore > 4000) {
+        if (score > 4000) {
             note = 'F';
         }
         return note;
@@ -176,22 +177,22 @@ app.controller('ResultsCtrl', function ($scope) {
 
     function getDomManipulationsScore() {
         var note = 'A';
-        var domManipulationsScore = $scope.phantomasResults.metrics.DOMinserts +
-                                    $scope.phantomasResults.metrics.DOMqueries * 0.5 +
-                                    $scope.totalJSTime;
-        if (domManipulationsScore > 100) {
+        var score = $scope.phantomasResults.metrics.DOMinserts +
+                    $scope.phantomasResults.metrics.DOMqueries * 0.5 +
+                    $scope.totalJSTime;
+        if (score > 100) {
             note = 'B';
         }
-        if (domManipulationsScore > 200) {
+        if (score > 200) {
             note = 'C';
         }
-        if (domManipulationsScore > 300) {
+        if (score > 300) {
             note = 'D';
         }
-        if (domManipulationsScore > 500) {
+        if (score > 500) {
             note = 'E';
         }
-        if (domManipulationsScore > 800) {
+        if (score > 800) {
             note = 'F';
         }
         return note;
@@ -199,20 +200,20 @@ app.controller('ResultsCtrl', function ($scope) {
 
     function getDuplicatedDomQueriesScore() {
         var note = 'A';
-        var duplicatedDomQueries = $scope.duplicatedQueriesCountAll;
-        if (duplicatedDomQueries > 10) {
+        var score = $scope.duplicatedQueriesCountAll;
+        if (score > 10) {
             note = 'B';
         }
-        if (duplicatedDomQueries > 50) {
+        if (score > 50) {
             note = 'C';
         }
-        if (duplicatedDomQueries > 100) {
+        if (score > 100) {
             note = 'D';
         }
-        if (duplicatedDomQueries > 200) {
+        if (score > 200) {
             note = 'E';
         }
-        if (duplicatedDomQueries > 500) {
+        if (score > 500) {
             note = 'F';
         }
         return note;
@@ -220,20 +221,20 @@ app.controller('ResultsCtrl', function ($scope) {
 
     function getEventsBoundScore() {
         var note = 'A';
-        var eventsBoundScore = $scope.phantomasResults.metrics.eventsBound;
-        if (eventsBoundScore > 50) {
+        var score = $scope.phantomasResults.metrics.eventsBound;
+        if (score > 50) {
             note = 'B';
         }
-        if (eventsBoundScore > 100) {
+        if (score > 100) {
             note = 'C';
         }
-        if (eventsBoundScore > 200) {
+        if (score > 200) {
             note = 'D';
         }
-        if (eventsBoundScore > 500) {
+        if (score > 500) {
             note = 'E';
         }
-        if (eventsBoundScore > 1000) {
+        if (score > 1000) {
             note = 'F';
         }
         return note;
@@ -241,23 +242,23 @@ app.controller('ResultsCtrl', function ($scope) {
 
     function getBadPracticesScore() {
         var note = 'A';
-        var badPracticesScore = $scope.phantomasResults.metrics.documentWriteCalls * 3 +
-                                $scope.phantomasResults.metrics.evalCalls * 3 +
-                                $scope.phantomasResults.metrics.jsErrors * 10 +
-                                $scope.phantomasResults.metrics.consoleMessages;
-        if (badPracticesScore > 5) {
+        var score = $scope.phantomasResults.metrics.documentWriteCalls * 3 +
+                    $scope.phantomasResults.metrics.evalCalls * 3 +
+                    $scope.phantomasResults.metrics.jsErrors * 10 +
+                    $scope.phantomasResults.metrics.consoleMessages;
+        if (score > 5) {
             note = 'B';
         }
-        if (badPracticesScore > 10) {
+        if (score > 10) {
             note = 'C';
         }
-        if (badPracticesScore > 15) {
+        if (score > 15) {
             note = 'D';
         }
-        if (badPracticesScore > 25) {
+        if (score > 25) {
             note = 'E';
         }
-        if (badPracticesScore > 40) {
+        if (score > 40) {
             note = 'F';
         }
         return note;
@@ -265,20 +266,20 @@ app.controller('ResultsCtrl', function ($scope) {
 
     function getScriptsScore() {
         var note = 'A';
-        var scriptsScore = $scope.phantomasResults.metrics.jsCount;
-        if (scriptsScore > 4) {
+        var score = $scope.phantomasResults.metrics.jsCount;
+        if (score > 4) {
             note = 'B';
         }
-        if (scriptsScore > 8) {
+        if (score > 8) {
             note = 'C';
         }
-        if (scriptsScore > 12) {
+        if (score > 12) {
             note = 'D';
         }
-        if (scriptsScore > 16) {
+        if (score > 16) {
             note = 'E';
         }
-        if (scriptsScore > 20) {
+        if (score > 20) {
             note = 'F';
         }
         return note;
@@ -319,21 +320,21 @@ app.controller('ResultsCtrl', function ($scope) {
         }
 
         var note = 'A';
-        var cssScore = $scope.phantomasResults.metrics.cssRules +
-                       $scope.phantomasResults.metrics.cssComplexSelectors * 10;
-        if (cssScore > 200) {
+        var score = $scope.phantomasResults.metrics.cssRules +
+                    $scope.phantomasResults.metrics.cssComplexSelectors * 10;
+        if (score > 200) {
             note = 'B';
         }
-        if (cssScore > 500) {
+        if (score > 500) {
             note = 'C';
         }
-        if (cssScore > 1000) {
+        if (score > 1000) {
             note = 'D';
         }
-        if (cssScore > 2000) {
+        if (score > 2000) {
             note = 'E';
         }
-        if (cssScore > 5000) {
+        if (score > 5000) {
             note = 'F';
         }
         return note;
@@ -345,27 +346,48 @@ app.controller('ResultsCtrl', function ($scope) {
         }
 
         var note = 'A';
-        var badCssScore = $scope.phantomasResults.metrics.cssDuplicatedSelectors +
-                          $scope.phantomasResults.metrics.cssEmptyRules +
-                          $scope.phantomasResults.metrics.cssExpressions * 10 +
-                          $scope.phantomasResults.metrics.cssImportants * 2 +
-                          $scope.phantomasResults.metrics.cssOldIEFixes * 10 +
-                          $scope.phantomasResults.metrics.cssOldPropertyPrefixes +
-                          $scope.phantomasResults.metrics.cssUniversalSelectors * 5
-                          $scope.phantomasResults.metrics.cssRedundantBodySelectors
-        if (badCssScore > 20) {
+        var score = $scope.phantomasResults.metrics.cssDuplicatedSelectors +
+                    $scope.phantomasResults.metrics.cssEmptyRules +
+                    $scope.phantomasResults.metrics.cssExpressions * 10 +
+                    $scope.phantomasResults.metrics.cssImportants * 2 +
+                    $scope.phantomasResults.metrics.cssOldIEFixes * 10 +
+                    $scope.phantomasResults.metrics.cssOldPropertyPrefixes +
+                    $scope.phantomasResults.metrics.cssUniversalSelectors * 5 +
+                    $scope.phantomasResults.metrics.cssRedundantBodySelectors;
+        if (score > 20) {
             note = 'B';
         }
-        if (badCssScore > 50) {
+        if (score > 50) {
             note = 'C';
         }
-        if (badCssScore > 100) {
+        if (score > 100) {
             note = 'D';
         }
-        if (badCssScore > 200) {
+        if (score > 200) {
             note = 'E';
         }
-        if (badCssScore > 500) {
+        if (score > 500) {
+            note = 'F';
+        }
+        return note;
+    }
+
+    function cssCountScore() {
+        var note = 'A';
+        var score = $scope.phantomasResults.metrics.cssCount;
+        if (score > 3) {
+            note = 'B';
+        }
+        if (score > 6) {
+            note = 'C';
+        }
+        if (score > 9) {
+            note = 'D';
+        }
+        if (score > 12) {
+            note = 'E';
+        }
+        if (score > 15) {
             note = 'F';
         }
         return note;

@@ -138,6 +138,15 @@
                         </ul>
                     </div>
                 </div>
+                <div>
+                    <div ng-class="notations.cssCount">{{notations.cssCount}}</div>
+                    <div class="notation">CSS loaded</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.cssCount">Stylesheets count: {{phantomasResults.metrics.cssCount}}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
