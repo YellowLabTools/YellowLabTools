@@ -44,9 +44,15 @@
                     <div class="notation">DOM complexity</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.DOMelementsCount">DOM elements count: {{phantomasResults.metrics.DOMelementsCount}}</li>
-                            <li ng-if="phantomasResults.metrics.DOMelementMaxDepth">DOM max depth: {{phantomasResults.metrics.DOMelementMaxDepth}}</li>
-                            <li ng-if="phantomasResults.metrics.iframesCount">Number of iframes: {{phantomasResults.metrics.iframesCount}}</li>
+                            <li ng-if="phantomasResults.metrics.DOMelementsCount">
+                                DOM elements count: {{phantomasResults.metrics.DOMelementsCount}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.DOMelementMaxDepth">
+                                DOM max depth: {{phantomasResults.metrics.DOMelementMaxDepth}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.iframesCount">
+                                Number of iframes: {{phantomasResults.metrics.iframesCount}}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -66,7 +72,9 @@
                     <div class="notation">Duplicated DOM queries</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="duplicatedQueriesCountAll">Avoidable queries: {{duplicatedQueriesCountAll}}</li>
+                            <li ng-if="duplicatedQueriesCountAll">
+                                Avoidable queries: {{duplicatedQueriesCountAll}}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -75,7 +83,9 @@
                     <div class="notation">Events bound</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.eventsBound">Events bound: {{phantomasResults.metrics.eventsBound}}</li>
+                            <li ng-if="phantomasResults.metrics.eventsBound">
+                                Events bound: {{phantomasResults.metrics.eventsBound}}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -84,10 +94,18 @@
                     <div class="notation">Bad Javascript</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.jsErrors">Javascript errors: {{phantomasResults.metrics.jsErrors}}</li>
-                            <li ng-if="phantomasResults.metrics.evalCalls">eval calls: {{phantomasResults.metrics.evalCalls}}</li>
-                            <li ng-if="phantomasResults.metrics.documentWriteCalls">document.write calls: {{phantomasResults.metrics.documentWriteCalls}}</li>
-                            <li ng-if="phantomasResults.metrics.consoleMessages">Console messages: {{phantomasResults.metrics.consoleMessages}}</li>
+                            <li ng-if="phantomasResults.metrics.jsErrors">
+                                Javascript errors: {{phantomasResults.metrics.jsErrors}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.evalCalls">
+                                eval calls: {{phantomasResults.metrics.evalCalls}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.documentWriteCalls">
+                                document.write calls: {{phantomasResults.metrics.documentWriteCalls}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.consoleMessages">
+                                Console messages: {{phantomasResults.metrics.consoleMessages}}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -96,7 +114,9 @@
                     <div class="notation">Scripts loaded</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.jsCount">Scripts count: {{phantomasResults.metrics.jsCount}}</li>
+                            <li ng-if="phantomasResults.metrics.jsCount">
+                                Scripts count: {{phantomasResults.metrics.jsCount}}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -105,8 +125,11 @@
                     <div class="notation">jQuery version</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.jQueryDifferentVersions == 1">jQuery version: {{phantomasResults.metrics.jQueryVersion}}</li>
-                            <li ng-if="phantomasResults.metrics.jQueryDifferentVersions > 1">{{phantomasResults.metrics.jQueryDifferentVersions}} versions loaded: 
+                            <li ng-if="phantomasResults.metrics.jQueryDifferentVersions == 1">
+                                jQuery version: {{phantomasResults.metrics.jQueryVersion}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.jQueryDifferentVersions > 1">
+                                {{phantomasResults.metrics.jQueryDifferentVersions}} versions loaded: 
                                 <span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span>
                             </li>
                         </ul>
@@ -117,8 +140,12 @@
                     <div class="notation">CSS complexity</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.cssRules">Rules count: {{phantomasResults.metrics.cssRules}}</li>
-                            <li ng-if="phantomasResults.metrics.cssComplexSelectors">Complex selectors: {{phantomasResults.metrics.cssComplexSelectors}}</li>
+                            <li ng-if="phantomasResults.metrics.cssRules">
+                                Rules count: {{phantomasResults.metrics.cssRules}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cssComplexSelectors">
+                                Complex selectors: {{phantomasResults.metrics.cssComplexSelectors}}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -127,14 +154,30 @@
                     <div class="notation">Bad CSS</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.cssDuplicatedSelectors">Duplicated selectors: {{phantomasResults.metrics.cssDuplicatedSelectors}}</li>
-                            <li ng-if="phantomasResults.metrics.cssEmptyRules">Empty rules: {{phantomasResults.metrics.cssEmptyRules}}</li>
-                            <li ng-if="phantomasResults.metrics.cssExpressions">CSS expressions: {{phantomasResults.metrics.cssExpressions}}</li>
-                            <li ng-if="phantomasResults.metrics.cssImportants">Uses of !important: {{phantomasResults.metrics.cssImportants}}</li>
-                            <li ng-if="phantomasResults.metrics.cssOldIEFixes">Old IE fixes: {{phantomasResults.metrics.cssOldIEFixes}}</li>
-                            <li ng-if="phantomasResults.metrics.cssOldPropertyPrefixes">Old prefixes: {{phantomasResults.metrics.cssOldPropertyPrefixes}}</li>
-                            <li ng-if="phantomasResults.metrics.cssUniversalSelectors">Universal * selectors: {{phantomasResults.metrics.cssUniversalSelectors}}</li>
-                            <li ng-if="phantomasResults.metrics.cssRedundantBodySelectors">Redundant body selectors: {{phantomasResults.metrics.cssRedundantBodySelectors}}</li>
+                            <li ng-if="phantomasResults.metrics.cssDuplicatedSelectors">
+                                Duplicated selectors: {{phantomasResults.metrics.cssDuplicatedSelectors}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cssEmptyRules">
+                                Empty rules: {{phantomasResults.metrics.cssEmptyRules}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cssExpressions">
+                                CSS expressions: {{phantomasResults.metrics.cssExpressions}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cssImportants">
+                                Uses of !important: {{phantomasResults.metrics.cssImportants}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cssOldIEFixes">
+                                Old IE fixes: {{phantomasResults.metrics.cssOldIEFixes}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cssOldPropertyPrefixes">
+                                Old prefixes: {{phantomasResults.metrics.cssOldPropertyPrefixes}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cssUniversalSelectors">
+                                Universal * selectors: {{phantomasResults.metrics.cssUniversalSelectors}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cssRedundantBodySelectors">
+                                Redundant body selectors: {{phantomasResults.metrics.cssRedundantBodySelectors}}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -143,7 +186,9 @@
                     <div class="notation">CSS loaded</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.cssCount">Stylesheets count: {{phantomasResults.metrics.cssCount}}</li>
+                            <li ng-if="phantomasResults.metrics.cssCount">
+                                Stylesheets count: {{phantomasResults.metrics.cssCount}}
+                            </li>
                         </ul>
                     </div>
                 </div>
