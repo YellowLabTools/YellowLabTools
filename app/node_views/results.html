@@ -53,6 +53,9 @@
                             <li ng-if="phantomasResults.metrics.iframesCount">
                                 Number of iframes: {{phantomasResults.metrics.iframesCount}}
                             </li>
+                            <li ng-if="phantomasResults.metrics.DOMidDuplicated">
+                                IDs duplicated: {{phantomasResults.metrics.DOMidDuplicated}}
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -156,7 +156,8 @@ app.controller('ResultsCtrl', function ($scope) {
         var note = 'A';
         var score = $scope.phantomasResults.metrics.DOMelementsCount +
                     Math.pow($scope.phantomasResults.metrics.DOMelementMaxDepth, 2) +
-                    $scope.phantomasResults.metrics.iframesCount * 50;
+                    $scope.phantomasResults.metrics.iframesCount * 50 +
+                    $scope.phantomasResults.metrics.DOMidDuplicated * 25;
         if (score > 1000) {
             note = 'B';
         }
