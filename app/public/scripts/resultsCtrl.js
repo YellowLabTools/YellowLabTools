@@ -72,11 +72,10 @@ app.controller('ResultsCtrl', function ($scope) {
             duplicatedDomQueries: getDuplicatedDomQueriesScore(),
             eventsBound: getEventsBoundScore(),
             jsBadPractices: getJSBadPracticesScore(),
-            scripts: getScriptsScore(),
             jQueryLoading: getJQueryLoadingScore(),
             cssComplexity: getCSSComplexityScore(),
             badCss: getBadCssScore(),
-            cssCount: cssCountScore()
+            requests: requestsScore()
         };
     }
 
@@ -266,27 +265,6 @@ app.controller('ResultsCtrl', function ($scope) {
         return note;
     }
 
-    function getScriptsScore() {
-        var note = 'A';
-        var score = $scope.phantomasResults.metrics.jsCount;
-        if (score > 4) {
-            note = 'B';
-        }
-        if (score > 8) {
-            note = 'C';
-        }
-        if (score > 12) {
-            note = 'D';
-        }
-        if (score > 16) {
-            note = 'E';
-        }
-        if (score > 20) {
-            note = 'F';
-        }
-        return note;
-    }
-
     function getJQueryLoadingScore() {
         var note = 'NA';
         if ($scope.phantomasResults.metrics.jQueryDifferentVersions > 1) {
@@ -374,22 +352,22 @@ app.controller('ResultsCtrl', function ($scope) {
         return note;
     }
 
-    function cssCountScore() {
+    function requestsScore() {
         var note = 'A';
-        var score = $scope.phantomasResults.metrics.cssCount;
-        if (score > 3) {
+        var score = $scope.phantomasResults.metrics.requests;
+        if (score > 30) {
             note = 'B';
         }
-        if (score > 6) {
+        if (score > 45) {
             note = 'C';
         }
-        if (score > 9) {
+        if (score > 60) {
             note = 'D';
         }
-        if (score > 12) {
+        if (score > 80) {
             note = 'E';
         }
-        if (score > 15) {
+        if (score > 100) {
             note = 'F';
         }
         return note;

@@ -116,17 +116,6 @@
                     </div>
                 </div>
                 <div>
-                    <div ng-class="notations.scripts">{{notations.scripts}}</div>
-                    <div class="notation">JS files loaded</div>
-                    <div class="criteria">
-                        <ul>
-                            <li ng-if="phantomasResults.metrics.jsCount">
-                                Scripts count: {{phantomasResults.metrics.jsCount}}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div>
                     <div ng-class="notations.jQueryLoading">{{notations.jQueryLoading}}</div>
                     <div class="notation">jQuery version</div>
                     <div class="criteria">
@@ -188,12 +177,36 @@
                     </div>
                 </div>
                 <div>
-                    <div ng-class="notations.cssCount">{{notations.cssCount}}</div>
-                    <div class="notation">CSS files loaded</div>
+                    <div ng-class="notations.requests">{{notations.requests}}</div>
+                    <div class="notation">Requests number</div>
                     <div class="criteria">
                         <ul>
+                            <li>
+                                Total requests: {{phantomasResults.metrics.requests}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.htmlCount">
+                                Documents: {{phantomasResults.metrics.htmlCount}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.jsCount">
+                                Scripts: {{phantomasResults.metrics.jsCount}}
+                            </li>
                             <li ng-if="phantomasResults.metrics.cssCount">
-                                Stylesheets count: {{phantomasResults.metrics.cssCount}}
+                                Stylesheets: {{phantomasResults.metrics.cssCount}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.imageCount">
+                                Images: {{phantomasResults.metrics.imageCount}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.webfontCount">
+                                Fonts: {{phantomasResults.metrics.webfontCount}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.videoCount">
+                                Videos: {{phantomasResults.metrics.videoCount}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.jsonCount">
+                                JSON: {{phantomasResults.metrics.jsonCount}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.otherCount">
+                                Other: {{phantomasResults.metrics.otherCount}}
                             </li>
                         </ul>
                     </div>

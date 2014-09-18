@@ -11,7 +11,7 @@ Online tool designed to help Front-End developers optimize their website
 ## How it works
 
 The tool is based on the fabulous [Phantomas](https://github.com/macbre/phantomas) by Maciej Brencz, that loads a page and collects many web performance metrics.
-I rewrote some modules to deeper analyse Javascript interactions with the DOM (especially with jQuery).
+I rewrote some modules to deeper analyze Javascript interactions with the DOM (especially with jQuery).
 And then it is wrapped inside a small NodeJS server to get an interface (inspired by my favorite tool: [WebPageTest](http://www.webpagetest.org/)).
 
 **There are so many things left to do, your help would be greatly appreciated! Please report bugs, ask for evolutions and come code with me.**
