@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div>
-                    <div ng-class="notations.badPractices">{{notations.badPractices}}</div>
+                    <div ng-class="notations.jsBadPractices">{{notations.jsBadPractices}}</div>
                     <div class="notation">Bad Javascript</div>
                     <div class="criteria">
                         <ul>
@@ -109,12 +109,15 @@
                             <li ng-if="phantomasResults.metrics.consoleMessages">
                                 Console messages: {{phantomasResults.metrics.consoleMessages}}
                             </li>
+                            <li ng-if="phantomasResults.metrics.globalVariables">
+                                Global variables: {{phantomasResults.metrics.globalVariables}}
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div>
                     <div ng-class="notations.scripts">{{notations.scripts}}</div>
-                    <div class="notation">Scripts loaded</div>
+                    <div class="notation">JS files loaded</div>
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.jsCount">
@@ -186,7 +189,7 @@
                 </div>
                 <div>
                     <div ng-class="notations.cssCount">{{notations.cssCount}}</div>
-                    <div class="notation">CSS loaded</div>
+                    <div class="notation">CSS files loaded</div>
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.cssCount">

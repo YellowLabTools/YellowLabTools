@@ -71,7 +71,7 @@ app.controller('ResultsCtrl', function ($scope) {
             domManipulations: getDomManipulationsScore(),
             duplicatedDomQueries: getDuplicatedDomQueriesScore(),
             eventsBound: getEventsBoundScore(),
-            badPractices: getBadPracticesScore(),
+            jsBadPractices: getJSBadPracticesScore(),
             scripts: getScriptsScore(),
             jQueryLoading: getJQueryLoadingScore(),
             cssComplexity: getCSSComplexityScore(),
@@ -241,12 +241,13 @@ app.controller('ResultsCtrl', function ($scope) {
         return note;
     }
 
-    function getBadPracticesScore() {
+    function getJSBadPracticesScore() {
         var note = 'A';
         var score = $scope.phantomasResults.metrics.documentWriteCalls * 3 +
-                    $scope.phantomasResults.metrics.evalCalls * 3 +
+                    $scope.phantomasResults.metrics.evalCalls * 2 +
                     $scope.phantomasResults.metrics.jsErrors * 10 +
-                    $scope.phantomasResults.metrics.consoleMessages;
+                    $scope.phantomasResults.metrics.consoleMessages / 2 +
+                    $scope.phantomasResults.metrics.globalVariables / 10;
         if (score > 5) {
             note = 'B';
         }
