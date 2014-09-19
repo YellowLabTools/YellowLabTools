@@ -1,3 +1,5 @@
 angular.module('YellowLabTools', [
-  'Results'
+  'Results',
+  'ngModal',
+  'ShowOffendersDirective'
 ]);

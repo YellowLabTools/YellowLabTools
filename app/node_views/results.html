@@ -6,9 +6,10 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/main.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/results.css">
     <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/ngModal/dist/ng-modal.min.js"></script>
     <script src="/public/scripts/app.js"></script>
     <script src="/public/scripts/resultsCtrl.js"></script>
-    <script src="/public/scripts/filters.js"></script>
+    <script src="/public/scripts/showOffenders.js"></script>
 </head>
 <body ng-app="YellowLabTools" ng-controller="ResultsCtrl">
     <h1>Yellow Lab <span class="icon-lab"></span> Tools</h1>
@@ -45,16 +46,18 @@
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.DOMelementsCount">
-                                DOM elements count: {{phantomasResults.metrics.DOMelementsCount}}
+                                DOM elements count: <b>{{phantomasResults.metrics.DOMelementsCount}}</b>
                             </li>
                             <li ng-if="phantomasResults.metrics.DOMelementMaxDepth">
-                                DOM max depth: {{phantomasResults.metrics.DOMelementMaxDepth}}
+                                DOM max depth: <b>{{phantomasResults.metrics.DOMelementMaxDepth}}</b>
+                                <show-offenders modal-title="DOM max depth" metric-name="DOMelementMaxDepth" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.iframesCount">
-                                Number of iframes: {{phantomasResults.metrics.iframesCount}}
+                                Number of iframes: <b>{{phantomasResults.metrics.iframesCount}}</b>
                             </li>
                             <li ng-if="phantomasResults.metrics.DOMidDuplicated">
-                                IDs duplicated: {{phantomasResults.metrics.DOMidDuplicated}}
+                                IDs duplicated: <b>{{phantomasResults.metrics.DOMidDuplicated}}</b>
+                                <show-offenders modal-title="DOM IDs duplicated" metric-name="DOMidDuplicated" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                         </ul>
                     </div>
@@ -64,9 +67,16 @@
                     <div class="notation">DOM read and write</div>
                     <div class="criteria">
                         <ul>
-                            <li ng-if="phantomasResults.metrics.DOMinserts">DOM inserts: {{phantomasResults.metrics.DOMinserts}}</li>
-                            <li ng-if="phantomasResults.metrics.DOMqueries">DOM queries: {{phantomasResults.metrics.DOMqueries}}</li>
-                            <li ng-if="totalJSTime">Time they took: {{totalJSTime}} ms</li>
+                            <li ng-if="phantomasResults.metrics.DOMinserts">
+                                DOM inserts: <b>{{phantomasResults.metrics.DOMinserts}}</b>
+                                <show-offenders modal-title="DOM inserts" metric-name="DOMinserts" phantomas-results="phantomasResults"></show-offenders>
+                            </li>
+                            <li ng-if="phantomasResults.metrics.DOMqueries">
+                                DOM queries: <b>{{phantomasResults.metrics.DOMqueries}}</b>
+                            </li>
+                            <li ng-if="totalJSTime">
+                                Time they took: <b>{{totalJSTime}} ms</b>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -76,7 +86,8 @@
                     <div class="criteria">
                         <ul>
                             <li ng-if="duplicatedQueriesCountAll">
-                                Avoidable queries: {{duplicatedQueriesCountAll}}
+                                Avoidable queries: <b>{{duplicatedQueriesCountAll}}</b>
+                                <show-offenders modal-title="Duplicated DOM queries" metric-name="DOMqueriesDuplicated" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                         </ul>
                     </div>
@@ -87,7 +98,8 @@
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.eventsBound">
-                                Events bound: {{phantomasResults.metrics.eventsBound}}
+                                Events bound: <b>{{phantomasResults.metrics.eventsBound}}</b>
+                                <show-offenders modal-title="Events bound" metric-name="eventsBound" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                         </ul>
                     </div>
@@ -98,19 +110,22 @@
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.jsErrors">
-                                Javascript errors: {{phantomasResults.metrics.jsErrors}}
+                                Javascript errors: <b>{{phantomasResults.metrics.jsErrors}}</b>
+                                <show-offenders modal-title="Javascript errors" metric-name="jsErrors" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.evalCalls">
-                                eval calls: {{phantomasResults.metrics.evalCalls}}
+                                eval calls: <b>{{phantomasResults.metrics.evalCalls}}</b>
                             </li>
                             <li ng-if="phantomasResults.metrics.documentWriteCalls">
-                                document.write calls: {{phantomasResults.metrics.documentWriteCalls}}
+                                document.write calls: <b>{{phantomasResults.metrics.documentWriteCalls}}</b>
                             </li>
                             <li ng-if="phantomasResults.metrics.consoleMessages">
-                                Console messages: {{phantomasResults.metrics.consoleMessages}}
+                                Console messages: <b>{{phantomasResults.metrics.consoleMessages}}</b>
+                                <show-offenders modal-title="Console messages" metric-name="consoleMessages" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.globalVariables">
-                                Global variables: {{phantomasResults.metrics.globalVariables}}
+                                Global variables: <b>{{phantomasResults.metrics.globalVariables}}</b>
+                                <show-offenders modal-title="Global variables" metric-name="globalVariables" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                         </ul>
                     </div>
@@ -121,10 +136,10 @@
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.jQueryDifferentVersions == 1">
-                                jQuery version: {{phantomasResults.metrics.jQueryVersion}}
+                                jQuery version: <b>{{phantomasResults.metrics.jQueryVersion}}</b>
                             </li>
                             <li ng-if="phantomasResults.metrics.jQueryDifferentVersions > 1">
-                                {{phantomasResults.metrics.jQueryDifferentVersions}} versions loaded: 
+                                <b>{{phantomasResults.metrics.jQueryDifferentVersions}}</b> versions loaded: 
                                 <span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span>
                             </li>
                         </ul>
@@ -136,10 +151,11 @@
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.cssRules">
-                                Rules count: {{phantomasResults.metrics.cssRules}}
+                                Rules count: <b>{{phantomasResults.metrics.cssRules}}</b>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssComplexSelectors">
-                                Complex selectors: {{phantomasResults.metrics.cssComplexSelectors}}
+                                Complex selectors: <b>{{phantomasResults.metrics.cssComplexSelectors}}</b>
+                                <show-offenders modal-title="Complex selectors" metric-name="cssComplexSelectors" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                         </ul>
                     </div>
@@ -150,28 +166,36 @@
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.cssDuplicatedSelectors">
-                                Duplicated selectors: {{phantomasResults.metrics.cssDuplicatedSelectors}}
+                                Duplicated selectors: <b>{{phantomasResults.metrics.cssDuplicatedSelectors}}</b>
+                                <show-offenders modal-title="Duplicated selectors" metric-name="cssDuplicatedSelectors" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssEmptyRules">
-                                Empty rules: {{phantomasResults.metrics.cssEmptyRules}}
+                                Empty rules: <b>{{phantomasResults.metrics.cssEmptyRules}}</b>
+                                <show-offenders modal-title="Empty rules" metric-name="cssEmptyRules" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssExpressions">
-                                CSS expressions: {{phantomasResults.metrics.cssExpressions}}
+                                CSS expressions: <b>{{phantomasResults.metrics.cssExpressions}}</b>
+                                <show-offenders modal-title="CSS expressions" metric-name="cssExpressions" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssImportants">
-                                Uses of !important: {{phantomasResults.metrics.cssImportants}}
+                                Uses of !important: <b>{{phantomasResults.metrics.cssImportants}}</b>
+                                <show-offenders modal-title="Uses of !important" metric-name="cssImportants" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssOldIEFixes">
-                                Old IE fixes: {{phantomasResults.metrics.cssOldIEFixes}}
+                                Old IE fixes: <b>{{phantomasResults.metrics.cssOldIEFixes}}</b>
+                                <show-offenders modal-title="Old IE fixes" metric-name="cssOldIEFixes" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssOldPropertyPrefixes">
-                                Old prefixes: {{phantomasResults.metrics.cssOldPropertyPrefixes}}
+                                Old prefixes: <b>{{phantomasResults.metrics.cssOldPropertyPrefixes}}</b>
+                                <show-offenders modal-title="Old prefixes" metric-name="cssOldPropertyPrefixes" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssUniversalSelectors">
-                                Universal * selectors: {{phantomasResults.metrics.cssUniversalSelectors}}
+                                Universal selectors: <b>{{phantomasResults.metrics.cssUniversalSelectors}}</b>
+                                <show-offenders modal-title="Universal selectors" metric-name="cssUniversalSelectors" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssRedundantBodySelectors">
-                                Redundant body selectors: {{phantomasResults.metrics.cssRedundantBodySelectors}}
+                                Redundant body selectors: <b>{{phantomasResults.metrics.cssRedundantBodySelectors}}</b>
+                                <show-offenders modal-title="Redundant body selectors" metric-name="cssRedundantBodySelectors" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                         </ul>
                     </div>
@@ -182,31 +206,39 @@
                     <div class="criteria">
                         <ul>
                             <li>
-                                Total requests: {{phantomasResults.metrics.requests}}
+                                Total requests: <b>{{phantomasResults.metrics.requests}}</b>
                             </li>
                             <li ng-if="phantomasResults.metrics.htmlCount">
-                                Documents: {{phantomasResults.metrics.htmlCount}}
+                                Documents: <b>{{phantomasResults.metrics.htmlCount}}</b>
+                                <show-offenders modal-title="HTML count" metric-name="htmlCount" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.jsCount">
-                                Scripts: {{phantomasResults.metrics.jsCount}}
+                                Scripts: <b>{{phantomasResults.metrics.jsCount}}</b>
+                                <show-offenders modal-title="JS count" metric-name="jsCount" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cssCount">
-                                Stylesheets: {{phantomasResults.metrics.cssCount}}
+                                Stylesheets: <b>{{phantomasResults.metrics.cssCount}}</b>
+                                <show-offenders modal-title="CSS count" metric-name="cssCount" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.imageCount">
-                                Images: {{phantomasResults.metrics.imageCount}}
+                                Images: <b>{{phantomasResults.metrics.imageCount}}</b>
+                                <show-offenders modal-title="Image count" metric-name="imageCount" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.webfontCount">
-                                Fonts: {{phantomasResults.metrics.webfontCount}}
+                                Fonts: <b>{{phantomasResults.metrics.webfontCount}}</b>
+                                <show-offenders modal-title="Webfont count" metric-name="webfontCount" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.videoCount">
-                                Videos: {{phantomasResults.metrics.videoCount}}
+                                Videos: <b>{{phantomasResults.metrics.videoCount}}</b>
+                                <show-offenders modal-title="Video count" metric-name="videoCount" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.jsonCount">
-                                JSON: {{phantomasResults.metrics.jsonCount}}
+                                JSON: <b>{{phantomasResults.metrics.jsonCount}}</b>
+                                <show-offenders modal-title="JSON count" metric-name="jsonCount" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.otherCount">
-                                Other: {{phantomasResults.metrics.otherCount}}
+                                Other: <b>{{phantomasResults.metrics.otherCount}}</b>
+                                <show-offenders modal-title="Other count" metric-name="otherCount" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                         </ul>
                     </div>
@@ -217,22 +249,28 @@
                     <div class="criteria">
                         <ul>
                             <li ng-if="phantomasResults.metrics.notFound">
-                                404 not found: {{phantomasResults.metrics.notFound}}
+                                404 not found: <b>{{phantomasResults.metrics.notFound}}</b>
+                                <show-offenders modal-title="404 not found" metric-name="notFound" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.closedConnections">
-                                Connections closed: {{phantomasResults.metrics.closedConnections}}
+                                Connections closed: <b>{{phantomasResults.metrics.closedConnections}}</b>
+                                <show-offenders modal-title="Connections closed" metric-name="closedConnections" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cachingDisabled">
-                                Caching disabled: {{phantomasResults.metrics.cachingDisabled}}
+                                Caching disabled: <b>{{phantomasResults.metrics.cachingDisabled}}</b>
+                                <show-offenders modal-title="Caching disabled" metric-name="cachingDisabled" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cachingNotSpecified">
-                                Caching not specified: {{phantomasResults.metrics.cachingNotSpecified}}
+                                Caching not specified: <b>{{phantomasResults.metrics.cachingNotSpecified}}</b>
+                                <show-offenders modal-title="Caching not specified" metric-name="cachingNotSpecified" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cachingTooShort">
-                                Caching too short: {{phantomasResults.metrics.cachingTooShort}}
+                                Caching too short: <b>{{phantomasResults.metrics.cachingTooShort}}</b>
+                                <show-offenders modal-title="Caching too short" metric-name="cachingTooShort" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.domains">
-                                Different domains: {{phantomasResults.metrics.domains}}
+                                Different domains: <b>{{phantomasResults.metrics.domains}}</b>
+                                <show-offenders modal-title="Different domains" metric-name="domains" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                         </ul>
                     </div>

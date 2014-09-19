@@ -118,6 +118,10 @@ h4 {
   /* Non applicable */
   background: #CCC;
 }
+.notations .icon-eye {
+  color: #9c4274;
+  cursor: pointer;
+}
 .timeline {
   margin: 2em 0 5em;
 }
@@ -375,4 +379,64 @@ input.textFilter {
 }
 .table .icon-warning {
   color: #e74c3c;
+}
+/**** NgModal popin (have a look inside bower_components) ****/
+.ng-modal {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ng-modal-overlay {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+}
+.ng-modal-dialog {
+  z-index: 10000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 10px;
+  border: 3px solid #f1c40f;
+  border-radius: 0.5em;
+}
+.ng-modal-dialog-content {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  word-wrap: break-word;
+  /*height: calc(~"100% - 47px");*/
+  max-height: 20em;
+}
+.ng-modal-close {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  padding: 5px;
+  display: inline-block;
+}
+.ng-modal-close-x {
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+.ng-modal-title {
+  font-weight: bold;
+  font-size: 1.5em;
+  display: block;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+  border-bottom: solid 1px #999;
 }
