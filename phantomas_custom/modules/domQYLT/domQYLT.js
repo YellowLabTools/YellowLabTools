@@ -36,7 +36,6 @@ exports.module = function(phantomas) {
                             },
                             arguments: ['#' + id]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
 
@@ -60,7 +59,6 @@ exports.module = function(phantomas) {
                             },
                             arguments: ['.' + className]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
                 }
@@ -86,7 +84,6 @@ exports.module = function(phantomas) {
                             },
                             arguments: [tagName]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
                 }
@@ -115,7 +112,6 @@ exports.module = function(phantomas) {
                             },
                             arguments: [selector]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
                 }
@@ -134,7 +130,6 @@ exports.module = function(phantomas) {
                             },
                             arguments: [selector]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
                 }
@@ -181,7 +176,6 @@ exports.module = function(phantomas) {
                             },
                             arguments: [appended]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
                 }
@@ -201,7 +195,6 @@ exports.module = function(phantomas) {
                             },
                             arguments: [appended]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
                 }

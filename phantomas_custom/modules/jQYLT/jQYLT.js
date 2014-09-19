@@ -143,7 +143,6 @@ function get_type(thing){
                         callDetails: {
                             arguments: ['version ' + version]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
 
@@ -157,7 +156,6 @@ function get_type(thing){
                             callDetails: {
                                 arguments: [func]
                             },
-                            caller: phantomas.getCaller(1),
                             backtrace: phantomas.getBacktrace()
                         });
 
@@ -179,7 +177,6 @@ function get_type(thing){
                                 },
                                 arguments: [selector]
                             },
-                            caller: phantomas.getCaller(3),
                             backtrace: phantomas.getBacktrace()
                         });
 
@@ -200,7 +197,6 @@ function get_type(thing){
                                 },
                                 arguments: [eventTypes, func]
                             },
-                            caller: phantomas.getCaller(3),
                             backtrace: phantomas.getBacktrace()
                         });
 
@@ -280,7 +276,6 @@ function get_type(thing){
                                     },
                                     arguments: args
                                 },
-                                caller: phantomas.getCaller(3),
                                 backtrace: phantomas.getBacktrace()
                             });
 

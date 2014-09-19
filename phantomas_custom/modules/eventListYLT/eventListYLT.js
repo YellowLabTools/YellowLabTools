@@ -31,7 +31,6 @@ exports.module = function(phantomas) {
                             },
                             arguments: [eventType]
                         },
-                        caller: phantomas.getCaller(1),
                         backtrace: phantomas.getBacktrace()
                     });
                 }
