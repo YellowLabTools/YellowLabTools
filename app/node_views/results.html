@@ -211,6 +211,32 @@
                         </ul>
                     </div>
                 </div>
+                <div>
+                    <div ng-class="notations.network">{{notations.network}}</div>
+                    <div class="notation">Network</div>
+                    <div class="criteria">
+                        <ul>
+                            <li ng-if="phantomasResults.metrics.notFound">
+                                404 not found: {{phantomasResults.metrics.notFound}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.closedConnections">
+                                Connections closed: {{phantomasResults.metrics.closedConnections}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cachingDisabled">
+                                Caching disabled: {{phantomasResults.metrics.cachingDisabled}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cachingNotSpecified">
+                                Caching not specified: {{phantomasResults.metrics.cachingNotSpecified}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.cachingTooShort">
+                                Caching too short: {{phantomasResults.metrics.cachingTooShort}}
+                            </li>
+                            <li ng-if="phantomasResults.metrics.domains">
+                                Different domains: {{phantomasResults.metrics.domains}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 

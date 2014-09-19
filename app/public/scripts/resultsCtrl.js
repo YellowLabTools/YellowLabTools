@@ -75,7 +75,8 @@ app.controller('ResultsCtrl', function ($scope) {
             jQueryLoading: getJQueryLoadingScore(),
             cssComplexity: getCSSComplexityScore(),
             badCss: getBadCssScore(),
-            requests: requestsScore()
+            requests: requestsScore(),
+            network: networkScore()
         };
     }
 
@@ -359,6 +360,32 @@ app.controller('ResultsCtrl', function ($scope) {
             note = 'B';
         }
         if (score > 45) {
+            note = 'C';
+        }
+        if (score > 60) {
+            note = 'D';
+        }
+        if (score > 80) {
+            note = 'E';
+        }
+        if (score > 100) {
+            note = 'F';
+        }
+        return note;
+    }
+
+    function networkScore() {
+        var note = 'A';
+        var score = $scope.phantomasResults.metrics.notFound * 25 +
+                    $scope.phantomasResults.metrics.closedConnections * 10 +
+                    $scope.phantomasResults.metrics.cachingDisabled * 2 +
+                    $scope.phantomasResults.metrics.cachingNotSpecified +
+                    $scope.phantomasResults.metrics.cachingTooShort / 2 +
+                    $scope.phantomasResults.metrics.domains;
+        if (score > 20) {
+            note = 'B';
+        }
+        if (score > 40) {
             note = 'C';
         }
         if (score > 60) {
