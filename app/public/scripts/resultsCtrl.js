@@ -378,6 +378,7 @@ app.controller('ResultsCtrl', function ($scope) {
         var note = 'A';
         var score = $scope.phantomasResults.metrics.notFound * 25 +
                     $scope.phantomasResults.metrics.closedConnections * 10 +
+                    $scope.phantomasResults.metrics.multipleRequests * 10 +
                     $scope.phantomasResults.metrics.cachingDisabled * 2 +
                     $scope.phantomasResults.metrics.cachingNotSpecified +
                     $scope.phantomasResults.metrics.cachingTooShort / 2 +

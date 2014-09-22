@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/main.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/results.css">
     <script src="/bower_components/angular/angular.min.js"></script>
-    <script src="/bower_components/ngModal/dist/ng-modal.min.js"></script>
+    <script src="/bower_components/ngModal/dist/ng-modal.js"></script>
     <script src="/public/scripts/app.js"></script>
     <script src="/public/scripts/resultsCtrl.js"></script>
     <script src="/public/scripts/showOffenders.js"></script>
@@ -121,7 +121,6 @@
                             </li>
                             <li ng-if="phantomasResults.metrics.consoleMessages">
                                 Console messages: <b>{{phantomasResults.metrics.consoleMessages}}</b>
-                                <show-offenders modal-title="Console messages" metric-name="consoleMessages" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.globalVariables">
                                 Global variables: <b>{{phantomasResults.metrics.globalVariables}}</b>
@@ -255,6 +254,10 @@
                             <li ng-if="phantomasResults.metrics.closedConnections">
                                 Connections closed: <b>{{phantomasResults.metrics.closedConnections}}</b>
                                 <show-offenders modal-title="Connections closed" metric-name="closedConnections" phantomas-results="phantomasResults"></show-offenders>
+                            </li>
+                            <li ng-if="phantomasResults.metrics.multipleRequests">
+                                Duplicated requests: <b>{{phantomasResults.metrics.multipleRequests}}</b>
+                                <show-offenders modal-title="Static assets requested more than once" metric-name="multipleRequests" phantomas-results="phantomasResults"></show-offenders>
                             </li>
                             <li ng-if="phantomasResults.metrics.cachingDisabled">
                                 Caching disabled: <b>{{phantomasResults.metrics.cachingDisabled}}</b>
