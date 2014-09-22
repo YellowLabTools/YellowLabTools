@@ -67,15 +67,9 @@ h4 {
 
 .notations {
     display: table;
-    width: 40em;
-    margin-left: 6em;
-    border-spacing: 0.5em;
-}
-@media screen and (max-width: 800px) {
-    .notations {
-        width: 30em;
-        margin-left: 0;
-    }
+    width: 90%;
+    margin: 0 10%;
+    border-spacing: 1em;
 }
 .notations > div {
     display: table-row;
@@ -90,7 +84,6 @@ h4 {
     text-align: center;
 }
 .notations .criteria {
-    padding-top: 0.9em;
     font-weight: normal;
 }
 .notations .A, .notations .B, .notations .C, .notations .D, .notations .E, .notations .F, .notations .NA {
@@ -130,6 +123,25 @@ h4 {
 }
 .notations .icon-eye {
     color: #9c4274;
+    cursor: pointer;
+}
+
+.notations .criteria .table {
+    width: 75%;
+}
+.notations .criteria .label {
+    width: 70%;
+}
+.notations .criteria .result {
+    width: 20%;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: center;
+}
+.notations .criteria .icon-question {
+    width: 10%;
+    text-align: center;
+    color: #f1c40f;
     cursor: pointer;
 }
 
@@ -420,6 +432,7 @@ input.textFilter {
     left: 0;
     width: 100%;
     height: 100%;
+    text-align: left;
 }
 .ng-modal-overlay {
     position: absolute;
@@ -448,8 +461,9 @@ input.textFilter {
     overflow-x: hidden;
     overflow-y: scroll;
     word-wrap: break-word;
-    /*height: calc(~"100% - 47px");*/
     max-height: 20em;
+    font-weight: normal;
+    white-space: normal;
 }
 .ng-modal-close {
     position: absolute;
