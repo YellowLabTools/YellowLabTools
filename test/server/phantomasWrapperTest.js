@@ -10,7 +10,7 @@ describe('phantomasWrapper', function() {
     it('should execute', function(done) {
         var url = 'http://www.google.fr/';
 
-        this.timeout(15000);
+        this.timeout(20000);
         phantomasWrapper.execute({
             url: url,
             testId: '123abc',
