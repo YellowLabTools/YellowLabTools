@@ -12,6 +12,10 @@ app.controller('ResultsCtrl', function ($scope) {
         // Get the execution tree from the offenders
         $scope.javascript = JSON.parse($scope.phantomasResults.offenders.javascriptExecutionTree);
 
+        // Sort globalVariables offenders alphabetically
+        $scope.phantomasResults.offenders.globalVariables.sort();
+
+
         initSummaryView();
         initExecutionView();
         initMetricsView();
