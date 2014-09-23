@@ -384,7 +384,7 @@
                             <div ng-if="phantomasResults.metrics.notFound">
                                 <div class="label">404 not found</div>
                                 <div class="result">
-                                    {{phantomasResults.metrics.otherCount}}
+                                    {{phantomasResults.metrics.notFound}}
                                     <show-offenders modal-title="404 not found" metric-name="notFound" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
                                 <div class="icon-question"></div>
@@ -392,7 +392,7 @@
                             <div ng-if="phantomasResults.metrics.closedConnections">
                                 <div class="label">Connections closed</div>
                                 <div class="result">
-                                    {{phantomasResults.metrics.otherCount}}
+                                    {{phantomasResults.metrics.closedConnections}}
                                     <show-offenders modal-title="Connections closed" metric-name="closedConnections" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
                                 <div class="icon-question"></div>
@@ -400,7 +400,7 @@
                             <div ng-if="phantomasResults.metrics.multipleRequests">
                                 <div class="label">Duplicated requests</div>
                                 <div class="result">
-                                    {{phantomasResults.metrics.otherCount}}
+                                    {{phantomasResults.metrics.multipleRequests}}
                                     <show-offenders modal-title="Static assets requested more than once" metric-name="multipleRequests" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
                                 <div class="icon-question"></div>
@@ -408,7 +408,7 @@
                             <div ng-if="phantomasResults.metrics.cachingDisabled">
                                 <div class="label">Caching disabled</div>
                                 <div class="result">
-                                    {{phantomasResults.metrics.otherCount}}
+                                    {{phantomasResults.metrics.cachingDisabled}}
                                     <show-offenders modal-title="Caching disabled" metric-name="cachingDisabled" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
                                 <div class="icon-question"></div>
@@ -416,7 +416,7 @@
                             <div ng-if="phantomasResults.metrics.cachingNotSpecified">
                                 <div class="label">Caching not specified</div>
                                 <div class="result">
-                                    {{phantomasResults.metrics.otherCount}}
+                                    {{phantomasResults.metrics.cachingNotSpecified}}
                                     <show-offenders modal-title="Caching not specified" metric-name="cachingNotSpecified" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
                                 <div class="icon-question"></div>
@@ -424,7 +424,7 @@
                             <div ng-if="phantomasResults.metrics.cachingTooShort">
                                 <div class="label">Caching too short</div>
                                 <div class="result">
-                                    {{phantomasResults.metrics.otherCount}}
+                                    {{phantomasResults.metrics.cachingTooShort}}
                                     <show-offenders modal-title="Caching too short" metric-name="cachingTooShort" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
                                 <div class="icon-question"></div>
@@ -432,7 +432,7 @@
                             <div ng-if="phantomasResults.metrics.domains">
                                 <div class="label">Different domains</div>
                                 <div class="result">
-                                    {{phantomasResults.metrics.otherCount}}
+                                    {{phantomasResults.metrics.domains}}
                                     <show-offenders modal-title="Different domains" metric-name="domains" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
                                 <div class="icon-question"></div>
