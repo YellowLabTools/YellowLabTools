@@ -89,7 +89,7 @@ var PhantomasWrapper = function() {
                     err = 1001;
                 }
 
-                if (!json || !json.metrics) {
+                if (!err && (!json || !json.metrics)) {
                     err = 1002;
                 }
 
