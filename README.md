@@ -17,6 +17,11 @@ And then it is wrapped inside a small NodeJS server to get an interface (inspire
 **There are so many things left to do, your help would be greatly appreciated! Please report bugs, ask for evolutions and come code with me.**
 
 
+## Help needed
+
+I'm currently looking for help in correcting my english sentences, as it is not my native language.
+
+
 ## Install your own instance
 
 If your project is not accessible from outside, or if you want to fork and improve the tool, you can build your own instance. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Install-your-own-instance).
