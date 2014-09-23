@@ -48,7 +48,13 @@
                             <div ng-if="phantomasResults.metrics.DOMelementsCount">
                                 <div class="label">DOM elements count</div>
                                 <div class="result">{{phantomasResults.metrics.DOMelementsCount}}</div>
-                                <div class="icon-question" tooltip tooltip-title=""></div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="DOMelementsCountTooltip = true"></div>
+                                    <modal-dialog show='DOMelementsCountTooltip' dialog-title='Avoid too many DOM elements'>
+                                        <p>A high number of DOM elements means a lot of work for the browser to render the page.</p>
+                                        <p>It also slows down Javascript DOM queries, as there are more elements to search through.</p>
+                                    </modal-dialog>
+                                </div>
                             </div>
                             <div ng-if="phantomasResults.metrics.DOMelementMaxDepth">
                                 <div class="label">DOM max depth</div>
@@ -56,12 +62,23 @@
                                     {{phantomasResults.metrics.DOMelementMaxDepth}}
                                     <show-offenders modal-title="DOM max depth" metric-name="DOMelementMaxDepth" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="DOMelementMaxDepthTooltip = true"></div>
+                                    <modal-dialog show='DOMelementMaxDepthTooltip' dialog-title='Reduce DOM depth'>
+                                        <p>A deep DOM makes difficult the CSS matching with DOM elements.</p>
+                                        <p>It also slows down Javascript modifications to the DOM because dimensions calculations bubble up. Same thing for Javascript events.</p>
+                                    </modal-dialog>
+                                </div>
                             </div>
                             <div ng-if="phantomasResults.metrics.iframesCount">
                                 <div class="label">Number of iframes</div>
                                 <div class="result">{{phantomasResults.metrics.iframesCount}}</div>
-                                <div class="icon-question"></div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="DOMelementMaxDepthTooltip = true"></div>
+                                    <modal-dialog show='DOMelementMaxDepthTooltip' dialog-title='iFrames are slow'>
+                                        <p>iFrames are the most complex HTML elements. They are pages just like the main page and the browser needs to create a new page context, wich has a cost.</p>
+                                    </modal-dialog>
+                                </div>
                             </div>
                             <div ng-if="phantomasResults.metrics.DOMidDuplicated">
                                 <div class="label">IDs duplicated</div>
@@ -298,7 +315,7 @@
                                     {{phantomasResults.metrics.htmlCount}}
                                     <show-offenders modal-title="HTML count" metric-name="htmlCount" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div></div>
                             </div>
                             <div ng-if="phantomasResults.metrics.jsCount">
                                 <div class="label">Scripts</div>
@@ -306,7 +323,7 @@
                                     {{phantomasResults.metrics.jsCount}}
                                     <show-offenders modal-title="JS count" metric-name="jsCount" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div></div>
                             </div>
                             <div ng-if="phantomasResults.metrics.cssCount">
                                 <div class="label">Stylesheets</div>
@@ -314,7 +331,7 @@
                                     {{phantomasResults.metrics.cssCount}}
                                     <show-offenders modal-title="CSS count" metric-name="cssCount" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div></div>
                             </div>
                             <div ng-if="phantomasResults.metrics.imageCount">
                                 <div class="label">Images</div>
@@ -322,7 +339,7 @@
                                     {{phantomasResults.metrics.imageCount}}
                                     <show-offenders modal-title="Image count" metric-name="imageCount" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div></div>
                             </div>
                             <div ng-if="phantomasResults.metrics.webfontCount">
                                 <div class="label">Fonts</div>
@@ -330,7 +347,7 @@
                                     {{phantomasResults.metrics.webfontCount}}
                                     <show-offenders modal-title="Webfont count" metric-name="webfontCount" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div></div>
                             </div>
                             <div ng-if="phantomasResults.metrics.videoCount">
                                 <div class="label">Videos</div>
@@ -338,7 +355,7 @@
                                     {{phantomasResults.metrics.videoCount}}
                                     <show-offenders modal-title="Video count" metric-name="videoCount" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div></div>
                             </div>
                             <div ng-if="phantomasResults.metrics.jsonCount">
                                 <div class="label">JSON</div>
@@ -346,7 +363,7 @@
                                     {{phantomasResults.metrics.jsonCount}}
                                     <show-offenders modal-title="JSON count" metric-name="jsonCount" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div></div>
                             </div>
                             <div ng-if="phantomasResults.metrics.otherCount">
                                 <div class="label">Other</div>
@@ -354,7 +371,7 @@
                                     {{phantomasResults.metrics.otherCount}}
                                     <show-offenders modal-title="Other count" metric-name="otherCount" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
-                                <div class="icon-question"></div>
+                                <div></div>
                             </div>
                         </div>
                     </div>

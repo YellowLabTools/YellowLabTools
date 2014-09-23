@@ -127,9 +127,11 @@ h4 {
   white-space: nowrap;
   text-align: center;
 }
-.notations .criteria .icon-question {
+.notations .criteria .info {
   width: 10%;
   text-align: center;
+}
+.notations .criteria .icon-question {
   color: #f1c40f;
   cursor: pointer;
 }
