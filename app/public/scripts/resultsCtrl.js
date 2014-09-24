@@ -307,19 +307,19 @@ app.controller('ResultsCtrl', function ($scope) {
         var note = 'A';
         var score = $scope.phantomasResults.metrics.cssRules +
                     $scope.phantomasResults.metrics.cssComplexSelectors * 10;
-        if (score > 200) {
+        if (score > 500) {
             note = 'B';
         }
-        if (score > 500) {
+        if (score > 1000) {
             note = 'C';
         }
-        if (score > 1000) {
+        if (score > 2000) {
             note = 'D';
         }
-        if (score > 2000) {
+        if (score > 4500) {
             note = 'E';
         }
-        if (score > 5000) {
+        if (score > 7000) {
             note = 'F';
         }
         return note;
