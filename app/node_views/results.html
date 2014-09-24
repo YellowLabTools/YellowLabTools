@@ -264,8 +264,9 @@
                                 <div class="result">{{phantomasResults.metrics.jQueryVersion}}</div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="jQueryVersionTooltip = true"></div>
-                                    <modal-dialog show="jQueryVersionTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="jQueryVersionTooltip" dialog-title="Use the latest version of jQuery">
+                                        <p>Current latest version of jQuery is 1.11 or 2.1</p>
+                                        <p>Each new version of jQuery optimizes performances. Do not keep an old version of jQuery. Updating can break a few things, but it is generally quite easy to fix them up, so don't hesitate.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -292,8 +293,9 @@
                                 <div class="result">{{phantomasResults.metrics.cssRules}}</div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
-                                    <modal-dialog show="cssRulesTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssRulesTooltip" dialog-title="Clean up the CSS files">
+                                        <p>Having a huge number of CSS rules hurts performances. If the number of CSS rules is higher than the number of DOM elements, there is clearly a problem.</p>
+                                        <p>The problem generally occurs when all the pages of a website load all the CSS, concatenated in a single stylesheet. Solution is to create one main CSS file with global rules and one custom files per page.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
