@@ -2,7 +2,7 @@
 
 Online tool designed to help Front-End developers optimize their website
 
-[![Dependency Status](https://gemnasium.com/gmetais/YellowLabTools.svg)](https://gemnasium.com/gmetais/YellowLabTools)
+[![Dependency Status](https://gemnasium.com/gmetais/YellowLabTools.svg)](https://gemnasium.com/gmetais/YellowLabTools) [![Build Status](https://travis-ci.org/gmetais/YellowLabTools.svg?branch=master)](https://travis-ci.org/gmetais/YellowLabTools)
 
 
 ### Access the tool here: [http://yellowlab.tools](http://yellowlab.tools)
