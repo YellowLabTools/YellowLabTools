@@ -4,4 +4,4 @@ node_js:
     - "0.8"
     - "0.6"
 before_install: npm install -g grunt-cli
-install: npm install
+install: npm install --production
