@@ -27,5 +27,7 @@
     "grunt-fontsmith": "^0.9.1",
     "grunt-contrib-less": "^0.11.4"
   },
-  "scripts": {}
+  "scripts": {
+    "test": "grunt test"
+  }
 }
