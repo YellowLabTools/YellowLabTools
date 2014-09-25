@@ -255,7 +255,7 @@ app.controller('ResultsCtrl', function ($scope) {
                     $scope.phantomasResults.metrics.evalCalls * 2 +
                     $scope.phantomasResults.metrics.jsErrors * 10 +
                     $scope.phantomasResults.metrics.consoleMessages / 2 +
-                    $scope.phantomasResults.metrics.globalVariables / 10;
+                    $scope.phantomasResults.metrics.globalVariables / 20;
         if (score > 5) {
             note = 'B';
         }
