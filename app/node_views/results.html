@@ -265,8 +265,8 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="jQueryVersionTooltip = true"></div>
                                     <modal-dialog show="jQueryVersionTooltip" dialog-title="Use the latest version of jQuery">
-                                        <p>Current latest version of jQuery is 1.11 or 2.1</p>
-                                        <p>Each new version of jQuery optimizes performances. Do not keep an old version of jQuery. Updating can break a few things, but it is generally quite easy to fix them up, so don't hesitate.</p>
+                                        <p>Current latest versions of jQuery are 1.11 (with support for old IE versions) and 2.1 (without).</p>
+                                        <p>Each new version of jQuery optimizes performances. Do not keep an old version of jQuery. Updating can sometime break a few things, but it is generally quite easy to fix them up, so don't hesitate.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -275,8 +275,8 @@
                                 <div class="result"><span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span></div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="jQueryDifferentVersionsTooltip = true"></div>
-                                    <modal-dialog show="jQueryDifferentVersionsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="jQueryDifferentVersionsTooltip" dialog-title="Several versions of jQuery loaded">
+                                        <p>jQuery is a heavy library. You should **never** load jQuery more than one on the same page.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -307,8 +307,9 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssComplexSelectorsTooltip = true"></div>
-                                    <modal-dialog show="cssComplexSelectorsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssComplexSelectorsTooltip" dialog-title="Avoid complex selectors">
+                                        <p>Complex selectors are CSS selectors with 4 or more expressions, like "header ul li .foo".</p>
+                                        <p>They are adding more work for the browser, and this could be avoided by simplifying selectors.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -328,8 +329,8 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssDuplicatedSelectorsTooltip = true"></div>
-                                    <modal-dialog show="cssDuplicatedSelectorsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssDuplicatedSelectorsTooltip" dialog-title="Merge duplicated selectors">
+                                        <p>This is when two or more selectors are strictly identical and should be merged.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -341,8 +342,8 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssEmptyRulesTooltip = true"></div>
-                                    <modal-dialog show="cssEmptyRulesTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssEmptyRulesTooltip" dialog-title="Eliminate empty rules">
+                                        <p>Very easy to fix.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -354,8 +355,9 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssExpressionsTooltip = true"></div>
-                                    <modal-dialog show="cssExpressionsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssExpressionsTooltip" dialog-title="Number of rules with CSS expressions">
+                                        <p>Such as: expression( document.body.clientWidth > 600 ? "600px" : "auto" )</p>
+                                        <p>This is a bad practice as it slows down browsers. There are some simpler CSS3 methods for doing this.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -367,8 +369,8 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssImportantsTooltip = true"></div>
-                                    <modal-dialog show="cssImportantsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssImportantsTooltip" dialog-title="Don't over-use !important">
+                                        <p>It can be usefull, but use it only as a last resort. It is a bad practice because it overrides the normal cascading logic. The more you use !important, the more you need it again to over-override. This conducts to a poor maintainability.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -380,8 +382,26 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssOldIEFixesTooltip = true"></div>
-                                    <modal-dialog show="cssOldIEFixesTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssOldIEFixesTooltip" dialog-title="Clean up old IE fixes">
+                                        <p>What browser do you need to support? Once you got the answer, take a look at these old rules that pollute your CSS code and remove them.</p>
+                                        <p>IE6:
+                                            <ul>
+                                                <li>* html</li>
+                                                <li>html > body (everything but IE6)</li>
+                                            </ul>
+                                        <p>
+                                        <p>IE7:
+                                            <ul>
+                                                <li><b>*</b>height: 123px;</li>
+                                                <li>height: 123px <b>!ie</b>;</li>
+                                            </ul>
+                                        <p>
+                                        <p>IE9:
+                                            <ul>
+                                                <li>-ms-filter</li>
+                                                <li>progid:DXImageTransform.Microsoft</li>
+                                            </ul>
+                                        </p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -393,8 +413,8 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssOldPropertyPrefixesTooltip = true"></div>
-                                    <modal-dialog show="cssOldPropertyPrefixesTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssOldPropertyPrefixesTooltip" dialog-title="Clean up old CSS3 prefixes">
+                                        <p>Many property prefixes such as -moz- or -webkit- are not needed anymore, or by very few people. You can remove them or replace them with the non-prefixed version. This will help reducing your stylesheets weight.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -406,8 +426,9 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssUniversalSelectorsTooltip = true"></div>
-                                    <modal-dialog show="cssUniversalSelectorsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssUniversalSelectorsTooltip" dialog-title="Avoid universal selectors">
+                                        <p>Universal selectors are the most expensive CSS selectors.</p>
+                                        <p>More informatons <a href="http://perfectionkills.com/profiling-css-for-fun-and-profit-optimization-notes/" target="_blank">here</a>.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -419,8 +440,8 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssRedundantBodySelectorsTooltip = true"></div>
-                                    <modal-dialog show="cssRedundantBodySelectorsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cssRedundantBodySelectorsTooltip" dialog-title="Useless redundant selectors">
+                                        <p>This is one way to remove complexity from a CSS rule. Generally, when "body" is specified in a rule it can be removed, because every element is inside the body.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -437,8 +458,18 @@
                                 <div class="result">{{phantomasResults.metrics.requests}}</div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="requestsTooltip = true"></div>
-                                    <modal-dialog show="requestsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="requestsTooltip" dialog-title="Minimize the number of requests">
+                                        <p>This is one of the most important performance rule. Every request is slowing down the page loading.</p>
+                                        <p>There are several technics to reduce their number:
+                                            <ul>
+                                                <li>Concatenate JS files</li>
+                                                <li>Concatenate CSS files</li>
+                                                <li>Embed or inline small JS or CSS files in the HTML</li>
+                                                <li>Create sprites or icon fonts</li>
+                                                <li>Base64 encode small images in HTML or stylesheets</li>
+                                                <li>Use lazyloading for images</li>
+                                            </ul>
+                                        </p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -522,8 +553,8 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="notFoundTooltip = true"></div>
-                                    <modal-dialog show="notFoundTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="notFoundTooltip" dialog-title="404 errors">
+                                        <p>404 errors are never cached, so each time a page ask for it, it hits se server. Even if it is behind a CDN or a reverse-proxy cache.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -535,8 +566,10 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="closedConnectionsTooltip = true"></div>
-                                    <modal-dialog show="closedConnectionsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="closedConnectionsTooltip" dialog-title="Connection keep-alive is important">
+                                        <p>This counts the number of requests not keeping the connection alive (specifying "Connection: close" in the response headers). It is only counting a request if it is followed by another request on the same domain.</p>
+                                        <p>This is slowing down the next request, because the brower needs to open a new connection to the server, which means a additional round-trip.</p>
+                                        <p>Correct the problem by setting a Keep-Alive header on the guilty server.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -548,8 +581,8 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="multipleRequestsTooltip = true"></div>
-                                    <modal-dialog show="multipleRequestsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="multipleRequestsTooltip" dialog-title="The same file is requested twice">
+                                        <p>This only happens when the asset has no cache and is requested more than once on the same page. Be very careful about it.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -561,8 +594,9 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cachingDisabledTooltip = true"></div>
-                                    <modal-dialog show="cachingDisabledTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cachingDisabledTooltip" dialog-title="Caching disabled">
+                                        <p>Counts responses with caching disabled (max-age=0)</p>
+                                        <p>Fix immediatly if on static assets.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -574,8 +608,9 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cachingNotSpecifiedTooltip = true"></div>
-                                    <modal-dialog show="cachingNotSpecifiedTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cachingNotSpecifiedTooltip" dialog-title="No caching header">
+                                        <p>Responses with no caching header sent (either Cache-Control or Expires).</p>
+                                        <p>Every request should have a cache time specified. If you really don't want cache, specify "max-age=0", otherwise some browsers will try to cache.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -587,8 +622,9 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cachingTooShortTooltip = true"></div>
-                                    <modal-dialog show="cachingTooShortTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="cachingTooShortTooltip" dialog-title="Increase cache time">
+                                        <p>Responses with too short caching time (less than a week).</p>
+                                        <p>The longer you cache, the better. Add versionning to your static assets, if it's not already done, and set their cache time to one year.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -600,8 +636,8 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="domainsTooltip = true"></div>
-                                    <modal-dialog show="domainsTooltip" dialog-title="">
-                                        <p></p>
+                                    <modal-dialog show="domainsTooltip" dialog-title="Reduce the number of domains">
+                                        <p>For each domain met, the browser needs to make a DNS look-up, which is slow. Avoid having to many different domains and the page should render faster.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
