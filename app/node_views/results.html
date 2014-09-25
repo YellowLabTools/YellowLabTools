@@ -65,8 +65,8 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="DOMelementMaxDepthTooltip = true"></div>
                                     <modal-dialog show="DOMelementMaxDepthTooltip" dialog-title="Reduce DOM depth">
-                                        <p>A deep DOM makes difficult the CSS matching with DOM elements.</p>
-                                        <p>It also slows down Javascript modifications to the DOM because dimensions calculations bubble up. Same thing for Javascript events.</p>
+                                        <p>A deep DOM makes the CSS matching with DOM elements difficult.</p>
+                                        <p>It also slows down Javascript modifications to the DOM because changing the dimensions of an element makes the browser re-calculate the dimensions of it's parents. Same thing for Javascript events, that bubble up to the document root.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="DOMelementMaxDepthTooltip = true"></div>
                                     <modal-dialog show="DOMelementMaxDepthTooltip" dialog-title="iFrames are slow">
-                                        <p>iFrames are the most complex HTML elements. They are pages just like the main page and the browser needs to create a new page context, wich has a cost.</p>
+                                        <p>iFrames are the most complex HTML elements. They are pages, just like the main page, and the browser needs to create a new page context, which has a cost.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -121,9 +121,9 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="DOMqueriesTooltip = true"></div>
                                     <modal-dialog show="DOMqueriesTooltip" dialog-title="Avoid having too many DOM queries">
-                                        <p>DOM queries are like looking in a large catalog of items. Even if the browsers made progress on the performances of a query, many websites make hundreds of them.</p>
+                                        <p>DOM queries are like looking in a large catalog of items. Even if the browsers made progress on the performances of queries, websites often make hundreds of them.</p>
                                         <p>Try to reduce the number of queries by refactoring your Javascript code.</p>
-                                        <p>Avoid also to have a read query between two write queries. To reduce the number repaints and optimize performances, browsers buffer the DOM writing operations. But each time a DOM reading is asked, the browser needs to empty the buffer. This can be particularly slow inside a loop.</p>
+                                        <p>Avoid also to have a read query between two write queries. To be able to reduce the number repaints and optimize performances, browsers buffer the DOM writing operations and treat them in bulk. But each time a DOM reading is asked, the browser needs to empty the buffer. This can be particularly slow inside a loop.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -135,6 +135,7 @@
                                     <modal-dialog show="totalJSTimeTooltip" dialog-title="DOM manipulations can be very slow">
                                         <p><b>Please note that the tool is not accurate. The time indicated here is generally 3 or 4 times slower than on modern browsers.</b></p>
                                         <p>Some DOM manipulations can be very slow. For example, searching with a complex selector, making big changes to the DOM, animating an element, inserting an iframe, ...</p>
+                                        <p>Have a look at the <b>JS Timeline</b> to find out why it is so slow.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -154,7 +155,7 @@
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="duplicatedQueriesCountAllTooltip = true"></div>
-                                    <modal-dialog show="duplicatedQueriesCountAllTooltip" dialog-title="Don't duplicate DOM queries">
+                                    <modal-dialog show="duplicatedQueriesCountAllTooltip" dialog-title="Cache duplicated DOM queries">
                                         <p>This is the number of queries that could be avoided by removing all duplicated queries.</p>
                                         <p>Simply save the result of a query in a variable. Ok it is not always simple, especially with third-party scripts, but at least do it with your own code.</p>
                                     </modal-dialog>
@@ -178,7 +179,7 @@
                                     <div class="icon-question" ng-click="eventsBoundTooltip = true"></div>
                                     <modal-dialog show="eventsBoundTooltip" dialog-title="Reduce the number of events binding">
                                         <p>Binding too many events has a cost.</p>
-                                        <p>It can be avoided by using "event delegation". Instead of binding events on each element one by one, events delegation binds them on the top level document element and uses the bubbling principle.</p>
+                                        <p>It can be avoided by using "event delegation". Instead of binding events on each element one by one, events delegation binds them on the top level document element and uses the bubbling principle. It will imperceptibly slow down the event when it occurs, but the loading of the page will speed-up.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -200,7 +201,7 @@
                                     <div class="icon-question" ng-click="jsErrorsTooltip = true"></div>
                                     <modal-dialog show="jsErrorsTooltip" dialog-title="Javascript errors">
                                         <p>Just to let you know there are some errors on the page.</p>
-                                        <p>Please note that some errors only occur in the PhantomJS browser, so you might need to double check on other browsers.</p>
+                                        <p><b>Please note that some errors only occur in the PhantomJS browser, so you might need to double check on other browsers.</b></p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -247,7 +248,7 @@
                                     <div class="icon-question" ng-click="globalVariablesTooltip = true"></div>
                                     <modal-dialog show="globalVariablesTooltip" dialog-title="Minimize the use of global variables">
                                         <p>It is a bad practice because they clutter up the global namespace. If two scripts use the same variable name in the global scope, it can cause conflicts and it is generally hard to debug.</p>
-                                        <p>Global variables also take a (very) little bit longer to access than local variables.</p>
+                                        <p>Global variables also take a (very) little bit longer to be accessed than variables in the local scope of a function.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -266,7 +267,7 @@
                                     <div class="icon-question" ng-click="jQueryVersionTooltip = true"></div>
                                     <modal-dialog show="jQueryVersionTooltip" dialog-title="Use the latest version of jQuery">
                                         <p>Current latest versions of jQuery are 1.11 (with support for old IE versions) and 2.1 (without).</p>
-                                        <p>Each new version of jQuery optimizes performances. Do not keep an old version of jQuery. Updating can sometime break a few things, but it is generally quite easy to fix them up, so don't hesitate.</p>
+                                        <p>Each new version of jQuery optimizes performances. Do not keep an old version of jQuery. Updating can sometimes break a few things, but it is generally quite easy to fix them up. So don't hesitate.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -295,7 +296,7 @@
                                     <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
                                     <modal-dialog show="cssRulesTooltip" dialog-title="Clean up the CSS files">
                                         <p>Having a huge number of CSS rules hurts performances. If the number of CSS rules is higher than the number of DOM elements, there is clearly a problem.</p>
-                                        <p>The problem generally occurs when all the pages of a website load all the CSS, concatenated in a single stylesheet. Solution is to create one main CSS file with global rules and one custom files per page.</p>
+                                        <p>Huge stylesheets generally occur when the different pages of a website load all the CSS, concatenated in a single stylesheet, even if a large part of the rules are page-specific. Solution is to create one main CSS file with global rules and one custom files per page.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -308,7 +309,7 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssComplexSelectorsTooltip = true"></div>
                                     <modal-dialog show="cssComplexSelectorsTooltip" dialog-title="Avoid complex selectors">
-                                        <p>Complex selectors are CSS selectors with 4 or more expressions, like "header ul li .foo".</p>
+                                        <p>Complex selectors are CSS selectors with 4 or more expressions, like "#header ul li .foo".</p>
                                         <p>They are adding more work for the browser, and this could be avoided by simplifying selectors.</p>
                                     </modal-dialog>
                                 </div>
@@ -370,7 +371,7 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssImportantsTooltip = true"></div>
                                     <modal-dialog show="cssImportantsTooltip" dialog-title="Don't over-use !important">
-                                        <p>It can be usefull, but use it only as a last resort. It is a bad practice because it overrides the normal cascading logic. The more you use !important, the more you need it again to over-override. This conducts to a poor maintainability.</p>
+                                        <p>It can be usefull, but only as a last resort. It is a bad practice because it overrides the normal cascading logic. The more you use !important, the more you need it again to over-override. This conducts to a poor maintainability.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -383,7 +384,7 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssOldIEFixesTooltip = true"></div>
                                     <modal-dialog show="cssOldIEFixesTooltip" dialog-title="Clean up old IE fixes">
-                                        <p>What browser do you need to support? Once you got the answer, take a look at these old rules that pollute your CSS code and remove them.</p>
+                                        <p>What browser do you need to support? Once you've got the answer, take a look at these old rules that pollute your CSS code and remove them.</p>
                                         <p>IE6:
                                             <ul>
                                                 <li>* html</li>
@@ -428,7 +429,7 @@
                                     <div class="icon-question" ng-click="cssUniversalSelectorsTooltip = true"></div>
                                     <modal-dialog show="cssUniversalSelectorsTooltip" dialog-title="Avoid universal selectors">
                                         <p>Universal selectors are the most expensive CSS selectors.</p>
-                                        <p>More informatons <a href="http://perfectionkills.com/profiling-css-for-fun-and-profit-optimization-notes/" target="_blank">here</a>.</p>
+                                        <p>More informations <a href="http://perfectionkills.com/profiling-css-for-fun-and-profit-optimization-notes/" target="_blank">here</a>.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -441,7 +442,7 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssRedundantBodySelectorsTooltip = true"></div>
                                     <modal-dialog show="cssRedundantBodySelectorsTooltip" dialog-title="Useless redundant selectors">
-                                        <p>This is one way to remove complexity from a CSS rule. Generally, when "body" is specified in a rule it can be removed, because every element is inside the body.</p>
+                                        <p>This is one way to remove complexity from a CSS rule. Generally, when "body" is specified in a rule it can be removed, because an element is necessarily inside the body.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
