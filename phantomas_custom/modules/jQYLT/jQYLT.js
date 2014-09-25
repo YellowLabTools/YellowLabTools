@@ -119,6 +119,7 @@ function get_type(thing){
                 // TODO: create a helper - phantomas.spyGlobalVar() ?
                 window.__defineSetter__('jQuery', function(val) {
                     var version;
+                    var jQueryFn;
                     var oldJQuery = jQuery;
 
                     if (!val || !val.fn) {
