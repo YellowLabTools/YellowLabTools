@@ -27,17 +27,17 @@ var PhantomasWrapper = function() {
             reporter: 'json:pretty',
             'analyze-css': true,
             'skip-modules': [
-                'blockDomains',
-                'domComplexity',
-                'domMutations',
-                'domQueries',
-                'eventListeners',
-                'filmStrip',
-                'har',
-                'pageSource',
-                'screenshot',
-                'waitForSelector',
-                'windowPerformance'
+                'blockDomains', // not needed
+                'domComplexity', // overriden
+                'domMutations', // not compatible with webkit
+                'domQueries', // overriden
+                'eventListeners', // overridden
+                'filmStrip', // not needed
+                'har', // not needed for the moment
+                'pageSource', // not needed
+                'screenshot', // not needed for the moment
+                'waitForSelector', // not needed
+                'windowPerformance' // overriden
             ].join(','),
             'include-dirs': [
                 'phantomas_custom/core',
