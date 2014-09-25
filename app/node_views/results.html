@@ -289,6 +289,17 @@
                     <div class="notation">CSS complexity</div>
                     <div class="criteria">
                         <div class="table">
+                            <div ng-if="cssParsingError">
+                                <div class="label">CSS syntax error</div>
+                                <div class="result"></div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
+                                    <modal-dialog show="cssRulesTooltip" dialog-title="Parsing error while analyzing CSS">
+                                        <p>You cannot let this kind of problem on your website!</p>
+                                        <p>Use a <a href="http://jigsaw.w3.org/css-validator" target="_blank">CSS validator</a> to find where the syntax error is.</p>
+                                    </modal-dialog>
+                                </div>
+                            </div>
                             <div ng-if="phantomasResults.metrics.cssRules">
                                 <div class="label">Rules count</div>
                                 <div class="result">{{phantomasResults.metrics.cssRules}}</div>
@@ -322,6 +333,17 @@
                     <div class="notation">Bad CSS</div>
                     <div class="criteria">
                         <div class="table">
+                            <div ng-if="cssParsingError">
+                                <div class="label">CSS syntax error</div>
+                                <div class="result"></div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
+                                    <modal-dialog show="cssRulesTooltip" dialog-title="Parsing error while analyzing CSS">
+                                        <p>You cannot let this kind of problem on your website!</p>
+                                        <p>Use a <a href="http://jigsaw.w3.org/css-validator" target="_blank">CSS validator</a> to find where the syntax error is.</p>
+                                    </modal-dialog>
+                                </div>
+                            </div>
                             <div ng-if="phantomasResults.metrics.cssDuplicatedSelectors">
                                 <div class="label">Duplicated selectors</div>
                                 <div class="result">
