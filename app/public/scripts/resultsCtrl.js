@@ -76,9 +76,7 @@ app.controller('ResultsCtrl', function ($scope) {
         // Grab the notes
         $scope.notations = {
             domComplexity: getDomComplexityScore(),
-            domManipulations: getDomManipulationsScore(),
-            duplicatedDomQueries: getDuplicatedDomQueriesScore(),
-            eventsBound: getEventsBoundScore(),
+            jsDomManipulations: getJsDomManipulationsScore(),
             jsBadPractices: getJSBadPracticesScore(),
             jQueryLoading: getJQueryLoadingScore(),
             cssComplexity: getCSSComplexityScore(),
@@ -184,66 +182,25 @@ app.controller('ResultsCtrl', function ($scope) {
         return note;
     }
 
-    function getDomManipulationsScore() {
+    function getJsDomManipulationsScore() {
         var note = 'A';
-        var score = $scope.phantomasResults.metrics.DOMinserts +
-                    $scope.phantomasResults.metrics.DOMqueries * 0.5 +
-                    $scope.totalJSTime;
-        if (score > 100) {
-            note = 'B';
-        }
-        if (score > 200) {
-            note = 'C';
-        }
+        var score = $scope.phantomasResults.metrics.DOMinserts * 2 +
+                    $scope.phantomasResults.metrics.DOMqueries +
+                    $scope.duplicatedQueriesCountAll * 2 +
+                    $scope.phantomasResults.metrics.eventsBound;
         if (score > 300) {
-            note = 'D';
-        }
-        if (score > 500) {
-            note = 'E';
-        }
-        if (score > 800) {
-            note = 'F';
-        }
-        return note;
-    }
-
-    function getDuplicatedDomQueriesScore() {
-        var note = 'A';
-        var score = $scope.duplicatedQueriesCountAll;
-        if (score > 10) {
             note = 'B';
         }
-        if (score > 50) {
+        if (score > 500) {
             note = 'C';
         }
-        if (score > 100) {
+        if (score > 700) {
             note = 'D';
-        }
-        if (score > 200) {
-            note = 'E';
-        }
-        if (score > 500) {
-            note = 'F';
-        }
-        return note;
-    }
-
-    function getEventsBoundScore() {
-        var note = 'A';
-        var score = $scope.phantomasResults.metrics.eventsBound;
-        if (score > 50) {
-            note = 'B';
-        }
-        if (score > 100) {
-            note = 'C';
-        }
-        if (score > 200) {
-            note = 'D';
-        }
-        if (score > 500) {
-            note = 'E';
         }
         if (score > 1000) {
+            note = 'E';
+        }
+        if (score > 1400) {
             note = 'F';
         }
         return note;

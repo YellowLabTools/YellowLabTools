@@ -97,8 +97,8 @@
                     </div>
                 </div>
                 <div>
-                    <div ng-class="notations.domManipulations">{{notations.domManipulations}}</div>
-                    <div class="notation">DOM read and write</div>
+                    <div ng-class="notations.jsDomManipulations">{{notations.jsDomManipulations}}</div>
+                    <div class="notation">DOM manipulations</div>
                     <div class="criteria">
                         <div class="table">
                             <div ng-if="phantomasResults.metrics.DOMinserts">
@@ -127,26 +127,6 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="totalJSTime">
-                                <div class="label">JS interactions time</div>
-                                <div class="result">{{totalJSTime}} ms</div>
-                                <div class="info">
-                                    <div class="icon-question" ng-click="totalJSTimeTooltip = true"></div>
-                                    <modal-dialog show="totalJSTimeTooltip" dialog-title="DOM manipulations can be very slow">
-                                        <p><b>Please note that the tool is not accurate. The time indicated here is generally 3 or 4 times slower than on modern browsers.</b></p>
-                                        <p>Some DOM manipulations can be very slow. For example, searching with a complex selector, making big changes to the DOM, animating an element, inserting an iframe, ...</p>
-                                        <p>Have a look at the <b>JS Timeline</b> to find out why it is so slow.</p>
-                                    </modal-dialog>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div ng-class="notations.duplicatedDomQueries">{{notations.duplicatedDomQueries}}</div>
-                    <div class="notation">Duplicated DOM queries</div>
-                    <div class="criteria">
-                        <div class="table">
                             <div ng-if="duplicatedQueriesCountAll">
                                 <div class="label">Avoidable queries</div>
                                 <div class="result">
@@ -161,14 +141,6 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div ng-class="notations.eventsBound">{{notations.eventsBound}}</div>
-                    <div class="notation">Events bound</div>
-                    <div class="criteria">
-                        <div class="table">
                             <div ng-if="phantomasResults.metrics.eventsBound">
                                 <div class="label">Events bound</div>
                                 <div class="result">
