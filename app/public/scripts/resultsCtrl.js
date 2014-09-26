@@ -47,9 +47,15 @@ app.controller('ResultsCtrl', function ($scope) {
 
         // Read the main elements of the tree and sum the total time
         $scope.totalJSTime = 0;
+        $scope.inBodyDomManipulations = 0;
         treeRunner($scope.javascript, function(node) {
             if (node.data.time) {
                 $scope.totalJSTime += node.data.time;
+            }
+
+            if (node.data.timestamp < $scope.phantomasResults.metrics.domInteractive
+                && node.data.type !== 'jQuery - onDOMReady') {
+                $scope.inBodyDomManipulations ++;
             }
             
             if (node.data.type !== 'main') {
@@ -209,20 +215,21 @@ app.controller('ResultsCtrl', function ($scope) {
                     $scope.phantomasResults.metrics.evalCalls * 2 +
                     $scope.phantomasResults.metrics.jsErrors * 10 +
                     $scope.phantomasResults.metrics.consoleMessages / 2 +
-                    $scope.phantomasResults.metrics.globalVariables / 20;
-        if (score > 5) {
+                    $scope.phantomasResults.metrics.globalVariables / 20 +
+                    Math.sqrt($scope.inBodyDomManipulations);
+        if (score > 10) {
             note = 'B';
         }
-        if (score > 10) {
+        if (score > 15) {
             note = 'C';
         }
-        if (score > 15) {
+        if (score > 20) {
             note = 'D';
         }
-        if (score > 25) {
+        if (score > 30) {
             note = 'E';
         }
-        if (score > 40) {
+        if (score > 45) {
             note = 'F';
         }
         return note;
