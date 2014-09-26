@@ -19,11 +19,13 @@ module.exports = function(grunt) {
             }
         },
         less: {
-            files: {
-                'app/public/styles/main.css': [ 'app/public/styles/less/main.less' ],
-                'app/public/styles/index.css': [ 'app/public/styles/less/index.less' ],
-                'app/public/styles/launchTest.css': [ 'app/public/styles/less/launchTest.less' ],
-                'app/public/styles/results.css': [ 'app/public/styles/less/results.less' ]
+            all: {
+                files: {
+                    'app/public/styles/main.css': [ 'app/public/styles/less/main.less' ],
+                    'app/public/styles/index.css': [ 'app/public/styles/less/index.less' ],
+                    'app/public/styles/launchTest.css': [ 'app/public/styles/less/launchTest.less' ],
+                    'app/public/styles/results.css': [ 'app/public/styles/less/results.less' ]
+                }
             }
         },
         jshint: {
