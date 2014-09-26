@@ -53,8 +53,8 @@ app.controller('ResultsCtrl', function ($scope) {
                 $scope.totalJSTime += node.data.time;
             }
 
-            if (node.data.timestamp < $scope.phantomasResults.metrics.domInteractive
-                && node.data.type !== 'jQuery - onDOMReady') {
+            if (node.data.timestamp < $scope.phantomasResults.metrics.domInteractive &&
+                    node.data.type !== 'jQuery - onDOMReady') {
                 $scope.inBodyDomManipulations ++;
             }
             
