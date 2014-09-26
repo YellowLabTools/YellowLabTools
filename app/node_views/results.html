@@ -45,9 +45,11 @@
                     <div class="notation">DOM complexity</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.DOMelementsCount">
+                            <div ng-if="phantomasResults.metrics.DOMelementsCount" ng-class="{'warning': phantomasResults.metrics.DOMelementsCount > 5000}">
                                 <div class="label">DOM elements count</div>
-                                <div class="result">{{phantomasResults.metrics.DOMelementsCount}}</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.DOMelementsCount}}
+                                </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="DOMelementsCountTooltip = true"></div>
                                     <modal-dialog show="DOMelementsCountTooltip" dialog-title="Avoid too many DOM elements">
@@ -56,7 +58,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.DOMelementMaxDepth">
+                            <div ng-if="phantomasResults.metrics.DOMelementMaxDepth" ng-class="{'warning': phantomasResults.metrics.DOMelementMaxDepth > 30}">
                                 <div class="label">DOM max depth</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.DOMelementMaxDepth}}
@@ -70,9 +72,11 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.iframesCount">
+                            <div ng-if="phantomasResults.metrics.iframesCount" ng-class="{'warning': phantomasResults.metrics.iframesCount > 30}">
                                 <div class="label">Number of iframes</div>
-                                <div class="result">{{phantomasResults.metrics.iframesCount}}</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.iframesCount}}
+                                </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="DOMelementMaxDepthTooltip = true"></div>
                                     <modal-dialog show="DOMelementMaxDepthTooltip" dialog-title="iFrames are slow">
@@ -80,7 +84,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.DOMidDuplicated">
+                            <div ng-if="phantomasResults.metrics.DOMidDuplicated" ng-class="{'warning': phantomasResults.metrics.DOMidDuplicated > 20}">
                                 <div class="label">IDs duplicated</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.DOMidDuplicated}}
@@ -101,7 +105,7 @@
                     <div class="notation">DOM manipulations</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.DOMinserts">
+                            <div ng-if="phantomasResults.metrics.DOMinserts" ng-class="{'warning': phantomasResults.metrics.DOMinserts > 1000}">
                                 <div class="label">DOM inserts</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.DOMinserts}}
@@ -115,9 +119,11 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.DOMqueries">
+                            <div ng-if="phantomasResults.metrics.DOMqueries" ng-class="{'warning': phantomasResults.metrics.DOMqueries > 2000}">
                                 <div class="label">DOM queries</div>
-                                <div class="result">{{phantomasResults.metrics.DOMqueries}}</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.DOMqueries}}
+                                </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="DOMqueriesTooltip = true"></div>
                                     <modal-dialog show="DOMqueriesTooltip" dialog-title="Avoid having too many DOM queries">
@@ -127,7 +133,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="duplicatedQueriesCountAll">
+                            <div ng-if="duplicatedQueriesCountAll" ng-class="{'warning': duplicatedQueriesCountAll > 500}">
                                 <div class="label">Avoidable queries</div>
                                 <div class="result">
                                     {{duplicatedQueriesCountAll}}
@@ -141,7 +147,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.eventsBound">
+                            <div ng-if="phantomasResults.metrics.eventsBound" ng-class="{'warning': phantomasResults.metrics.eventsBound > 2000}">
                                 <div class="label">Events bound</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.eventsBound}}
@@ -163,7 +169,7 @@
                     <div class="notation">Bad Javascript</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.jsErrors">
+                            <div ng-if="phantomasResults.metrics.jsErrors" ng-class="{'warning': phantomasResults.metrics.jsErrors > 5}">
                                 <div class="label">Javascript errors</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.jsErrors}}
@@ -243,9 +249,11 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.jQueryDifferentVersions > 1">
-                                <div class="label">{{phantomasResults.metrics.jQueryDifferentVersions}}</b> versions loaded</div>
-                                <div class="result"><span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span></div>
+                            <div ng-if="phantomasResults.metrics.jQueryDifferentVersions > 1" class="warning">
+                                <div class="label">{{phantomasResults.metrics.jQueryDifferentVersions}} versions loaded</div>
+                                <div class="result">
+                                    <span ng-repeat="version in phantomasResults.offenders.jQueryDifferentVersions">{{version}}<span ng-show="!$last"> & </span></span>
+                                </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="jQueryDifferentVersionsTooltip = true"></div>
                                     <modal-dialog show="jQueryDifferentVersionsTooltip" dialog-title="Several versions of jQuery loaded">
@@ -261,9 +269,11 @@
                     <div class="notation">CSS complexity</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.cssRules">
+                            <div ng-if="phantomasResults.metrics.cssRules" ng-class="{'warning': phantomasResults.metrics.cssRules > 3000}">
                                 <div class="label">Rules count</div>
-                                <div class="result">{{phantomasResults.metrics.cssRules}}</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.cssRules}}
+                                </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
                                     <modal-dialog show="cssRulesTooltip" dialog-title="Clean up the CSS files">
@@ -272,7 +282,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.cssComplexSelectors">
+                            <div ng-if="phantomasResults.metrics.cssComplexSelectors" ng-class="{'warning': phantomasResults.metrics.cssComplexSelectors > 2000}">
                                 <div class="label">Complex selectors</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssComplexSelectors}}
@@ -294,7 +304,7 @@
                     <div class="notation">Bad CSS</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.cssParsingErrors">
+                            <div ng-if="phantomasResults.metrics.cssParsingErrors" class="warning">
                                 <div class="label">CSS syntax error</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssParsingErrors}}
@@ -308,7 +318,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.cssDuplicatedSelectors">
+                            <div ng-if="phantomasResults.metrics.cssDuplicatedSelectors" ng-class="{'warning': phantomasResults.metrics.cssDuplicatedSelectors > 100}">
                                 <div class="label">Duplicated selectors</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssDuplicatedSelectors}}
@@ -321,7 +331,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.cssEmptyRules">
+                            <div ng-if="phantomasResults.metrics.cssEmptyRules" ng-class="{'warning': phantomasResults.metrics.cssEmptyRules > 100}">
                                 <div class="label">Empty rules</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssEmptyRules}}
@@ -440,9 +450,11 @@
                     <div class="notation">Requests number</div>
                     <div class="criteria">
                         <div class="table">
-                            <div>
+                            <div ng-class="{'warning': phantomasResults.metrics.requests > 200}">
                                 <div class="label">Total requests</div>
-                                <div class="result">{{phantomasResults.metrics.requests}}</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.requests}}
+                                </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="requestsTooltip = true"></div>
                                     <modal-dialog show="requestsTooltip" dialog-title="Minimize the number of requests">
@@ -468,7 +480,7 @@
                                 </div>
                                 <div></div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.jsCount">
+                            <div ng-if="phantomasResults.metrics.jsCount" ng-class="{'warning': phantomasResults.metrics.jsCount > 40}">
                                 <div class="label">Scripts</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.jsCount}}
@@ -476,7 +488,7 @@
                                 </div>
                                 <div></div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.cssCount">
+                            <div ng-if="phantomasResults.metrics.cssCount" ng-class="{'warning': phantomasResults.metrics.cssCount > 25}">
                                 <div class="label">Stylesheets</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssCount}}
@@ -484,7 +496,7 @@
                                 </div>
                                 <div></div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.imageCount">
+                            <div ng-if="phantomasResults.metrics.imageCount" ng-class="{'warning': phantomasResults.metrics.imageCount > 80}">
                                 <div class="label">Images</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.imageCount}}
@@ -492,7 +504,7 @@
                                 </div>
                                 <div></div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.webfontCount">
+                            <div ng-if="phantomasResults.metrics.webfontCount" ng-class="{'warning': phantomasResults.metrics.webfontCount > 4}">
                                 <div class="label">Fonts</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.webfontCount}}
@@ -532,7 +544,7 @@
                     <div class="notation">Network</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.notFound">
+                            <div ng-if="phantomasResults.metrics.notFound" class="warning">
                                 <div class="label">404 not found</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.notFound}}
@@ -545,7 +557,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.closedConnections">
+                            <div ng-if="phantomasResults.metrics.closedConnections" ng-class="{'warning': phantomasResults.metrics.closedConnections > 20}">
                                 <div class="label">Connections closed</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.closedConnections}}
@@ -560,7 +572,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.multipleRequests">
+                            <div ng-if="phantomasResults.metrics.multipleRequests" ng-class="{'warning': phantomasResults.metrics.multipleRequests > 10}">
                                 <div class="label">Duplicated requests</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.multipleRequests}}
@@ -573,7 +585,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.cachingDisabled">
+                            <div ng-if="phantomasResults.metrics.cachingDisabled" ng-class="{'warning': phantomasResults.metrics.cachingDisabled > 25}">
                                 <div class="label">Caching disabled</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cachingDisabled}}
@@ -587,7 +599,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.cachingNotSpecified">
+                            <div ng-if="phantomasResults.metrics.cachingNotSpecified" ng-class="{'warning': phantomasResults.metrics.cachingNotSpecified > 50}">
                                 <div class="label">Caching not specified</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cachingNotSpecified}}
@@ -615,7 +627,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.domains">
+                            <div ng-if="phantomasResults.metrics.domains" ng-class="{'warning': phantomasResults.metrics.cachingNotSpecified > 40}">
                                 <div class="label">Different domains</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.domains}}
