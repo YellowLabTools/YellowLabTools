@@ -19,13 +19,11 @@ module.exports = function(grunt) {
             }
         },
         less: {
-            icons: {
-                files: {
-                    'app/public/styles/main.css': [ 'app/public/styles/less/main.less' ],
-                    'app/public/styles/index.css': [ 'app/public/styles/less/index.less' ],
-                    'app/public/styles/launchTest.css': [ 'app/public/styles/less/launchTest.less' ],
-                    'app/public/styles/results.css': [ 'app/public/styles/less/results.less' ]
-                }
+            files: {
+                'app/public/styles/main.css': [ 'app/public/styles/less/main.less' ],
+                'app/public/styles/index.css': [ 'app/public/styles/less/index.less' ],
+                'app/public/styles/launchTest.css': [ 'app/public/styles/less/launchTest.less' ],
+                'app/public/styles/results.css': [ 'app/public/styles/less/results.less' ]
             }
         },
         jshint: {
@@ -80,11 +78,15 @@ module.exports = function(grunt) {
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+    grunt.registerTask('icons', [
+        'font:icons',
+        'less',
+        'clean:icons'
+    ]);
+
     grunt.registerTask('build', [
         'jshint',
-        'font:icons',
-        'less:icons',
-        'clean:icons'
+        'less'
     ]);
 
     grunt.registerTask('hint', [
