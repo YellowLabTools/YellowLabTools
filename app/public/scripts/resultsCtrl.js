@@ -70,9 +70,6 @@ app.controller('ResultsCtrl', function ($scope) {
             });
         }
 
-        // Check if the CSS was correctly parsed
-        $scope.cssParsingError = (!$scope.phantomasResults.metrics.cssRules && $scope.phantomasResults.metrics.cssCount > 0);
-
         // Grab the notes
         $scope.notations = {
             domComplexity: getDomComplexityScore(),
@@ -261,9 +258,7 @@ app.controller('ResultsCtrl', function ($scope) {
     }
 
     function getCSSComplexityScore() {
-        if ($scope.cssParsingError) {
-            return 'F';
-        } else if (!$scope.phantomasResults.metrics.cssRules) {
+        if (!$scope.phantomasResults.metrics.cssRules) {
             return 'NA';
         }
 
@@ -289,7 +284,7 @@ app.controller('ResultsCtrl', function ($scope) {
     }
 
     function getBadCssScore() {
-        if ($scope.cssParsingError) {
+        if ($scope.phantomasResults.metrics.cssParsingErrors) {
             return 'F';
         } else if (!$scope.phantomasResults.metrics.cssRules) {
             return 'NA';

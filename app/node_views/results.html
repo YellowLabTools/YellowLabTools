@@ -261,17 +261,6 @@
                     <div class="notation">CSS complexity</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="cssParsingError">
-                                <div class="label">CSS syntax error</div>
-                                <div class="result"></div>
-                                <div class="info">
-                                    <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
-                                    <modal-dialog show="cssRulesTooltip" dialog-title="Parsing error while analyzing CSS">
-                                        <p>You cannot let this kind of problem on your website!</p>
-                                        <p>Use a <a href="http://jigsaw.w3.org/css-validator" target="_blank">CSS validator</a> to find where the syntax error is.</p>
-                                    </modal-dialog>
-                                </div>
-                            </div>
                             <div ng-if="phantomasResults.metrics.cssRules">
                                 <div class="label">Rules count</div>
                                 <div class="result">{{phantomasResults.metrics.cssRules}}</div>
@@ -305,14 +294,17 @@
                     <div class="notation">Bad CSS</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="cssParsingError">
+                            <div ng-if="phantomasResults.metrics.cssParsingErrors">
                                 <div class="label">CSS syntax error</div>
-                                <div class="result"></div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.cssParsingErrors}}
+                                    <show-offenders modal-title="CSS syntax errors" metric-name="cssParsingErrors" phantomas-results="phantomasResults"></show-offenders>
+                                </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
                                     <modal-dialog show="cssRulesTooltip" dialog-title="Parsing error while analyzing CSS">
-                                        <p>You cannot let this kind of problem on your website!</p>
-                                        <p>Use a <a href="http://jigsaw.w3.org/css-validator" target="_blank">CSS validator</a> to find where the syntax error is.</p>
+                                        <p>Yellow Lab Tools failed to parse a CSS file. I doubt the problem comes from the css parser.</p>
+                                        <p>Maybe a <a href="http://jigsaw.w3.org/css-validator" target="_blank">CSS validator</a> can help you.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
