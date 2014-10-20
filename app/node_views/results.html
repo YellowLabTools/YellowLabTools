@@ -641,7 +641,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.domains" ng-class="{'warning': phantomasResults.metrics.cachingNotSpecified > 40}">
+                            <div ng-if="phantomasResults.metrics.domains" ng-class="{'warning': phantomasResults.metrics.domains > 40}">
                                 <div class="label">Different domains</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.domains}}
