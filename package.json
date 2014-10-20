@@ -11,19 +11,19 @@
     "async": "~0.9.0",
     "socket.io": "~1.1.0",
     "body-parser": "~1.9.0",
-    "compression": "1.1.0"
+    "compression": "1.2.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "matchdep": "^0.3.0",
-    "grunt-mocha-test": "^0.12.0",
+    "grunt-mocha-test": "^0.12.1",
     "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-copy": "^0.6.0",
+    "grunt-contrib-copy": "^0.7.0",
     "grunt-blanket": "0.0.8",
-    "chai": "^1.9.1",
-    "mocha": "^1.21.4",
-    "phantomjs": "^1.9.7-15",
+    "chai": "^1.9.2",
+    "mocha": "^1.21.5",
+    "phantomjs": "^1.9.10",
     "grunt-fontsmith": "^0.9.1",
     "grunt-contrib-less": "^0.11.4"
   },
