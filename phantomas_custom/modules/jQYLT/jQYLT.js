@@ -111,11 +111,6 @@ exports.module = function(phantomas) {
             (function(phantomas) {
                 var jQuery;
 
-function get_type(thing){
-    if(thing===null)return "[object Null]"; // special case
-    return Object.prototype.toString.call(thing);
-}
-
                 // TODO: create a helper - phantomas.spyGlobalVar() ?
                 window.__defineSetter__('jQuery', function(val) {
                     var version;
