@@ -240,24 +240,24 @@ app.controller('ResultsCtrl', function ($scope) {
         if ($scope.phantomasResults.metrics.jQueryDifferentVersions > 1) {
             note = 'F';
         } else if ($scope.phantomasResults.metrics.jQueryVersion) {
-            if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.10.') === 0 ||
-                $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.11.') === 0 ||
+            if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.11.') === 0 ||
                 $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.12.') === 0 ||
-                $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.0.') === 0 ||
                 $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.1.') === 0 ||
                 $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.2.') === 0) {
                 note = 'A';
-            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.8.') === 0 ||
-                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.9.') === 0) {
+            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.9.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.10.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('2.0.') === 0) {
                 note = 'B';
-            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.6.') === 0 ||
-                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.7.') === 0) {
+            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.7.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.8.') === 0) {
                 note = 'C';
-            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.4.') === 0 ||
-                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.5.') === 0) {
+            } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.5.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.6.') === 0) {
                 note = 'D';
             } else if ($scope.phantomasResults.metrics.jQueryVersion.indexOf('1.2.') === 0 ||
-                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.3.') === 0) {
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.3.') === 0 ||
+                       $scope.phantomasResults.metrics.jQueryVersion.indexOf('1.4.') === 0) {
                 note = 'E';
             }
         }
