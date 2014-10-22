@@ -2,8 +2,9 @@
  * The page that dispays the results
  */
 
-var async   = require('async');
-var fs      = require ('fs');
+var async           = require('async');
+var fs              = require('fs');
+var strReplace      = require('../lib/strReplace');
 
 var resultsController = function(req, res, googleAnalyticsId) {
     'use strict';
@@ -39,9 +40,9 @@ var resultsController = function(req, res, googleAnalyticsId) {
         phantomasResults = phantomasResults.replace(/<\/script>/g, '\\u003c/script>');
 
         var html = results.htmlTemplate;
-        html = html.replace('%%METADATA%%', results.phantomasMetadata);
-        html = html.replace('%%RESULTS%%', phantomasResults);
-        html = html.replace('%%GA_ID%%', googleAnalyticsId);
+        html = strReplace(html, '%%METADATA%%', results.phantomasMetadata);
+        html = strReplace(html, '%%RESULTS%%', phantomasResults);
+        html = strReplace(html, '%%GA_ID%%', googleAnalyticsId);
 
         res.setHeader('Content-Type', 'text/html');
         res.send(html);

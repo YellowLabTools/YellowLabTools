@@ -2,8 +2,9 @@
  * Controller for the test launching page (the waiting page, after the user submited a test on the index page)
  */
 
-var async   = require('async');
-var fs      = require ('fs');
+var async           = require('async');
+var fs              = require ('fs');
+var strReplace      = require('../lib/strReplace');
 
 var launchTestController = function(req, res, testQueue, googleAnalyticsId) {
     'use strict';
@@ -32,9 +33,9 @@ var launchTestController = function(req, res, testQueue, googleAnalyticsId) {
 
         function sendResponse(html, callback) {
 
-            html = html.replace('%%TEST_URL%%', url);
-            html = html.replace('%%TEST_ID%%', testId);
-            html = html.replace('%%GA_ID%%', googleAnalyticsId);
+            html = strReplace(html, '%%TEST_URL%%', url);
+            html = strReplace(html, '%%TEST_ID%%', testId);
+            html = strReplace(html, '%%GA_ID%%', googleAnalyticsId);
 
             res.setHeader('Content-Type', 'text/html');
             res.send(html);

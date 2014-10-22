@@ -2,8 +2,9 @@
  * Yellow Lab Tools home page controller
  */
 
-var async   = require('async');
-var fs      = require ('fs');
+var async           = require('async');
+var fs              = require ('fs');
+var strReplace      = require('../lib/strReplace');
 
 var indexController = function(req, res, googleAnalyticsId) {
     'use strict';
@@ -16,7 +17,7 @@ var indexController = function(req, res, googleAnalyticsId) {
 
     }, function(err, results) {
         var html = results.htmlTemplate;
-        html = html.replace('%%GA_ID%%', googleAnalyticsId);
+        html = strReplace(html, '%%GA_ID%%', googleAnalyticsId);
 
         res.setHeader('Content-Type', 'text/html');
         res.send(html);
