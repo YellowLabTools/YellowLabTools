@@ -13,7 +13,9 @@ app.controller('ResultsCtrl', function ($scope) {
         $scope.javascript = JSON.parse($scope.phantomasResults.offenders.javascriptExecutionTree);
 
         // Sort globalVariables offenders alphabetically
-        $scope.phantomasResults.offenders.globalVariables.sort();
+        if ($scope.phantomasResults.offenders.globalVariables) {
+            $scope.phantomasResults.offenders.globalVariables.sort();
+        }
 
 
         initSummaryView();
