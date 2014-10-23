@@ -17,7 +17,7 @@ app.controller('ResultsCtrl', function ($scope) {
 
 
         initSummaryView();
-        initExecutionView();
+        initJSTimelineView();
         initMetricsView();
 
     }
@@ -89,13 +89,36 @@ app.controller('ResultsCtrl', function ($scope) {
         };
     }
 
-    function initExecutionView() {
+    function initJSTimelineView() {
         $scope.slowRequestsOn = false;
         $scope.slowRequestsLimit = 5;
 
         if (!$scope.javascript.children) {
             return;
         }
+
+        // Read the execution tree and adjust the navigation timings (cause their not very well synchronised)
+        treeRunner($scope.javascript, function(node) {
+            switch(node.data.type) {
+                case 'domInteractive':
+                    $scope.phantomasResults.metrics.domInteractive = node.data.timestamp;
+                    break;
+                case 'domContentLoaded':
+                    $scope.phantomasResults.metrics.domContentLoaded = node.data.timestamp;
+                    break;
+                case 'domContentLoadedEnd':
+                    $scope.phantomasResults.metrics.domContentLoadedEnd = node.data.timestamp;
+                    break;
+                case 'domComplete':
+                    $scope.phantomasResults.metrics.domComplete = node.data.timestamp;
+                    break;
+            }
+
+            if (node.data.type !== 'main') {
+                // Don't check the children
+                return false;
+            }
+        });
 
 
         // Now read the tree and display it on a timeline
