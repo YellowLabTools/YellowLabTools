@@ -296,7 +296,7 @@ app.controller('ResultsCtrl', function ($scope) {
 
         var note = 'A';
         var score = $scope.phantomasResults.metrics.cssRules +
-                    $scope.phantomasResults.metrics.cssComplexSelectors * 10;
+                    $scope.phantomasResults.metrics.cssComplexSelectors * 5;
         if (score > 500) {
             note = 'B';
         }
@@ -306,10 +306,10 @@ app.controller('ResultsCtrl', function ($scope) {
         if (score > 2000) {
             note = 'D';
         }
-        if (score > 4500) {
+        if (score > 4000) {
             note = 'E';
         }
-        if (score > 7000) {
+        if (score > 6000) {
             note = 'F';
         }
         return note;
@@ -330,20 +330,21 @@ app.controller('ResultsCtrl', function ($scope) {
                     $scope.phantomasResults.metrics.cssOldIEFixes * 10 +
                     $scope.phantomasResults.metrics.cssOldPropertyPrefixes +
                     $scope.phantomasResults.metrics.cssUniversalSelectors * 5 +
-                    $scope.phantomasResults.metrics.cssRedundantBodySelectors;
-        if (score > 20) {
+                    $scope.phantomasResults.metrics.cssRedundantBodySelectors +
+                    $scope.phantomasResults.metrics.cssImports * 50;
+        if (score > 50) {
             note = 'B';
         }
-        if (score > 50) {
+        if (score > 10) {
             note = 'C';
         }
-        if (score > 100) {
+        if (score > 200) {
             note = 'D';
         }
-        if (score > 200) {
+        if (score > 500) {
             note = 'E';
         }
-        if (score > 500) {
+        if (score > 1000) {
             note = 'F';
         }
         return note;

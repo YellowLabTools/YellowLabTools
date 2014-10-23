@@ -283,7 +283,7 @@
                     <div class="notation">CSS complexity</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.cssRules" ng-class="{'warning': phantomasResults.metrics.cssRules > 3000}">
+                            <div ng-if="phantomasResults.metrics.cssRules" ng-class="{'warning': phantomasResults.metrics.cssRules > 4000}">
                                 <div class="label">Rules count</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssRules}}
@@ -329,6 +329,20 @@
                                     <modal-dialog show="cssRulesTooltip" dialog-title="Parsing error while analyzing CSS">
                                         <p>Yellow Lab Tools failed to parse a CSS file. I doubt the problem comes from the css parser.</p>
                                         <p>Maybe a <a href="http://jigsaw.w3.org/css-validator" target="_blank">CSS validator</a> can help you.</p>
+                                    </modal-dialog>
+                                </div>
+                            </div>
+                            <div ng-if="phantomasResults.metrics.cssImports" class="warning">
+                                <div class="label">Uses of @import</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.cssImports}}
+                                    <show-offenders modal-title="Uses of @import" metric-name="cssImports" phantomas-results="phantomasResults"></show-offenders>
+                                </div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="cssImportsTooltip = true"></div>
+                                    <modal-dialog show="cssImportsTooltip" dialog-title="Don't use @import">
+                                        <p>It’s bad for performance to use @import because CSS files don't get downloaded in parallel.</p>
+                                        <p>You should use &lt;link rel='stylesheet' href='a.css'&gt; instead.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
