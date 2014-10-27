@@ -7,25 +7,25 @@
   },
   "dependencies": {
     "phantomas": "1.6.0",
-    "express": "~4.9.4",
+    "express": "~4.10.0",
     "async": "~0.9.0",
     "socket.io": "~1.1.0",
-    "body-parser": "~1.9.0",
+    "body-parser": "~1.9.1",
     "compression": "1.2.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "matchdep": "^0.3.0",
-    "grunt-mocha-test": "^0.12.1",
+    "grunt-mocha-test": "^0.12.2",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.7.0",
     "grunt-blanket": "0.0.8",
     "chai": "^1.9.2",
-    "mocha": "^1.21.5",
+    "mocha": "^2.0.1",
     "phantomjs": "^1.9.10",
     "grunt-fontsmith": "^0.9.1",
-    "grunt-contrib-less": "^0.11.4"
+    "grunt-contrib-less": "^0.12.0"
   },
   "scripts": {
     "test": "grunt test"
