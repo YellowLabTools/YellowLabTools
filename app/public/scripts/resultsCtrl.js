@@ -296,7 +296,8 @@ app.controller('ResultsCtrl', function ($scope) {
 
         var note = 'A';
         var score = $scope.phantomasResults.metrics.cssRules +
-                    $scope.phantomasResults.metrics.cssComplexSelectors * 5;
+                    $scope.phantomasResults.metrics.cssComplexSelectors * 5 +
+                    $scope.phantomasResults.metrics.cssComplexSelectorsByAttribute * 15;
         if (score > 500) {
             note = 'B';
         }
@@ -324,6 +325,7 @@ app.controller('ResultsCtrl', function ($scope) {
 
         var note = 'A';
         var score = $scope.phantomasResults.metrics.cssDuplicatedSelectors +
+                    $scope.phantomasResults.metrics.cssDuplicatedProperties +
                     $scope.phantomasResults.metrics.cssEmptyRules +
                     $scope.phantomasResults.metrics.cssExpressions * 10 +
                     $scope.phantomasResults.metrics.cssImportants * 2 +
