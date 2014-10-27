@@ -3,7 +3,6 @@ var app = angular.module('Results', []);
 app.controller('ResultsCtrl', function ($scope) {
     // Grab results from nodeJS served page
     $scope.phantomasResults = window._phantomas_results;
-    $scope.phantomasMetadata = window._phantomas_metadata.metrics;
 
     $scope.view = 'summary';
 
@@ -20,7 +19,6 @@ app.controller('ResultsCtrl', function ($scope) {
 
         initSummaryView();
         initJSTimelineView();
-        initMetricsView();
 
     }
 
@@ -171,18 +169,6 @@ app.controller('ResultsCtrl', function ($scope) {
             }
         });
         $scope.timelineMax = Math.max.apply(Math, $scope.timeline);
-    }
-
-    function initMetricsView() {
-        // Get the Phantomas modules from metadata
-        $scope.metricsModule = {};
-        for (var metricName in $scope.phantomasMetadata) {
-            var metric = $scope.phantomasMetadata[metricName];
-            if (!$scope.metricsModule[metric.module]) {
-                $scope.metricsModule[metric.module] = {};
-            }
-            $scope.metricsModule[metric.module][metricName] = metric;
-        }
     }
 
 

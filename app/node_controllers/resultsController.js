@@ -21,10 +21,6 @@ var resultsController = function(req, res, googleAnalyticsId) {
             fs.readFile('./app/node_views/results.html', {encoding: 'utf8'}, callback);
         },
 
-        phantomasMetadata: function(callback) {
-            fs.readFile('./node_modules/phantomas/lib/metadata/metadata.json', {encoding: 'utf8'}, callback);
-        },
-
         phantomasResults: function(callback) {
             fs.readFile(phantomasResultsPath, {encoding: 'utf8'}, callback);
         }
@@ -40,7 +36,6 @@ var resultsController = function(req, res, googleAnalyticsId) {
         phantomasResults = phantomasResults.replace(/<\/script>/g, '\\u003c/script>');
 
         var html = results.htmlTemplate;
-        html = strReplace(html, '%%METADATA%%', results.phantomasMetadata);
         html = strReplace(html, '%%RESULTS%%', phantomasResults);
         html = strReplace(html, '%%GA_ID%%', googleAnalyticsId);
 

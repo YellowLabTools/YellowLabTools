@@ -23,7 +23,6 @@
             <a class="menuItem back" href="/"><div class="icon-back"></div><span>New test<span></a>
             <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="setView('summary')"><div class="icon-summary"></div><span>Summary</span></div>
             <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="setView('execution')"><div class="icon-spaghetti"></div><span>JS Timeline</span></div>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'metrics'}" ng-click="setView('metrics')"><div class="icon-metrics"></div><span>All Metrics</span></div>
         </div>
 
         <div ng-if="phantomasResults.error">
@@ -854,34 +853,6 @@
                 </div>
             </div>
         </div>
-
-        <div ng-show="view == 'metrics' && !phantomasResults.error" class="metrics">
-            <h2>Metrics from Phantomas report</h2>
-            <p><a href="https://github.com/macbre/phantomas" target="_blank">Phantomas</a> is a web performance metrics collector. You can find here the (almost) entire list of metrics from Phantomas.</p>
-            
-            <div ng-repeat="(moduleName, module) in metricsModule">
-                <h4>{{moduleName}}</h4>
-                <div ng-repeat="(metricName, metric) in module" ng-if="phantomasResults.metrics[metricName] >= 0" class="module" id="metric_{{metricName}}">
-                    <div class="value">
-                        {{metricName}}: {{phantomasResults.metrics[metricName] | number: 0}}
-                        <span ng-if="metric.unit == 'ms' || metric.unit == 'bytes' || metric.unit == '%'">{{metric.unit}}</span>
-                    </div>
-                    <div class="legend">
-                        {{metric.desc}}
-                        <span ng-if="metric.unreliable">(unreliable)</span>
-                    </div>
-                    <div ng-if="phantomasResults.offenders[metricName]" class="offenders">
-                        <div ng-if="!metric.showingOffenders" ng-click="metric.showingOffenders = true">Show offenders</div>
-                        <div ng-if="metric.showingOffenders" ng-click="metric.showingOffenders = false">Hide offenders</div>
-                        <ul ng-if="metric.showingOffenders">
-                            <li ng-repeat="offender in phantomasResults.offenders[metricName] track by $index">
-                                {{offender}}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="footer">
@@ -891,8 +862,6 @@
     <script>
 
         var _phantomas_results = %%RESULTS%%;
-
-        var _phantomas_metadata = %%METADATA%%;
 
         var GA_ID = '%%GA_ID%%';
         if (GA_ID.length > 0 && window.location.host === 'yellowlab.tools') {
