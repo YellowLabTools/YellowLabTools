@@ -217,7 +217,7 @@ h4 {
   display: none;
   width: auto;
   padding: 0.5em 1em;
-  top: 1em;
+  top: -1.5em;
   right: 1em;
 }
 .timeline .interval:hover .tooltip {
