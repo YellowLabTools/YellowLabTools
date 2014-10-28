@@ -34,6 +34,8 @@ exports.module = function(phantomas) {
             (function(phantomas) {
                 phantomas.spyEnabled(false, 'installing window.performance metrics');
 
+                phantomas.currentStep = 'domCreation';
+
                 // extend window.performance
                 // "init" event is sometimes fired twice, pass a value set by "responseEnd" event handler (fixes #192)
                 if (typeof window.performance === 'undefined') {
@@ -59,6 +61,7 @@ exports.module = function(phantomas) {
                             :
                             (Date.now() - responseEndTime);
 
+                        phantomas.currentStep = 'domContentLoadedEnd';
                         phantomas.setMetric('domContentLoadedEnd', time, true);
                         phantomas.log('Performance timing: document reached "DOMContentLoadedEnd" state after %d ms', time);
 
@@ -72,6 +75,7 @@ exports.module = function(phantomas) {
 
                     var time = Date.now() - responseEndTime;
 
+                    phantomas.currentStep = 'domContentLoaded';
                     phantomas.setMetric('domContentLoaded', time, true);
                     phantomas.log('Performance timing: document reached "DOMContentLoaded" state after %d ms', time);
 
@@ -105,6 +109,7 @@ exports.module = function(phantomas) {
                             return;
                     }
 
+                    phantomas.currentStep = metricName;
                     phantomas.setMetric(metricName, time, true);
                     phantomas.log('Performance timing: document reached "%s" state after %d ms', readyState, time);
 

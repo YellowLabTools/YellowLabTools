@@ -99,6 +99,7 @@ exports.module = function(phantomas) {
                     function pushContext(data) {
                         if (depth === 0 || deepAnalysis) {
                             data.timestamp = Date.now() - responseEndTime;
+                            data.loadingStep = phantomas.currentStep || '';
                             currentContext.addChild(data);
                         }
                     }
@@ -107,6 +108,7 @@ exports.module = function(phantomas) {
                     function enterContext(data) {
                         if (depth === 0 || deepAnalysis) {
                             data.timestamp = Date.now() - responseEndTime;
+                            data.loadingStep = phantomas.currentStep || '';
                             currentContext = currentContext.addChild(data);
                         }
                         depth ++;
