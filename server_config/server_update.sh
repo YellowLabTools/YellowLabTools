@@ -11,7 +11,9 @@ git pull
 git stash pop
 
 # In case something was added in package.json or bower.json
+rm -rf node_modules
 npm install --production
+rm -rf bower_components
 bower install --config.interactive=false --allow-root
 
 # Restart the server
