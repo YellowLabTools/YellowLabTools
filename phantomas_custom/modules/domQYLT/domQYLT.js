@@ -74,7 +74,7 @@ exports.module = function(phantomas) {
 
                     phantomas.incrMetric('DOMqueriesByTagName');
                     phantomas.addOffender('DOMqueriesByTagName', tagName);
-                    querySpy('tag name', tagName, 'getElementsByTagName', context);
+                    querySpy('tag name', tagName.toLowerCase(), 'getElementsByTagName', context);
 
                     phantomas.enterContext({
                         type: 'getElementsByTagName',
@@ -214,7 +214,9 @@ exports.module = function(phantomas) {
         //phantomas.log('DOM query: by %s - "%s" (using %s on context %s)', type, query, fnName, context);
         phantomas.incrMetric('DOMqueries');
 
-        DOMqueries.push(type + ' "' + query + '" with ' + fnName + ' (in context ' + context + ')');
+        if (context && context.indexOf('DocumentFragment') === -1) {
+            DOMqueries.push(type + ' "' + query + '" with ' + fnName + ' (in context ' + context + ')');
+        }
     });
 
     phantomas.on('report', function() {
