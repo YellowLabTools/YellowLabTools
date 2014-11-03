@@ -228,6 +228,10 @@ exports.module = function(phantomas) {
                                         
                                         arg = phantomas.getDOMPath(arg) || 'unknown';
 
+                                    } else if (typeof arg === 'function') {
+
+                                        arg = '(function)';
+
                                     } else {
                                         
                                         try {
@@ -239,8 +243,12 @@ exports.module = function(phantomas) {
                                     }
                                 }
 
-                                if ((typeof arg == 'string' || arg instanceof String) && arg.length > 200) {
+                                if ((typeof arg === 'string' || arg instanceof String) && arg.length > 200) {
                                     arg = arg.substring(0, 200) + '...';
+                                }
+
+                                if (typeof arg === 'function') {
+                                    arg = '(function)';
                                 }
 
                                 if (arg === true) {
