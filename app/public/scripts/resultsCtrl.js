@@ -309,7 +309,7 @@ app.controller('ResultsCtrl', function ($scope) {
                     $scope.phantomasResults.metrics.cssOldPropertyPrefixes +
                     $scope.phantomasResults.metrics.cssUniversalSelectors * 5 +
                     $scope.phantomasResults.metrics.cssRedundantBodySelectors +
-                    $scope.phantomasResults.metrics.cssImports * 50;
+                    ($scope.phantomasResults.metrics.cssImports || 0) * 50;
         if (score > 50) {
             note = 'B';
         }
