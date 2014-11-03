@@ -768,7 +768,12 @@
                     <div class="details">
                         <div class="icon-question"
                                 ng-click="onNodeDetailsClick(node)"
-                                ng-if="node.data.type != 'script loaded' && node.data.type != 'jQuery loaded'"></div>
+                                ng-if="node.data.type != 'jQuery loaded'
+                                    && node.data.type != 'jQuery version change'
+                                    && node.data.type != 'domInteractive'
+                                    && node.data.type != 'domContentLoaded'
+                                    && node.data.type != 'domContentLoadedEnd'
+                                    && node.data.type != 'domComplete'"></div>
                         <div class="detailsOverlay" ng-show="node.data.showDetails">
                             <div class="closeBtn" ng-click="onNodeDetailsClick(node)">✖</div>
 
