@@ -18,6 +18,7 @@ body {
 body,
 input[type=submit],
 input[type=text],
+input[type=url],
 input[type=number],
 button {
   font-family: 'Century Gothic', helvetica, arial, sans-serif;
