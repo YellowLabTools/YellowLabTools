@@ -122,7 +122,7 @@ app.controller('ResultsCtrl', function ($scope) {
         // Now read the tree and display it on a timeline
         
         // Split the timeline into 200 intervals
-        var numberOfIntervals = 200;
+        var numberOfIntervals = 199;
         var lastEvent = $scope.javascript.children[$scope.javascript.children.length - 1];
         $scope.endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
         $scope.timelineIntervalDuration = $scope.endTime / numberOfIntervals;
