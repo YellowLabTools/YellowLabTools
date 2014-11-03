@@ -766,9 +766,12 @@
                     </div>
                     
                     <div class="details">
-                        <div class="icon-question"
-                                ng-click="onNodeDetailsClick(node)"
-                                ng-if="node.data.type != 'jQuery loaded'
+                        <div ng-class="{
+                                    'icon-question': !(node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5),
+                                    'icon-warning': node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5
+                                }"
+                             ng-click="onNodeDetailsClick(node)"
+                             ng-if="node.data.type != 'jQuery loaded'
                                     && node.data.type != 'jQuery version change'
                                     && node.data.type != 'domInteractive'
                                     && node.data.type != 'domContentLoaded'
@@ -789,7 +792,9 @@
 
                             <div ng-if="node.data.callDetails.context.length > 1">
                                 <h4>Called on {{node.data.callDetails.context.length}} jQuery elements</h4>
-                                <p class="advice" ng-if="node.data.callDetails.context.length > 5">The .bind() method attaches the event listener to each jQuery element one by one. Using the .on() method is preferred if available (from v1.7).</p>
+                                <p class="advice" ng-if="node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5">
+                                    The .bind() method attaches the event listener to each jQuery element one by one. Using the .on() method is preferable if available (from v1.7).
+                                </p>
                                 <p ng-if="node.data.callDetails.context.firstElementPath"><b>First one is:</b> {{node.data.callDetails.context.firstElementPath}}</p>
                             </div>
 
