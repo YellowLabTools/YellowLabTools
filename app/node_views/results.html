@@ -727,6 +727,10 @@
             </p>
             <div class="filters">
                 <div>
+                    <input type="checkbox" ng-model="warningsFilterOn" />
+                    Show warnings only
+                </div>
+                <div>
                     <input type="checkbox" ng-model="textFilterOn" />
                     Filter by
                     <input type="text" ng-model="textFilter" placeholder="search..." class="textFilter" ng-change="textFilterOn = true" />
@@ -743,13 +747,19 @@
                     <div>Timestamp</div>
                 </div>
                 <div ng-repeat="node in javascript.children"
-                     ng-if="!textFilterOn 
+                     ng-if="(!warningsFilterOn 
+                                || (node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5)
+                                || node.data.resultsNumber === 0
+                                || node.data.callDetails.context.length === 0
+                                || node.data.type == 'error'
+                                || node.data.type == 'jQuery version change')
+                             && (!textFilterOn 
                                 || !textFilter.length 
                                 || node.data.type.indexOf(textFilter) >= 0 
                                 || node.data.callDetails.arguments[0].indexOf(textFilter) >= 0
                                 || node.data.callDetails.arguments[1].indexOf(textFilter) >= 0
                                 || node.data.callDetails.arguments[2].indexOf(textFilter) >= 0
-                                || node.data.callDetails.arguments[3].indexOf(textFilter) >= 0"
+                                || node.data.callDetails.arguments[3].indexOf(textFilter) >= 0)"
                      ng-class="{
                                     showingDetails: node.data.showDetails,
                                     jsError: node.data.type == 'error' || node.data.type == 'jQuery version change',
@@ -767,8 +777,8 @@
                     
                     <div class="details">
                         <div ng-class="{
-                                    'icon-question': !(node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5) && node.data.resultsNumber !== 0,
-                                    'icon-warning': node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5 || node.data.resultsNumber === 0
+                                    'icon-question': !(node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5) && node.data.resultsNumber !== 0 && node.data.callDetails.context.length !== 0,
+                                    'icon-warning': node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5 || node.data.resultsNumber === 0 || node.data.callDetails.context.length === 0
                                 }"
                              ng-click="onNodeDetailsClick(node)"
                              ng-if="node.data.type != 'jQuery loaded'
@@ -783,6 +793,11 @@
                             <div ng-if="node.data.callDetails.context.domElement">
                                 <h4>Called on DOM element</h4>
                                 <div>{{node.data.callDetails.context.domElement}}</div>
+                            </div>
+
+                            <div ng-if="node.data.callDetails.context.length === 0">
+                                <h4>Called on 0 jQuery element</h4>
+                                <p class="advice">Useless function call, as the jQuery object is empty.</p>
                             </div>
 
                             <div ng-if="node.data.callDetails.context.length == 1 && node.data.callDetails.context.firstElementPath">
