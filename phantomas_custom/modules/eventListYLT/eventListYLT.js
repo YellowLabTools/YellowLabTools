@@ -35,9 +35,13 @@ exports.module = function(phantomas) {
                     });
                 }
 
-                phantomas.spy(Element.prototype, 'addEventListener', eventSpyBefore, phantomas.leaveContext);
-                phantomas.spy(Document.prototype, 'addEventListener', eventSpyBefore, phantomas.leaveContext);
-                phantomas.spy(window, 'addEventListener', eventSpyBefore, phantomas.leaveContext);
+                function eventSpyAfter(result) {
+                    phantomas.leaveContext();
+                }
+
+                phantomas.spy(Element.prototype, 'addEventListener', eventSpyBefore, eventSpyAfter);
+                phantomas.spy(Document.prototype, 'addEventListener', eventSpyBefore, eventSpyAfter);
+                phantomas.spy(window, 'addEventListener', eventSpyBefore, eventSpyAfter);
             })(window.__phantomas);
         });
     });

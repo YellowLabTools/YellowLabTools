@@ -16,7 +16,6 @@ exports.module = function(phantomas) {
     phantomas.setMetric('jQueryOnDOMReadyFunctions'); // @desc number of functions bound to onDOMReady event
     phantomas.setMetric('jQuerySizzleCalls'); // @desc number of calls to Sizzle (including those that will be resolved using querySelectorAll)
     phantomas.setMetric('jQuerySizzleCallsDuplicated'); // @desc number of calls on the same Sizzle request
-    phantomas.setMetric('jQueryBindOnMultipleElements'); //@desc number of calls to jQuery bind function on 2 or more elements
     phantomas.setMetric('jQueryDifferentVersions'); //@desc number of different jQuery versions loaded on the page (not counting iframes)
 
     var jQueryFunctions = [
@@ -176,7 +175,12 @@ exports.module = function(phantomas) {
                             backtrace: phantomas.getBacktrace()
                         });
 
-                    }, phantomas.leaveContext) || phantomas.log('jQuery: can not measure jQuerySizzleCalls (jQuery used on the page is too old)!');
+                    }, function(result) {
+                        var moreData = {
+                            resultsNumber : (result && result.length) ? result.length : 0
+                        };
+                        phantomas.leaveContext(moreData);
+                    }) || phantomas.log('jQuery: can not measure jQuerySizzleCalls (jQuery used on the page is too old)!');
 
                     
                     // $().bind - jQuery.bind
@@ -196,14 +200,8 @@ exports.module = function(phantomas) {
                             backtrace: phantomas.getBacktrace()
                         });
 
-                    }, function(eventTypes, func) {
-                        phantomas.leaveContext();
-
-                        if (this.length > 1) {
-                            phantomas.incrMetric('jQueryBindOnMultipleElements');
-                            phantomas.addOffender('jQueryBindOnMultipleElements', '%s (%s on %d elements)', this.selector, eventTypes, this.length);
-                        }
-                        
+                    }, function(result) {
+                        phantomas.leaveContext();                        
                     }) || phantomas.log('jQuery: can not measure jQueryBindCalls (jQuery used on the page is too old)!');
 
 
@@ -283,7 +281,9 @@ exports.module = function(phantomas) {
                                 backtrace: phantomas.getBacktrace()
                             });
 
-                        }, phantomas.leaveContext) || phantomas.log('jQuery: can not track jQuery - ' + capitalizedName + ' (this version of jQuery doesn\'t support it)');
+                        }, function(result) {
+                            phantomas.leaveContext();
+                        }) || phantomas.log('jQuery: can not track jQuery - ' + capitalizedName + ' (this version of jQuery doesn\'t support it)');
                     });
 
 

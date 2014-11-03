@@ -39,7 +39,12 @@ exports.module = function(phantomas) {
                         backtrace: phantomas.getBacktrace()
                     });
 
-                }, phantomas.leaveContext);
+                }, function(result) {
+                    var moreData = {
+                        resultsNumber : result ? 1 : 0
+                    };
+                    phantomas.leaveContext(moreData);
+                });
 
                 // selectors by class name
                 function selectorClassNameSpyBefore(className) {
@@ -63,8 +68,15 @@ exports.module = function(phantomas) {
                     });
                 }
 
-                phantomas.spy(Document.prototype, 'getElementsByClassName', selectorClassNameSpyBefore, phantomas.leaveContext);
-                phantomas.spy(Element.prototype, 'getElementsByClassName', selectorClassNameSpyBefore, phantomas.leaveContext);
+                function selectorClassNameAfter(result) {
+                    var moreData = {
+                        resultsNumber : (result && result.length > 0) ? result.length : 0
+                    };
+                    phantomas.leaveContext(moreData);
+                }
+
+                phantomas.spy(Document.prototype, 'getElementsByClassName', selectorClassNameSpyBefore, selectorClassNameAfter);
+                phantomas.spy(Element.prototype, 'getElementsByClassName', selectorClassNameSpyBefore, selectorClassNameAfter);
 
                 // selectors by tag name
                 function selectorTagNameSpyBefore(tagName) {
@@ -88,8 +100,15 @@ exports.module = function(phantomas) {
                     });
                 }
 
-                phantomas.spy(Document.prototype, 'getElementsByTagName', selectorTagNameSpyBefore, phantomas.leaveContext);
-                phantomas.spy(Element.prototype, 'getElementsByTagName', selectorTagNameSpyBefore, phantomas.leaveContext);
+                function selectorTagNameSpyAfter(result) {
+                    var moreData = {
+                        resultsNumber : (result && result.length > 0) ? result.length : 0
+                    };
+                    phantomas.leaveContext(moreData);
+                }
+
+                phantomas.spy(Document.prototype, 'getElementsByTagName', selectorTagNameSpyBefore, selectorTagNameSpyAfter);
+                phantomas.spy(Element.prototype, 'getElementsByTagName', selectorTagNameSpyBefore, selectorTagNameSpyAfter);
 
                 // selector queries
                 function selectorQuerySpy(selector, context) {
@@ -116,6 +135,13 @@ exports.module = function(phantomas) {
                     });
                 }
 
+                function selectorQuerySpyAfter(result) {
+                    var moreData = {
+                        resultsNumber : result ? 1 : 0
+                    };
+                    phantomas.leaveContext(moreData);
+                }
+
                 function selectorAllQuerySpyBefore(selector) {
                     /*jshint validthis: true */
 
@@ -134,10 +160,17 @@ exports.module = function(phantomas) {
                     });
                 }
 
-                phantomas.spy(Document.prototype, 'querySelector', selectorQuerySpyBefore, phantomas.leaveContext);
-                phantomas.spy(Document.prototype, 'querySelectorAll', selectorAllQuerySpyBefore, phantomas.leaveContext);
-                phantomas.spy(Element.prototype, 'querySelector', selectorQuerySpyBefore, phantomas.leaveContext);
-                phantomas.spy(Element.prototype, 'querySelectorAll', selectorAllQuerySpyBefore, phantomas.leaveContext);
+                function selectorAllQuerySpryAfter(result) {
+                    var moreData = {
+                        resultsNumber : (result && result.length > 0) ? result.length : 0
+                    };
+                    phantomas.leaveContext(moreData);
+                }
+
+                phantomas.spy(Document.prototype, 'querySelector', selectorQuerySpyBefore, selectorQuerySpyAfter);
+                phantomas.spy(Document.prototype, 'querySelectorAll', selectorAllQuerySpyBefore, selectorAllQuerySpryAfter);
+                phantomas.spy(Element.prototype, 'querySelector', selectorQuerySpyBefore, selectorQuerySpyAfter);
+                phantomas.spy(Element.prototype, 'querySelectorAll', selectorAllQuerySpyBefore, selectorAllQuerySpryAfter);
 
 
                 // count DOM inserts
@@ -199,8 +232,12 @@ exports.module = function(phantomas) {
                     });
                 }
 
-                phantomas.spy(Node.prototype, 'appendChild', appendChildSpyBefore, phantomas.leaveContext);
-                phantomas.spy(Node.prototype, 'insertBefore', insertBeforeSpyBefore, phantomas.leaveContext);
+                phantomas.spy(Node.prototype, 'appendChild', appendChildSpyBefore, function(result) {
+                    phantomas.leaveContext();
+                });
+                phantomas.spy(Node.prototype, 'insertBefore', insertBeforeSpyBefore, function(result) {
+                    phantomas.leaveContext();
+                });
             })(window.__phantomas);
         });
     });

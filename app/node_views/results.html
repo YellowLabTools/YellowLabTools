@@ -767,8 +767,8 @@
                     
                     <div class="details">
                         <div ng-class="{
-                                    'icon-question': !(node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5),
-                                    'icon-warning': node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5
+                                    'icon-question': !(node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5) && node.data.resultsNumber !== 0,
+                                    'icon-warning': node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5 || node.data.resultsNumber === 0
                                 }"
                              ng-click="onNodeDetailsClick(node)"
                              ng-if="node.data.type != 'jQuery loaded'
@@ -797,6 +797,10 @@
                                 </p>
                                 <p ng-if="node.data.callDetails.context.firstElementPath"><b>First one is:</b> {{node.data.callDetails.context.firstElementPath}}</p>
                             </div>
+
+                            <p class="advice" ng-if="node.data.resultsNumber === 0">
+                                The query returned 0 results. It looks like unused or dead code!
+                            </p>
 
                             <div ng-if="node.data.parsedBacktrace">
                                 <h4>Backtrace</h4>

@@ -62,7 +62,7 @@ exports.module = function(phantomas) {
 
                                 // After
                                 if (enabled && callbackAfter) {
-                                    callbackAfter.apply(this, arguments);
+                                    callbackAfter.call(this, result);
                                 }
                             }
 
@@ -115,9 +115,17 @@ exports.module = function(phantomas) {
                     }
                     
                     // Save given data in the current context and jump change current context to its parent
-                    function leaveContext() {
+                    function leaveContext(moreData) {
                         if (depth === 1 || deepAnalysis) {
                             currentContext.data.time = Date.now() - currentContext.data.timestamp - responseEndTime;
+
+                            // Merge previous data with moreData (ovewrites if exists)
+                            if (moreData) {
+                                for (var key in moreData) {
+                                    currentContext.data[key] = moreData[key];
+                                }
+                            }
+
                             var parent = currentContext.parent;
                             if (parent === null) {
                                 console.error('Error: trying to close root context in ContextTree');
