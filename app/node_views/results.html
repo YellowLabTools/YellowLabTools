@@ -229,17 +229,17 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="inBodyDomManipulations > 10">
-                                <div class="label">Execution in body</div>
+                            <div ng-if="inBodyDomManipulations > 10" ng-class="{'warning': inBodyDomManipulations > 200}">
+                                <div class="label">DOM manipulations in body</div>
                                 <div class="result">
                                     {{inBodyDomManipulations}}
                                 </div>
                                 <div class="info">
                                     <div class="icon-question" ng-click="inBodyDomManipulationsTooltip = true"></div>
                                     <modal-dialog show="inBodyDomManipulationsTooltip" dialog-title="Javascript executed inside the body">
-                                        <p>Wait the DOMContentLoaded event before executing Javascript.</p>
-                                        <p>Choose between the HEAD and the end of the BODY for scripts. Do not execute Javascript in the middle of the BODY as it slows down the construction of the DOM and makes a poor maintainability. This is what i call spaghetti code.</p>
-                                        <p>The JS Timeline tab can help you.</p>
+                                        <p>This metric counts the number of DOM queries, DOM inserts, binds, etc. made by the Javascript before the DOMContentLoaded event.</p>
+                                        <p>Wait for this event before manipulating the DOM. Do not execute Javascript in the middle of the BODY as it slows down the construction of the DOM and makes a poor maintainability. This is what i call spaghetti code.</p>
+                                        <p>The JS Timeline tab can help you identify what's happening.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
