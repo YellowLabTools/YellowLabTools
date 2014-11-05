@@ -282,7 +282,7 @@
                     <div class="notation">CSS complexity</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.cssRules" ng-class="{'warning': phantomasResults.metrics.cssRules > 4000}">
+                            <div ng-if="phantomasResults.metrics.cssRules" ng-class="{'warning': phantomasResults.metrics.cssRules > 4000 || (phantomasResults.metrics.cssRules > 1000 && phantomasResults.metrics.cssRules > phantomasResults.metrics.DOMelementsCount)}">
                                 <div class="label">Rules count</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssRules}}
