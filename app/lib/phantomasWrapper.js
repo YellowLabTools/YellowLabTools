@@ -28,7 +28,6 @@ var PhantomasWrapper = function() {
             'analyze-css': true,
             'skip-modules': [
                 'blockDomains', // not needed
-                'analyzeCss', // overriden
                 'domComplexity', // overriden
                 'domMutations', // not compatible with webkit
                 'domQueries', // overriden
