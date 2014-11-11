@@ -132,10 +132,10 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="duplicatedQueriesCountAll" ng-class="{'warning': duplicatedQueriesCountAll > 500}">
+                            <div ng-if="phantomasResults.metrics.DOMqueriesAvoidable" ng-class="{'warning': phantomasResults.metrics.DOMqueriesAvoidable > 500}">
                                 <div class="label">Avoidable queries</div>
                                 <div class="result">
-                                    {{duplicatedQueriesCountAll}}
+                                    {{phantomasResults.metrics.DOMqueriesAvoidable}}
                                     <show-offenders modal-title="Duplicated DOM queries" metric-name="DOMqueriesDuplicated" phantomas-results="phantomasResults"></show-offenders>
                                 </div>
                                 <div class="info">

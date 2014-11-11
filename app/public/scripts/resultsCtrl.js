@@ -64,18 +64,6 @@ app.controller('ResultsCtrl', function ($scope) {
             }
         });
 
-        // Read all the duplicated queries and calculate a more appropriated score
-        $scope.duplicatedQueriesCountAll = 0;
-        if ($scope.phantomasResults.offenders.DOMqueriesDuplicated) {
-            var regex = /\): *(\d+) queries$/;
-            $scope.phantomasResults.offenders.DOMqueriesDuplicated.forEach(function(query) {
-                var regexResult = regex.exec(query);
-                if (regexResult) {
-                    $scope.duplicatedQueriesCountAll += parseInt(regexResult[1], 10) - 1;
-                }
-            });
-        }
-
         // Grab the notes
         $scope.notations = {
             domComplexity: getDomComplexityScore(),
@@ -192,7 +180,7 @@ app.controller('ResultsCtrl', function ($scope) {
         var note = 'A';
         var score = $scope.phantomasResults.metrics.DOMinserts * 2 +
                     $scope.phantomasResults.metrics.DOMqueries +
-                    $scope.duplicatedQueriesCountAll * 2 +
+                    $scope.phantomasResults.metrics.DOMqueriesAvoidable * 2 +
                     $scope.phantomasResults.metrics.eventsBound;
         if (score > 300) {
             note = 'B';

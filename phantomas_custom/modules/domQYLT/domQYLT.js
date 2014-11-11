@@ -3,7 +3,7 @@
  */
 /* global Element: true, Document: true, Node: true, window: true */
 
-exports.version = '0.7.a';
+exports.version = '0.9.a';
 
 exports.module = function(phantomas) {
     'use strict';
@@ -14,7 +14,8 @@ exports.module = function(phantomas) {
     phantomas.setMetric('DOMqueriesByTagName'); // @desc number of document.getElementsByTagName calls
     phantomas.setMetric('DOMqueriesByQuerySelectorAll'); // @desc number of document.querySelector(All) calls
     phantomas.setMetric('DOMinserts'); // @desc number of DOM nodes inserts
-    phantomas.setMetric('DOMqueriesDuplicated'); // @desc number of duplicated DOM queries
+    phantomas.setMetric('DOMqueriesDuplicated'); // @desc number of DOM queries called more than once
+    phantomas.setMetric('DOMqueriesAvoidable'); // @desc number of repeated uses of a duplicated query
 
     // fake native DOM functions
     phantomas.once('init', function() {
@@ -26,6 +27,7 @@ exports.module = function(phantomas) {
 
                 phantomas.spy(Document.prototype, 'getElementById', function(id) {
                     phantomas.incrMetric('DOMqueriesById');
+                    phantomas.addOffender('DOMqueriesById', '#%s (in %s)', id, '#document');
                     querySpy('id', '#' + id, 'getElementById', '#document');
 
                     phantomas.enterContext({
@@ -53,7 +55,7 @@ exports.module = function(phantomas) {
                     var context = phantomas.getDOMPath(this);
 
                     phantomas.incrMetric('DOMqueriesByClassName');
-                    phantomas.addOffender('DOMqueriesByClassName', '.' + className);
+                    phantomas.addOffender('DOMqueriesByClassName', '.%s (in %s)', className, context);
                     querySpy('class', '.' + className, 'getElementsByClassName', context);
 
                     phantomas.enterContext({
@@ -85,7 +87,7 @@ exports.module = function(phantomas) {
                     var context = phantomas.getDOMPath(this);
 
                     phantomas.incrMetric('DOMqueriesByTagName');
-                    phantomas.addOffender('DOMqueriesByTagName', tagName);
+                    phantomas.addOffender('DOMqueriesByTagName', '%s (in %s)', tagName, context);
                     querySpy('tag name', tagName.toLowerCase(), 'getElementsByTagName', context);
 
                     phantomas.enterContext({
@@ -113,8 +115,8 @@ exports.module = function(phantomas) {
                 // selector queries
                 function selectorQuerySpy(selector, context) {
                     phantomas.incrMetric('DOMqueriesByQuerySelectorAll');
-                    phantomas.addOffender('DOMqueriesByQuerySelectorAll', selector);
-                    querySpy('selector', selector, 'querySelectorAll');
+                    phantomas.addOffender('DOMqueriesByQuerySelectorAll', '%s (in %s)', selector, context);
+                    querySpy('selector', selector, 'querySelectorAll', context);
                 }
 
                 function selectorQuerySpyBefore(selector) {
@@ -248,7 +250,7 @@ exports.module = function(phantomas) {
         DOMqueries = new Collection();
 
     phantomas.on('domQuery', function(type, query, fnName, context) {
-        //phantomas.log('DOM query: by %s - "%s" (using %s on context %s)', type, query, fnName, context);
+        phantomas.log('DOM query: by %s - "%s" (using %s) in %s', type, query, fnName, context);
         phantomas.incrMetric('DOMqueries');
 
         if (context && context.indexOf('DocumentFragment') === -1) {
@@ -260,6 +262,7 @@ exports.module = function(phantomas) {
         DOMqueries.sort().forEach(function(query, cnt) {
             if (cnt > 1) {
                 phantomas.incrMetric('DOMqueriesDuplicated');
+                phantomas.incrMetric('DOMqueriesAvoidable', cnt - 1);
                 phantomas.addOffender('DOMqueriesDuplicated', '%s: %d queries', query, cnt);
             }
         });
