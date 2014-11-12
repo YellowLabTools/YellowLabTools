@@ -504,6 +504,20 @@
                                     </modal-dialog>
                                 </div>
                             </div>
+                            <div ng-if="phantomasResults.metrics.cssRedundantChildNodesSelectors">
+                                <div class="label">Redundant tags selectors</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.cssRedundantChildNodesSelectors}}
+                                    <show-offenders modal-title="Redundant tags selectors" metric-name="cssRedundantChildNodesSelectors" phantomas-results="phantomasResults"></show-offenders>
+                                </div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="cssRedundantChildNodesSelectorsTooltip = true"></div>
+                                    <modal-dialog show="cssRedundantChildNodesSelectorsTooltip" dialog-title="Useless redundant selectors">
+                                        <p>Some tags included inside other tags are obvious. For example, when "ul li" is specified in a rule, "ul" can be removed because the "li" element is <b>always</b> inside a "ul". Same thing for "tr td", "select option", ...</p>
+                                        <p>Lowering compexity in CSS selectors can make the page load a little faster.</p>
+                                    </modal-dialog>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

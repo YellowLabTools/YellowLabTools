@@ -263,7 +263,7 @@ app.controller('ResultsCtrl', function ($scope) {
         var note = 'A';
         var score = $scope.phantomasResults.metrics.cssRules +
                     $scope.phantomasResults.metrics.cssComplexSelectors * 5 +
-                    $scope.phantomasResults.metrics.cssComplexSelectorsByAttribute * 15;
+                    $scope.phantomasResults.metrics.cssComplexSelectorsByAttribute * 10;
         if (score > 500) {
             note = 'B';
         }
@@ -298,12 +298,13 @@ app.controller('ResultsCtrl', function ($scope) {
                     $scope.phantomasResults.metrics.cssOldIEFixes * 10 +
                     $scope.phantomasResults.metrics.cssOldPropertyPrefixes +
                     $scope.phantomasResults.metrics.cssUniversalSelectors * 5 +
-                    $scope.phantomasResults.metrics.cssRedundantBodySelectors +
-                    ($scope.phantomasResults.metrics.cssImports || 0) * 50;
+                    $scope.phantomasResults.metrics.cssRedundantBodySelectors * 0.5 +
+                    $scope.phantomasResults.metrics.cssRedundantChildNodesSelectors * 0.5 +
+                    $scope.phantomasResults.metrics.cssImports * 50;
         if (score > 50) {
             note = 'B';
         }
-        if (score > 10) {
+        if (score > 100) {
             note = 'C';
         }
         if (score > 200) {
