@@ -309,6 +309,28 @@
                                     </modal-dialog>
                                 </div>
                             </div>
+                            <div ng-if="phantomasResults.metrics.cssComplexSelectorsByAttribute" ng-class="{'warning': phantomasResults.metrics.cssComplexSelectorsByAttribute > 100}">
+                                <div class="label">Complex attributes selector</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.cssComplexSelectorsByAttribute}}
+                                    <show-offenders modal-title="Complex attributes selector" metric-name="cssComplexSelectorsByAttribute" phantomas-results="phantomasResults"></show-offenders>
+                                </div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="cssComplexSelectorsByAttributeTooltip = true"></div>
+                                    <modal-dialog show="cssComplexSelectorsByAttributeTooltip" dialog-title="Avoid complex attribute expressions">
+                                        <p>Complex attributes selectors are one of these:
+                                            <ul>
+                                                <li>.foo[type*=bar] (contains bar)</li>
+                                                <li>.foo[type^=bar] (starts with bar)</li>
+                                                <li>.foo[type|=bar] (starts with bar or bar-)</li>
+                                                <li>.foo[type$=bar] (ends with bar)</li>
+                                                <li>.foo[type~=bar baz] (bar or baz)</li>
+                                            </ul>
+                                        </p>
+                                        <p>Their matching process needs more CPU and it has a cost on performances.</p>
+                                    </modal-dialog>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -345,7 +367,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.cssDuplicatedSelectors" ng-class="{'warning': phantomasResults.metrics.cssDuplicatedSelectors > 100}">
+                            <div ng-if="phantomasResults.metrics.cssDuplicatedSelectors" ng-class="{'warning': phantomasResults.metrics.cssDuplicatedSelectors > 80}">
                                 <div class="label">Duplicated selectors</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssDuplicatedSelectors}}
@@ -355,6 +377,19 @@
                                     <div class="icon-question" ng-click="cssDuplicatedSelectorsTooltip = true"></div>
                                     <modal-dialog show="cssDuplicatedSelectorsTooltip" dialog-title="Merge duplicated selectors">
                                         <p>This is when two or more selectors are strictly identical and should be merged.</p>
+                                    </modal-dialog>
+                                </div>
+                            </div>
+                            <div ng-if="phantomasResults.metrics.cssDuplicatedProperties" ng-class="{'warning': phantomasResults.metrics.cssDuplicatedProperties > 50}">
+                                <div class="label">Duplicated properties</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.cssDuplicatedProperties}}
+                                    <show-offenders modal-title="Duplicated properties" metric-name="cssDuplicatedProperties" phantomas-results="phantomasResults"></show-offenders>
+                                </div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="cssDuplicatedPropertiesTooltip = true"></div>
+                                    <modal-dialog show="cssDuplicatedPropertiesTooltip" dialog-title="Remove duplicated properties">
+                                        <p>This is the number of property definitions duplicated within a selector.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
