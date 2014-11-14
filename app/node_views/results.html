@@ -380,7 +380,7 @@
                                     </modal-dialog>
                                 </div>
                             </div>
-                            <div ng-if="phantomasResults.metrics.cssDuplicatedProperties" ng-class="{'warning': phantomasResults.metrics.cssDuplicatedProperties > 50}">
+                            <div ng-if="phantomasResults.metrics.cssDuplicatedProperties" ng-class="{'warning': phantomasResults.metrics.cssDuplicatedProperties > 100}">
                                 <div class="label">Duplicated properties</div>
                                 <div class="result">
                                     {{phantomasResults.metrics.cssDuplicatedProperties}}
