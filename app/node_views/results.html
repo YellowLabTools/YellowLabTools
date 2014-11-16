@@ -21,8 +21,8 @@
 
         <div class="resultsMenu">
             <a class="menuItem back" href="/"><div class="icon-back"></div><span>New test<span></a>
-            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="setView('summary')"><div class="icon-summary"></div><span>Summary</span></div>
             <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'execution'}" ng-click="setView('execution')"><div class="icon-spaghetti"></div><span>JS Timeline</span></div>
+            <div class="menuItem" ng-if="!phantomasResults.error" ng-class="{active: view == 'summary'}" ng-click="setView('summary')"><div class="icon-summary"></div><span>Grades</span></div>
         </div>
 
         <div ng-if="phantomasResults.error">
@@ -36,7 +36,7 @@
         </div>
 
         <div ng-show="view == 'summary' && !phantomasResults.error" class="summary">
-            <h2>Summary</h2>
+            <h2>Grades</h2>
 
             <div class="notations">
                 <div>
@@ -429,7 +429,7 @@
                                 <div class="info">
                                     <div class="icon-question" ng-click="cssImportantsTooltip = true"></div>
                                     <modal-dialog show="cssImportantsTooltip" dialog-title="Don't over-use !important">
-                                        <p>It can be usefull, but only as a last resort. It is a bad practice because it overrides the normal cascading logic. The more you use !important, the more you need it again to over-override. This conducts to a poor maintainability.</p>
+                                        <p>It can be useful, but only as a last resort. It is a bad practice because it overrides the normal cascading logic. The more you use !important, the more you need it again to over-override. This conducts to a poor maintainability.</p>
                                     </modal-dialog>
                                 </div>
                             </div>
@@ -772,7 +772,7 @@
 
             <h2>Javascript Profiler</h2>
             <p>
-                The table below shows the interactions between Javascript and the DOM. It is usefull to understand what's going on when the page loads.
+                The table below shows the interactions between Javascript and the DOM. It is useful to understand what happens while the page loads.
             </p>
             <div class="filters">
                 <div>
@@ -814,7 +814,7 @@
                                     jsError: node.data.type == 'error' || node.data.type == 'jQuery version change',
                                     windowPerformance: node.data.type == 'domInteractive' || node.data.type == 'domContentLoaded' || node.data.type == 'domContentLoadedEnd' || node.data.type == 'domComplete'
                                 }">
-                    <div class="index">{{$index}}</div>
+                    <div class="index">{{$index + 1}}</div>
                     <div class="type">{{node.data.type}}</div>
 
                     <div class="value">
