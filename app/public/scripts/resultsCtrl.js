@@ -4,7 +4,7 @@ app.controller('ResultsCtrl', function ($scope) {
     // Grab results from nodeJS served page
     $scope.phantomasResults = window._phantomas_results;
 
-    $scope.view = 'summary';
+    $scope.view = 'execution';
 
     if ($scope.phantomasResults.metrics && $scope.phantomasResults.offenders && $scope.phantomasResults.offenders.javascriptExecutionTree) {
 
