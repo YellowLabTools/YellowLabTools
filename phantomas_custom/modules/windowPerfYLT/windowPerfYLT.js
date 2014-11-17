@@ -66,10 +66,7 @@ exports.module = function(phantomas) {
                         phantomas.log('Performance timing: document reached "DOMContentLoadedEnd" state after %d ms', time);
 
                         phantomas.pushContext({
-                            type: 'domContentLoadedEnd',
-                            callDetails: {
-                                arguments: ['(experimental, not reliable)']
-                            }
+                            type: 'domContentLoadedEnd'
                         });
                     }, 0);
 
