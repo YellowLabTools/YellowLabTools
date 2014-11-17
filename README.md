@@ -19,7 +19,7 @@ And then it is wrapped inside a small NodeJS server to get an interface (inspire
 
 ## Help needed
 
-I'm currently looking for help in correcting my english sentences, as it is not my native language.
+I'm currently looking for help in correcting the english wordings in the tool, as it is not my native language.
 
 
 ## Install your own instance
