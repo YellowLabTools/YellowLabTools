@@ -295,7 +295,7 @@
                                     <modal-dialog show="cssParsingErrorsTooltip" dialog-title="Parsing error while analyzing CSS">
                                         <p>Yellow Lab Tools failed to parse a CSS file. I doubt the problem comes from the css parser.</p>
                                         <p>
-                                            Direct links to the <b>W3C CSS Validator</b> for the following stylesheets:
+                                            Direct links to the <b>W3C CSS Validator</b> for the following stylesheet(s):
                                             <ul>
                                                 <li ng-repeat="stylesheet in cssW3cDirectUrls">
                                                     <a href="{{stylesheet.w3c}}" target="_blank">{{stylesheet.url}}</a>
@@ -360,6 +360,11 @@
                                         <p>Their matching process needs more CPU and it has a cost on performances.</p>
                                     </modal-dialog>
                                 </div>
+                            </div>
+                            <div ng-if="phantomasResults.metrics.cssParsingErrors">
+                                <div class="label">(<ng-pluralize count="phantomasResults.metrics.cssParsingErrors" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize> couldn't be parsed)</div>
+                                <div class="result"></div>
+                                <div class="info"></div>
                             </div>
                         </div>
                     </div>
@@ -533,6 +538,11 @@
                                         <p>Lowering compexity in CSS selectors can make the page load a little faster.</p>
                                     </modal-dialog>
                                 </div>
+                            </div>
+                            <div ng-if="phantomasResults.metrics.cssParsingErrors">
+                                <div class="label">(<ng-pluralize count="phantomasResults.metrics.cssParsingErrors" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize> couldn't be parsed)</div>
+                                <div class="result"></div>
+                                <div class="info"></div>
                             </div>
                         </div>
                     </div>
