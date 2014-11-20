@@ -50,7 +50,13 @@ var PhantomasWrapper = function() {
         console.log('If you want to reproduce the phantomas task only, copy the following command line:');
         var optionsString = '';
         for (var opt in options) {
-            optionsString += ' ' + '--' + opt + '=' + options[opt];
+
+            var value = options[opt];
+            if ((typeof value === 'string' || value instanceof String) && value.indexOf(' ') >= 0) {
+                value = '"' + value + '"';
+            }
+
+            optionsString += ' ' + '--' + opt + '=' + value;
         }
         console.log('node node_modules/phantomas/bin/phantomas.js --url=' + task.url + optionsString + ' --verbose');
 
