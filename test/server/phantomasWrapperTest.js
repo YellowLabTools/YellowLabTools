@@ -8,7 +8,7 @@ describe('phantomasWrapper', function() {
     });
     
     it('should execute', function(done) {
-        var url = 'http://www.google.fr/';
+        var url = 'http://example.com/';
 
         this.timeout(20000);
         phantomasWrapper.execute({
