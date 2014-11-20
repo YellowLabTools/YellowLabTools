@@ -62,6 +62,7 @@ exports.module = function(phantomas) {
         'delegate',
         'undelegate',
         'one',
+        'bind',
         'unbind',
 
         // more events
@@ -181,29 +182,6 @@ exports.module = function(phantomas) {
                         };
                         phantomas.leaveContext(moreData);
                     }) || phantomas.log('jQuery: can not measure jQuerySizzleCalls (jQuery used on the page is too old)!');
-
-                    
-                    // $().bind - jQuery.bind
-                    // works for jQuery v?.?
-                    phantomas.spy(jQueryFn, 'bind', function(eventTypes, func) {
-                        
-                        phantomas.enterContext({
-                            type: 'jQuery - bind',
-                            callDetails: {
-                                context: {
-                                    length: this.length,
-                                    firstElementPath: phantomas.getDOMPath(this[0]),
-                                    selector: this.selector
-                                },
-                                arguments: [eventTypes, func]
-                            },
-                            backtrace: phantomas.getBacktrace()
-                        });
-
-                    }, function(result) {
-                        phantomas.leaveContext();                        
-                    }) || phantomas.log('jQuery: can not measure jQueryBindCalls (jQuery used on the page is too old)!');
-
 
 
                     // Add spys on many jQuery functions
