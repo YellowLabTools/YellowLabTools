@@ -28,6 +28,7 @@ var PhantomasWrapper = function() {
             reporter: 'json:pretty',
             'analyze-css': true,
             'skip-modules': [
+                'analyzeCss', // overriden
                 'blockDomains', // not needed
                 'domComplexity', // overriden
                 'domMutations', // not compatible with webkit
