@@ -1,5 +1,6 @@
 // Config file
 var settings                = require('./server_config/settings.json');
+var pkg                     = require('./package.json');
 
 // Libraries
 var fs                      = require('fs');
@@ -32,7 +33,7 @@ app.all('*', function(req, res, next) {
 });
 
 // Routes definition
-app.get('/',                    function(req, res) { indexController(req, res, settings.googleAnalyticsId); });
+app.get('/',                    function(req, res) { indexController(req, res, settings.googleAnalyticsId, pkg.version); });
 app.post('/launchTest',         function(req, res) { launchTestController(req, res, testQueue, settings.googleAnalyticsId); });
 app.get('/results/:testId',     function(req, res) { resultsController(req, res, settings.googleAnalyticsId); });
 

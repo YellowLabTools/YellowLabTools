@@ -18,6 +18,9 @@
   color: inherit;
   line-height: 1.7em;
 }
+.version {
+  font-size: 0.7em;
+}
 input[type=submit],
 input.url {
   padding: 0 0.5em;

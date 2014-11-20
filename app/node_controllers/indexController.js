@@ -6,7 +6,7 @@ var async           = require('async');
 var fs              = require ('fs');
 var strReplace      = require('../lib/strReplace');
 
-var indexController = function(req, res, googleAnalyticsId) {
+var indexController = function(req, res, googleAnalyticsId, version) {
     'use strict';
 
     async.parallel({
@@ -18,6 +18,7 @@ var indexController = function(req, res, googleAnalyticsId) {
     }, function(err, results) {
         var html = results.htmlTemplate;
         html = strReplace(html, '%%GA_ID%%', googleAnalyticsId);
+        html = strReplace(html, '%%VERSION%%', version);
 
         res.setHeader('Content-Type', 'text/html');
         res.send(html);
