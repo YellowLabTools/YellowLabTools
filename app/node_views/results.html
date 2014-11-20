@@ -277,6 +277,34 @@
                         </div>
                     </div>
                 </div>
+                <div ng-if="phantomasResults.metrics.cssParsingErrors">
+                    <div class="F">F</div>
+                    <div class="notation">CSS errors</div>
+                    <div class="criteria">
+                        <div class="table">
+                            <div class="warning">
+                                <div class="label">CSS files with syntax errors</div>
+                                <div class="result">
+                                    {{phantomasResults.metrics.cssParsingErrors}}
+                                    <show-offenders modal-title="CSS syntax errors" metric-name="cssParsingErrors" phantomas-results="phantomasResults"></show-offenders>
+                                </div>
+                                <div class="info">
+                                    <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
+                                    <modal-dialog show="cssRulesTooltip" dialog-title="Parsing error while analyzing CSS">
+                                        <p>Yellow Lab Tools failed to parse a CSS file. I doubt the problem comes from the css parser.</p>
+                                        <p>
+                                            Check directly on <b>W3C CSS Validator</b>:
+                                            <ul>
+                                                <li ng-repeat="stylesheet in cssW3cDirectUrls">
+                                                    <a href="{{stylesheet.w3c}}" target="_blank">{{stylesheet.url}}</a>
+                                                </li>
+                                            </ul>
+                                    </modal-dialog>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <div ng-class="notations.cssComplexity">{{notations.cssComplexity}}</div>
                     <div class="notation">CSS complexity</div>
@@ -339,20 +367,6 @@
                     <div class="notation">Bad CSS</div>
                     <div class="criteria">
                         <div class="table">
-                            <div ng-if="phantomasResults.metrics.cssParsingErrors" class="warning">
-                                <div class="label">CSS syntax error</div>
-                                <div class="result">
-                                    {{phantomasResults.metrics.cssParsingErrors}}
-                                    <show-offenders modal-title="CSS syntax errors" metric-name="cssParsingErrors" phantomas-results="phantomasResults"></show-offenders>
-                                </div>
-                                <div class="info">
-                                    <div class="icon-question" ng-click="cssRulesTooltip = true"></div>
-                                    <modal-dialog show="cssRulesTooltip" dialog-title="Parsing error while analyzing CSS">
-                                        <p>Yellow Lab Tools failed to parse a CSS file. I doubt the problem comes from the css parser.</p>
-                                        <p>Maybe a <a href="http://jigsaw.w3.org/css-validator" target="_blank">CSS validator</a> can help you.</p>
-                                    </modal-dialog>
-                                </div>
-                            </div>
                             <div ng-if="phantomasResults.metrics.cssImports" class="warning">
                                 <div class="label">Uses of @import</div>
                                 <div class="result">

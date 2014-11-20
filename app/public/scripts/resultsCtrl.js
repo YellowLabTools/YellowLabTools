@@ -64,6 +64,19 @@ app.controller('ResultsCtrl', function ($scope) {
             }
         });
 
+        // If there are some CSS parsing errors, prepare the W3C CSS Validator direct URLs
+        if ($scope.phantomasResults.offenders.cssParsingErrors) {
+            $scope.cssW3cDirectUrls = [];
+            $scope.phantomasResults.offenders.cssParsingErrors.forEach(function(errorString, index) {
+                var stylesheet = errorString.split(' ')[0];
+                var w3cUrl = 'http://jigsaw.w3.org/css-validator/validator?profile=css3&usermedium=all&warning=no&vextwarning=true&lang=en&uri=' + encodeURIComponent(stylesheet);
+                $scope.cssW3cDirectUrls.push({
+                    url: stylesheet,
+                    w3c: w3cUrl
+                });
+            });
+        }
+
         // Grab the notes
         $scope.notations = {
             domComplexity: getDomComplexityScore(),
@@ -283,9 +296,7 @@ app.controller('ResultsCtrl', function ($scope) {
     }
 
     function getBadCssScore() {
-        if ($scope.phantomasResults.metrics.cssParsingErrors) {
-            return 'F';
-        } else if (!$scope.phantomasResults.metrics.cssRules) {
+        if (!$scope.phantomasResults.metrics.cssRules) {
             return 'NA';
         }
 
