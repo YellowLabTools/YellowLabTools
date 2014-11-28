@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-//var color = require('colors');
+var debug = require('debug')('ylt:cli');
 
 var YellowLabTools = require('../lib/yellowlabtools');
 
@@ -17,17 +17,17 @@ var url = process.argv[2];
     'use strict';
 
     var ylt = new YellowLabTools(url);
-    console.log('Test launched...');
+    debug('Test launched...');
 
     ylt.
         then(function(data) {
 
-            console.log('Success');
+            debug('Success');
             console.log(JSON.stringify(data, null, 2));
 
         }).fail(function(err) {
             
-            console.error('Test failed for %s', url);
+            debug('Test failed for %s', url);
             console.error(err);
             
         });
