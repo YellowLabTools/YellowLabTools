@@ -31,7 +31,9 @@ module.exports = function(grunt) {
         jshint: {
             all: [
                 '*.js',
-                'app/lib/*',
+                'app/lib/*.js',
+                'bin/*.js',
+                'lib/**/*.js',
                 'app/nodeControllers/*.js',
                 'app/public/scripts/*.js',
                 'phantomas_custom/**/*.js'
@@ -52,9 +54,13 @@ module.exports = function(grunt) {
             }
         },
         blanket: {
-            coverage: {
+            coverageApp: {
                 src: ['app/'],
                 dest: 'coverage/app/'
+            },
+            coverageLib: {
+                src: ['lib/'],
+                dest: 'coverage/lib/'
             }
         },
         mochaTest: {
@@ -62,18 +68,29 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/server/*.js']
+                src: ['coverage/test/api/*.js']
+            },
+            'test-current-work': {
+                options: {
+                    reporter: 'spec',
+                },
+                src: ['coverage/test/api/rulesCheckerTest.js']
             },
             coverage: {
                 options: {
                     reporter: 'html-cov',
-                    // use the quiet flag to suppress the mocha console output
                     quiet: true,
-                    // specify a destination file to capture the mocha
-                    // output (the quiet option does not suppress this)
                     captureFile: 'coverage/coverage.html'
                 },
-                src: ['coverage/test/server/*.js']
+                src: ['coverage/test/api/*.js']
+            }
+        },
+        express: {
+            test: {
+                options: {
+                    port: 8388,
+                    bases: 'test/www'
+                }
             }
         }
     });
@@ -87,7 +104,6 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'jshint',
         'less'
     ]);
 
@@ -96,10 +112,24 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('test', [
+        'build',
+        'jshint',
+        'express:test',
         'clean:coverage',
         'blanket',
         'copy:coverage',
-        'mochaTest'
+        'mochaTest:test',
+        'mochaTest:coverage'
+    ]);
+
+    grunt.registerTask('test-current-work', [
+        'build',
+        'jshint',
+        'express:test',
+        'clean:coverage',
+        'blanket',
+        'copy:coverage',
+        'mochaTest:test-current-work'
     ]);
 
 };

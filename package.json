@@ -5,6 +5,10 @@
     "type": "git",
     "url": "git://github.com/gmetais/YellowLabTools.git"
   },
+  "bin": {
+    "ylt": "./bin/cli.js"
+  },
+  "main": "./lib/yellowlabtools.js",
   "dependencies": {
     "phantomas": "1.7.0",
     "express": "~4.10.1",
@@ -14,18 +18,20 @@
     "compression": "~1.2.0"
   },
   "devDependencies": {
+    "chai": "^1.9.2",
     "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.10.0",
-    "matchdep": "^0.3.0",
-    "grunt-mocha-test": "^0.12.2",
+    "grunt-blanket": "^0.0.8",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.7.0",
-    "grunt-blanket": "^0.0.8",
-    "chai": "^1.9.2",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-express": "^1.4.1",
+    "grunt-fontsmith": "^0.9.1",
+    "grunt-mocha-test": "^0.12.2",
+    "matchdep": "^0.3.0",
     "mocha": "^2.0.1",
     "phantomjs": "^1.9.10",
-    "grunt-fontsmith": "^0.9.1",
-    "grunt-contrib-less": "^0.12.0"
+    "q": "^1.1.2"
   },
   "scripts": {
     "test": "grunt test"

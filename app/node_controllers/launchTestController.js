@@ -9,16 +9,10 @@ var strReplace      = require('../lib/strReplace');
 var launchTestController = function(req, res, testQueue, googleAnalyticsId) {
     'use strict';
 
-    // Generate test id
-    var testId = (Date.now()*1000 + Math.round(Math.random()*1000)).toString(36);
-
     var resultsPath = 'results/' + testId;
     var phantomasResultsPath = resultsPath + '/results.json';
     
     var url = req.body.url;
-    if (url.indexOf('http://') !== 0 && url.indexOf('https://') !== 0) {
-        url = 'http://' + url;
-    }
 
     var options = {};
     if (req.body.timeout) {
