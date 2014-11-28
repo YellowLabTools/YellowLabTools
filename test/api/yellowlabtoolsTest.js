@@ -1,5 +1,10 @@
-var should              = require('chai').should();
+var chai                = require('chai');
+var sinon               = require('sinon');
+var sinonChai           = require('sinon-chai');
+var should              = chai.should();
 var YellowLabTools      = require('../../lib/yellowlabtools.js');
+
+chai.use(sinonChai);
 
 
 describe('yellowlabtools', function() {
@@ -27,6 +32,9 @@ describe('yellowlabtools', function() {
 
     it('succeeds on simple-page.html', function(done) {
         this.timeout(15000);
+
+        // Check if console.log is called
+        sinon.spy(console, 'log')
 
         var url = 'http://localhost:8388/simple-page.html';
 
@@ -66,6 +74,8 @@ describe('yellowlabtools', function() {
                     "abnormalityScore": 0,
                     "offenders": ["body > h1[1]"]
                 });
+
+                console.log.should.not.have.been.called;
 
                 done();
             }).fail(function(err) {
