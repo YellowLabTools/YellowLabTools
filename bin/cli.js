@@ -23,7 +23,7 @@ var url = process.argv[2];
         then(function(data) {
 
             console.log('Success');
-            console.log(JSON.stringify(data.rules, null, 2));
+            console.log(JSON.stringify(data, null, 2));
 
         }).fail(function(err) {
             

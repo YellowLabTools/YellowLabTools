@@ -32,16 +32,40 @@ describe('yellowlabtools', function() {
 
         var ylt = new YellowLabTools(url)
             .then(function(data) {
-                data.should.be.an('object');
-                data.should.have.a.property('url').that.equals(url);
-                
-                data.should.have.a.property('metrics').that.is.an('object');
-                data.metrics.should.have.a.property('requests').that.equals(1);
 
-                data.should.have.a.property('offenders').that.is.an('object');
-                data.offenders.should.have.a.property('DOMelementMaxDepth');
-                data.offenders.DOMelementMaxDepth.should.have.length(1);
-                data.offenders.DOMelementMaxDepth[0].should.equal('body > h1[1]');
+                data.should.be.an('object');
+                data.toolsResults.should.be.an('object');
+                
+                // Test Phantomas
+                data.toolsResults.phantomas.should.be.an('object');
+                data.toolsResults.phantomas.should.have.a.property('url').that.equals(url);
+                data.toolsResults.phantomas.should.have.a.property('metrics').that.is.an('object');
+                data.toolsResults.phantomas.metrics.should.have.a.property('requests').that.equals(1);
+                data.toolsResults.phantomas.should.have.a.property('offenders').that.is.an('object');
+                data.toolsResults.phantomas.offenders.should.have.a.property('DOMelementMaxDepth');
+                data.toolsResults.phantomas.offenders.DOMelementMaxDepth.should.have.length(1);
+                data.toolsResults.phantomas.offenders.DOMelementMaxDepth[0].should.equal('body > h1[1]');
+
+                // Test rules
+                data.should.have.a.property('rules').that.is.an('object');
+
+                data.rules.should.have.a.property('DOMelementMaxDepth').that.is.an('object');
+                data.rules.DOMelementMaxDepth.should.deep.equal({
+                    policy: {
+                        "tool": "phantomas",
+                        "label": "DOM max depth",
+                        "message": "<p>A deep DOM makes the CSS matching with DOM elements difficult.</p><p>It also slows down Javascript modifications to the DOM because changing the dimensions of an element makes the browser re-calculate the dimensions of it's parents. Same thing for Javascript events, that bubble up to the document root.</p>",
+                        "isOkThreshold": 10,
+                        "isBadThreshold": 20,
+                        "isAbnormalThreshold": 30
+                    },
+                    "value": 1,
+                    "bad": false,
+                    "abnormal": false,
+                    "score": 100,
+                    "abnormalityScore": 0,
+                    "offenders": ["body > h1[1]"]
+                });
 
                 done();
             }).fail(function(err) {

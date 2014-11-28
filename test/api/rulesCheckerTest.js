@@ -7,24 +7,12 @@ describe('rulesChecker', function() {
         rulesChecker.should.have.property('check').that.is.a('function');
     });
     
-    it('should produce a nice rules object', function(done) {
+    it('should produce a nice rules object', function() {
         var data = require('../fixtures/rulesCheckerInput.json');
         var policies = require('../fixtures/rulesCheckerPolicies.json');
         var expected = require('../fixtures/rulesCheckerOutput.json');
 
-        var checker = rulesChecker.check(data, policies);
-
-        checker.then(function(results) {
-            try {
-                results.should.deep.equals(expected);
-                done();
-            } catch(e) {
-                done(e);
-            }
-        });
-
-        checker.fail(function(err) {
-            done(err);
-        });
+        var results = rulesChecker.check(data, policies);
+        results.should.deep.equals(expected);
     });
 });

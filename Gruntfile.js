@@ -49,8 +49,10 @@ module.exports = function(grunt) {
         },
         copy: {
             coverage: {
-                src: ['test/**'],
-                dest: 'coverage/'
+                files: [
+                    {src: ['test/**'], dest: 'coverage/'},
+                    {src: ['lib/metadata/**'], dest: 'coverage/'}
+                ]
             }
         },
         blanket: {
@@ -74,7 +76,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/api/rulesCheckerTest.js']
+                src: ['coverage/test/api/yellowlabtoolsTest.js']
             },
             coverage: {
                 options: {
