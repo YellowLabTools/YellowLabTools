@@ -36,7 +36,8 @@ module.exports = function(grunt) {
                 'lib/**/*.js',
                 'app/nodeControllers/*.js',
                 'app/public/scripts/*.js',
-                'phantomas_custom/**/*.js'
+                'phantomas_custom/**/*.js',
+                'test/**/*.js'
             ]
         },
         clean: {
@@ -70,13 +71,13 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/api/*.js']
+                src: ['coverage/test/api/*.js', 'coverage/test/server/*.js']
             },
             'test-current-work': {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/api/yellowlabtoolsTest.js']
+                src: ['coverage/test/server/runsQueueTest.js']
             },
             coverage: {
                 options: {

@@ -34,7 +34,7 @@ describe('yellowlabtools', function() {
         this.timeout(15000);
 
         // Check if console.log is called
-        sinon.spy(console, 'log')
+        sinon.spy(console, 'log');
 
         var url = 'http://localhost:8388/simple-page.html';
 
@@ -75,6 +75,7 @@ describe('yellowlabtools', function() {
                     "offenders": ["body > h1[1]"]
                 });
 
+                /*jshint expr: true*/
                 console.log.should.not.have.been.called;
 
                 done();

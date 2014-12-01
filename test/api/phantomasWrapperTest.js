@@ -23,9 +23,9 @@ describe('phantomasWrapper', function() {
             data.should.have.a.property('generator');
             data.generator.should.contain('phantomas');
             data.should.have.a.property('url').that.equals(url);
-            data.should.have.a.property('metrics').that.is.an('object').not.empty;
-            data.should.have.a.property('offenders').that.is.an('object').not.empty;
-            data.offenders.should.have.a.property('javascriptExecutionTree').that.is.a('array').not.empty;
+            data.should.have.a.property('metrics').that.is.an('object').not.empty();
+            data.should.have.a.property('offenders').that.is.an('object').not.empty();
+            data.offenders.should.have.a.property('javascriptExecutionTree').that.is.a('array').not.empty();
 
             done();
         }).fail(function(err) {
@@ -73,9 +73,9 @@ describe('phantomasWrapper', function() {
             data.should.have.a.property('generator');
             data.generator.should.contain('phantomas');
             data.should.have.a.property('url').that.equals(url);
-            data.should.have.a.property('metrics').that.is.an('object').not.empty;
-            data.should.have.a.property('offenders').that.is.an('object').not.empty;
-            data.offenders.should.have.a.property('javascriptExecutionTree').that.is.a('array').not.empty;
+            data.should.have.a.property('metrics').that.is.an('object').not.empty();
+            data.should.have.a.property('offenders').that.is.an('object').not.empty();
+            data.offenders.should.have.a.property('javascriptExecutionTree').that.is.a('array').not.empty();
 
             done();
         }).fail(function(err) {
