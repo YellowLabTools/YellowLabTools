@@ -71,13 +71,13 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/api/*.js', 'coverage/test/server/*.js']
+                src: ['coverage/test/core/*.js', 'coverage/test/api/*.js']
             },
             'test-current-work': {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/server/runsQueueTest.js']
+                src: ['coverage/test/server/runsDatastoreTest.js']
             },
             coverage: {
                 options: {

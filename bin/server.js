@@ -8,7 +8,7 @@ var bodyParser              = require('body-parser');
 var compress                = require('compression');
 
 app.use(compress());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 // Initialize the controllers
