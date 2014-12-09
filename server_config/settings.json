@@ -1,4 +1,12 @@
 {
     "serverPort": 8383,
-    "googleAnalyticsId": ""
+    "googleAnalyticsId": "",
+
+    "authorizedKeys": {
+        "1234567890": "contact@gaelmetais.com"
+    },
+    "tokenSalt": "lake-city",
+    "authorizedApplications": [
+        "frontend"
+    ]
 }

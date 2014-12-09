@@ -1,7 +1,7 @@
 {
   "name": "yellowlabtools",
   "dependencies": {
-    "angular": "~1.3.1",
+    "angular": "~1.3.5",
     "ngModal": "git://github.com/gmetais/ngModal.git#1.2.3"
   }
 }

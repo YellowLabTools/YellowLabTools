@@ -1,4 +1,12 @@
 {
     "serverPort": 80,
-    "googleAnalyticsId": "UA-54493828-1"
+    "googleAnalyticsId": "UA-54493828-1",
+
+    "authorized-keys": {
+        
+    },
+    "tokenSalt": "",
+    "authorizedApplications": [
+        
+    ]
 }

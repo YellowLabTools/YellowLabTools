@@ -1,5 +1,11 @@
 module.exports = function(grunt) {
 
+    var DEV_SERVER_PORT = 8383;
+    var TEST_SERVER_PORT = 8387;
+
+    // Tell our Express server that Grunt launched it
+    process.env.GRUNTED = true;
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -77,7 +83,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/server/runsDatastoreTest.js']
+                src: ['coverage/test/api/apiTest.js']
             },
             coverage: {
                 options: {
@@ -85,11 +91,25 @@ module.exports = function(grunt) {
                     quiet: true,
                     captureFile: 'coverage/coverage.html'
                 },
-                src: ['coverage/test/api/*.js']
+                src: ['coverage/test/core/*.js', 'coverage/test/api/*.js']
             }
         },
         express: {
-            test: {
+            dev: {
+                options: {
+                    port: 8383,
+                    server: './bin/server.js',
+                    serverreload: true,
+                    showStack: true
+                }
+            },
+            testServer: {
+                options: {
+                    port: 8387,
+                    server: './bin/server.js'
+                }
+            },
+            testSuite: {
                 options: {
                     port: 8388,
                     bases: 'test/www'
@@ -114,10 +134,15 @@ module.exports = function(grunt) {
         'jshint'
     ]);
 
+    grunt.registerTask('dev', [
+        'express:dev'
+    ]);
+
     grunt.registerTask('test', [
         'build',
         'jshint',
-        'express:test',
+        'express:testServer',
+        'express:testSuite',
         'clean:coverage',
         'blanket',
         'copy:coverage',
@@ -128,7 +153,8 @@ module.exports = function(grunt) {
     grunt.registerTask('test-current-work', [
         'build',
         'jshint',
-        'express:test',
+        'express:testServer',
+        'express:testSuite',
         'clean:coverage',
         'blanket',
         'copy:coverage',
