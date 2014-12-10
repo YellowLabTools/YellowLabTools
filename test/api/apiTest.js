@@ -4,10 +4,10 @@ var jwt         = require('jwt-simple');
 
 var config = {
     "authorizedKeys": {
-        "1234567890": "test@test.com"
+        "1234567890": "contact@gaelmetais.com"
     },
-    "tokenSalt": "test-salt",
-    "authorizedApplications": ["wooot"]
+    "tokenSalt": "lake-city",
+    "authorizedApplications": ["frontend"]
 };
 
 var apiUrl = 'http://localhost:8387/api';
