@@ -7,11 +7,14 @@ var server                  = require('http').createServer(app);
 var bodyParser              = require('body-parser');
 var compress                = require('compression');
 
-var authMiddleware          = require('../lib/server/authMiddleware');
+var authMiddleware          = require('../lib/server/middlewares/authMiddleware');
+var apiLimitsMiddleware     = require('../lib/server/middlewares/apiLimitsMiddleware');
+
 
 app.use(compress());
 app.use(bodyParser.json());
 app.use(authMiddleware);
+app.use(apiLimitsMiddleware);
 
 
 // Initialize the controllers

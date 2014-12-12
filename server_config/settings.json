@@ -5,8 +5,6 @@
     "authorizedKeys": {
         "1234567890": "contact@gaelmetais.com"
     },
-    "tokenSalt": "lake-city",
-    "authorizedApplications": [
-        "frontend"
-    ]
+    "maxAnonymousRunsPerDay": 24,
+    "maxAnonymousCallsPerDay": 1000
 }
