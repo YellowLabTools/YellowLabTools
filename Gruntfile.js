@@ -108,12 +108,6 @@ module.exports = function(grunt) {
                     showStack: true
                 }
             },
-            testServer: {
-                options: {
-                    port: 8387,
-                    server: './coverage/bin/server.js'
-                }
-            },
             testSuite: {
                 options: {
                     port: 8388,
@@ -148,7 +142,7 @@ module.exports = function(grunt) {
 
         var outputFile = './coverage/server_config/settings.json';
         grunt.file.write(outputFile, JSON.stringify(testSettings, null, 4));
-        grunt.verbose.ok('File ' + outputFile + ' created');
+        grunt.log.ok('File ' + outputFile + ' created');
     });
 
 
@@ -177,10 +171,9 @@ module.exports = function(grunt) {
     grunt.registerTask('test', [
         'build',
         'jshint',
-        'copy-test-server-settings',
-        'express:testServer',
         'express:testSuite',
         'clean:coverage',
+        'copy-test-server-settings',
         'blanket',
         'copy:coverage',
         'mochaTest:test',
@@ -190,10 +183,9 @@ module.exports = function(grunt) {
     grunt.registerTask('test-current-work', [
         'build',
         'jshint',
-        'copy-test-server-settings',
-        'express:testServer',
         'express:testSuite',
         'clean:coverage',
+        'copy-test-server-settings',
         'blanket',
         'copy:coverage',
         'mochaTest:test-current-work'

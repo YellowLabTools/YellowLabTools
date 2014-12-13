@@ -1,5 +1,5 @@
 {
-    "serverPort": "auto",
+    "serverPort": "8387",
     "googleAnalyticsId": "",
     
     "authorizedKeys": {

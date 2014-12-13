@@ -14,7 +14,12 @@ var wwwUrl = 'http://localhost:8388';
 describe('api', function() {
 
     var runId;
+    var apiServer;
 
+    before(function(done) {
+        apiServer = require('../../bin/server.js');
+        apiServer.startTests = done;
+    });
 
     it('should refuse a query with an invalid key', function(done) {
         this.timeout(5000);
@@ -67,7 +72,7 @@ describe('api', function() {
     });
 
     it('should accept up to 10 anonymous runs to the API', function(done) {
-        this.timeout(15000);
+        this.timeout(5000);
 
         function launchRun() {
             var deferred = Q.defer();
@@ -126,5 +131,8 @@ describe('api', function() {
         
     });
 
-
+    after(function() {
+        console.log('Closing the server');
+        apiServer.close();
+    });
 });

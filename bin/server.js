@@ -20,13 +20,14 @@ var uiController            = require('../lib/server/controllers/uiController')(
 
 
 // Let's start the server!
-if (!process.env.GRUNTED) {
-    // The server is not launched by Grunt
-    var settings = require('../server_config/settings.json');
-    server.listen(settings.serverPort, function() {
-        console.log('Listening on port %d', server.address().port);
-    });
-}
+var settings = require('../server_config/settings.json');
+server.listen(settings.serverPort, function() {
+    console.log('Listening on port %d', server.address().port);
 
-// For Grunt
-module.exports = app;
+    // For the tests
+    if (server.startTests) {
+        server.startTests();
+    }
+});
+
+module.exports = server;
