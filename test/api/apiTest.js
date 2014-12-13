@@ -66,7 +66,7 @@ describe('api', function() {
         });
     });
 
-    it('should accept up to 24 anonymous runs to the API', function(done) {
+    it('should accept up to 10 anonymous runs to the API', function(done) {
         this.timeout(15000);
 
         function launchRun() {
@@ -96,13 +96,6 @@ describe('api', function() {
         .then(launchRun)
         .then(launchRun)
         .then(launchRun)
-        .then(launchRun)
-        .then(launchRun)
-        .then(launchRun)
-        .then(launchRun)
-        .then(launchRun)
-        .then(launchRun)
-        .then(launchRun)
 
         .then(function(response, body) {
             
@@ -110,15 +103,6 @@ describe('api', function() {
             response.statusCode.should.equal(200);
 
             launchRun()
-            .then(launchRun)
-            .then(launchRun)
-            .then(launchRun)
-            .then(launchRun)
-            .then(launchRun)
-            .then(launchRun)
-            .then(launchRun)
-            .then(launchRun)
-            .then(launchRun)
             .then(launchRun)
             .then(launchRun)
             .then(launchRun)

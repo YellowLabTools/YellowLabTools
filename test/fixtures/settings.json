@@ -1,10 +1,10 @@
 {
-    "serverPort": 8383,
+    "serverPort": "auto",
     "googleAnalyticsId": "",
-
+    
     "authorizedKeys": {
         "1234567890": "contact@gaelmetais.com"
     },
-    "maxAnonymousRunsPerDay": 50,
+    "maxAnonymousRunsPerDay": 10,
     "maxAnonymousCallsPerDay": 1000
 }

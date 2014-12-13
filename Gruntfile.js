@@ -58,7 +58,8 @@ module.exports = function(grunt) {
             coverage: {
                 files: [
                     {src: ['test/**'], dest: 'coverage/'},
-                    {src: ['lib/metadata/**'], dest: 'coverage/'}
+                    {src: ['lib/metadata/**'], dest: 'coverage/'},
+                    {src: ['bin/**'], dest: 'coverage/'}
                 ]
             }
         },
@@ -70,6 +71,10 @@ module.exports = function(grunt) {
             coverageLib: {
                 src: ['lib/'],
                 dest: 'coverage/lib/'
+            },
+            coverageBin: {
+                src: ['bin/'],
+                dest: 'coverage/bin/'
             }
         },
         mochaTest: {
@@ -106,7 +111,7 @@ module.exports = function(grunt) {
             testServer: {
                 options: {
                     port: 8387,
-                    server: './bin/server.js'
+                    server: './coverage/bin/server.js'
                 }
             },
             testSuite: {
@@ -117,6 +122,37 @@ module.exports = function(grunt) {
             }
         }
     });
+
+
+    // Custom task: copies the test settings.json file to the coverage folder, and checks if there's no missing fields
+    grunt.registerTask('copy-test-server-settings', function() {
+        var mainSettingsFile = './server_config/settings.json';
+        var testSettingsFile = './test/fixtures/settings.json';
+
+        var mainSettings = grunt.file.readJSON(mainSettingsFile);
+        var testSettings = grunt.file.readJSON(testSettingsFile);
+
+        // Recursively compare keys of two objects (not the values)
+        function compareKeys(original, copy, context) {
+            for (var key in original) {
+                if (!copy[key] && copy[key] !== '' && copy[key] !== 0) {
+                    grunt.fail.warn('Settings file ' + testSettingsFile + ' doesn\'t contain key ' + context + '.' + key);
+                }
+                if (original[key] !== null && typeof original[key] === 'object') {
+                    compareKeys(original[key], copy[key], context + '.' + key);
+                }
+            }
+        }
+
+        compareKeys(mainSettings, testSettings, 'settings');
+
+        var outputFile = './coverage/server_config/settings.json';
+        grunt.file.write(outputFile, JSON.stringify(testSettings, null, 4));
+        grunt.verbose.ok('File ' + outputFile + ' created');
+    });
+
+
+
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -141,6 +177,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', [
         'build',
         'jshint',
+        'copy-test-server-settings',
         'express:testServer',
         'express:testSuite',
         'clean:coverage',
@@ -153,6 +190,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test-current-work', [
         'build',
         'jshint',
+        'copy-test-server-settings',
         'express:testServer',
         'express:testSuite',
         'clean:coverage',
