@@ -1,17 +1,17 @@
-// Config file
-var settings                = require('../server_config/settings.json');
-
 var express                 = require('express');
 var app                     = express();
 var server                  = require('http').createServer(app);
 var bodyParser              = require('body-parser');
 var compress                = require('compression');
 
-var authMiddleware          = require('../lib/server/authMiddleware');
+var authMiddleware          = require('../lib/server/middlewares/authMiddleware');
+var apiLimitsMiddleware     = require('../lib/server/middlewares/apiLimitsMiddleware');
+
 
 app.use(compress());
 app.use(bodyParser.json());
 app.use(authMiddleware);
+app.use(apiLimitsMiddleware);
 
 
 // Initialize the controllers
@@ -20,12 +20,14 @@ var uiController            = require('../lib/server/controllers/uiController')(
 
 
 // Let's start the server!
-if (!process.env.GRUNTED) {
-    // The server is not launched by Grunt
-    server.listen(settings.serverPort, function() {
-        console.log('Listening on port %d', server.address().port);
-    });
-}
+var settings = require('../server_config/settings.json');
+server.listen(settings.serverPort, function() {
+    console.log('Listening on port %d', server.address().port);
 
-// For Grunt
-module.exports = app;
+    // For the tests
+    if (server.startTests) {
+        server.startTests();
+    }
+});
+
+module.exports = server;
