@@ -9,28 +9,28 @@ chai.use(sinonChai);
 
 describe('yellowlabtools', function() {
 
-    it('returns a promise', function() {
+    it('should return a promise', function() {
         var ylt = new YellowLabTools();
 
         ylt.should.have.property('then').that.is.a('function');
         ylt.should.have.property('fail').that.is.a('function');
     });
 
-    it('fails an undefined url', function(done) {
+    it('should fail an undefined url', function(done) {
         var ylt = new YellowLabTools().fail(function(err) {
             err.should.be.a('string').that.equals('URL missing');
             done();
         });
     });
 
-    it('fails with an empty url string', function(done) {
+    it('should fail with an empty url string', function(done) {
         var ylt = new YellowLabTools('').fail(function(err) {
             err.should.be.a('string').that.equals('URL missing');
             done();
         });
     });
 
-    it('succeeds on simple-page.html', function(done) {
+    it('should succeeds on simple-page.html', function(done) {
         this.timeout(15000);
 
         // Check if console.log is called
@@ -62,7 +62,7 @@ describe('yellowlabtools', function() {
                     policy: {
                         "tool": "phantomas",
                         "label": "DOM max depth",
-                        "message": "<p>A deep DOM makes the CSS matching with DOM elements difficult.</p><p>It also slows down Javascript modifications to the DOM because changing the dimensions of an element makes the browser re-calculate the dimensions of it's parents. Same thing for Javascript events, that bubble up to the document root.</p>",
+                        "message": "<p>A deep DOM makes the CSS matching with DOM elements difficult.</p><p>It also slows down JavaScript modifications to the DOM because changing the dimensions of an element makes the browser re-calculate the dimensions of it's parents. Same thing for JavaScript events, that bubble up to the document root.</p>",
                         "isOkThreshold": 10,
                         "isBadThreshold": 20,
                         "isAbnormalThreshold": 30
@@ -74,6 +74,13 @@ describe('yellowlabtools', function() {
                     "abnormalityScore": 0,
                     "offenders": ["body > h1[1]"]
                 });
+
+                // Test javascriptExecutionTree
+                data.toolsResults.phantomas.metrics.should.not.have.a.property('javascriptExecutionTree');
+                data.toolsResults.phantomas.offenders.should.not.have.a.property('javascriptExecutionTree');
+                data.should.have.a.property('javascriptExecutionTree').that.is.an('object');
+                data.javascriptExecutionTree.should.have.a.property('data');
+                data.javascriptExecutionTree.data.should.have.a.property('type').that.equals('main');
 
                 /*jshint expr: true*/
                 console.log.should.not.have.been.called;
