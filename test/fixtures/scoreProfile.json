@@ -1,0 +1,35 @@
+{
+    "categories": {
+        "category1": {
+            "label": "Category 1",
+            "policies": {
+                "metric1": 2,
+                "metric2": 1,
+                "metric3": 0.5,
+                "metric4": 2
+            }
+        },
+        "category2": {
+            "label": "Category 2",
+            "policies": {
+                "metric5": 2,
+                "metric6": 1,
+                "metric7": 0.5,
+                "metric8": 2,
+                "unexistantMetric1": 1
+            }
+        },
+        "category3": {
+            "label": "Category 3",
+            "policies": {
+                "unexistantMetric1": 2,
+                "unexistantMetric2": 1
+            }
+        }
+    },
+    "globalScore": {
+        "category1": 2,
+        "category2": 1,
+        "category3": 0.1
+    }
+}

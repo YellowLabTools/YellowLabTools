@@ -1,0 +1,68 @@
+{
+    "rules": {
+        "metric1": {
+            "policy": {
+                "tool": "tool1",
+                "label": "The metric 1",
+                "message": "A great message",
+                "isOkThreshold": 1000,
+                "isBadThreshold": 3000,
+                "isAbnormalThreshold": 5000
+            },
+            "value": 1236,
+            "bad": true,
+            "abnormal": false,
+            "score": 88,
+            "abnormalityScore": 0
+        },
+        "metric2": {
+            "value": 222,
+            "bad": false,
+            "abnormal": false,
+            "score": 100,
+            "abnormalityScore": 0
+        },
+        "metric3": {
+            "value": 6666,
+            "bad": true,
+            "abnormal": true,
+            "score": 0,
+            "abnormalityScore": -42
+        },
+        "metric4": {
+            "value": 1000,
+            "bad": false,
+            "abnormal": false,
+            "score": 100,
+            "abnormalityScore": 0
+        },
+        "metric5": {
+            "value": 3000,
+            "bad": true,
+            "abnormal": false,
+            "score": 0,
+            "abnormalityScore": 0
+        },
+        "metric6": {
+            "value": 0,
+            "bad": false,
+            "abnormal": false,
+            "score": 100,
+            "abnormalityScore": 0
+        },
+        "metric7": {
+            "value": 5000,
+            "bad": true,
+            "abnormal": true,
+            "score": 0,
+            "abnormalityScore": 0
+        },
+        "metric8": {
+            "value": 22,
+            "bad": true,
+            "abnormal": true,
+            "score": 0,
+            "abnormalityScore": -100
+        }
+    }
+}
