@@ -88,7 +88,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/core/scoreCalculatorTest.js']
+                src: ['coverage/test/api/apiTest.js']
             },
             coverage: {
                 options: {

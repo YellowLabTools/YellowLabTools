@@ -324,6 +324,134 @@ describe('api', function() {
     });
 
 
+    it('should return the generic score object', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '/generalScores',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                body.should.have.a.property('globalScore').that.is.a('number');
+                body.should.have.a.property('categories').that.is.an('object');
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
+    it('should return the generic score object also', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '/generalScores/generic',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                body.should.have.a.property('globalScore').that.is.a('number');
+                body.should.have.a.property('categories').that.is.an('object');
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
+    it('should not find an unknown score object', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '/generalScores/unknown',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 404) {
+                done();
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
+    it('should return the rules', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '/rules',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                
+                var firstRule = body[Object.keys(body)[0]];
+                firstRule.should.have.a.property('policy').that.is.an('object');
+                firstRule.should.have.a.property('value').that.is.a('number');
+                firstRule.should.have.a.property('bad').that.is.a('boolean');
+                firstRule.should.have.a.property('abnormal').that.is.a('boolean');
+                firstRule.should.have.a.property('score').that.is.a('number');
+                firstRule.should.have.a.property('abnormalityScore').that.is.a('number');
+                
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
+    it('should return the javascript execution tree', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '/javascriptExecutionTree',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                
+                body.should.have.a.property('data').that.is.an('object');
+                body.data.should.have.a.property('type').that.equals('main');
+                
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
+    it('should return the phantomas results', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '/toolsResults/phantomas',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                
+                body.should.have.a.property('metrics').that.is.an('object');
+                body.should.have.a.property('offenders').that.is.an('object');
+                
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
     // Stop the server
     after(function() {
         console.log('Closing the server');
