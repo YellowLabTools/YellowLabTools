@@ -16,7 +16,7 @@ app.use(apiLimitsMiddleware);
 
 // Initialize the controllers
 var apiController           = require('../lib/server/controllers/apiController')(app);
-var uiController            = require('../lib/server/controllers/uiController')(app);
+var frontController         = require('../lib/server/controllers/frontController')(app);
 
 
 // Let's start the server!

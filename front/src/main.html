@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>index template</title>
+    <base href="/">
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="/front/js/app.js"></script>
+    <script src="/front/js/controllers/indexCtrl.js"></script>
+    <script src="/front/js/controllers/aboutCtrl.js"></script>
+    <script src="/front/js/controllers/dashboardCtrl.js"></script>
+    <script src="/front/js/models/resultsFactory.js"></script>
+<head>
+<body ng-app="YellowLabTools">
+  <div id="header">hello yellowlab tools, header</div>
+  <div id="body" ng-view>hello yellowlab, body</div>
+  <div id="footer">hello yellowlab, footer</div>
+</body>
+</html>
