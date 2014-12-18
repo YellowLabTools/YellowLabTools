@@ -12,26 +12,29 @@ module.exports = function(grunt) {
         
         font: {
             icons: {
-                src: ['app/public/fonts/svg-icons/*.svg'],
-                destCss: 'app/public/styles/less/icons.less',
-                destFonts: 'app/public/fonts/icons.woff',
+                src: ['front/src/fonts/svg-icons/*.svg'],
+                destCss: 'front/src/less/icons.less',
+                destFonts: 'front/src/fonts/icons.woff',
 
                 // Optional: Custom routing of font filepaths for CSS
                 cssRouter: function (fontpath) {
                     var pathArray = fontpath.split('/');
                     var fileName = pathArray[pathArray.length - 1];
-                    return '/public/fonts/' + fileName;
+                    return '/front/fonts/' + fileName;
                 }
             }
         },
         less: {
             all: {
-                files: {
-                    'app/public/styles/main.css': [ 'app/public/styles/less/main.less' ],
-                    'app/public/styles/index.css': [ 'app/public/styles/less/index.less' ],
-                    'app/public/styles/launchTest.css': [ 'app/public/styles/less/launchTest.less' ],
-                    'app/public/styles/results.css': [ 'app/public/styles/less/results.less' ]
-                }
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'front/src/less/',
+                        src: ['**/*.less'],
+                        dest: 'front/src/css/',
+                        ext: '.css'
+                    }
+                ]
             }
         },
         jshint: {
@@ -50,6 +53,9 @@ module.exports = function(grunt) {
         clean: {
             icons: {
                 src: ['tmp']
+            },
+            dev: {
+                src: ['front/src/css']
             },
             coverage: {
                 src: ['coverage/']
@@ -166,7 +172,8 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('dev', [
-        'express:dev'
+        'clean:dev',
+        'less'
     ]);
 
     grunt.registerTask('test', [

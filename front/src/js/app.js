@@ -2,7 +2,11 @@ var yltApp = angular.module('YellowLabTools', [
     'ngRoute',
     'indexCtrl',
     'aboutCtrl',
-    'dashboardCtrl'
+    'dashboardCtrl',
+    'queueCtrl',
+    'runsFactory',
+    'resultsFactory',
+    'gradeDirective'
 ]);
 
 yltApp.config(['$routeProvider', '$locationProvider',
@@ -12,11 +16,15 @@ yltApp.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'front/views/index.html',
                 controller: 'IndexCtrl'
             }).
+            when('/queue/:runId', {
+                templateUrl: 'front/views/queue.html',
+                controller: 'QueueCtrl'
+            }).
             when('/about', {
                 templateUrl: 'front/views/about.html',
                 controller: 'AboutCtrl'
             }).
-            when('/results/:runId', {
+            when('/result/:runId', {
                 templateUrl: 'front/views/dashboard.html',
                 controller: 'DashboardCtrl'
             }).
