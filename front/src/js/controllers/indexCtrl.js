@@ -12,5 +12,5 @@ indexCtrl.controller('IndexCtrl', ['$scope', '$location', 'Runs', function($scop
             });
             
         }
-    }
+    };
 }]);

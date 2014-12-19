@@ -28,7 +28,7 @@ gradeDirective.directive('grade', function() {
                     return 'E';
                 }
                 return 'F';
-            }
+            };
         }
     };
 });
