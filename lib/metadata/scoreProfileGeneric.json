@@ -25,8 +25,7 @@
                 "evalCalls": 1,
                 "documentWriteCalls": 2,
                 "consoleMessages": 0.5,
-                "globalVariables": 0.5,
-                "inBodyDomManipulations": 1
+                "globalVariables": 0.5
             }
         },
         "jQueryVersion": {
