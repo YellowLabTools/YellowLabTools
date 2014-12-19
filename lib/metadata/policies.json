@@ -313,7 +313,7 @@
     },
     "otherCount": {
         "tool": "phantomas",
-        "label": "Other type of requests",
+        "label": "Other types of requests",
         "message": "<p>They can be Flash, XML, music or any unknown format.</p>",
         "isOkThreshold": 5,
         "isBadThreshold": 20,
