@@ -1,0 +1,479 @@
+/* Timeline colors, related to Window Performances */
+.resultsMenu {
+  margin-top: 2em;
+}
+.resultsMenu .menuItem {
+  display: inline-block;
+  margin: 1em;
+  width: 8em;
+  height: 7em;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 0.5em;
+  cursor: pointer;
+  text-decoration: none;
+}
+.resultsMenu .back {
+  color: #5e2846;
+  border-color: #5e2846;
+}
+.resultsMenu .menuItem div {
+  padding-top: 0.5em;
+  font-size: 3em;
+}
+.resultsMenu .active,
+.resultsMenu .menuItem.active:hover {
+  color: #ffa319;
+  border-color: #ffa319;
+}
+.resultsMenu .menuItem:hover {
+  color: #ffa319;
+}
+.resultsMenu span {
+  position: relative;
+  top: 0.5em;
+}
+.testedUrl {
+  color: inherit;
+}
+h4 {
+  margin-bottom: 0.5em;
+}
+.summary,
+.metrics,
+.execution {
+  margin-top: 2em;
+  padding: 1em;
+  background: #fff;
+  color: #000;
+  border-radius: 0.5em;
+  text-align: left;
+}
+.notations {
+  display: table;
+  width: 90%;
+  margin: 0 10%;
+  border-spacing: 1em;
+}
+.notations > div {
+  display: table-row;
+}
+.notations > div > div {
+  display: table-cell;
+  height: 2.5em;
+  vertical-align: middle;
+}
+.notations .notation {
+  font-weight: bold;
+  text-align: center;
+}
+.notations .criteria {
+  font-weight: normal;
+}
+.notations .A,
+.notations .B,
+.notations .C,
+.notations .D,
+.notations .E,
+.notations .F,
+.notations .NA {
+  width: 2.5em;
+  font-size: 2em;
+  text-align: center;
+  border-radius: 0.5em;
+  font-weight: bold;
+}
+.notations .grade .A,
+.notations .grade .B,
+.notations .grade .C,
+.notations .grade .D,
+.notations .grade .E,
+.notations .grade .F,
+.notations .grade .NA {
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  color: transparent;
+  position: relative;
+  top: 0.15em;
+}
+.notations .A {
+  /* green */
+  background: #00DB61;
+}
+.notations .B {
+  /* green */
+  background: #CAD600;
+}
+.notations .C {
+  /* yellow */
+  background: #FFD119;
+}
+.notations .D {
+  /* orange */
+  background: #FFA319;
+}
+.notations .E {
+  /* red */
+  background: #FF6600;
+}
+.notations .F {
+  /* red */
+  background: #FF1919;
+}
+.notations .NA {
+  /* Non applicable */
+  background: #CCC;
+}
+.notations .icon-eye {
+  color: #9c4274;
+  cursor: pointer;
+}
+.notations .criteria .table {
+  width: 75%;
+}
+.notations .criteria .label {
+  width: 70%;
+}
+.notations .criteria .result {
+  width: 20%;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+}
+.notations .warning .label,
+.notations .warning .result {
+  color: #FF1919;
+}
+.notations .criteria .info {
+  width: 10%;
+  text-align: center;
+}
+.notations .criteria .icon-question {
+  color: #f1c40f;
+  cursor: pointer;
+}
+.timeline {
+  margin: 2em 0 5em;
+}
+.timeline .chart {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+.timeline .startTime,
+.timeline .endTime {
+  position: absolute;
+  bottom: 0.5em;
+  font-size: 0.8em;
+}
+.timeline .startTime {
+  left: 0em;
+}
+.timeline .endTime {
+  right: 0em;
+}
+.timeline .chartPoints {
+  display: table;
+  height: 100px;
+  width: 99%;
+  margin: 0 auto;
+}
+.timeline .interval {
+  display: table-cell;
+  position: relative;
+  height: 100px;
+  width: 0.5%;
+}
+.timeline .interval .color {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.timeline div.interval:hover {
+  background: #9C4274;
+}
+.timeline .interval:hover .color {
+  background: #F04DA7;
+}
+.timeline .domComplete.interval {
+  background: #ede3ff;
+}
+.timeline .domComplete .color {
+  background: #c2a3ff;
+}
+.timeline .domContentLoadedEnd.interval {
+  background: #d8f0f0;
+}
+.timeline .domContentLoadedEnd .color {
+  background: #7ecccc;
+}
+.timeline .domContentLoaded.interval {
+  background: #e0ffd1;
+}
+.timeline .domContentLoaded .color {
+  background: #a7e846;
+}
+.timeline .domInteractive.interval {
+  background: #fffccc;
+}
+.timeline .domInteractive .color {
+  background: #ffe433;
+}
+.timeline .domCreation.interval {
+  background: #ffe0cc;
+}
+.timeline .domCreation .color {
+  background: #ff6600;
+}
+.timeline .tooltip.detailsOverlay {
+  position: absolute;
+  display: none;
+  width: auto;
+  padding: 0.5em 1em;
+  top: -1.5em;
+  right: 1em;
+}
+.timeline .interval:hover .tooltip {
+  display: block;
+}
+.timeline .legend {
+  display: table;
+  width: 100%;
+  margin-top: 1em;
+}
+.timeline .legend > div {
+  display: table-row;
+}
+.timeline .legend > div > div {
+  position: relative;
+  display: table-cell;
+  margin-top: 1em;
+}
+.timeline .titles {
+  font-weight: bold;
+}
+.timeline .titles > div {
+  padding: 0 1em 0 2em;
+}
+.timeline .tips {
+  font-size: 0.7em;
+}
+.timeline .tips > div {
+  padding: 1em 1em 0 0;
+}
+.timeline .legend .color {
+  display: block;
+  position: absolute;
+  left: 0;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 0.2em;
+}
+.metrics h4 {
+  padding-left: 2em;
+}
+.metrics .module {
+  padding-left: 4em;
+  padding-top: 0.5em;
+}
+.metrics .legend {
+  font-style: italic;
+  color: #aaa;
+}
+.metrics .offenders {
+  padding-left: 0em;
+  font-size: 0.8em;
+}
+.metrics .offenders div {
+  cursor: pointer;
+}
+.metrics .offenders ul {
+  margin-top: 0.5em;
+}
+.filters {
+  margin: 1em 0;
+  padding: 0.5em;
+  border: 1px dotted #aaa;
+}
+.slowRequestsLimit {
+  width: 3em;
+  font-size: 1em;
+  text-align: right;
+  border: 1px solid #aaa;
+}
+input.textFilter {
+  box-shadow: none;
+  font-size: 1em;
+  padding: 0 0.2em;
+  border: 1px solid #aaa;
+  border-radius: none;
+  width: 15em;
+}
+.table {
+  display: table;
+  width: 100%;
+  border-spacing: 0.25em;
+}
+.table > div {
+  display: table-row;
+}
+.table > .headers > div {
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+.table > div > div {
+  padding: 0.1em 1em;
+  background: #f2f2f2;
+  display: table-cell;
+  text-align: left;
+}
+.table > div.jsError > .type,
+.table > div.jsError > .value {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.table > div.windowPerformance > div,
+.table > div.windowPerformance > div.startTime {
+  background: #EBD8E2;
+}
+.table > div.showingDetails > div {
+  background: #f1c40f;
+}
+.table > div > .index {
+  color: #bbb;
+}
+.table > div > .type {
+  white-space: nowrap;
+}
+.table > div > .value {
+  width: 70%;
+  word-break: break-all;
+}
+.table > div > .details {
+  position: relative;
+}
+.table .details .icon-question {
+  color: #f1c40f;
+  cursor: pointer;
+}
+.table .details .icon-warning {
+  cursor: pointer;
+}
+.detailsOverlay {
+  position: absolute;
+  right: 3em;
+  top: -3em;
+  width: 45em;
+  min-height: 1em;
+  padding: 0 1em 1em;
+  background: #fff;
+  border: 2px solid #f1c40f;
+  border-radius: 0.5em;
+  z-index: 1;
+}
+@media screen and (max-width: 1024px) {
+  .detailsOverlay {
+    width: 25em;
+  }
+}
+.detailsOverlay .closeBtn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  color: #f1c40f;
+  cursor: pointer;
+}
+.detailsOverlay .advice {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.detailsOverlay .trace {
+  word-break: break-all;
+}
+.table > div > .duration,
+.table > div > .startTime {
+  text-align: center;
+  white-space: nowrap;
+}
+.table > div > .startTime.domComplete {
+  background: #ede3ff;
+}
+.table > div > .startTime.domContentLoadedEnd {
+  background: #d8f0f0;
+}
+.table > div > .startTime.domContentLoaded {
+  background: #e0ffd1;
+}
+.table > div > .startTime.domInteractive {
+  background: #fffccc;
+}
+.table > div > .startTime.domCreation {
+  background: #ffe0cc;
+}
+.table .icon-warning {
+  color: #e74c3c;
+}
+/**** NgModal popin (have a look inside bower_components) ****/
+.ng-modal {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+.ng-modal-overlay {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+}
+.ng-modal-dialog {
+  z-index: 10000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 10px;
+  border: 3px solid #f1c40f;
+  border-radius: 0.5em;
+  color: #000;
+}
+.ng-modal-dialog-content {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  word-wrap: break-word;
+  max-height: 20em;
+  font-weight: normal;
+  white-space: normal;
+}
+.ng-modal-close {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  padding: 5px;
+  display: inline-block;
+}
+.ng-modal-close-x {
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+.ng-modal-title {
+  font-weight: bold;
+  font-size: 1.5em;
+  display: block;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+  border-bottom: solid 1px #999;
+}

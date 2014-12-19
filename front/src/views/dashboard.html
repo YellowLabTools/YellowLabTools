@@ -1,2 +1,19 @@
-<div>{{dashboard}}</div>
-<div>{{runId}}</div>
+<div class="summary">
+    <h2>Grades</h2>
+
+    <div class="notations">
+        <div ng-repeat="category in result.scoreProfiles.generic.categories">
+            <grade score="category.categoryScore"></grade>
+            <div class="notation">{{category.label}}</div>
+            <div class="criteria">
+                <div class="table">
+                    <div ng-repeat="ruleName in category.rules" ng-init="rule = result.rules[ruleName]" ng-class="{'warning': 1 > 5000}">
+                        <div class="grade"><grade score="rule.score"></grade></div>
+                        <div class="label">{{rule.policy.label}}</div>
+                        <div class="result">{{rule.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

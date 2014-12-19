@@ -1,0 +1,139 @@
+@font-face {
+  font-family: "fontsmith-icons";
+  src: url("/front/fonts/icons.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  margin: 100px 50px;
+}
+body {
+  margin: 0 auto;
+  max-width: 1280px;
+  background: #9c4274;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+body,
+input[type=submit],
+input[type=text],
+input[type=url],
+input[type=number],
+button {
+  font-family: 'Century Gothic', helvetica, arial, sans-serif;
+}
+input[type=submit] {
+  cursor: pointer;
+}
+h1 span {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  color: #ffa319;
+}
+.footer {
+  padding: 3em;
+  color: #4e1836;
+}
+.footer a {
+  color: inherit;
+}
+.footer .star {
+  font-weight: bold;
+}
+.footer .star span {
+  font-size: 1.2em;
+}
+/* Icons */
+.icon-lab {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-lab:before {
+  content: "\e003";
+}
+.icon-question {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-question:before {
+  content: "\e001";
+}
+.icon-warning {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-warning:before {
+  content: "\e000";
+}
+.icon-back {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-back:before {
+  content: "\e006";
+}
+.icon-summary {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-summary:before {
+  content: "\e002";
+}
+.icon-spaghetti {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-spaghetti:before {
+  content: "\e005";
+}
+.icon-eye {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-eye:before {
+  content: "\e004";
+}

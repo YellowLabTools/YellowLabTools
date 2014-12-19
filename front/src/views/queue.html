@@ -1,0 +1,8 @@
+<div class="status" ng-if="status.statusCode == 'failed'">Test failed</div>
+<div class="status" ng-if="status.statusCode == 'awaiting'">
+    <ng-pluralize count="status.position" when="{
+                     'one': 'Waiting behind 1 other test',
+                     'other': 'Waiting behind {} other tests'}">
+    </ng-pluralize></div>
+<div class="status" ng-if="status.statusCode == 'running'">Test is running...</div>
+<div class="status" ng-if="status.statusCode == 'complete'">Test complete</div>

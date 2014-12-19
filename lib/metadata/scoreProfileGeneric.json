@@ -69,7 +69,7 @@
         "requests": {
             "label": "Requests number",
             "policies": {
-                "request": 5,
+                "requests": 5,
                 "htmlCount": 0,
                 "jsCount": 1,
                 "cssCount": 1,
