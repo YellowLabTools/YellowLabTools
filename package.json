@@ -1,6 +1,6 @@
 {
   "name": "yellowlabtools",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/gmetais/YellowLabTools.git"
@@ -17,7 +17,7 @@
     "express": "~4.10.4",
     "phantomas": "1.7.0",
     "rimraf": "^2.2.8",
-    "socket.io": "~1.2.0"
+    "q": "^1.1.2"
   },
   "devDependencies": {
     "chai": "^1.10.0",
@@ -33,7 +33,6 @@
     "matchdep": "^0.3.0",
     "mocha": "^2.0.1",
     "phantomjs": "^1.9.12",
-    "q": "^1.1.2",
     "request": "^2.49.0",
     "sinon": "^1.12.1",
     "sinon-chai": "^2.6.0"
