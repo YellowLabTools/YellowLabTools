@@ -7,8 +7,10 @@
             <div class="notation">{{category.label}}</div>
             <div class="criteria">
                 <div class="table">
-                    <div ng-repeat="ruleName in category.rules" ng-init="rule = result.rules[ruleName]" ng-class="{'warning': 1 > 5000}">
-                        <div class="grade"><grade score="rule.score"></grade></div>
+                    <div ng-repeat="ruleName in category.rules" ng-init="rule = result.rules[ruleName]" ng-class="{'warning': rule.abnormal}">
+                        <div class="grade">
+                            <grade score="rule.score"></grade>
+                        </div>
                         <div class="label">{{rule.policy.label}}</div>
                         <div class="result">{{rule.value}}</div>
                     </div>
