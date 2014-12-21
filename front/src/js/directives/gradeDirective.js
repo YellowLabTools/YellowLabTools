@@ -11,7 +11,6 @@ gradeDirective.directive('grade', function() {
         replace: true,
         controller : function($scope) {
             $scope.getGrade = function(score) {
-                console.log(score);
                 if (score >= 85) {
                     return 'A';
                 }
