@@ -6,7 +6,8 @@ var yltApp = angular.module('YellowLabTools', [
     'queueCtrl',
     'runsFactory',
     'resultsFactory',
-    'gradeDirective'
+    'menuService',
+    'gradeDirective',
 ]);
 
 yltApp.config(['$routeProvider', '$locationProvider',
