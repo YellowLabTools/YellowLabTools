@@ -67,7 +67,7 @@ h4 {
 
 .notations {
     display: table;
-    width: 90%;
+    width: 80%;
     margin: 0 10%;
     border-spacing: 1em;
 }
@@ -79,16 +79,20 @@ h4 {
     height: 2.5em;
     vertical-align: middle;
 }
-.notations .notation {
+.notations .category {
     font-weight: bold;
     text-align: center;
+    width: 20%;
 }
 .notations .criteria {
     font-weight: normal;
+    width: 75%;
 }
 .A, .B, .C, .D, .E, .F, .NA {
-    .notations & {
+    .notations &.categoryScore {
         width: 2.5em;
+        max-width: 2.5em;
+        min-width: 2.5em;
         font-size: 2em;
         text-align: center;
         border-radius: 0.5em;
@@ -100,6 +104,7 @@ h4 {
         font-size: 1em;
         color: transparent;
         margin: 0 auto;
+        border-radius: 0.5em;
     }
 }
 .notations .A {
@@ -130,13 +135,19 @@ h4 {
     /* Non applicable */
     background: #CCC;
 }
-.notations .icon-eye {
-    color: #9c4274;
-    cursor: pointer;
-}
 
 .notations .criteria .table {
-    width: 75%;
+    width: 100%;
+    > div:hover > div {
+        background: #F1C40F;
+        cursor: pointer;
+        &.info {
+            background: #FFF;
+            .icon-question {
+                color: #F1C40F;
+            }
+        }
+    }
 }
 .notations .criteria .grade {
     width: 10%;
@@ -148,22 +159,25 @@ h4 {
     width: 70%;
 }
 .notations .criteria .result {
-    width: 20%;
+    width: 18%;
     font-weight: bold;
     white-space: nowrap;
     text-align: center;
     vertical-align: middle;
 }
-.notations .warning .label, .notations .warning .result {
+.notations .warning .label, .notations .warning .result, .notations .icon-warning {
     color: #FF1919;
 }
 .notations .criteria .info {
-    width: 10%;
+    width: 2%;
     text-align: center;
+    vertical-align: middle;
+    background: #FFF;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
 }
 .notations .criteria .icon-question {
-    color: #f1c40f;
-    cursor: pointer;
+    color: transparent;
 }
 
 
@@ -387,8 +401,9 @@ input.textFilter {
     color: #f1c40f;
     cursor: pointer;
 }
-.table .details .icon-warning {
-    cursor: pointer;
+.table .icon-warning {
+    display: inline-block;
+    width: 0.8em;
 }
 
 .detailsOverlay {
@@ -441,10 +456,6 @@ input.textFilter {
 }
 .table > div > .startTime.domCreation {
     background: @domCreationBg;
-}
-
-.table .icon-warning {
-    color: #e74c3c;
 }
 
 

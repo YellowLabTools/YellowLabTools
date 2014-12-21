@@ -1,6 +1,6 @@
 var dashboardCtrl = angular.module('dashboardCtrl', ['resultsFactory', 'menuService']);
 
-dashboardCtrl.controller('DashboardCtrl', ['$scope', '$routeParams', 'Results', 'Menu', function($scope, $routeParams, Results, Menu) {
+dashboardCtrl.controller('DashboardCtrl', ['$scope', '$routeParams', '$location', 'Results', 'Menu', function($scope, $routeParams, $location, Results, Menu) {
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage('dashboard', $scope.runId);
     
@@ -8,4 +8,8 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$routeParams', 'Results', 
         $scope.result = result;
         console.log(result);
     });
+
+    $scope.showRulePage = function(ruleName) {
+        $location.path('/result/' + $scope.runId + '/rule/' + ruleName);
+    };
 }]);

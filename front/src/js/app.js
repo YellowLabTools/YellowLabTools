@@ -29,6 +29,14 @@ yltApp.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'front/views/dashboard.html',
                 controller: 'DashboardCtrl'
             }).
+            when('/result/:runId/timeline', {
+                templateUrl: 'front/views/timeline.html',
+                controller: 'TimelineCtrl'
+            }).
+            when('/result/:runId/rule/:policy', {
+                templateUrl: 'front/views/rule.html',
+                controller: 'RuleCtrl'
+            }).
             otherwise({
                 redirectTo: '/'
             });
