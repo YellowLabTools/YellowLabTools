@@ -29,6 +29,6 @@ menuService.factory('Menu', ['$location', function($location) {
                     console.err('Undefined Menu.changePage() destination');
             }
         }
-    }
+    };
 
 }]);
