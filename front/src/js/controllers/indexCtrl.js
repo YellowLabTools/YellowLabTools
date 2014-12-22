@@ -7,7 +7,6 @@ indexCtrl.controller('IndexCtrl', ['$scope', '$location', 'Runs', function($scop
                 url: $scope.url,
                 waitForResponse: false
             }, function(data) {
-                console.log(data);
                 $location.path('/queue/' + data.runId);
             });
             
