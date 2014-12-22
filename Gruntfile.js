@@ -115,6 +115,13 @@ module.exports = function(grunt) {
                     showStack: true
                 }
             },
+            test: {
+                options: {
+                    port: 8387,
+                    server: './coverage/bin/server.js',
+                    showStack: true
+                }
+            },
             testSuite: {
                 options: {
                     port: 8388,
@@ -184,6 +191,7 @@ module.exports = function(grunt) {
         'copy-test-server-settings',
         'blanket',
         'copy:coverage',
+        'express:test',
         'mochaTest:test',
         'mochaTest:coverage'
     ]);

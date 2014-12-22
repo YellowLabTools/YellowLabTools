@@ -16,14 +16,6 @@ describe('api', function() {
 
     var syncRunResultUrl;
     var asyncRunId;
-    var apiServer;
-
-
-    // Start the server
-    before(function(done) {
-        apiServer = require('../../bin/server.js');
-        apiServer.startTests = done;
-    });
 
 
     it('should refuse a query with an invalid key', function(done) {
@@ -451,10 +443,4 @@ describe('api', function() {
         });
     });
 
-
-    // Stop the server
-    after(function() {
-        console.log('Closing the server');
-        apiServer.close();
-    });
 });

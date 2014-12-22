@@ -20,14 +20,16 @@ var frontController         = require('../lib/server/controllers/frontController
 
 
 // Let's start the server!
-var settings = require('../server_config/settings.json');
-server.listen(settings.serverPort, function() {
-    console.log('Listening on port %d', server.address().port);
+if (!process.env.GRUNTED) {
+    var settings = require('../server_config/settings.json');
+    server.listen(settings.serverPort, function() {
+        console.log('Listening on port %d', server.address().port);
 
-    // For the tests
-    if (server.startTests) {
-        server.startTests();
-    }
-});
+        // For the tests
+        if (server.startTests) {
+            server.startTests();
+        }
+    });
+}
 
-module.exports = server;
+module.exports = app;
