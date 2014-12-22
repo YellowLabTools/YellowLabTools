@@ -1,5 +1,5 @@
 <div ng-include="'/front/views/resultSubHeader.html'"></div>
-<div class="execution">
+<div class="execution board">
     <h2>Javascript Timeline</h2>
     <p>This graph gives a quick view of when the Javascript interactions with the DOM occur during the loading of the page.</p>
 
@@ -144,4 +144,6 @@
             <div class="startTime" ng-class="node.data.loadingStep">{{node.data.timestamp | number: 0}} ms</div>
         </div>
     </div>
+
+    <div class="backToDashboard"><a href="#" ng-click="backToDashboard()">Back to dashboard</a></div>
 </div>

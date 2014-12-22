@@ -32,9 +32,89 @@ h1 span {
   width: 1em;
   color: #ffa319;
 }
+.resultsMenu {
+  margin-top: 2em;
+}
+.resultsMenu .menuItem {
+  display: inline-block;
+  margin: 1em;
+  width: 8em;
+  height: 7em;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 0.5em;
+  cursor: pointer;
+  text-decoration: none;
+}
+.resultsMenu .back {
+  color: #413;
+  border-color: #413;
+}
+.resultsMenu .menuItem div {
+  padding-top: 0.5em;
+  font-size: 3em;
+}
+.resultsMenu .active,
+.resultsMenu .menuItem.active:hover {
+  color: #ffa319;
+  border-color: #ffa319;
+}
+.resultsMenu .menuItem:hover {
+  color: #ffa319;
+}
+.resultsMenu span {
+  position: relative;
+  top: 0.5em;
+}
+/* Grade colors */
+.A {
+  /* green */
+  background: #0C4;
+}
+.B {
+  /* green */
+  background: #CD0;
+}
+.C {
+  /* yellow */
+  background: #FD2;
+}
+.D {
+  /* orange */
+  background: #FA2;
+}
+.E {
+  /* red */
+  background: #F60;
+}
+.F {
+  /* red */
+  background: #F22;
+}
+.NA {
+  /* Non applicable */
+  background: #CCC;
+}
+.board {
+  margin-top: 2em;
+  padding: 1em;
+  background: #fff;
+  color: #000;
+  border-radius: 0.5em;
+  text-align: left;
+}
+.backToDashboard {
+  text-align: center;
+}
+.backToDashboard a {
+  font-size: 0.9em;
+  display: block;
+  margin-top: 4em;
+  color: black;
+}
 .footer {
   padding: 3em;
-  color: #000;
+  color: #413;
 }
 .footer a {
   color: inherit;

@@ -1,6 +1,6 @@
 var timelineCtrl = angular.module('timelineCtrl', []);
 
-timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams', '$timeout', 'Menu', 'Results', function($scope, $rootScope, $routeParams, $timeout, Menu, Results) {
+timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'Menu', 'Results', function($scope, $rootScope, $routeParams, $location, $timeout, Menu, Results) {
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage('timeline', $scope.runId);
 
@@ -125,6 +125,10 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
 
         }
         node.showDetails = !isOpen;
+    };
+
+    $scope.backToDashboard = function() {
+        $location.path('/result/' + $scope.runId);
     };
 
     loadResults();

@@ -1,0 +1,58 @@
+.rule.board {
+  text-align: center;
+}
+.rule h2 span {
+  font-size: 1.5em;
+}
+.rule .scoreDisplay {
+  display: table;
+  border-spacing: 1em;
+  margin: 0 auto;
+}
+.rule .scoreDisplay > div {
+  display: table-cell;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.rule .scoreDisplay > div.score {
+  font-size: 2.5em;
+  height: 2em;
+  width: 2em;
+  border-radius: 0.5em;
+}
+.rule h3 {
+  margin-top: 2.5em;
+}
+.rule .icon-warning {
+  font-size: 2em;
+  color: #FF1919;
+}
+.rule .message {
+  width: 80%;
+  margin: 0 auto;
+}
+.rule .message p {
+  margin: 0.5em;
+}
+.rule ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.rule li:before {
+  content: '\25e6';
+  margin-right: 0.3em;
+  font-size: 1.2em;
+  position: relative;
+  top: 0.1em;
+}
+.rule .offenders li {
+  font-size: 0.8em;
+}
+.rule .notFound {
+  font-size: 1em;
+}
+.rule .notFound h2 {
+  font-size: 3em;
+  margin-bottom: 1em;
+}

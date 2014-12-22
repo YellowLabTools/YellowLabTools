@@ -1,0 +1,39 @@
+<div ng-include="'/front/views/resultSubHeader.html'"></div>
+<div class="rule board">
+    <div ng-if="rule">
+        <h2>Score for rule:<br><span>{{rule.policy.label}}</span></h2>
+        
+        <div class="scoreDisplay">
+            <grade score="rule.score" class="score"></grade>
+            <div>{{rule.score}}/100</div>
+        </div>
+        <div ng-if="rule.abnormal">
+            <h3>The page has a real problem with this rule</h3>
+            <span class="icon-warning"></span>
+            <span ng-if="rule.abnormalityScore <= -100" class="icon-warning"></span>
+            <span ng-if="rule.abnormalityScore <= -300" class="icon-warning"></span>
+            <p>(Abnormality score: {{rule.abnormalityScore}})</p>
+        </div>
+
+        <h3>Value</h3>
+        {{rule.value}}
+
+        <h3>Why this rule?</h3>
+        <div ng-bind-html="message" class="message"></div>
+
+        <div class="offenders" ng-if="rule.offenders.length > 0">
+            <h3>List of offenders</h3>
+            <ul>
+                <li ng-repeat="offender in rule.offenders track by $index">
+                    {{offender}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-if="!rule && rule !== null" class="notFound">
+        <h2>404</h2>
+        Rule "{{policyName}}"" not found
+    </div>
+
+    <div class="backToDashboard"><a href="#" ng-click="backToDashboard()">Back to dashboard</a></div>
+</div>
