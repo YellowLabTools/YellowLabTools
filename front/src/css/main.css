@@ -112,18 +112,18 @@ h1 span {
   margin-top: 4em;
   color: black;
 }
+.star {
+  font-weight: bold;
+}
+.star span {
+  font-size: 1.2em;
+}
 .footer {
   padding: 3em;
   color: #413;
 }
 .footer a {
   color: inherit;
-}
-.footer .star {
-  font-weight: bold;
-}
-.footer .star span {
-  font-size: 1.2em;
 }
 /* Icons */
 .icon-lab {
