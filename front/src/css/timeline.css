@@ -1,0 +1,243 @@
+/* Timeline colors, related to Window Performances */
+.timeline {
+  margin: 2em 0 5em;
+}
+.timeline .chart {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+.timeline .startTime,
+.timeline .endTime {
+  position: absolute;
+  bottom: 0.5em;
+  font-size: 0.8em;
+}
+.timeline .startTime {
+  left: 0em;
+}
+.timeline .endTime {
+  right: 0em;
+}
+.timeline .chartPoints {
+  display: table;
+  height: 100px;
+  width: 99%;
+  margin: 0 auto;
+}
+.timeline .interval {
+  display: table-cell;
+  position: relative;
+  height: 100px;
+  width: 0.5%;
+}
+.timeline .interval .color {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.timeline div.interval:hover {
+  background: #9C4274;
+}
+.timeline .interval:hover .color {
+  background: #F04DA7;
+}
+.timeline .domComplete.interval {
+  background: #ede3ff;
+}
+.timeline .domComplete .color {
+  background: #c2a3ff;
+}
+.timeline .domContentLoadedEnd.interval {
+  background: #d8f0f0;
+}
+.timeline .domContentLoadedEnd .color {
+  background: #7ecccc;
+}
+.timeline .domContentLoaded.interval {
+  background: #e0ffd1;
+}
+.timeline .domContentLoaded .color {
+  background: #a7e846;
+}
+.timeline .domInteractive.interval {
+  background: #fffccc;
+}
+.timeline .domInteractive .color {
+  background: #ffe433;
+}
+.timeline .domCreation.interval {
+  background: #ffe0cc;
+}
+.timeline .domCreation .color {
+  background: #ff6600;
+}
+.timeline .tooltip.detailsOverlay {
+  position: absolute;
+  display: none;
+  width: auto;
+  padding: 0.5em 1em;
+  top: -1.5em;
+  right: 1em;
+}
+.timeline .interval:hover .tooltip {
+  display: block;
+}
+.timeline .legend {
+  display: table;
+  width: 100%;
+  margin-top: 1em;
+}
+.timeline .legend > div {
+  display: table-row;
+}
+.timeline .legend > div > div {
+  position: relative;
+  display: table-cell;
+  margin-top: 1em;
+}
+.timeline .titles {
+  font-weight: bold;
+}
+.timeline .titles > div {
+  padding: 0 1em 0 2em;
+}
+.timeline .tips {
+  font-size: 0.7em;
+}
+.timeline .tips > div {
+  padding: 1em 1em 0 0;
+}
+.timeline .legend .color {
+  display: block;
+  position: absolute;
+  left: 0;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 0.2em;
+}
+.filters {
+  margin: 1em 0;
+  padding: 0.5em;
+  border: 1px dotted #aaa;
+}
+.slowRequestsLimit {
+  width: 3em;
+  font-size: 1em;
+  text-align: right;
+  border: 1px solid #aaa;
+}
+input.textFilter {
+  box-shadow: none;
+  font-size: 1em;
+  padding: 0 0.2em;
+  border: 1px solid #aaa;
+  border-radius: none;
+  width: 15em;
+}
+.table {
+  display: table;
+  width: 100%;
+  border-spacing: 0.25em;
+}
+.table > div {
+  display: table-row;
+}
+.table > .headers > div {
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+.table > div > div {
+  padding: 0.1em 1em;
+  background: #f2f2f2;
+  display: table-cell;
+  text-align: left;
+}
+.table > div.jsError > .type,
+.table > div.jsError > .value {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.table > div.windowPerformance > div,
+.table > div.windowPerformance > div.startTime {
+  background: #EBD8E2;
+}
+.table > div.showingDetails > div {
+  background: #f1c40f;
+}
+.table > div > .index {
+  color: #bbb;
+}
+.table > div > .type {
+  white-space: nowrap;
+}
+.table > div > .value {
+  width: 70%;
+  word-break: break-all;
+}
+.table > div > .details {
+  position: relative;
+}
+.table .details .icon-question {
+  color: #f1c40f;
+  cursor: pointer;
+}
+.table .icon-warning {
+  display: inline-block;
+  width: 0.8em;
+}
+.detailsOverlay {
+  position: absolute;
+  right: 3em;
+  top: -3em;
+  width: 45em;
+  min-height: 1em;
+  padding: 0 1em 1em;
+  background: #fff;
+  border: 2px solid #f1c40f;
+  border-radius: 0.5em;
+  z-index: 1;
+}
+@media screen and (max-width: 1024px) {
+  .detailsOverlay {
+    width: 25em;
+  }
+}
+.detailsOverlay .closeBtn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  color: #f1c40f;
+  cursor: pointer;
+}
+.detailsOverlay .advice {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.detailsOverlay .trace {
+  word-break: break-all;
+}
+.table > div > .duration,
+.table > div > .startTime {
+  text-align: center;
+  white-space: nowrap;
+}
+.table > div > .startTime.domComplete {
+  background: #ede3ff;
+}
+.table > div > .startTime.domContentLoadedEnd {
+  background: #d8f0f0;
+}
+.table > div > .startTime.domContentLoaded {
+  background: #e0ffd1;
+}
+.table > div > .startTime.domInteractive {
+  background: #fffccc;
+}
+.table > div > .startTime.domCreation {
+  background: #ffe0cc;
+}
+.execution .icon-warning {
+  color: #e74c3c;
+  cursor: pointer;
+}

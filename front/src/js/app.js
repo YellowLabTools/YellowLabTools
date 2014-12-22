@@ -4,11 +4,17 @@ var yltApp = angular.module('YellowLabTools', [
     'aboutCtrl',
     'dashboardCtrl',
     'queueCtrl',
+    'ruleCtrl',
+    'timelineCtrl',
     'runsFactory',
     'resultsFactory',
     'menuService',
     'gradeDirective',
 ]);
+
+yltApp.run(function($rootScope) {
+    $rootScope.loadedRunId = null;
+});
 
 yltApp.config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
