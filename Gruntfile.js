@@ -179,8 +179,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('dev', [
-        'clean:dev',
-        'less'
+        'express:dev'
     ]);
 
     grunt.registerTask('test', [
