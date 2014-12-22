@@ -35,3 +35,7 @@ Icons are the property of [IcoMoon.io](https://icomoon.io/)
 
 ## Author
 Gaël Métais. I'm a webperf freelance based in Paris. If you understand french, you can visit [my website](http://www.gaelmetais.com).
+
+
+## Contributors
+- [achrafbenyounes](https://github.com/achrafbenyounes)
