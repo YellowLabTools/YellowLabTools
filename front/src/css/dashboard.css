@@ -60,14 +60,14 @@ h4 {
   width: 100%;
 }
 .notations .criteria .table > div:hover > div {
-  background: #F1C40F;
+  background: #EBD8E2;
   cursor: pointer;
 }
 .notations .criteria .table > div:hover > div.info {
   background: #FFF;
 }
 .notations .criteria .table > div:hover > div.info .icon-question {
-  color: #F1C40F;
+  color: #EBD8E2;
 }
 .notations .criteria .grade {
   width: 10%;
