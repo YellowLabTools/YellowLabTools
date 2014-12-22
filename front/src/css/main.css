@@ -176,7 +176,7 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-back:before {
-  content: "\e006";
+  content: "\e005";
 }
 .icon-summary {
   font-family: "fontsmith-icons";
@@ -202,18 +202,5 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-spaghetti:before {
-  content: "\e005";
-}
-.icon-eye {
-  font-family: "fontsmith-icons";
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-}
-.icon-eye:before {
   content: "\e004";
 }
