@@ -1,9 +1,9 @@
 {
-    "globalScore": 69,
+    "globalScore": 57,
     "categories": {
         "category1": {
             "label": "Category 1",
-            "categoryScore": 87,
+            "categoryScore": 83,
             "rules": [
                 "metric1",
                 "metric2",
@@ -13,7 +13,7 @@
         },
         "category2": {
             "label": "Category 2",
-            "categoryScore": 31,
+            "categoryScore": 0,
             "rules": [
                 "metric5",
                 "metric6",

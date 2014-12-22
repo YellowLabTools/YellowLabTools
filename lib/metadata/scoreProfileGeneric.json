@@ -31,8 +31,8 @@
         "jQueryVersion": {
             "label": "jQuery version",
             "policies": {
-                "jQueryVersion": 1,
-                "jQueryDifferentVersions": 5
+                "jQueryVersion": 5,
+                "jQueryDifferentVersions": 0.1
             }
         },
         "cssSyntaxError": {
