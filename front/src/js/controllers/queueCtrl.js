@@ -15,7 +15,7 @@ queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs'
                 setTimeout(getRunStatus, 2000 + (numberOfTries * 100));
 
             } else if (data.status.statusCode === 'complete') {
-                $location.path('/result/' + $scope.runId);
+                $location.path('/result/' + $scope.runId).replace();
             } else {
                 // Handled by the view
             }
