@@ -11,7 +11,7 @@
 
     <h2 ng-if="!fromSocialShare">Score details</h2>
     <div ng-if="!fromSocialShare" class="notations">
-        <div ng-repeat="category in result.scoreProfiles.generic.categories">
+        <div ng-repeat="categoryKey in categoriesOrder" ng-init="category = result.scoreProfiles.generic.categories[categoryKey]">
             <grade score="category.categoryScore" class="categoryScore"></grade>
             <div class="category">{{category.label}}</div>
             <div class="criteria">

@@ -20,6 +20,9 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
     }
 
     function init() {
+        // By default, Angular sorts object's attributes alphabetically. Countering this problem by retrieving the keys order here.
+        $scope.categoriesOrder = Object.keys($scope.result.scoreProfiles.generic.categories);
+        
         $scope.globalScore = Math.max($scope.result.scoreProfiles.generic.globalScore, 0);
         $scope.tweetText = 'My website\'s score is ' + $scope.globalScore + '/100 on #YellowLabTools!';
     }
