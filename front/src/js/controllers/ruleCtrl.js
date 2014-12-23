@@ -1,6 +1,6 @@
 var ruleCtrl = angular.module('ruleCtrl', []);
 
-ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$sce', 'Menu', 'Results', function($scope, $rootScope, $routeParams, $location, $sce, Menu, Results) {
+ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$sce', 'Menu', 'Results', 'Runs', function($scope, $rootScope, $routeParams, $location, $sce, Menu, Results, Run) {
     $scope.runId = $routeParams.runId;
     $scope.policyName = $routeParams.policy;
     $scope.Menu = Menu.setCurrentPage(null, $scope.runId);
@@ -27,6 +27,15 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
 
     $scope.backToDashboard = function() {
         $location.path('/result/' + $scope.runId);
+    };
+
+    $scope.testAgain = function() {
+        Runs.save({
+                url: $scope.result.params.url,
+                waitForResponse: false
+            }, function(data) {
+                $location.path('/queue/' + data.runId);
+            });
     };
 
     loadResults();

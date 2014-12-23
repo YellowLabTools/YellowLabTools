@@ -1,6 +1,6 @@
 <h2 class="promess">Free online test to help speeding up <b>heavy</b> web pages</h2>
 
 <form ng-submit="launchTest()" >
-    <input type="text"ng-model="url" placeholder="http://www.mysite.com" class="url" />
+    <input type="text" name="url" ng-model="url" placeholder="http://www.mysite.com" class="url" />
     <input type="submit" value="Launch test" class="launchBtn" ng-class="{disabled: !url}" />
 </form>

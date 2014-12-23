@@ -1,14 +1,30 @@
 <div ng-include="'/front/views/resultSubHeader.html'"></div>
 <div class="summary board">
-    <h2>Grades</h2>
+    
+    <h2> Global score</h2>
+    <div class="globalScore" ng-if="globalScore === 0 || globalScore > 0">
+        <div class="globalScoreDisplay">
+            <grade score="result.scoreProfiles.generic.globalScore" class="globalGrade"></grade>
+            <div class="on100">{{globalScore}}/100</div>
+        </div>
+        <div class="tweet" ng-if="!fromSocialShare">
+            <form ng-submit="sendTweet()">
+                <input type="text" class="tweetText" ng-model="tweetText">
+                <input type="submit" class="tweetButton" value="Tweet this!" ng-click="shareOnTwitter(tweetText)">
+                <input type="submit" class="linkedinButton" value="LinkedIn" ng-click="shareOnLinkedin(tweetText)">
+            </form>
+        </div>
+    </div>
 
-    <div class="notations">
+    <h2 ng-if="!fromSocialShare">Score details</h2>
+    <div ng-if="!fromSocialShare" class="notations">
         <div ng-repeat="category in result.scoreProfiles.generic.categories">
             <grade score="category.categoryScore" class="categoryScore"></grade>
             <div class="category">{{category.label}}</div>
             <div class="criteria">
                 <div class="table" title="Click to see details">
-                    <div ng-repeat="ruleName in category.rules" 
+                    <div ng-repeat="ruleName in category.rules"
+                         ng-if="result.rules[ruleName]"
                          ng-init="rule = result.rules[ruleName]"
                          ng-class="{'warning': rule.abnormal}"
                          ng-click="showRulePage(ruleName)">
@@ -27,5 +43,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="fromShare" ng-if="fromSocialShare">
+        <p>Yellow Lab Tools is a free online tool that analyzes performance and front-end quality.</p>
+        <a href="" ng-click="seeFullReport()">See the full report for this page</a>
+        <a href="/">Test another webpage</a>
     </div>
 </div>

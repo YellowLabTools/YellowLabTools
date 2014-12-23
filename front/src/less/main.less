@@ -41,10 +41,10 @@ h1 span {
     border-radius: 0.5em;
     cursor: pointer;
     text-decoration: none;
-}
-.resultsMenu .back {
-    color: #413;
-    border-color: #413;
+    &.back, &.restart {
+        color: #413;
+        border-color: #413;
+    }
 }
 .resultsMenu .menuItem div {
     padding-top: 0.5em;
@@ -146,4 +146,7 @@ h1 span {
 }
 .icon-spaghetti {
     .icon(@bars);
+}
+.icon-loop {
+    .icon(@loop);
 }

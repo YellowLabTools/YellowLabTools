@@ -1,4 +1,7 @@
 /* Timeline colors, related to Window Performances */
+.execution {
+  text-align: center;
+}
 .timeline {
   margin: 2em 0 5em;
 }
@@ -117,9 +120,12 @@
   border-radius: 0.2em;
 }
 .filters {
-  margin: 1em 0;
+  margin: 1em auto;
   padding: 0.5em;
+  min-width: 30em;
+  width: 30%;
   border: 1px dotted #aaa;
+  text-align: left;
 }
 .slowRequestsLimit {
   width: 3em;

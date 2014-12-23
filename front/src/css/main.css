@@ -46,7 +46,8 @@ h1 span {
   cursor: pointer;
   text-decoration: none;
 }
-.resultsMenu .back {
+.resultsMenu .menuItem.back,
+.resultsMenu .menuItem.restart {
   color: #413;
   border-color: #413;
 }
@@ -137,7 +138,7 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-lab:before {
-  content: "\e003";
+  content: "\e004";
 }
 .icon-question {
   font-family: "fontsmith-icons";
@@ -176,7 +177,7 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-back:before {
-  content: "\e005";
+  content: "\e006";
 }
 .icon-summary {
   font-family: "fontsmith-icons";
@@ -189,7 +190,7 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-summary:before {
-  content: "\e002";
+  content: "\e003";
 }
 .icon-spaghetti {
   font-family: "fontsmith-icons";
@@ -202,5 +203,18 @@ h1 span {
   -webkit-font-smoothing: antialiased;
 }
 .icon-spaghetti:before {
-  content: "\e004";
+  content: "\e005";
+}
+.icon-loop {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-loop:before {
+  content: "\e002";
 }

@@ -2,8 +2,48 @@
     color: inherit;
 }
 
-h4 {
-    margin-bottom: 0.5em;
+.summary {
+    text-align: center;
+}
+
+.globalScore {
+    margin-bottom: 3em;
+    .globalGrade {
+        margin: 0.5 auto;
+        width: 2.5em;
+        height: 2.5em;
+        line-height: 2.5em;
+        border-radius: 0.5em;
+        font-size: 3em;
+        font-weight: bold;
+        vertical-align: middle;
+    }
+    .on100 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 0.5em 0 1em;
+    }
+    .tweetText {
+        color: #333;
+        background: #F2F2F2;
+        border: none;
+        width: 25em;
+        padding: 0.4em;
+        border-radius: 0.5em;
+        box-shadow: 0.05em 0.1em 0 0 #999;
+    }
+    .tweetButton, .linkedinButton {
+        color: #333;
+        background: #F2F2F2;
+        margin-right: 0;
+        &:hover {
+            color: #F2F2F2;
+            background: #e74c3c;
+        }
+    }
+    input {
+        font-size: 0.9em;
+    }
 }
 
 .notations {
@@ -93,67 +133,18 @@ h4 {
     color: transparent;
 }
 
-
-/**** NgModal popin (have a look inside bower_components) ****/
-.ng-modal {
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-}
-.ng-modal-overlay {
-    position: absolute;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.5;
-}
-.ng-modal-dialog {
-    z-index: 10000;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 10px;
-    border: 3px solid #f1c40f;
-    border-radius: 0.5em;
-    color: #000;
-}
-.ng-modal-dialog-content {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    word-wrap: break-word;
-    max-height: 20em;
-    font-weight: normal;
-    white-space: normal;
-}
-.ng-modal-close {
-    position: absolute;
-    top: 3px;
-    right: 5px;
-    cursor: pointer;
-    font-size: 120%;
-    padding: 5px;
-    display: inline-block;
-}
-.ng-modal-close-x {
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-}
-.ng-modal-title {
-    font-weight: bold;
-    font-size: 1.5em;
-    display: block;
-    margin-bottom: 10px;
-    padding-bottom: 7px;
-    border-bottom: solid 1px #999;
+.fromShare {
+    margin-bottom: 3em;
+    a {
+        font-size: 1em;
+        padding: 0.3em 0.5em;
+        margin: 0.5em;
+        line-height: 2em;
+        border: 0 solid;
+        border-radius: 0.5em;
+        box-shadow: 0.1em 0.2em 0 0 #5e2846;
+        background: #e74c3c;
+        color: #fff;
+        text-decoration: none;
+    }
 }

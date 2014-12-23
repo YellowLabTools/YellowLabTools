@@ -1,6 +1,6 @@
 var timelineCtrl = angular.module('timelineCtrl', []);
 
-timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'Menu', 'Results', function($scope, $rootScope, $routeParams, $location, $timeout, Menu, Results) {
+timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'Menu', 'Results', 'Runs', function($scope, $rootScope, $routeParams, $location, $timeout, Menu, Results, Runs) {
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage('timeline', $scope.runId);
 
@@ -129,6 +129,15 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
 
     $scope.backToDashboard = function() {
         $location.path('/result/' + $scope.runId);
+    };
+
+    $scope.testAgain = function() {
+        Runs.save({
+                url: $scope.result.params.url,
+                waitForResponse: false
+            }, function(data) {
+                $location.path('/queue/' + data.runId);
+            });
     };
 
     loadResults();
