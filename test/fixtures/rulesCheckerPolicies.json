@@ -13,7 +13,8 @@
         "message": "A great message",
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
-        "isAbnormalThreshold": 5000
+        "isAbnormalThreshold": 5000,
+        "takeOffendersFrom": "metric3"
     },
     "metric3": {
         "tool": "tool1",
