@@ -1,6 +1,6 @@
 var ruleCtrl = angular.module('ruleCtrl', []);
 
-ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$sce', 'Menu', 'Results', 'Runs', function($scope, $rootScope, $routeParams, $location, $sce, Menu, Results, Run) {
+ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$sce', 'Menu', 'Results', 'Runs', function($scope, $rootScope, $routeParams, $location, $sce, Menu, Results, Runs) {
     $scope.runId = $routeParams.runId;
     $scope.policyName = $routeParams.policy;
     $scope.Menu = Menu.setCurrentPage(null, $scope.runId);
