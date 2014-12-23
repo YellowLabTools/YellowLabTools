@@ -22,8 +22,8 @@
   font-weight: bold;
   margin: 0.5em 0 1em;
 }
-.globalScore .tweetText {
-  color: #333;
+.tweet .tweetText {
+  color: #413;
   background: #F2F2F2;
   border: none;
   width: 25em;
@@ -31,24 +31,24 @@
   border-radius: 0.5em;
   box-shadow: 0.05em 0.1em 0 0 #999;
 }
-.globalScore .tweetButton,
-.globalScore .linkedinButton {
-  color: #333;
+.tweet .tweetButton,
+.tweet .linkedinButton {
+  color: #413;
   background: #F2F2F2;
   margin-right: 0;
 }
-.globalScore .tweetButton:hover,
-.globalScore .linkedinButton:hover {
+.tweet .tweetButton:hover,
+.tweet .linkedinButton:hover {
   color: #F2F2F2;
   background: #e74c3c;
 }
-.globalScore input {
+.tweet input {
   font-size: 0.9em;
 }
 .notations {
   display: table;
   width: 80%;
-  margin: 0 10%;
+  margin: 0 10% 3em;
   border-spacing: 1em;
 }
 .notations > div {

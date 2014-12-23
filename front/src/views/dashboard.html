@@ -7,13 +7,6 @@
             <grade score="result.scoreProfiles.generic.globalScore" class="globalGrade"></grade>
             <div class="on100">{{globalScore}}/100</div>
         </div>
-        <div class="tweet" ng-if="!fromSocialShare">
-            <form ng-submit="sendTweet()">
-                <input type="text" class="tweetText" ng-model="tweetText">
-                <input type="submit" class="tweetButton" value="Tweet this!" ng-click="shareOnTwitter(tweetText)">
-                <input type="submit" class="linkedinButton" value="LinkedIn" ng-click="shareOnLinkedin(tweetText)">
-            </form>
-        </div>
     </div>
 
     <h2 ng-if="!fromSocialShare">Score details</h2>
@@ -43,6 +36,14 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="tweet" ng-if="!fromSocialShare">
+        <form ng-submit="sendTweet()">
+            <input type="text" class="tweetText" ng-model="tweetText">
+            <input type="submit" class="tweetButton" value="Tweet this!" ng-click="shareOnTwitter(tweetText)">
+            <input type="submit" class="linkedinButton" value="LinkedIn this!" ng-click="shareOnLinkedin(tweetText)">
+        </form>
     </div>
 
     <div class="fromShare" ng-if="fromSocialShare">
