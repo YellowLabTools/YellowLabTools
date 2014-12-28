@@ -4,10 +4,10 @@
 .summary {
   text-align: center;
 }
-.globalScore {
+.summary .globalScore {
   margin-bottom: 3em;
 }
-.globalScore .globalGrade {
+.summary .globalScore .globalGrade {
   margin: 0.5 auto;
   width: 2.5em;
   height: 2.5em;
@@ -17,64 +17,41 @@
   font-weight: bold;
   vertical-align: middle;
 }
-.globalScore .on100 {
+.summary .globalScore .on100 {
   font-size: 1.2em;
   font-weight: bold;
   margin: 0.5em 0 1em;
 }
-.tweet .tweetText {
-  color: #413;
-  background: #F2F2F2;
-  border: none;
-  width: 25em;
-  padding: 0.4em;
-  border-radius: 0.5em;
-  box-shadow: 0.05em 0.1em 0 0 #999;
-}
-.tweet .tweetButton,
-.tweet .linkedinButton {
-  color: #413;
-  background: #F2F2F2;
-  margin-right: 0;
-}
-.tweet .tweetButton:hover,
-.tweet .linkedinButton:hover {
-  color: #F2F2F2;
-  background: #e74c3c;
-}
-.tweet input {
-  font-size: 0.9em;
-}
-.notations {
+.summary .notations {
   display: table;
   width: 80%;
-  margin: 0 10% 3em;
+  margin: 0 10% 1.5em;
   border-spacing: 1em;
 }
-.notations > div {
+.summary .notations > div {
   display: table-row;
 }
-.notations > div > div {
+.summary .notations > div > div {
   display: table-cell;
   height: 2.5em;
   vertical-align: middle;
 }
-.notations .category {
+.summary .notations .category {
   font-weight: bold;
   text-align: center;
   width: 20%;
 }
-.notations .criteria {
+.summary .notations .criteria {
   font-weight: normal;
   width: 75%;
 }
-.notations .A.categoryScore,
-.notations .B.categoryScore,
-.notations .C.categoryScore,
-.notations .D.categoryScore,
-.notations .E.categoryScore,
-.notations .F.categoryScore,
-.notations .NA.categoryScore {
+.summary .notations .A.categoryScore,
+.summary .notations .B.categoryScore,
+.summary .notations .C.categoryScore,
+.summary .notations .D.categoryScore,
+.summary .notations .E.categoryScore,
+.summary .notations .F.categoryScore,
+.summary .notations .NA.categoryScore {
   width: 2.5em;
   max-width: 2.5em;
   min-width: 2.5em;
@@ -83,13 +60,13 @@
   border-radius: 0.5em;
   font-weight: bold;
 }
-.notations .grade .A,
-.notations .grade .B,
-.notations .grade .C,
-.notations .grade .D,
-.notations .grade .E,
-.notations .grade .F,
-.notations .grade .NA {
+.summary .notations .grade .A,
+.summary .notations .grade .B,
+.summary .notations .grade .C,
+.summary .notations .grade .D,
+.summary .notations .grade .E,
+.summary .notations .grade .F,
+.summary .notations .grade .NA {
   width: 1em;
   height: 1em;
   font-size: 1em;
@@ -97,41 +74,41 @@
   margin: 0 auto;
   border-radius: 0.5em;
 }
-.notations .criteria .table {
+.summary .notations .criteria .table {
   width: 100%;
 }
-.notations .criteria .table > div:hover > div {
+.summary .notations .criteria .table > div:hover > div {
   background: #EBD8E2;
   cursor: pointer;
 }
-.notations .criteria .table > div:hover > div.info {
+.summary .notations .criteria .table > div:hover > div.info {
   background: #FFF;
 }
-.notations .criteria .table > div:hover > div.info .icon-question {
+.summary .notations .criteria .table > div:hover > div.info .icon-question {
   color: #EBD8E2;
 }
-.notations .criteria .grade {
+.summary .notations .criteria .grade {
   width: 10%;
   padding-left: 0.5em;
   padding-right: 0.5em;
   vertical-align: middle;
 }
-.notations .criteria .label {
+.summary .notations .criteria .label {
   width: 70%;
 }
-.notations .criteria .result {
+.summary .notations .criteria .result {
   width: 18%;
   font-weight: bold;
   white-space: nowrap;
   text-align: center;
   vertical-align: middle;
 }
-.notations .warning .label,
-.notations .warning .result,
-.notations .icon-warning {
+.summary .notations .warning .label,
+.summary .notations .warning .result,
+.summary .notations .icon-warning {
   color: #FF1919;
 }
-.notations .criteria .info {
+.summary .notations .criteria .info {
   width: 2%;
   text-align: center;
   vertical-align: middle;
@@ -139,13 +116,13 @@
   padding-left: 0.1em;
   padding-right: 0.1em;
 }
-.notations .criteria .icon-question {
+.summary .notations .criteria .icon-question {
   color: transparent;
 }
-.fromShare {
+.summary .fromShare {
   margin-bottom: 3em;
 }
-.fromShare a {
+.summary .fromShare a {
   font-size: 1em;
   padding: 0.3em 0.5em;
   margin: 0.5em;
@@ -156,4 +133,35 @@
   background: #e74c3c;
   color: #fff;
   text-decoration: none;
+}
+.summary .apiTip {
+  font-size: 0.8em;
+  margin-bottom: 4em;
+  color: #413;
+}
+.summary .apiTip a {
+  color: inherit;
+}
+.summary .tweet .tweetText {
+  color: #413;
+  background: #F2F2F2;
+  border: none;
+  width: 25em;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  box-shadow: 0.05em 0.1em 0 0 #999;
+}
+.summary .tweet .tweetButton,
+.summary .tweet .linkedinButton {
+  color: #413;
+  background: #F2F2F2;
+  margin-right: 0;
+}
+.summary .tweet .tweetButton:hover,
+.summary .tweet .linkedinButton:hover {
+  color: #F2F2F2;
+  background: #e74c3c;
+}
+.summary .tweet input {
+  font-size: 0.9em;
 }
