@@ -12,12 +12,12 @@
   "dependencies": {
     "async": "~0.9.0",
     "body-parser": "~1.10.0",
-    "compression": "~1.2.1",
-    "debug": "^2.1.0",
-    "express": "~4.10.4",
-    "phantomas": "1.7.0",
-    "rimraf": "^2.2.8",
-    "q": "^1.1.2"
+    "compression": "~1.2.2",
+    "debug": "~2.1.0",
+    "express": "~4.10.6",
+    "phantomas": "1.8.0",
+    "rimraf": "~2.2.8",
+    "q": "~1.1.2"
   },
   "devDependencies": {
     "chai": "^1.10.0",
@@ -31,9 +31,9 @@
     "grunt-fontsmith": "^0.9.1",
     "grunt-mocha-test": "^0.12.4",
     "matchdep": "^0.3.0",
-    "mocha": "^2.0.1",
-    "phantomjs": "^1.9.12",
-    "request": "^2.49.0",
+    "mocha": "^2.1.0",
+    "phantomjs": "^1.9.13",
+    "request": "^2.51.0",
     "sinon": "^1.12.1",
     "sinon-chai": "^2.6.0"
   },
