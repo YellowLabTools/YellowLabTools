@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var phantomasWrapper = require('../../lib/tools/phantomasWrapper');
+var phantomasWrapper = require('../../lib/tools/phantomas/phantomasWrapper');
 
 describe('phantomasWrapper', function() {
     
