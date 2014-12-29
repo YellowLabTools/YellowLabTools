@@ -3,13 +3,16 @@ var app                     = express();
 var server                  = require('http').createServer(app);
 var bodyParser              = require('body-parser');
 var compress                = require('compression');
+var cors                    = require('cors');
 
 var authMiddleware          = require('../lib/server/middlewares/authMiddleware');
 var apiLimitsMiddleware     = require('../lib/server/middlewares/apiLimitsMiddleware');
 
 
+// Middlewares
 app.use(compress());
 app.use(bodyParser.json());
+app.use(cors());
 app.use(authMiddleware);
 app.use(apiLimitsMiddleware);
 
