@@ -7,7 +7,9 @@ queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs'
     
     function getRunStatus () {
         Runs.get({runId: $scope.runId}, function(data) {
+            $scope.url = data.params.url;
             $scope.status = data.status;
+
             if (data.status.statusCode === 'running' || data.status.statusCode === 'awaiting') {
                 numberOfTries ++;
 

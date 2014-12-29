@@ -1,3 +1,5 @@
+<p>Tested url: &nbsp; <a href="{{url}}" target="_blank" class="testedUrl">{{url}}</a></p>
+
 <div class="status" ng-if="status.statusCode == 'failed'">Test failed</div>
 <div class="status" ng-if="status.statusCode == 'awaiting'">
     <ng-pluralize count="status.position" when="{
