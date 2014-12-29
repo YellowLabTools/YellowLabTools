@@ -16,8 +16,9 @@
     "debug": "~2.1.0",
     "express": "~4.10.6",
     "phantomas": "1.8.0",
-    "rimraf": "~2.2.8",
-    "q": "~1.1.2"
+    "ps-node": "0.0.3",
+    "q": "~1.1.2",
+    "rimraf": "~2.2.8"
   },
   "devDependencies": {
     "chai": "^1.10.0",
