@@ -12,6 +12,8 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
                 $rootScope.loadedResult = result;
                 $scope.result = result;
                 init();
+            }, function(err) {
+                alert('aie');
             });
         } else {
             $scope.result = $rootScope.loadedResult;
