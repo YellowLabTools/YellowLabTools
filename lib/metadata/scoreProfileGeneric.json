@@ -80,6 +80,14 @@
                 "otherCount": 0
             }
         },
+        "smallRequests": {
+            "label": "Small requests",
+            "policies": {
+                "smallJsFiles": 1,
+                "smallCssFiles": 1,
+                "smallImages": 1
+            }
+        },
         "network": {
             "label": "Network",
             "policies": {
@@ -101,6 +109,7 @@
         "cssComplexity": 1,
         "badCSS": 1,
         "requests": 3,
+        "smallRequests": 1,
         "network": 2
     }
 }
