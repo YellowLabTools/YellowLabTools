@@ -1,14 +1,12 @@
 module.exports = function(grunt) {
 
-    var DEV_SERVER_PORT = 8383;
-    var TEST_SERVER_PORT = 8387;
-
     // Tell our Express server that Grunt launched it
     process.env.GRUNTED = true;
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        settings: grunt.file.readJSON('./server_config/settings.json'),
         
         font: {
             icons: {
@@ -34,6 +32,21 @@ module.exports = function(grunt) {
                         dest: 'front/src/css/',
                         ext: '.css'
                     }
+                ]
+            }
+        },
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'googleAnalyticsId',
+                            replacement: '<%= settings.googleAnalyticsId %>'
+                        }
+                    ]
+                },
+                files: [
+                    {expand: true, flatten: true, src: ['front/src/main.html'], dest: 'front/build/'}
                 ]
             }
         },
@@ -171,7 +184,8 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'less'
+        'less',
+        'replace'
     ]);
 
     grunt.registerTask('hint', [

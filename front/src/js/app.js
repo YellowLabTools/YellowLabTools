@@ -12,9 +12,14 @@ var yltApp = angular.module('YellowLabTools', [
     'gradeDirective',
 ]);
 
-yltApp.run(function($rootScope) {
+yltApp.run(['$rootScope', '$location', function($rootScope, $location) {
     $rootScope.loadedRunId = null;
-});
+
+    // Google Analytics
+    $rootScope.$on('$routeChangeSuccess', function(){
+        ga('send', 'pageview', {'page': $location.path()});
+    });
+}]);
 
 yltApp.config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {

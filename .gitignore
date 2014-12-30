@@ -3,5 +3,6 @@ bower_components
 .vagrant
 results/*
 coverage
+front/build
 
 har.json

@@ -1,12 +1,10 @@
 {
     "serverPort": 80,
-    "googleAnalyticsId": "UA-54493828-1",
+    "googleAnalyticsId": "",
 
-    "authorized-keys": {
+    "authorizedKeys": {
         
     },
-    "tokenSalt": "",
-    "authorizedApplications": [
-        
-    ]
+    "maxAnonymousRunsPerDay": 50,
+    "maxAnonymousCallsPerDay": 2000
 }
