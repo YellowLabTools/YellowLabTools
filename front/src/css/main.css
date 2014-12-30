@@ -126,6 +126,9 @@ h1 span {
 .footer a {
   color: inherit;
 }
+.footer .version {
+  font-size: 0.7em;
+}
 /* Icons */
 .icon-lab {
   font-family: "fontsmith-icons";

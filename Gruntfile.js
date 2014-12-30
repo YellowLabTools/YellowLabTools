@@ -42,6 +42,10 @@ module.exports = function(grunt) {
                         {
                             match: 'googleAnalyticsId',
                             replacement: '<%= settings.googleAnalyticsId %>'
+                        },
+                        {
+                            match: 'version',
+                            replacement: 'v<%= pkg.version %>'
                         }
                     ]
                 },
