@@ -61,10 +61,11 @@ describe('runsDatastore', function() {
             statusCode: 'running'
         });
 
-        datastore.markAsFailed(secondRunId);
+        datastore.markAsFailed(secondRunId, 'Error message');
         secondRun = datastore.get(secondRunId);
         secondRun.should.have.a.property('status').that.deep.equals({
-            statusCode: 'failed'
+            statusCode: 'failed',
+            error: 'Error message'
         });
 
     });
