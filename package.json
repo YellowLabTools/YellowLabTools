@@ -6,7 +6,7 @@
     "url": "git://github.com/gmetais/YellowLabTools.git"
   },
   "bin": {
-    "yellowlabtools": "./bin/cli"
+    "yellowlabtools": "./bin/cli.js"
   },
   "main": "./lib/yellowlabtools.js",
   "dependencies": {
