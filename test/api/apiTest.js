@@ -69,6 +69,35 @@ describe('api', function() {
         });
     });
 
+    it('should return the rules only', function(done) {
+        this.timeout(15000);
+
+        request({
+            method: 'POST',
+            url: serverUrl + '/api/runs',
+            body: {
+                url: wwwUrl + '/simple-page.html',
+                waitForResponse: true,
+                partialResult: 'rules'
+            },
+            json: true,
+            headers: {
+                'X-Api-Key': Object.keys(config.authorizedKeys)[0]
+            }
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 302) {
+
+                console.log(response.headers.location);
+                response.headers.should.have.a.property('location').that.is.a('string');
+                response.headers.location.should.contain('/rules');
+
+                done();
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
 
     it('should retrieve the results for the synchronous run', function(done) {
         this.timeout(15000);
