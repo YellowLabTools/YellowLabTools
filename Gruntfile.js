@@ -68,23 +68,37 @@ module.exports = function(grunt) {
             ]
         },
         clean: {
-            icons: {
+            tmp: {
                 src: ['tmp']
             },
             dev: {
                 src: ['front/src/css']
             },
             coverage: {
-                src: ['coverage/']
+                src: ['tmp', 'coverage/']
             }
         },
         copy: {
+            beforeCoverage: {
+                files: [
+                    {src: ['bin/server.js'], dest: 'tmp/'}
+                ]
+            },
             coverage: {
                 files: [
                     {src: ['test/**'], dest: 'coverage/'},
-                    {src: ['lib/metadata/**'], dest: 'coverage/'},
-                    {src: ['bin/**'], dest: 'coverage/'}
+                    {src: ['lib/metadata/**'], dest: 'coverage/'}
                 ]
+            }
+        },
+        lineremover: {
+            beforeCoverage: {
+                files: {
+                    'tmp/bin/cli.js': 'bin/cli.js'
+                },
+                options: {
+                    exclusionPattern: /#!\/usr\/bin\/env node/
+                }
             }
         },
         blanket: {
@@ -97,7 +111,7 @@ module.exports = function(grunt) {
                 dest: 'coverage/lib/'
             },
             coverageBin: {
-                src: ['bin/'],
+                src: ['tmp/bin/'],
                 dest: 'coverage/bin/'
             }
         },
@@ -184,7 +198,7 @@ module.exports = function(grunt) {
     grunt.registerTask('icons', [
         'font:icons',
         'less',
-        'clean:icons'
+        'clean:tmp'
     ]);
 
     grunt.registerTask('build', [
@@ -206,11 +220,14 @@ module.exports = function(grunt) {
         'express:testSuite',
         'clean:coverage',
         'copy-test-server-settings',
+        'lineremover:beforeCoverage',
+        'copy:beforeCoverage',
         'blanket',
         'copy:coverage',
         'express:test',
         'mochaTest:test',
-        'mochaTest:coverage'
+        'mochaTest:coverage',
+        'clean:tmp'
     ]);
 
     grunt.registerTask('test-current-work', [
@@ -219,9 +236,13 @@ module.exports = function(grunt) {
         'express:testSuite',
         'clean:coverage',
         'copy-test-server-settings',
+        'lineremover:beforeCoverage',
+        'copy:beforeCoverage',
         'blanket',
         'copy:coverage',
-        'mochaTest:test-current-work'
+        'express:test',
+        'mochaTest:test-current-work',
+        'clean:tmp'
     ]);
 
 };

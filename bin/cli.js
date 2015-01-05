@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var debug = require('debug')('ylt:cli');
 
 var YellowLabTools = require('../lib/yellowlabtools');

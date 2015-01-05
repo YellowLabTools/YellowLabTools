@@ -6,7 +6,7 @@
     "url": "git://github.com/gmetais/YellowLabTools.git"
   },
   "bin": {
-    "ylt": "./bin/cli.js"
+    "yellowlabtools": "./bin/cli"
   },
   "main": "./lib/yellowlabtools.js",
   "dependencies": {
@@ -31,6 +31,7 @@
     "grunt-contrib-less": "^0.12.0",
     "grunt-express": "^1.4.1",
     "grunt-fontsmith": "^0.9.1",
+    "grunt-line-remover": "^0.0.2",
     "grunt-mocha-test": "^0.12.4",
     "grunt-replace": "^0.8.0",
     "matchdep": "^0.3.0",
