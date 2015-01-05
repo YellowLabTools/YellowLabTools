@@ -11,19 +11,19 @@ gradeDirective.directive('grade', function() {
         replace: true,
         controller : function($scope) {
             $scope.getGrade = function(score) {
-                if (score >= 85) {
+                if (score > 80) {
                     return 'A';
                 }
-                if (score >= 65) {
+                if (score > 60) {
                     return 'B';
                 }
-                if (score >= 45) {
+                if (score > 40) {
                     return 'C';
                 }
-                if (score >= 30) {
+                if (score > 20) {
                     return 'D';
                 }
-                if (score >= 15) {
+                if (score > 0) {
                     return 'E';
                 }
                 return 'F';
