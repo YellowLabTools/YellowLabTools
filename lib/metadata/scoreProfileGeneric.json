@@ -22,7 +22,7 @@
         "badJavascript": {
             "label": "Bad JavaScript",
             "policies": {
-                "jsErrors": 2,
+                "jsErrors": 1,
                 "documentWriteCalls": 2,
                 "consoleMessages": 0.5,
                 "globalVariables": 0.5
