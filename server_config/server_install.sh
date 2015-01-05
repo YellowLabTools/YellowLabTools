@@ -24,7 +24,11 @@ cd YellowLabTools
 npm install --production
 bower install --config.interactive=false --allow-root
 
+# Front-end compilation
+npm install grunt -g
+grunt build
+
 # Start the server
 rm server_config/settings.json
 cp server_config/settings-prod.json server_config/settings.json
-forever start -c "node --stack-size=65500" server.js
+forever start -c "node --stack-size=65500" bin/server.js

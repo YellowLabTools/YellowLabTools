@@ -5,6 +5,6 @@
     "authorizedKeys": {
         
     },
-    "maxAnonymousRunsPerDay": 50,
-    "maxAnonymousCallsPerDay": 2000
+    "maxAnonymousRunsPerDay": 99999999,
+    "maxAnonymousCallsPerDay": 99999999
 }
