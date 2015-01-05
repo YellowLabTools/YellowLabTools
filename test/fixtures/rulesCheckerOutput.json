@@ -57,6 +57,7 @@
             "isAbnormalThreshold": 5000
         },
         "value": 1000,
+        "offenders": ["offender3"],
         "bad": false,
         "abnormal": false,
         "score": 100,
@@ -69,9 +70,11 @@
             "message": "A great message",
             "isOkThreshold": 1000,
             "isBadThreshold": 3000,
-            "isAbnormalThreshold": 5000
+            "isAbnormalThreshold": 5000,
+            "takeOffendersFrom": ["metric3", "metric4"]
         },
         "value": 3000,
+        "offenders": ["offender1", "offender2", "offender3"],
         "bad": true,
         "abnormal": false,
         "score": 0,

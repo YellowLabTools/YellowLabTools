@@ -14,6 +14,7 @@
                 "metric1": [],
                 "metric2": [],
                 "metric3": ["offender1", "offender2"],
+                "metric4": ["offender3"],
                 "metric5": []
             }
         },
