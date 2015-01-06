@@ -2,7 +2,7 @@
 
 var debug = require('debug')('ylt:cli');
 
-var YellowLabTools = require('../lib/yellowlabtools');
+var ylt = require('../lib/index');
 
 // Check parameters
 if (process.argv.length !== 3) {
@@ -16,10 +16,8 @@ var url = process.argv[2];
 (function execute(url) {
     'use strict';
 
-    var ylt = new YellowLabTools(url);
-    debug('Test launched...');
+    ylt(url).
 
-    ylt.
         then(function(data) {
 
             debug('Success');
@@ -31,5 +29,7 @@ var url = process.argv[2];
             console.error(err);
             
         });
+
+    debug('Test launched...');
 
 })(url);

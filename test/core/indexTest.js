@@ -2,29 +2,29 @@ var chai                = require('chai');
 var sinon               = require('sinon');
 var sinonChai           = require('sinon-chai');
 var should              = chai.should();
-var YellowLabTools      = require('../../lib/yellowlabtools.js');
+var ylt                 = require('../../lib/index');
 
 chai.use(sinonChai);
 
 
-describe('yellowlabtools', function() {
+describe('index.js', function() {
 
     it('should return a promise', function() {
-        var ylt = new YellowLabTools();
+        var promise = ylt();
 
-        ylt.should.have.property('then').that.is.a('function');
-        ylt.should.have.property('fail').that.is.a('function');
+        promise.should.have.property('then').that.is.a('function');
+        promise.should.have.property('fail').that.is.a('function');
     });
 
     it('should fail an undefined url', function(done) {
-        var ylt = new YellowLabTools().fail(function(err) {
+        ylt().fail(function(err) {
             err.should.be.a('string').that.equals('URL missing');
             done();
         });
     });
 
     it('should fail with an empty url string', function(done) {
-        var ylt = new YellowLabTools('').fail(function(err) {
+        ylt('').fail(function(err) {
             err.should.be.a('string').that.equals('URL missing');
             done();
         });
@@ -38,7 +38,7 @@ describe('yellowlabtools', function() {
 
         var url = 'http://localhost:8388/simple-page.html';
 
-        var ylt = new YellowLabTools(url)
+        ylt(url)
             .then(function(data) {
 
                 data.should.be.an('object');
