@@ -41,6 +41,50 @@ describe('api', function() {
         });
     });
 
+    it('should fail without an URL when asynchronous', function(done) {
+        this.timeout(15000);
+
+        request({
+            method: 'POST',
+            url: serverUrl + '/api/runs',
+            body: {
+                url: ''
+            },
+            json: true,
+            headers: {
+                'X-Api-Key': Object.keys(config.authorizedKeys)[0]
+            }
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 400) {
+                done();
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+    it('should fail without an URL when synchronous', function(done) {
+        this.timeout(15000);
+
+        request({
+            method: 'POST',
+            url: serverUrl + '/api/runs',
+            body: {
+                url: '',
+                waitForResponse: true
+            },
+            json: true,
+            headers: {
+                'X-Api-Key': Object.keys(config.authorizedKeys)[0]
+            }
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 400) {
+                done();
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
 
     it('should launch a synchronous run', function(done) {
         this.timeout(15000);
