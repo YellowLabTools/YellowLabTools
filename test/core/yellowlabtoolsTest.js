@@ -30,7 +30,7 @@ describe('yellowlabtools', function() {
         });
     });
 
-    it('should succeeds on simple-page.html', function(done) {
+    it('should succeed on simple-page.html', function(done) {
         this.timeout(15000);
 
         // Check if console.log is called
@@ -65,7 +65,7 @@ describe('yellowlabtools', function() {
                         "message": "<p>A deep DOM makes the CSS matching with DOM elements difficult.</p><p>It also slows down JavaScript modifications to the DOM because changing the dimensions of an element makes the browser re-calculate the dimensions of it's parents. Same thing for JavaScript events, that bubble up to the document root.</p>",
                         "isOkThreshold": 10,
                         "isBadThreshold": 20,
-                        "isAbnormalThreshold": 30
+                        "isAbnormalThreshold": 28
                     },
                     "value": 1,
                     "bad": false,
