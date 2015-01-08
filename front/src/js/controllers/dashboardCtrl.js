@@ -13,7 +13,7 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
                 $scope.result = result;
                 init();
             }, function(err) {
-                alert('aie');
+                $scope.error = true;
             });
         } else {
             $scope.result = $rootScope.loadedResult;

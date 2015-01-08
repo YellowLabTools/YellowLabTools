@@ -1,16 +1,16 @@
 <div ng-include="'/front/views/resultSubHeader.html'"></div>
 <div class="summary board">
     
-    <h2> Global score</h2>
     <div class="globalScore" ng-if="globalScore === 0 || globalScore > 0">
+        <h2> Global score</h2>
         <div class="globalScoreDisplay">
             <grade score="result.scoreProfiles.generic.globalScore" class="globalGrade"></grade>
             <div class="on100">{{globalScore}}/100</div>
         </div>
     </div>
 
-    <h2 ng-if="!fromSocialShare">Score details</h2>
-    <div ng-if="!fromSocialShare" class="notations">
+    <h2 ng-if="!error && !fromSocialShare">Score details</h2>
+    <div ng-if="!error && !fromSocialShare" class="notations">
         <div ng-repeat="categoryKey in categoriesOrder" ng-init="category = result.scoreProfiles.generic.categories[categoryKey]">
             <grade score="category.categoryScore" class="categoryScore"></grade>
             <div class="category">{{category.label}}</div>
@@ -38,11 +38,11 @@
         </div>
     </div>
 
-    <div class="apiTip">
+    <div ng-if="!error" class="apiTip">
         <b>Did you know? Yellow Lab Tools now has an API</b>! <a href="{{getAPIUrl()}}" target="_blank">Here</a> is the JSON output for this run. Checkout <a href="https://github.com/gmetais/YellowLabTools/wiki/Public-API" target="_blank">the API doc</a>.
     </div>
 
-    <div class="tweet" ng-if="!fromSocialShare">
+    <div class="tweet" ng-if="!error && !fromSocialShare">
         <form ng-submit="sendTweet()">
             <input type="text" class="tweetText" ng-model="tweetText">
             <input type="submit" class="tweetButton" value="Tweet this!" ng-click="shareOnTwitter(tweetText)">
@@ -50,9 +50,13 @@
         </form>
     </div>
 
-    <div class="fromShare" ng-if="fromSocialShare">
+    <div class="fromShare" ng-if="!error && fromSocialShare">
         <p>Yellow Lab Tools is a free online tool that analyzes performance and front-end quality.</p>
         <a href="" ng-click="seeFullReport()">See the full report for this page</a>
         <a href="/">Test another webpage</a>
+    </div>
+
+    <div ng-if="error">
+        <h2>Run failed / Run not found</h2>
     </div>
 </div>
