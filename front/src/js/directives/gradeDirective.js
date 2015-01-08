@@ -9,7 +9,7 @@ gradeDirective.directive('grade', function() {
         },
         template: '<div ng-class="getGrade(score)">{{getGrade(score)}}</div>',
         replace: true,
-        controller : function($scope) {
+        controller : ['$scope', function($scope) {
             $scope.getGrade = function(score) {
                 if (score > 80) {
                     return 'A';
@@ -28,6 +28,6 @@ gradeDirective.directive('grade', function() {
                 }
                 return 'F';
             };
-        }
+        }]
     };
 });
