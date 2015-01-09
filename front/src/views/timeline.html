@@ -1,4 +1,4 @@
-<div ng-include="'/front/views/resultSubHeader.html'"></div>
+<div ng-include="'views/resultSubHeader.html'"></div>
 <div class="execution board">
     <h2>Javascript Timeline</h2>
     <p>This graph gives a quick view of when the Javascript interactions with the DOM occur during the loading of the page.</p>
@@ -9,14 +9,14 @@
                 <div ng-repeat="duration in timeline track by $index"
                      class="interval"
                      ng-class="{
-                                domCreation: $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domInteractive,
-                                domInteractive: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domInteractive
-                                                && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domContentLoaded,
-                                domContentLoaded: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domContentLoaded
-                                                && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domContentLoadedEnd,
-                                domContentLoadedEnd: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domContentLoadedEnd
-                                                && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domComplete,
-                                domComplete: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domComplete
+                        domCreation: $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domInteractive,
+                        domInteractive: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domInteractive
+                            && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domContentLoaded,
+                        domContentLoaded: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domContentLoaded
+                            && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domContentLoadedEnd,
+                        domContentLoadedEnd: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domContentLoadedEnd
+                            && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domComplete,
+                        domComplete: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domComplete
                      }">
                     <div style="height: {{100 * duration / timelineMax | number: 0}}px" class="color"></div>
                     <div class="tooltip detailsOverlay">
@@ -70,14 +70,12 @@
             <div><!-- details --></div>
             <div>Timestamp</div>
         </div>
-        <div ng-repeat="node in profilerData"
-             ng-if="(!warningsFilterOn || node.warning || node.error)
-                     && (!textFilterOn || !textFilter.length || node.searchIndex.indexOf(textFilter) >= 0)"
-             ng-class="{
-                            showingDetails: node.showDetails,
-                            jsError: node.error,
-                            windowPerformance: node.windowPerformance
-                        }">
+        <div ng-if="(!warningsFilterOn || node.warning || node.error) && (!textFilterOn || !textFilter.length || node.searchIndex.indexOf(textFilter) >= 0)"
+             ng-repeat="node in profilerData" ng-class="{
+                showingDetails: node.showDetails,
+                jsError: node.error,
+                windowPerformance: node.windowPerformance
+            }">
 
             <div class="index">{{$index + 1}}</div>
             <div class="type">{{node.data.type}}</div>
@@ -90,10 +88,7 @@
             </div>
             
             <div class="details">
-                <div ng-class="{
-                            'icon-question': !node.warning && !node.error,
-                            'icon-warning': node.warning || node.error
-                        }"
+                <div ng-class="{'icon-question': !node.warning && !node.error, 'icon-warning': node.warning || node.error}"
                      ng-click="onNodeDetailsClick(node)"
                      ng-if="node.data.type != 'jQuery loaded' && node.data.type != 'jQuery version change' && !node.windowPerformance"></div>
                 

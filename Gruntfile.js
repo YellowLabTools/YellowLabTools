@@ -1,5 +1,8 @@
 module.exports = function(grunt) {
 
+    // Load all grunt modules
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
     // Tell our Express server that Grunt launched it
     process.env.GRUNTED = true;
 
@@ -18,7 +21,7 @@ module.exports = function(grunt) {
                 cssRouter: function (fontpath) {
                     var pathArray = fontpath.split('/');
                     var fileName = pathArray[pathArray.length - 1];
-                    return '/front/fonts/' + fileName;
+                    return '/fonts/' + fileName;
                 }
             }
         },
@@ -69,19 +72,22 @@ module.exports = function(grunt) {
         },
         clean: {
             tmp: {
-                src: ['tmp']
+                src: ['.tmp']
             },
             dev: {
                 src: ['front/src/css']
             },
             coverage: {
-                src: ['tmp', 'coverage/']
+                src: ['.tmp', 'coverage/']
+            },
+            build: {
+                src: ['front/build']
             }
         },
         copy: {
             beforeCoverage: {
                 files: [
-                    {src: ['bin/server.js'], dest: 'tmp/'}
+                    {src: ['bin/server.js'], dest: '.tmp/'}
                 ]
             },
             coverage: {
@@ -89,12 +95,18 @@ module.exports = function(grunt) {
                     {src: ['test/**'], dest: 'coverage/'},
                     {src: ['lib/metadata/**'], dest: 'coverage/'}
                 ]
+            },
+            build: {
+                files: [
+                    {src: ['./front/src/fonts/icons.woff'], dest: './front/build/fonts/icons.woff'},
+                    {src: ['./front/src/img/favicon.png'], dest: './front/build/img/favicon.png'},
+                ]
             }
         },
         lineremover: {
             beforeCoverage: {
                 files: {
-                    'tmp/bin/cli.js': 'bin/cli.js'
+                    '.tmp/bin/cli.js': 'bin/cli.js'
                 },
                 options: {
                     exclusionPattern: /#!\/usr\/bin\/env node/
@@ -111,7 +123,7 @@ module.exports = function(grunt) {
                 dest: 'coverage/lib/'
             },
             coverageBin: {
-                src: ['tmp/bin/'],
+                src: ['.tmp/bin/'],
                 dest: 'coverage/bin/'
             }
         },
@@ -137,8 +149,24 @@ module.exports = function(grunt) {
                 src: ['coverage/test/core/*.js', 'coverage/test/api/*.js']
             }
         },
+        env: {
+            dev: {
+                NODE_ENV: 'development'
+            },
+            builded: {
+                NODE_ENV: 'production'
+            }
+        },
         express: {
             dev: {
+                options: {
+                    port: 8383,
+                    server: './bin/server.js',
+                    serverreload: true,
+                    showStack: true
+                }
+            },
+            builded: {
                 options: {
                     port: 8383,
                     server: './bin/server.js',
@@ -158,6 +186,67 @@ module.exports = function(grunt) {
                     port: 8388,
                     bases: 'test/www'
                 }
+            }
+        },
+        useminPrepare: {
+            html: './front/src/main.html',
+            options: {
+                dest: './front/build',
+                root: ['./', './front/src']
+            }
+        },
+        usemin: {
+            html: './front/build/main.html',
+            css: './front/build/css/*.css',
+            options: {
+                assetsDirs: ['front/build'],
+                patterns: {
+                    css: [[/(\/fonts\/icons\.woff)/gm, 'Replacing reference to icons.woff']]
+                }
+            }
+        },
+        htmlmin: {
+            options: {
+                removeComments: true,
+                collapseWhitespace: true
+            },
+            main: {
+                files: [{
+                    expand: true,
+                    cwd: './front/build/',
+                    src: 'main.html',
+                    flatten: true,
+                    dest: './front/build'
+                }]
+            },
+            views: {
+                files: [{
+                    expand: true,
+                    cwd: './front/src/views',
+                    src: '*.html',
+                    flatten: true,
+                    dest: '.tmp/views/'
+                }]
+            }
+        },
+        inline_angular_templates: {
+            build: {
+                options: {
+                    base: '.tmp',
+                    method: 'append'
+                },
+                files: {
+                    './front/build/main.html': ['.tmp/views/*.html']
+                }
+            }
+        },
+        filerev: {
+            options: {
+                algorithm: 'md5',
+                length: 8
+            },
+            assets: {
+                src: './front/build/*/*.*'
             }
         }
     });
@@ -191,10 +280,6 @@ module.exports = function(grunt) {
     });
 
 
-
-
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
     grunt.registerTask('icons', [
         'font:icons',
         'less',
@@ -202,8 +287,20 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build', [
+        'clean:build',
+        'copy:build',
         'less',
-        'replace'
+        'useminPrepare',
+        'concat',
+        'uglify',
+        'cssmin',
+        'replace',
+        'htmlmin:views',
+        'inline_angular_templates',
+        'filerev',
+        'usemin',
+        'htmlmin:main',
+        'clean:tmp'
     ]);
 
     grunt.registerTask('hint', [
@@ -211,7 +308,13 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('dev', [
+        'env:dev',
         'express:dev'
+    ]);
+
+    grunt.registerTask('builded', [
+        'env:builded',
+        'express:builded'
     ]);
 
     grunt.registerTask('test', [

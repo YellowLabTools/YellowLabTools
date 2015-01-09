@@ -1,4 +1,4 @@
-<div ng-include="'/front/views/resultSubHeader.html'"></div>
+<div ng-include="'views/resultSubHeader.html'"></div>
 <div class="rule board">
     <div class="backToDashboard"><a href="#" ng-click="backToDashboard()">Back to dashboard</a></div>
 
@@ -19,10 +19,7 @@
     </div>
     <div class="offenders">
         <h3>
-            <ng-pluralize count="rule.offenders.length || 0"
-                 when="{'0': 'No offenders',
-                        'one': '1 offender',
-                        'other': '{} offenders'}">
+            <ng-pluralize count="rule.offenders.length || 0" when="{'0': 'No offenders', 'one': '1 offender', 'other': '{} offenders'}">
             </ng-pluralize>
         </h3>
         <div class="offendersTable">
