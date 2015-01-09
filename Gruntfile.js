@@ -100,6 +100,7 @@ module.exports = function(grunt) {
                 files: [
                     {src: ['./front/src/fonts/icons.woff'], dest: './front/build/fonts/icons.woff'},
                     {src: ['./front/src/img/favicon.png'], dest: './front/build/img/favicon.png'},
+                    {src: ['./front/src/img/logo-large.png'], dest: './front/build/img/logo-large.png'},
                 ]
             }
         },
