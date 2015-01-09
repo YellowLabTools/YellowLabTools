@@ -1,0 +1,223 @@
+@font-face {
+  font-family: "fontsmith-icons";
+  src: url("/fonts/icons.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  margin: 100px 50px;
+}
+body {
+  margin: 0 auto;
+  max-width: 1280px;
+  background: #9c4274;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+body,
+input[type=submit],
+input[type=text],
+input[type=url],
+input[type=number],
+button {
+  font-family: 'Century Gothic', helvetica, arial, sans-serif;
+}
+input[type=submit] {
+  cursor: pointer;
+}
+h1 span {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  color: #ffa319;
+}
+.resultsMenu {
+  margin-top: 2em;
+}
+.resultsMenu .menuItem {
+  display: inline-block;
+  margin: 1em;
+  width: 8em;
+  height: 7em;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 0.5em;
+  cursor: pointer;
+  text-decoration: none;
+}
+.resultsMenu .menuItem.back,
+.resultsMenu .menuItem.restart {
+  color: #413;
+  border-color: #413;
+}
+.resultsMenu .menuItem div {
+  padding-top: 0.5em;
+  font-size: 3em;
+}
+.resultsMenu .active,
+.resultsMenu .menuItem.active:hover {
+  color: #ffa319;
+  border-color: #ffa319;
+}
+.resultsMenu .menuItem:hover {
+  color: #ffa319;
+}
+.resultsMenu span {
+  position: relative;
+  top: 0.5em;
+}
+/* Grade colors */
+.A {
+  /* green */
+  background: #0C4;
+}
+.B {
+  /* green */
+  background: #CD0;
+}
+.C {
+  /* yellow */
+  background: #FD2;
+}
+.D {
+  /* orange */
+  background: #FA2;
+}
+.E {
+  /* red */
+  background: #F60;
+}
+.F {
+  /* red */
+  background: #F22;
+}
+.NA {
+  /* Non applicable */
+  background: #CCC;
+}
+.board {
+  margin-top: 2em;
+  padding: 1em;
+  background: #fff;
+  color: #000;
+  border-radius: 0.5em;
+  text-align: left;
+}
+.backToDashboard {
+  text-align: center;
+}
+.backToDashboard a {
+  font-size: 0.9em;
+  display: block;
+  margin-top: 4em;
+  color: black;
+}
+.star {
+  font-weight: bold;
+}
+.star span {
+  font-size: 1.2em;
+}
+.footer {
+  padding: 3em;
+  color: #413;
+}
+.footer a {
+  color: inherit;
+}
+.footer .version {
+  font-size: 0.7em;
+}
+/* Icons */
+.icon-lab {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-lab:before {
+  content: "\e004";
+}
+.icon-question {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-question:before {
+  content: "\e001";
+}
+.icon-warning {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-warning:before {
+  content: "\e000";
+}
+.icon-back {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-back:before {
+  content: "\e006";
+}
+.icon-summary {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-summary:before {
+  content: "\e003";
+}
+.icon-spaghetti {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-spaghetti:before {
+  content: "\e005";
+}
+.icon-loop {
+  font-family: "fontsmith-icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-loop:before {
+  content: "\e002";
+}

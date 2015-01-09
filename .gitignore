@@ -1,7 +1,9 @@
 node_modules
 bower_components
+.tmp
 .vagrant
 results/*
 coverage
+front/build
 
 har.json

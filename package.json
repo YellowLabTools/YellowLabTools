@@ -1,31 +1,53 @@
 {
   "name": "yellowlabtools",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/gmetais/YellowLabTools.git"
   },
+  "bin": {
+    "yellowlabtools": "./bin/cli.js"
+  },
+  "main": "./lib/index.js",
   "dependencies": {
-    "phantomas": "1.7.0",
-    "express": "~4.10.1",
     "async": "~0.9.0",
-    "socket.io": "~1.2.0",
-    "body-parser": "~1.9.2",
-    "compression": "~1.2.0"
+    "body-parser": "~1.10.0",
+    "compression": "~1.2.2",
+    "cors": "^2.5.2",
+    "debug": "~2.1.0",
+    "express": "~4.10.6",
+    "phantomas": "1.8.0",
+    "ps-node": "0.0.3",
+    "q": "~1.1.2",
+    "rimraf": "~2.2.8"
   },
   "devDependencies": {
+    "chai": "^1.10.0",
     "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.10.0",
-    "matchdep": "^0.3.0",
-    "grunt-mocha-test": "^0.12.2",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-copy": "^0.7.0",
     "grunt-blanket": "^0.0.8",
-    "chai": "^1.9.2",
-    "mocha": "^2.0.1",
-    "phantomjs": "^1.9.10",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-cssmin": "^0.11.0",
+    "grunt-contrib-htmlmin": "^0.3.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-env": "^0.4.2",
+    "grunt-express": "^1.4.1",
+    "grunt-filerev": "^2.1.2",
     "grunt-fontsmith": "^0.9.1",
-    "grunt-contrib-less": "^0.12.0"
+    "grunt-inline-angular-templates": "^0.1.5",
+    "grunt-line-remover": "^0.0.2",
+    "grunt-mocha-test": "^0.12.4",
+    "grunt-replace": "^0.8.0",
+    "grunt-usemin": "^3.0.0",
+    "matchdep": "^0.3.0",
+    "mocha": "^2.1.0",
+    "phantomjs": "^1.9.13",
+    "request": "^2.51.0",
+    "sinon": "^1.12.1",
+    "sinon-chai": "^2.6.0"
   },
   "scripts": {
     "test": "grunt test"

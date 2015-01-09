@@ -1,0 +1,114 @@
+{
+    "categories": {
+        "domComplexity": {
+            "label": "DOM complexity",
+            "policies": {
+                "DOMelementsCount": 1,
+                "DOMelementMaxDepth": 1,
+                "iframesCount": 1,
+                "DOMidDuplicated": 1
+            }
+        },
+        "domManipulations": {
+            "label": "DOM manipulations",
+            "policies": {
+                "DOMinserts": 2,
+                "DOMqueries": 1,
+                "DOMqueriesWithoutResults": 2,
+                "DOMqueriesAvoidable": 2,
+                "eventsBound": 1
+            }
+        },
+        "badJavascript": {
+            "label": "Bad JavaScript",
+            "policies": {
+                "jsErrors": 1,
+                "documentWriteCalls": 2,
+                "consoleMessages": 0.5,
+                "globalVariables": 0.5
+            }
+        },
+        "jQueryVersion": {
+            "label": "jQuery version",
+            "policies": {
+                "jQueryVersion": 5,
+                "jQueryDifferentVersions": 0.1
+            }
+        },
+        "cssSyntaxError": {
+            "label": "CSS syntax errors",
+            "policies": {
+                "cssParsingErrors": 1
+            }
+        },
+        "cssComplexity": {
+            "label": "CSS complexity",
+            "policies": {
+                "cssRules": 2,
+                "cssComplexSelectors": 2,
+                "cssComplexSelectorsByAttribute": 1.5
+            }
+        },
+        "badCSS": {
+            "label": "Bad CSS",
+            "policies": {
+                "cssImports": 3,
+                "cssDuplicatedSelectors": 2,
+                "cssDuplicatedProperties": 1,
+                "cssEmptyRules": 2,
+                "cssExpressions": 1,
+                "cssImportants": 3,
+                "cssOldIEFixes": 1,
+                "cssOldPropertyPrefixes": 1,
+                "cssUniversalSelectors": 1,
+                "cssRedundantBodySelectors": 1,
+                "cssRedundantChildNodesSelectors": 1
+            }
+        },
+        "requests": {
+            "label": "Requests number",
+            "policies": {
+                "requests": 5,
+                "htmlCount": 0,
+                "jsCount": 1,
+                "cssCount": 1,
+                "imageCount": 0,
+                "webfontCount": 2,
+                "videoCount": 0,
+                "jsonCount": 0,
+                "otherCount": 0
+            }
+        },
+        "smallRequests": {
+            "label": "Small requests",
+            "policies": {
+                "smallJsFiles": 1,
+                "smallCssFiles": 1,
+                "smallImages": 1
+            }
+        },
+        "network": {
+            "label": "Network",
+            "policies": {
+                "notFound": 3,
+                "closedConnections": 3,
+                "multipleRequests": 3,
+                "cachingDisabled": 1,
+                "cachingTooShort": 1,
+                "domains": 1
+            }
+        }
+    },
+    "globalScore": {
+        "domComplexity": 1,
+        "domManipulations": 2,
+        "badJavascript": 1,
+        "jQueryVersion": 1,
+        "cssSyntaxError": 1,
+        "cssComplexity": 1,
+        "badCSS": 1,
+        "requests": 3,
+        "smallRequests": 1,
+        "network": 2
+    }
+}

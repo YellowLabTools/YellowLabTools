@@ -1,0 +1,91 @@
+.rule.board {
+    text-align: center;
+}
+
+.rule .ruleTable {
+    display: table;
+    border-spacing: 1em;
+    width: 90%;
+    margin: 2em auto;
+    background: #f2f2f2;
+    border: 1px dashed #666;
+    border-radius: 0.5em;
+    > div {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .left {
+        width: 33%;
+        font-weight: bold;
+    }
+    .right {
+        width: 67%;
+    }
+}
+
+.rule .score {
+    font-size: 2.5em;
+    line-height: 2em;
+    height: 2em;
+    width: 2em;
+    border-radius: 0.5em;
+    margin: 0 auto 0.5em;
+}
+
+.rule .message {
+    width: 80%;
+    margin: 0 auto;
+    p {
+        margin: 0.5em;
+    }
+}
+
+.rule .message ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.rule .message li:before {
+    content:'\25e6';
+    margin-right: 0.3em;
+    font-size: 1.2em;
+    position: relative;
+    top: 0.1em;
+}
+
+.rule .warning {
+    width: 90%;
+    margin: -1em auto 2em;
+    background: #FEE;
+    border: 1px dashed #e74c3c;
+    color: #e74c3c;
+    border-radius: 0.5em;
+}
+
+.rule .offendersTable {
+    display: table;
+    border-spacing: 0 0.25em;
+    margin: 0 auto;
+    min-width: 10%;
+    max-width: 90%;
+    > div {
+        display: table-row;
+        > div {
+            display: table-cell;
+            background: #f2f2f2;
+            padding: 0 1em;
+            word-wrap: break-word;
+            word-break: break-all;
+            &:hover {
+                background: #EBD8E2;
+            }
+        }
+    }
+}
+
+.rule .notFound {
+    font-size: 1em;
+    h2 {
+        font-size: 3em;
+        margin-bottom: 1em;
+    }
+}

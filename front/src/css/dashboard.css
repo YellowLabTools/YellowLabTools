@@ -1,0 +1,167 @@
+.testedUrl {
+  color: inherit;
+}
+.summary {
+  text-align: center;
+}
+.summary .globalScore {
+  margin-bottom: 3em;
+}
+.summary .globalScore .globalGrade {
+  margin: 0.5 auto;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  border-radius: 0.5em;
+  font-size: 3em;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.summary .globalScore .on100 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0.5em 0 1em;
+}
+.summary .notations {
+  display: table;
+  width: 80%;
+  margin: 0 10% 1.5em;
+  border-spacing: 1em;
+}
+.summary .notations > div {
+  display: table-row;
+}
+.summary .notations > div > div {
+  display: table-cell;
+  height: 2.5em;
+  vertical-align: middle;
+}
+.summary .notations .category {
+  font-weight: bold;
+  text-align: center;
+  width: 20%;
+}
+.summary .notations .criteria {
+  font-weight: normal;
+  width: 75%;
+}
+.summary .notations .A.categoryScore,
+.summary .notations .B.categoryScore,
+.summary .notations .C.categoryScore,
+.summary .notations .D.categoryScore,
+.summary .notations .E.categoryScore,
+.summary .notations .F.categoryScore,
+.summary .notations .NA.categoryScore {
+  width: 2.5em;
+  max-width: 2.5em;
+  min-width: 2.5em;
+  font-size: 2em;
+  text-align: center;
+  border-radius: 0.5em;
+  font-weight: bold;
+}
+.summary .notations .grade .A,
+.summary .notations .grade .B,
+.summary .notations .grade .C,
+.summary .notations .grade .D,
+.summary .notations .grade .E,
+.summary .notations .grade .F,
+.summary .notations .grade .NA {
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  color: transparent;
+  margin: 0 auto;
+  border-radius: 0.5em;
+}
+.summary .notations .criteria .table {
+  width: 100%;
+}
+.summary .notations .criteria .table > div:hover > div {
+  background: #EBD8E2;
+  cursor: pointer;
+}
+.summary .notations .criteria .table > div:hover > div.info {
+  background: #FFF;
+}
+.summary .notations .criteria .table > div:hover > div.info .icon-question {
+  color: #EBD8E2;
+}
+.summary .notations .criteria .grade {
+  width: 10%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  vertical-align: middle;
+}
+.summary .notations .criteria .label {
+  width: 70%;
+}
+.summary .notations .criteria .result {
+  width: 18%;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+}
+.summary .notations .warning .label,
+.summary .notations .warning .result,
+.summary .notations .icon-warning {
+  color: #FF1919;
+}
+.summary .notations .criteria .info {
+  width: 2%;
+  text-align: center;
+  vertical-align: middle;
+  background: #FFF;
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+}
+.summary .notations .criteria .icon-question {
+  color: transparent;
+}
+.summary .fromShare {
+  margin-bottom: 3em;
+}
+.summary .fromShare a {
+  font-size: 1em;
+  padding: 0.3em 0.5em;
+  margin: 0.5em;
+  line-height: 2em;
+  border: 0 solid;
+  border-radius: 0.5em;
+  box-shadow: 0.1em 0.2em 0 0 #5e2846;
+  background: #e74c3c;
+  color: #fff;
+  text-decoration: none;
+}
+.summary .apiTip {
+  font-size: 0.8em;
+  margin-bottom: 4em;
+  color: #413;
+}
+.summary .apiTip a {
+  color: inherit;
+}
+.summary .tweet .tweetText {
+  color: #413;
+  background: #F2F2F2;
+  border: none;
+  width: 25em;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  box-shadow: 0.05em 0.1em 0 0 #999;
+}
+.summary .tweet .tweetButton,
+.summary .tweet .linkedinButton {
+  color: #413;
+  background: #F2F2F2;
+  margin-right: 0;
+}
+.summary .tweet .tweetButton:hover,
+.summary .tweet .linkedinButton:hover {
+  color: #F2F2F2;
+  background: #e74c3c;
+}
+.summary .tweet input {
+  font-size: 0.9em;
+}

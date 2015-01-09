@@ -1,0 +1,23 @@
+<p>Tested url: &nbsp; <a href="{{url}}" target="_blank" class="testedUrl">{{url}}</a></p>
+
+<div ng-if="status.statusCode == 'failed'">
+    <div class="status">Test failed</div>
+    <p class="statusSubMessage">{{status.error}}</p>
+    <p><a class="queueLink" href="https://github.com/gmetais/YellowLabTools/issues" target="_blank">Report a bug on GitHub</a></p>
+    <p><a class="queueLink" href="/">Back to index</a></p>
+</div>
+<div ng-if="status.statusCode == 'awaiting'">
+    <div class="status">
+        <ng-pluralize count="status.position" when="{'one': 'Waiting behind 1 other test', 'other': 'Waiting behind {} other tests'}">
+        </ng-pluralize>
+    </div>
+    <p class="statusSubMessage">(auto-refresh activated)</p>
+</div>
+<div ng-if="status.statusCode == 'running'">
+    <div class="status">Test is running...</div>
+    <p class="statusSubMessage">(auto-refresh activated)</p>
+</div>
+<div ng-if="status.statusCode == 'complete'">
+    <div class="status">Test complete</div>
+    <p class="statusSubMessage">Opening results...</p>
+</div>

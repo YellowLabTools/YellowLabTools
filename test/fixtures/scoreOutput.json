@@ -1,0 +1,34 @@
+{
+    "globalScore": 36,
+    "categories": {
+        "category1": {
+            "label": "Category 1",
+            "categoryScore": 79,
+            "rules": [
+                "metric1",
+                "metric2",
+                "metric3",
+                "metric4"
+            ]
+        },
+        "category2": {
+            "label": "Category 2",
+            "categoryScore": -55,
+            "rules": [
+                "metric5",
+                "metric6",
+                "metric7",
+                "metric8",
+                "unexistantMetric1"
+            ]
+        },
+        "category3": {
+            "label": "Category 3",
+            "categoryScore": 100,
+            "rules": [
+                "unexistantMetric1",
+                "unexistantMetric2"
+            ]
+        }
+    }
+}

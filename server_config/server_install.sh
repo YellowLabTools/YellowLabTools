@@ -12,8 +12,8 @@ sudo apt-get install -y nodejs
 source ~/.profile
 
 # Installation of some packages globally
-npm install bower -g
-npm install forever -g
+npm install bower forever grunt-cli phantomjs -g
+source ~/.profile
 
 # Installation of YellowLabTools
 sudo mkdir /space
@@ -21,10 +21,13 @@ sudo chown $USER /space
 cd /space
 git clone https://github.com/gmetais/YellowLabTools.git --branch master
 cd YellowLabTools
-npm install --production
+npm install
 bower install --config.interactive=false --allow-root
+
+# Front-end compilation
+grunt build
 
 # Start the server
 rm server_config/settings.json
 cp server_config/settings-prod.json server_config/settings.json
-forever start -c "node --stack-size=65500" server.js
+NODE_ENV=production forever start -c "node --stack-size=65500" bin/server.js

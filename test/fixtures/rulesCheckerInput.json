@@ -1,0 +1,28 @@
+{
+    "toolsResults": {
+        "tool1": {
+            "metrics": {
+                "metric1": 1236,
+                "metric2": 222,
+                "metric3": 6666,
+                "metric4": 1000,
+                "metric5": 3000,
+                "metric6": 0,
+                "metric7": 5000
+            },
+            "offenders": {
+                "metric1": [],
+                "metric2": [],
+                "metric3": ["offender1", "offender2"],
+                "metric4": ["offender3"],
+                "metric5": []
+            }
+        },
+        "tool2": {
+            "metrics": {
+                "metric1": 22,
+                "metric10": 22
+            }
+        }
+    }
+}
