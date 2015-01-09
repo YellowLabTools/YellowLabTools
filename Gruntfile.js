@@ -288,6 +288,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build', [
+        'jshint',
         'clean:build',
         'copy:build',
         'less',
