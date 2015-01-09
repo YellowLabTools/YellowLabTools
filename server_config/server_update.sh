@@ -12,9 +12,14 @@ git stash pop
 
 # In case something was added in package.json or bower.json
 rm -rf node_modules
-npm install --production
+npm install
 rm -rf bower_components
 bower install --config.interactive=false --allow-root
 
+# Front-end compilation
+rm -rf front/build
+npm install -g grunt
+grunt build
+
 # Restart the server
-forever start -c "node --stack-size=65500" server.js
+NODE_ENV=production forever start -c "node --stack-size=65500" bin/server.js

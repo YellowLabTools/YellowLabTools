@@ -25,27 +25,27 @@ yltApp.config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
         $routeProvider.
             when('/', {
-                templateUrl: 'front/views/index.html',
+                templateUrl: 'views/index.html',
                 controller: 'IndexCtrl'
             }).
             when('/queue/:runId', {
-                templateUrl: 'front/views/queue.html',
+                templateUrl: 'views/queue.html',
                 controller: 'QueueCtrl'
             }).
             when('/about', {
-                templateUrl: 'front/views/about.html',
+                templateUrl: 'views/about.html',
                 controller: 'AboutCtrl'
             }).
             when('/result/:runId', {
-                templateUrl: 'front/views/dashboard.html',
+                templateUrl: 'views/dashboard.html',
                 controller: 'DashboardCtrl'
             }).
             when('/result/:runId/timeline', {
-                templateUrl: 'front/views/timeline.html',
+                templateUrl: 'views/timeline.html',
                 controller: 'TimelineCtrl'
             }).
             when('/result/:runId/rule/:policy', {
-                templateUrl: 'front/views/rule.html',
+                templateUrl: 'views/rule.html',
                 controller: 'RuleCtrl'
             }).
             otherwise({

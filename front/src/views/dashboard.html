@@ -1,4 +1,4 @@
-<div ng-include="'/front/views/resultSubHeader.html'"></div>
+<div ng-include="'views/resultSubHeader.html'"></div>
 <div class="summary board">
     
     <div class="globalScore" ng-if="globalScore === 0 || globalScore > 0">
@@ -16,11 +16,8 @@
             <div class="category">{{category.label}}</div>
             <div class="criteria">
                 <div class="table" title="Click to see details">
-                    <div ng-repeat="ruleName in category.rules"
-                         ng-if="result.rules[ruleName]"
-                         ng-init="rule = result.rules[ruleName]"
-                         ng-class="{'warning': rule.abnormal}"
-                         ng-click="showRulePage(ruleName)">
+                    <div ng-repeat="ruleName in category.rules" ng-if="result.rules[ruleName]" ng-init="rule = result.rules[ruleName]"
+                         ng-class="{'warning': rule.abnormal}" ng-click="showRulePage(ruleName)">
                         <div class="grade">
                             <grade score="rule.score"></grade>
                         </div>

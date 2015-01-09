@@ -8,9 +8,7 @@
 </div>
 <div ng-if="status.statusCode == 'awaiting'">
     <div class="status">
-        <ng-pluralize count="status.position" when="{
-                         'one': 'Waiting behind 1 other test',
-                         'other': 'Waiting behind {} other tests'}">
+        <ng-pluralize count="status.position" when="{'one': 'Waiting behind 1 other test', 'other': 'Waiting behind {} other tests'}">
         </ng-pluralize>
     </div>
     <p class="statusSubMessage">(auto-refresh activated)</p>
