@@ -12,8 +12,8 @@ sudo apt-get install -y nodejs
 source ~/.profile
 
 # Installation of some packages globally
-npm install bower -g
-npm install forever -g
+npm install bower forever grunt-cli phantomjs -g
+source ~/.profile
 
 # Installation of YellowLabTools
 sudo mkdir /space
@@ -25,7 +25,6 @@ npm install
 bower install --config.interactive=false --allow-root
 
 # Front-end compilation
-npm install grunt -g
 grunt build
 
 # Start the server

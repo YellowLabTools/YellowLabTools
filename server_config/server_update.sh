@@ -18,7 +18,8 @@ bower install --config.interactive=false --allow-root
 
 # Front-end compilation
 rm -rf front/build
-npm install -g grunt
+npm install grunt-cli -g
+npm install phantomjs -g
 grunt build
 
 # Restart the server
