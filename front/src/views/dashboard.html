@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div ng-if="!error" class="apiTip">
+    <div ng-if="!error && !fromSocialShare" class="apiTip">
         <b>Did you know? Yellow Lab Tools now has an API</b>! <a href="{{getAPIUrl()}}" target="_blank">Here</a> is the JSON output for this run. Checkout <a href="https://github.com/gmetais/YellowLabTools/wiki/Public-API" target="_blank">the API doc</a>.
     </div>
 
