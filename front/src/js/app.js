@@ -1,5 +1,6 @@
 var yltApp = angular.module('YellowLabTools', [
     'ngRoute',
+    'ngSanitize',
     'indexCtrl',
     'aboutCtrl',
     'dashboardCtrl',
