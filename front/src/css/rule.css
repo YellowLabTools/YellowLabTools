@@ -82,3 +82,17 @@
   font-size: 3em;
   margin-bottom: 1em;
 }
+.offendersHtml {
+  display: inline-block;
+}
+.offendersHtml .domTree div {
+  text-align: left;
+  margin-left: 1em;
+}
+.offendersHtml .domTree div span:only-child {
+  font-weight: bold;
+}
+.offendersHtml .domTree div span:only-child span {
+  font-style: italic;
+  font-weight: normal;
+}

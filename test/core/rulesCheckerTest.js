@@ -9,7 +9,7 @@ describe('rulesChecker', function() {
     
     it('should produce a nice rules object', function() {
         var data = require('../fixtures/rulesCheckerInput.json');
-        var policies = require('../fixtures/rulesCheckerPolicies.json');
+        var policies = require('../fixtures/rulesCheckerPolicies');
         var expected = require('../fixtures/rulesCheckerOutput.json');
 
         var results = rulesChecker.check(data, policies);

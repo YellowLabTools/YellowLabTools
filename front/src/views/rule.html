@@ -10,23 +10,30 @@
         </div>
         <div class="right">
             <h3>Value: {{rule.value}}</h3>
-            <div ng-bind-html="message" class="message"></div>
+            <div ng-bind-html="rule.policy.message" class="message"></div>
         </div>
     </div>
     <div ng-if="rule.abnormal" class="warning">
         <h3>Warning</h3>
         <p>This rule reached the abnormality threshold, which means there is a real problem you should care about.</p>
     </div>
-    <div class="offenders">
+    <div class="offenders" ng-if="!htmlOffenders">
         <h3>
             <ng-pluralize count="rule.offenders.length || 0" when="{'0': 'No offenders', 'one': '1 offender', 'other': '{} offenders'}">
             </ng-pluralize>
         </h3>
         <div class="offendersTable">
             <div ng-repeat="offender in rule.offenders track by $index">
-                <div>{{offender}}</div>
+                <div ng-bind-html="offender"></div>
             </div>
         </div>
+    </div>
+    <div class="offenders" ng-if="htmlOffenders">
+        <h3>
+            <ng-pluralize count="rule.offendersCount || 0" when="{'0': 'No offenders', 'one': '1 offender', 'other': '{} offenders'}">
+            </ng-pluralize>
+        </h3>
+        <div class="offendersHtml" ng-bind-html="htmlOffenders"></div>
     </div>
     <div ng-if="!rule && rule !== null" class="notFound">
         <h2>404</h2>

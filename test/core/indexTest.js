@@ -72,7 +72,8 @@ describe('index.js', function() {
                     "abnormal": false,
                     "score": 100,
                     "abnormalityScore": 0,
-                    "offenders": ["body > h1[1]"]
+                    "offenders": "<div class=\"domTree\"><div><span>body</span><div><span>h1[1]</span></div></div></div>",
+                    "offendersCount": 1
                 });
 
                 // Test javascriptExecutionTree

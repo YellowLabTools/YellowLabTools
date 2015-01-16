@@ -25,7 +25,8 @@
             "takeOffendersFrom": "metric3"
         },
         "value": 222,
-        "offenders": ["offender1", "offender2"],
+        "offenders": "offender1 - offender2",
+        "offendersCount": 2,
         "bad": false,
         "abnormal": false,
         "score": 100,
@@ -41,7 +42,8 @@
             "isAbnormalThreshold": 5000
         },
         "value": 6666,
-        "offenders": ["offender1", "offender2"],
+        "offenders": "offender1/offender2",
+        "offendersCount": 2,
         "bad": true,
         "abnormal": true,
         "score": 0,

@@ -1,4 +1,5 @@
-{
+var policies = {
+
     "metric1": {
         "tool": "tool1",
         "label": "The metric 1",
@@ -14,7 +15,10 @@
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
         "isAbnormalThreshold": 5000,
-        "takeOffendersFrom": "metric3"
+        "takeOffendersFrom": "metric3",
+        "offendersTransformFn": function(offenders) {
+            return offenders.join(' - ');
+        }
     },
     "metric3": {
         "tool": "tool1",
@@ -22,7 +26,10 @@
         "message": "A great message",
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
-        "isAbnormalThreshold": 5000
+        "isAbnormalThreshold": 5000,
+        "offendersTransformFn": function(offenders) {
+            return offenders.join('/');
+        }
     },
     "metric4": {
         "tool": "tool1",
@@ -81,4 +88,6 @@
         "isBadThreshold": 3000,
         "isAbnormalThreshold": 5000
     }
-}
+};
+
+module.exports = policies;
