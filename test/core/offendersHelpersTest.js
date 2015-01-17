@@ -97,6 +97,11 @@ describe('offendersHelpers', function() {
             result.should.equal('<div class="eltButton headButton"><b>head</b></div>');
         });
 
+        it('should transform #document', function() {
+            var result = offendersHelpers.domPathToButton('#document');
+            result.should.equal('<div class="eltButton documentButton"><b>document</b></div>');
+        });
+
         it('should transform a standard in-body element', function() {
             var result = offendersHelpers.domPathToButton('body > div#colorbox > div#cboxContent');
             result.should.equal('<div class="eltButton domButton opens">DOM element <b>div#cboxContent</b><div class="domTree"><div><span>body</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
