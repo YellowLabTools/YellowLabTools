@@ -80,4 +80,48 @@ describe('offendersHelpers', function() {
 
     });
 
+    describe('domPathToButton', function() {
+
+        it('should transform html', function() {
+            var result = offendersHelpers.domPathToButton('html');
+            result.should.equal('<div class="eltButton htmlButton"><b>html</b></div>');
+        });
+
+        it('should transform body', function() {
+            var result = offendersHelpers.domPathToButton('body');
+            result.should.equal('<div class="eltButton bodyButton"><b>body</b></div>');
+        });
+
+        it('should transform head', function() {
+            var result = offendersHelpers.domPathToButton('head');
+            result.should.equal('<div class="eltButton headButton"><b>head</b></div>');
+        });
+
+        it('should transform a standard in-body element', function() {
+            var result = offendersHelpers.domPathToButton('body > div#colorbox > div#cboxContent');
+            result.should.equal('<div class="eltButton domButton opens">DOM element <b>div#cboxContent</b><div class="domTree"><div><span>body</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
+        });
+
+        it('should transform a domFragment element', function() {
+            var result = offendersHelpers.domPathToButton('DocumentFragment');
+            result.should.equal('<div class="eltButton fragButton">Fragment</div>');
+        });
+
+        it('should transform a domFragment element', function() {
+            var result = offendersHelpers.domPathToButton('DocumentFragment > div#colorbox > div#cboxContent');
+            result.should.equal('<div class="eltButton fragEltButton opens">Fragment element <b>div#cboxContent</b><div class="domTree"><div><span>DocumentFragment</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
+        });
+
+        it('should transform an not-attached element', function() {
+            var result = offendersHelpers.domPathToButton('div#sizcache');
+            result.should.equal('<div class="eltButton aloneButton">Created element <b>div#sizcache</b></div>');
+        });
+
+        it('should transform an not-attached element path', function() {
+            var result = offendersHelpers.domPathToButton('div > div#sizcache');
+            result.should.equal('<div class="eltButton aloneEltButton opens">Created element <b>div#sizcache</b><div class="domTree"><div><span>div</span><div><span>div#sizcache</span></div></div></div></div>');
+        });
+
+    });
+
 });

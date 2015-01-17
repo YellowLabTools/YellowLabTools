@@ -90,19 +90,77 @@
     }
 }
 
+.offenders {
+    .eltButton {
+        display: inline-block;
+        position: relative;
+        background: #efe;
+        padding: 0 0.5em;
+        margin: 0.2em 0;
+        border-radius: 0.4em;
+        z-index: 1;
+
+        &.opens {
+            padding-right: 0.75em;
+
+            &:after {
+                position: relative;
+                left: 0.5em;
+                content: '\25BC';
+                font-size: 0.8em;
+            }
+        }
+
+        > div {
+            display: none;
+            position: absolute;
+            right: 0;
+            min-width: 100%;
+            background: inherit;
+            border-bottom-left-radius: 0.4em;
+            border-bottom-right-radius: 0.4em;
+            border-top: 1px solid #999;
+        }
+
+        .domTree {
+            text-align: left;
+            white-space: nowrap;
+
+            > div {
+                margin: 0.5em;
+
+                div {
+                    margin-left: 1em;
+                }
+            }
+        }
+
+        &:hover {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background: #ffe0cc;
+            z-index: 2;
+
+            & > div {
+                display: block;
+            }
+        }
+    }
+}
+
 .offendersHtml {
     display: inline-block;
+}
 
-    .domTree div {
-        text-align: left;
-        margin-left: 1em;
+.domTree div {
+    text-align: left;
+    margin-left: 1em;
 
-        span:only-child {
-            font-weight: bold;
-            span {
-                font-style: italic;
-                font-weight: normal;
-            }
+    span:only-child {
+        font-weight: bold;
+        span {
+            font-style: italic;
+            font-weight: normal;
         }
     }
 }
