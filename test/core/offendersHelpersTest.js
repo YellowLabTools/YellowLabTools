@@ -137,7 +137,7 @@ describe('offendersHelpers', function() {
     describe('backtraceToArray', function() {
 
         it('should transform a backtrace into an array', function() {
-            var result = offendersHelpers.backtraceToArray('http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js:1 / http://pouet.com/js/main.js:1');
+            var result = offendersHelpers.backtraceToArray('http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js:1 / callback http://pouet.com/js/main.js:1');
 
             result.should.deep.equal([
                 {
@@ -145,6 +145,7 @@ describe('offendersHelpers', function() {
                     line: 1
                 },
                 {
+                    functionName: 'callback',
                     file: 'http://pouet.com/js/main.js',
                     line: 1
                 }
@@ -168,12 +169,13 @@ describe('offendersHelpers', function() {
                     line: 1
                 },
                 {
+                    functionName: 'callback',
                     file: 'http://pouet.com/js/main.js',
                     line: 1
                 }
             ]);
 
-            result.should.equal('<div class="offenderButton opens">backtrace<div class="backtrace"><div><a href="http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js" target="_blank">http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js</a> line 1</div><div><a href="http://pouet.com/js/main.js" target="_blank">http://pouet.com/js/main.js</a> line 1</div></div></div>');
+            result.should.equal('<div class="offenderButton opens">backtrace<div class="backtrace"><div><a href="http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js" target="_blank">http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js</a> line 1</div><div>callback() <a href="http://pouet.com/js/main.js" target="_blank">http://pouet.com/js/main.js</a> line 1</div></div></div>');
         });
 
         it('should display "no backtrace"', function() {

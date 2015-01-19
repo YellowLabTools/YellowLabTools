@@ -122,6 +122,7 @@
 }
 .offenders .offenderButton .backtrace {
   white-space: nowrap;
+  padding: 0.5em;
 }
 .offenders .offenderButton:hover {
   border-bottom-left-radius: 0;
