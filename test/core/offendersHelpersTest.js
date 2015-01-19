@@ -84,47 +84,144 @@ describe('offendersHelpers', function() {
 
         it('should transform html', function() {
             var result = offendersHelpers.domPathToButton('html');
-            result.should.equal('<div class="eltButton htmlButton"><b>html</b></div>');
+            result.should.equal('<div class="offenderButton"><b>html</b></div>');
         });
 
         it('should transform body', function() {
             var result = offendersHelpers.domPathToButton('body');
-            result.should.equal('<div class="eltButton bodyButton"><b>body</b></div>');
+            result.should.equal('<div class="offenderButton"><b>body</b></div>');
         });
 
         it('should transform head', function() {
             var result = offendersHelpers.domPathToButton('head');
-            result.should.equal('<div class="eltButton headButton"><b>head</b></div>');
+            result.should.equal('<div class="offenderButton"><b>head</b></div>');
         });
 
         it('should transform #document', function() {
             var result = offendersHelpers.domPathToButton('#document');
-            result.should.equal('<div class="eltButton documentButton"><b>document</b></div>');
+            result.should.equal('<div class="offenderButton"><b>document</b></div>');
+        });
+
+        it('should transform window', function() {
+            var result = offendersHelpers.domPathToButton('window');
+            result.should.equal('<div class="offenderButton"><b>window</b></div>');
         });
 
         it('should transform a standard in-body element', function() {
             var result = offendersHelpers.domPathToButton('body > div#colorbox > div#cboxContent');
-            result.should.equal('<div class="eltButton domButton opens">DOM element <b>div#cboxContent</b><div class="domTree"><div><span>body</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
+            result.should.equal('<div class="offenderButton opens">DOM element <b>div#cboxContent</b><div class="domTree"><div><span>body</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
         });
 
         it('should transform a domFragment element', function() {
             var result = offendersHelpers.domPathToButton('DocumentFragment');
-            result.should.equal('<div class="eltButton fragButton">Fragment</div>');
+            result.should.equal('<div class="offenderButton">Fragment</div>');
         });
 
         it('should transform a domFragment element', function() {
             var result = offendersHelpers.domPathToButton('DocumentFragment > div#colorbox > div#cboxContent');
-            result.should.equal('<div class="eltButton fragEltButton opens">Fragment element <b>div#cboxContent</b><div class="domTree"><div><span>DocumentFragment</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
+            result.should.equal('<div class="offenderButton opens">Fragment element <b>div#cboxContent</b><div class="domTree"><div><span>DocumentFragment</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
         });
 
         it('should transform an not-attached element', function() {
             var result = offendersHelpers.domPathToButton('div#sizcache');
-            result.should.equal('<div class="eltButton aloneButton">Created element <b>div#sizcache</b></div>');
+            result.should.equal('<div class="offenderButton">Created element <b>div#sizcache</b></div>');
         });
 
         it('should transform an not-attached element path', function() {
             var result = offendersHelpers.domPathToButton('div > div#sizcache');
-            result.should.equal('<div class="eltButton aloneEltButton opens">Created element <b>div#sizcache</b><div class="domTree"><div><span>div</span><div><span>div#sizcache</span></div></div></div></div>');
+            result.should.equal('<div class="offenderButton opens">Created element <b>div#sizcache</b><div class="domTree"><div><span>div</span><div><span>div#sizcache</span></div></div></div></div>');
+        });
+
+    });
+
+    describe('backtraceToArray', function() {
+
+        it('should transform a backtrace into an array', function() {
+            var result = offendersHelpers.backtraceToArray('http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js:1 / http://pouet.com/js/main.js:1');
+
+            result.should.deep.equal([
+                {
+                    file: 'http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js',
+                    line: 1
+                },
+                {
+                    file: 'http://pouet.com/js/main.js',
+                    line: 1
+                }
+            ]);
+        });
+
+        it('should return null if it fails', function() {
+            var result = offendersHelpers.backtraceToArray('http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js:1 /http://pouet.com/js/main.js:1');
+
+            should.equal(result, null);
+        });
+
+    });
+
+    describe('backtraceArrayToHtml', function() {
+
+        it('should create a button from a backtrace array', function() {
+            var result = offendersHelpers.backtraceArrayToHtml([
+                {
+                    file: 'http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js',
+                    line: 1
+                },
+                {
+                    file: 'http://pouet.com/js/main.js',
+                    line: 1
+                }
+            ]);
+
+            result.should.equal('<div class="offenderButton opens">backtrace<div class="backtrace"><div><a href="http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js" target="_blank">http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js</a> line 1</div><div><a href="http://pouet.com/js/main.js" target="_blank">http://pouet.com/js/main.js</a> line 1</div></div></div>');
+        });
+
+        it('should display "no backtrace"', function() {
+            var result = offendersHelpers.backtraceArrayToHtml([]);
+
+            result.should.equal('<div class="offenderButton">no backtrace</div>');
+        });
+
+    });
+
+    describe('sortVarsLikeChromeDevTools', function() {
+
+        it('should sort in the same strange order', function() {
+            var result = offendersHelpers.sortVarsLikeChromeDevTools([
+                'a',
+                'aaa',
+                'a2',
+                'b',
+                'A',
+                'AAA',
+                'B',
+                '_a',
+                '_aaa',
+                '__a',
+                'a_a',
+                'aA',
+                'a__',
+                '$',
+                '$a'
+            ]);
+
+            result.should.deep.equal([
+                '$',
+                '$a',
+                'A',
+                'AAA',
+                'B',
+                '__a',
+                '_a',
+                '_aaa',
+                'a',
+                'a2',
+                'aA',
+                'a__',
+                'a_a',
+                'aaa',
+                'b'
+            ]);
         });
 
     });
