@@ -175,7 +175,7 @@ describe('offendersHelpers', function() {
                 }
             ]);
 
-            result.should.equal('<div class="offenderButton opens">backtrace<div class="backtrace"><div><a href="http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js" target="_blank">http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js</a> line 1</div><div>callback() <a href="http://pouet.com/js/main.js" target="_blank">http://pouet.com/js/main.js</a> line 1</div></div></div>');
+            result.should.equal('<div class="offenderButton opens">backtrace<div class="backtrace"><div><a href="http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js" target="_blank" title="http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js">http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js</a> line 1</div><div>callback() <a href="http://pouet.com/js/main.js" target="_blank" title="http://pouet.com/js/main.js">http://pouet.com/js/main.js</a> line 1</div></div></div>');
         });
 
         it('should display "no backtrace"', function() {
@@ -224,6 +224,45 @@ describe('offendersHelpers', function() {
                 'aaa',
                 'b'
             ]);
+        });
+
+    });
+
+    describe('urlToLink', function() {
+
+        it('should transform an url into an html link', function() {
+            var result = offendersHelpers.urlToLink('http://www.google.com/js/main.js');
+
+            result.should.equal('<a href="http://www.google.com/js/main.js" target="_blank" title="http://www.google.com/js/main.js">http://www.google.com/js/main.js</a>');
+        });
+
+        it('should ellypsis the url if too long', function() {
+            var result = offendersHelpers.urlToLink('http://www.google.com/js/longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong/main.js');
+
+            result.should.equal('<a href="http://www.google.com/js/longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong/main.js" target="_blank" title="http://www.google.com/js/longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong/main.js">http://www.google.com/js/longlonglonglonglonglo ... longlonglonglonglonglonglonglonglonglong/main.js</a>');
+        });
+
+    });
+
+
+    describe('cssOffenderPattern', function() {
+
+        it('should transform a css offender into an object', function() {
+            var result = offendersHelpers.cssOffenderPattern('.pagination .plus ul li @ 30:31862');
+
+            result.should.deep.equal({
+                offender: '.pagination .plus ul li',
+                line: 30,
+                character: 31862
+            });
+        });
+
+        it('should handle the case where line and char are not here', function() {
+            var result = offendersHelpers.cssOffenderPattern('.pagination .plus ul li');
+
+            result.should.deep.equal({
+                offender: '.pagination .plus ul li'
+            });
         });
 
     });
