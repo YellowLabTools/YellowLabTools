@@ -267,4 +267,17 @@ describe('offendersHelpers', function() {
 
     });
 
+    describe('fileWithSizePattern', function() {
+
+        it('should return an object', function() {
+            var result = offendersHelpers.fileWithSizePattern('http://img3.pouet.com/2008/portail/js/jq-timer.js (1.72 kB)');
+
+            result.should.deep.equal({
+                file: 'http://img3.pouet.com/2008/portail/js/jq-timer.js',
+                size: 1.72
+            });
+        });
+
+    });
+
 });
