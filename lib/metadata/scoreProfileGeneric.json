@@ -46,7 +46,8 @@
             "policies": {
                 "cssRules": 2,
                 "cssComplexSelectors": 2,
-                "cssComplexSelectorsByAttribute": 1.5
+                "cssComplexSelectorsByAttribute": 1.5,
+                "cssColors": 0.5
             }
         },
         "badCSS": {

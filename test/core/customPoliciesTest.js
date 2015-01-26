@@ -404,20 +404,20 @@ describe('rulesChecker', function() {
         results.should.deep.equals({});
 
 
-        // If jQueryDifferentVersions is 0
+        // If jQueryVersionsLoaded is 0
         results = rulesChecker.check({
             "toolsResults": {
                 "phantomas": {
                     "metrics": {
                         "jQueryVersion": "1.6.0",
-                        "jQueryDifferentVersions": 0
+                        "jQueryVersionsLoaded": 0
                     }
                 }
             }
         }, policies);
         results.should.not.have.a.property('jQueryVersion');
-        results.should.have.a.property('jQueryDifferentVersions');
-        results.jQueryDifferentVersions.should.have.a.property('score').that.equals(100);
+        results.should.have.a.property('jQueryVersionsLoaded');
+        results.jQueryVersionsLoaded.should.have.a.property('score').that.equals(100);
 
 
         // If there are more than 1 jQuery version
@@ -426,15 +426,15 @@ describe('rulesChecker', function() {
                 "phantomas": {
                     "metrics": {
                         "jQueryVersion": "1.6.0",
-                        "jQueryDifferentVersions": 2
+                        "jQueryVersionsLoaded": 2
                     }
                 }
             }
         }, policies);
         results.should.not.have.a.property('jQueryVersion');
-        results.should.have.a.property('jQueryDifferentVersions');
-        results.jQueryDifferentVersions.should.have.a.property('score').that.equals(0);
-        results.jQueryDifferentVersions.should.have.a.property('abnormal').that.equals(true);
+        results.should.have.a.property('jQueryVersionsLoaded');
+        results.jQueryVersionsLoaded.should.have.a.property('score').that.equals(0);
+        results.jQueryVersionsLoaded.should.have.a.property('abnormal').that.equals(true);
     });
 
 
