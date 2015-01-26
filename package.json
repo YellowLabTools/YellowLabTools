@@ -16,7 +16,7 @@
     "cors": "^2.5.2",
     "debug": "~2.1.0",
     "express": "~4.10.6",
-    "phantomas": "1.8.0",
+    "phantomas": "1.9.0",
     "ps-node": "0.0.3",
     "q": "~1.1.2",
     "rimraf": "~2.2.8"
@@ -44,7 +44,6 @@
     "grunt-usemin": "^3.0.0",
     "matchdep": "^0.3.0",
     "mocha": "^2.1.0",
-    "phantomjs": "^1.9.13",
     "request": "^2.51.0",
     "sinon": "^1.12.1",
     "sinon-chai": "^2.6.0"

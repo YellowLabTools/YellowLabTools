@@ -65,14 +65,22 @@ describe('index.js', function() {
                         "message": "<p>A deep DOM makes the CSS matching with DOM elements difficult.</p><p>It also slows down JavaScript modifications to the DOM because changing the dimensions of an element makes the browser re-calculate the dimensions of it's parents. Same thing for JavaScript events, that bubble up to the document root.</p>",
                         "isOkThreshold": 10,
                         "isBadThreshold": 20,
-                        "isAbnormalThreshold": 28
+                        "isAbnormalThreshold": 28,
+                        "hasOffenders": true
                     },
                     "value": 1,
                     "bad": false,
                     "abnormal": false,
                     "score": 100,
                     "abnormalityScore": 0,
-                    "offenders": ["body > h1[1]"]
+                    "offendersObj": {
+                        "count": 1,
+                        "tree": {
+                            "body": {
+                                "h1[1]": 1
+                            }
+                        }
+                    }
                 });
 
                 // Test javascriptExecutionTree

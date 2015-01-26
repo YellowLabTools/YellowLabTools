@@ -22,7 +22,6 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
 
     function init() {
         $scope.rule = $scope.result.rules[$scope.policyName];
-        $scope.message = $sce.trustAsHtml($scope.rule.policy.message);
     }
 
     $scope.backToDashboard = function() {

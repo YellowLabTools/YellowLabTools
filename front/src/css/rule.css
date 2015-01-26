@@ -82,3 +82,69 @@
   font-size: 3em;
   margin-bottom: 1em;
 }
+.offenders .offenderButton {
+  display: inline-block;
+  position: relative;
+  background: #efe;
+  padding: 0 0.5em;
+  margin: 0.2em 0;
+  border-radius: 0.4em;
+  z-index: 1;
+}
+.offenders .offenderButton.opens {
+  padding-right: 0.75em;
+}
+.offenders .offenderButton.opens:after {
+  position: relative;
+  left: 0.5em;
+  content: '\25BC';
+  font-size: 0.8em;
+}
+.offenders .offenderButton > div {
+  display: none;
+  position: absolute;
+  right: 0;
+  min-width: 100%;
+  background: inherit;
+  border-bottom-left-radius: 0.4em;
+  border-bottom-right-radius: 0.4em;
+  border-top: 1px solid #999;
+}
+.offenders .offenderButton .domTree {
+  text-align: left;
+  white-space: nowrap;
+}
+.offenders .offenderButton .domTree > div {
+  margin: 0.5em;
+}
+.offenders .offenderButton .domTree > div div {
+  margin-left: 1em;
+}
+.offenders .offenderButton .backtrace,
+.offenders .offenderButton .cssFileAndLine {
+  white-space: nowrap;
+  padding: 0.5em;
+}
+.offenders .offenderButton.opens.mouseOver {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: #ffe0cc;
+  z-index: 2;
+}
+.offenders .offenderButton.opens.mouseOver > div {
+  display: block;
+}
+.offendersHtml {
+  display: inline-block;
+}
+.domTree div {
+  text-align: left;
+  margin-left: 1em;
+}
+.domTree div span:only-child {
+  font-weight: bold;
+}
+.domTree div span:only-child span {
+  font-style: italic;
+  font-weight: normal;
+}

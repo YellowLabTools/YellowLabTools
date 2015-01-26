@@ -1,5 +1,6 @@
 var yltApp = angular.module('YellowLabTools', [
     'ngRoute',
+    'ngSanitize',
     'indexCtrl',
     'aboutCtrl',
     'dashboardCtrl',
@@ -10,6 +11,7 @@ var yltApp = angular.module('YellowLabTools', [
     'resultsFactory',
     'menuService',
     'gradeDirective',
+    'offendersDirectives'
 ]);
 
 yltApp.run(['$rootScope', '$location', function($rootScope, $location) {
