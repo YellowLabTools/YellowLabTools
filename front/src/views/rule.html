@@ -128,7 +128,7 @@
                         (<ng-pluralize count="offender.requests" when="{'one':'1 request','other':'{} requests'}"></ng-pluralize>)
                     </div>
 
-                    <div ng-if="policyName === 'globalVariables' || policyName === 'jQueryDifferentVersions'">
+                    <div ng-if="policyName === 'globalVariables' || policyName === 'jQueryVersionsLoaded'">
                         {{offender}}
                     </div>
 
@@ -141,6 +141,13 @@
             
             <div ng-if="policyName === 'DOMelementMaxDepth'">
                 <dom-tree tree="rule.offendersObj.tree"></dom-tree>
+            </div>
+
+            <div ng-if="policyName === 'cssColors' && rule.offendersObj.count > 0">
+                <p>This is the color palette, sized by total occurrences:</p>
+                <div class="colorPalette">
+                    <div ng-repeat="offender in rule.offendersObj.palette" style="background-color: {{offender.color}}; width: {{offender.occurrences * 100 / rule.offendersObj.palette[0].occurrences}}%"><div>{{offender.color}} ({{offender.occurrences}} times)</div></div>
+                </div>
             </div>
 
         </div>
