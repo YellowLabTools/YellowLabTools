@@ -22,10 +22,6 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
 
     function init() {
         $scope.rule = $scope.result.rules[$scope.policyName];
-
-        if (angular.isString($scope.rule.offenders)) {
-            $scope.htmlOffenders = $scope.rule.offenders;
-        }
     }
 
     $scope.backToDashboard = function() {

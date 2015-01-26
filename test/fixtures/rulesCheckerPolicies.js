@@ -6,7 +6,8 @@ var policies = {
         "message": "A great message",
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
-        "isAbnormalThreshold": 5000
+        "isAbnormalThreshold": 5000,
+        "hasOffenders": false
     },
     "metric2": {
         "tool": "tool1",
@@ -16,8 +17,12 @@ var policies = {
         "isBadThreshold": 3000,
         "isAbnormalThreshold": 5000,
         "takeOffendersFrom": "metric3",
+        "hasOffenders": true,
         "offendersTransformFn": function(offenders) {
-            return offenders.join(' - ');
+            return {
+                count: 2,
+                str: offenders.join(' - ')
+            };
         }
     },
     "metric3": {
@@ -27,8 +32,12 @@ var policies = {
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
         "isAbnormalThreshold": 5000,
+        "hasOffenders": true,
         "offendersTransformFn": function(offenders) {
-            return offenders.join('/');
+            return {
+                count: 2,
+                test: offenders.join('/')
+            };
         }
     },
     "metric4": {
@@ -37,7 +46,8 @@ var policies = {
         "message": "A great message",
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
-        "isAbnormalThreshold": 5000
+        "isAbnormalThreshold": 5000,
+        "hasOffenders": true,
     },
     "metric5": {
         "tool": "tool1",
@@ -46,6 +56,7 @@ var policies = {
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
         "isAbnormalThreshold": 5000,
+        "hasOffenders": true,
         "takeOffendersFrom": ["metric3", "metric4"]
     },
     "metric6": {
@@ -71,7 +82,8 @@ var policies = {
         "message": "<p>This is from another tool!</p>",
         "isOkThreshold": 0,
         "isBadThreshold": 3,
-        "isAbnormalThreshold": 11
+        "isAbnormalThreshold": 11,
+        "hasOffenders": false,
     },
 
     "unexistantMetric": {
@@ -80,13 +92,15 @@ var policies = {
         "message": "",
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
-        "isAbnormalThreshold": 5000
+        "isAbnormalThreshold": 5000,
+        "hasOffenders": true
     },
     "unexistantTool": {
         "tool": "unexistant",
         "isOkThreshold": 1000,
         "isBadThreshold": 3000,
-        "isAbnormalThreshold": 5000
+        "isAbnormalThreshold": 5000,
+        "hasOffenders": false
     }
 };
 

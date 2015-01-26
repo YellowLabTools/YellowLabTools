@@ -20,11 +20,15 @@ describe('offendersHelpers', function() {
     describe('listOfDomArraysToTree', function() {
 
         it('should transform a list of arrays into a tree', function() {
-            var result = offendersHelpers.listOfDomArraysToTree([
+            var input = [
                 ['body', 'section#page', 'div.alternate-color', 'ul.retroGuide', 'li[0]', 'div.retro-chaine.france2'],
                 ['body', 'section#page', 'div.alternate-color', 'ul.retroGuide', 'li[0]', 'div.retro-chaine.france2'],
                 ['body', 'section#page', 'div.alternate-color', 'ul.retroGuide', 'li[1]', 'div.retro-chaine.france2']
-            ]);
+            ];
+
+            var inputClone = input.slice();
+
+            var result = offendersHelpers.listOfDomArraysToTree(input);
             result.should.deep.equal({
                 'body': {
                     'section#page': {
@@ -41,95 +45,105 @@ describe('offendersHelpers', function() {
                     }
                 }
             });
+
+            input.should.deep.equal(inputClone);
         });
 
     });
 
-    describe('domTreeToHTML', function() {
+    describe('domPathToDomElementObj', function() {
 
-        it('should transform a dom tree into HTML with the awaited format', function() {
-            var result = offendersHelpers.domTreeToHTML({
-                'body': {
-                    'ul.retroGuide': {
-                        'li[0]': {
-                            'div.retro-chaine.france2': 2
-                        },
-                        'li[1]': {
-                            'div.retro-chaine.france2': 1
+        it('should transform html', function() {
+            var result = offendersHelpers.domPathToDomElementObj('html');
+            result.should.deep.equal({
+                type: 'html'
+            });
+        });
+
+        it('should transform body', function() {
+            var result = offendersHelpers.domPathToDomElementObj('body');
+            result.should.deep.equal({
+                type: 'body'
+            });
+        });
+
+        it('should transform head', function() {
+            var result = offendersHelpers.domPathToDomElementObj('head');
+            result.should.deep.equal({
+                type: 'head'
+            });
+        });
+
+        it('should transform #document', function() {
+            var result = offendersHelpers.domPathToDomElementObj('#document');
+            result.should.deep.equal({
+                type: 'document'
+            });
+        });
+
+        it('should transform window', function() {
+            var result = offendersHelpers.domPathToDomElementObj('window');
+            result.should.deep.equal({
+                type: 'window'
+            });
+        });
+
+        it('should transform a standard in-body element', function() {
+            var result = offendersHelpers.domPathToDomElementObj('body > div#colorbox > div#cboxContent');
+            result.should.deep.equal({
+                type: 'domElement',
+                element: 'div#cboxContent',
+                tree: {
+                    'body': {
+                        'div#colorbox': {
+                            'div#cboxContent': 1
                         }
                     }
                 }
             });
-
-            result.should.equal('<div class="domTree"><div><span>body</span><div><span>ul.retroGuide</span><div><span>li[0]</span><div><span>div.retro-chaine.france2 <span>(x2)</span></span></div></div><div><span>li[1]</span><div><span>div.retro-chaine.france2</span></div></div></div></div></div>');
-        });
-
-    });
-
-    describe('listOfDomPathsToHTML', function() {
-
-        it('should transform a list of path strings into HTML', function() {
-            var result = offendersHelpers.listOfDomPathsToHTML([
-                'body > ul.retroGuide > li[0] > div.retro-chaine.france2',
-                'body > ul.retroGuide > li[1] > div.retro-chaine.france2',
-                'body > ul.retroGuide > li[0] > div.retro-chaine.france2',
-            ]);
-
-            result.should.equal('<div class="domTree"><div><span>body</span><div><span>ul.retroGuide</span><div><span>li[0]</span><div><span>div.retro-chaine.france2 <span>(x2)</span></span></div></div><div><span>li[1]</span><div><span>div.retro-chaine.france2</span></div></div></div></div></div>');
-        });
-
-    });
-
-    describe('domPathToButton', function() {
-
-        it('should transform html', function() {
-            var result = offendersHelpers.domPathToButton('html');
-            result.should.equal('<div class="offenderButton"><b>html</b></div>');
-        });
-
-        it('should transform body', function() {
-            var result = offendersHelpers.domPathToButton('body');
-            result.should.equal('<div class="offenderButton"><b>body</b></div>');
-        });
-
-        it('should transform head', function() {
-            var result = offendersHelpers.domPathToButton('head');
-            result.should.equal('<div class="offenderButton"><b>head</b></div>');
-        });
-
-        it('should transform #document', function() {
-            var result = offendersHelpers.domPathToButton('#document');
-            result.should.equal('<div class="offenderButton"><b>document</b></div>');
-        });
-
-        it('should transform window', function() {
-            var result = offendersHelpers.domPathToButton('window');
-            result.should.equal('<div class="offenderButton"><b>window</b></div>');
-        });
-
-        it('should transform a standard in-body element', function() {
-            var result = offendersHelpers.domPathToButton('body > div#colorbox > div#cboxContent');
-            result.should.equal('<div class="offenderButton opens">DOM element <b>div#cboxContent</b><div class="domTree"><div><span>body</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
         });
 
         it('should transform a domFragment element', function() {
-            var result = offendersHelpers.domPathToButton('DocumentFragment');
-            result.should.equal('<div class="offenderButton">Fragment</div>');
+            var result = offendersHelpers.domPathToDomElementObj('DocumentFragment');
+            result.should.deep.equal({
+                type: 'fragment'
+            });
         });
 
         it('should transform a domFragment element', function() {
-            var result = offendersHelpers.domPathToButton('DocumentFragment > div#colorbox > div#cboxContent');
-            result.should.equal('<div class="offenderButton opens">Fragment element <b>div#cboxContent</b><div class="domTree"><div><span>DocumentFragment</span><div><span>div#colorbox</span><div><span>div#cboxContent</span></div></div></div></div></div>');
+            var result = offendersHelpers.domPathToDomElementObj('DocumentFragment > div#colorbox > div#cboxContent');
+            result.should.deep.equal({
+                type: 'fragmentElement',
+                element: 'div#cboxContent',
+                tree: {
+                    'DocumentFragment': {
+                        'div#colorbox': {
+                            'div#cboxContent': 1
+                        }
+                    }
+                }
+            });
         });
 
         it('should transform an not-attached element', function() {
-            var result = offendersHelpers.domPathToButton('div#sizcache');
-            result.should.equal('<div class="offenderButton">Created element <b>div#sizcache</b></div>');
+            var result = offendersHelpers.domPathToDomElementObj('div#sizcache');
+            result.should.deep.equal({
+                type: 'createdElement',
+                element: 'div#sizcache'
+            });
         });
 
         it('should transform an not-attached element path', function() {
-            var result = offendersHelpers.domPathToButton('div > div#sizcache');
-            result.should.equal('<div class="offenderButton opens">Created element <b>div#sizcache</b><div class="domTree"><div><span>div</span><div><span>div#sizcache</span></div></div></div></div>');
+            var result = offendersHelpers.domPathToDomElementObj('div > div#sizcache');
+            result.should.deep.equal({
+                type: 'createdElement',
+                element: 'div#sizcache',
+                tree: {
+                    'div': {
+                        'div#sizcache': 1
+                    }
+                }
+            });
         });
 
     });
@@ -156,32 +170,6 @@ describe('offendersHelpers', function() {
             var result = offendersHelpers.backtraceToArray('http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js:1 /http://pouet.com/js/main.js:1');
 
             should.equal(result, null);
-        });
-
-    });
-
-    describe('backtraceArrayToHtml', function() {
-
-        it('should create a button from a backtrace array', function() {
-            var result = offendersHelpers.backtraceArrayToHtml([
-                {
-                    file: 'http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js',
-                    line: 1
-                },
-                {
-                    functionName: 'callback',
-                    file: 'http://pouet.com/js/main.js',
-                    line: 1
-                }
-            ]);
-
-            result.should.equal('<div class="offenderButton opens">backtrace<div class="backtrace"><div><a href="http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js" target="_blank" title="http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js">http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js</a> line 1</div><div>callback() <a href="http://pouet.com/js/main.js" target="_blank" title="http://pouet.com/js/main.js">http://pouet.com/js/main.js</a> line 1</div></div></div>');
-        });
-
-        it('should display "no backtrace"', function() {
-            var result = offendersHelpers.backtraceArrayToHtml([]);
-
-            result.should.equal('<div class="offenderButton">no backtrace</div>');
         });
 
     });
@@ -248,12 +236,24 @@ describe('offendersHelpers', function() {
     describe('cssOffenderPattern', function() {
 
         it('should transform a css offender into an object', function() {
-            var result = offendersHelpers.cssOffenderPattern('.pagination .plus ul li @ 30:31862');
+            var result = offendersHelpers.cssOffenderPattern('.pagination .plus ul li <http://www.pouet.com/css/main.css> @ 30:31862');
 
             result.should.deep.equal({
-                offender: '.pagination .plus ul li',
+                css: '.pagination .plus ul li',
+                file: 'http://www.pouet.com/css/main.css',
                 line: 30,
-                character: 31862
+                column: 31862
+            });
+        });
+
+        it('should work with an inline css', function() {
+            var result = offendersHelpers.cssOffenderPattern('.pagination .plus ul li [inline CSS] @ 1:32');
+
+            result.should.deep.equal({
+                css: '.pagination .plus ul li',
+                file: null,
+                line: 1,
+                column: 32
             });
         });
 

@@ -6,7 +6,8 @@
             "message": "A great message",
             "isOkThreshold": 1000,
             "isBadThreshold": 3000,
-            "isAbnormalThreshold": 5000
+            "isAbnormalThreshold": 5000,
+            "hasOffenders": false
         },
         "value": 1236,
         "bad": true,
@@ -22,11 +23,14 @@
             "isOkThreshold": 1000,
             "isBadThreshold": 3000,
             "isAbnormalThreshold": 5000,
+            "hasOffenders": true,
             "takeOffendersFrom": "metric3"
         },
         "value": 222,
-        "offenders": "offender1 - offender2",
-        "offendersCount": 2,
+        "offendersObj": {
+            "count": 2,
+            "str": "offender1 - offender2"
+        },
         "bad": false,
         "abnormal": false,
         "score": 100,
@@ -39,11 +43,14 @@
             "message": "A great message",
             "isOkThreshold": 1000,
             "isBadThreshold": 3000,
-            "isAbnormalThreshold": 5000
+            "isAbnormalThreshold": 5000,
+            "hasOffenders": true
         },
         "value": 6666,
-        "offenders": "offender1/offender2",
-        "offendersCount": 2,
+        "offendersObj": {
+            "count": 2,
+            "test": "offender1/offender2"
+        },
         "bad": true,
         "abnormal": true,
         "score": 0,
@@ -56,10 +63,14 @@
             "message": "A great message",
             "isOkThreshold": 1000,
             "isBadThreshold": 3000,
-            "isAbnormalThreshold": 5000
+            "isAbnormalThreshold": 5000,
+            "hasOffenders": true
         },
         "value": 1000,
-        "offenders": ["offender3"],
+        "offendersObj": {
+            "count": 1,
+            "list": ["offender3"]
+        },
         "bad": false,
         "abnormal": false,
         "score": 100,
@@ -73,10 +84,14 @@
             "isOkThreshold": 1000,
             "isBadThreshold": 3000,
             "isAbnormalThreshold": 5000,
+            "hasOffenders": true,
             "takeOffendersFrom": ["metric3", "metric4"]
         },
         "value": 3000,
-        "offenders": ["offender1", "offender2", "offender3"],
+        "offendersObj": {
+            "count": 3,
+            "list": ["offender1", "offender2", "offender3"]
+        },
         "bad": true,
         "abnormal": false,
         "score": 0,
@@ -120,7 +135,8 @@
             "message": "<p>This is from another tool!</p>",
             "isOkThreshold": 0,
             "isBadThreshold": 3,
-            "isAbnormalThreshold": 11
+            "isAbnormalThreshold": 11,
+            "hasOffenders": false
         },
         "value": 22,
         "bad": true,

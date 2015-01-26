@@ -120,17 +120,18 @@
 .offenders .offenderButton .domTree > div div {
   margin-left: 1em;
 }
-.offenders .offenderButton .backtrace {
+.offenders .offenderButton .backtrace,
+.offenders .offenderButton .cssFileAndLine {
   white-space: nowrap;
   padding: 0.5em;
 }
-.offenders .offenderButton:hover {
+.offenders .offenderButton.opens.mouseOver {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   background: #ffe0cc;
   z-index: 2;
 }
-.offenders .offenderButton:hover > div {
+.offenders .offenderButton.opens.mouseOver > div {
   display: block;
 }
 .offendersHtml {

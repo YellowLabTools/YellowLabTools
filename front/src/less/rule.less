@@ -135,18 +135,18 @@
             }
         }
 
-        .backtrace {
+        .backtrace, .cssFileAndLine {
             white-space: nowrap;
             padding: 0.5em;
         }
 
-        &:hover {
+        &.opens.mouseOver {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             background: #ffe0cc;
             z-index: 2;
 
-            & > div {
+            > div {
                 display: block;
             }
         }
