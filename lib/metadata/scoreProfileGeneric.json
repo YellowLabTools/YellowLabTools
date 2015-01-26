@@ -32,7 +32,7 @@
             "label": "jQuery version",
             "policies": {
                 "jQueryVersion": 5,
-                "jQueryDifferentVersions": 0.1
+                "jQueryVersionsLoaded": 0.1
             }
         },
         "cssSyntaxError": {
