@@ -93,6 +93,7 @@ describe('screenshotHandler', function() {
         var tmpFolderPath = screenshot;
 
         screenshot.deleteTmpFile()
+            .delay(1000)
             .then(function() {
                 fs.existsSync(screenshot.getTmpFolder().path).should.equal(false);
                 done();
@@ -114,6 +115,7 @@ describe('screenshotHandler', function() {
         fs.existsSync(tmpImagePath).should.equal(true);
 
         screenshot.deleteTmpFile()
+            .delay(1000)
             .then(function() {
                 fs.existsSync(tmpImagePath).should.equal(false);
                 fs.existsSync(tmpFolderPath).should.equal(false);
