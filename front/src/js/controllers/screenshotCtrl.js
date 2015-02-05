@@ -16,13 +16,12 @@ screenshotCtrl.controller('ScreenshotCtrl', ['$scope', '$rootScope', '$routePara
             });
         } else {
             $scope.result = $rootScope.loadedResult;
-            init();
         }
     }
 
-    function init() {
-        
-    }
+    $scope.backToDashboard = function() {
+        $location.path('/result/' + $scope.runId);
+    };
 
     $scope.testAgain = function() {
         Runs.save({
