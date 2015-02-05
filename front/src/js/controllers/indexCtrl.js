@@ -5,7 +5,8 @@ indexCtrl.controller('IndexCtrl', ['$scope', '$location', 'Runs', function($scop
         if ($scope.url) {
             Runs.save({
                 url: $scope.url,
-                waitForResponse: false
+                waitForResponse: false,
+                screenshot: true
             }, function(data) {
                 $location.path('/queue/' + data.runId);
             });

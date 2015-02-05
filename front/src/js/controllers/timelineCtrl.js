@@ -134,7 +134,8 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     $scope.testAgain = function() {
         Runs.save({
                 url: $scope.result.params.url,
-                waitForResponse: false
+                waitForResponse: false,
+                screenshot: true
             }, function(data) {
                 $location.path('/queue/' + data.runId);
             });
