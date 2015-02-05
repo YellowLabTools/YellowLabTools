@@ -5,7 +5,14 @@
   text-align: center;
 }
 .summary .globalScore {
-  margin-bottom: 3em;
+  display: table;
+  width: 60%;
+  margin: 3em auto;
+}
+.summary .globalScore > div {
+  display: table-cell;
+  width: 50%;
+  vertical-align: middle;
 }
 .summary .globalScore .globalGrade {
   margin: 0.5 auto;
@@ -21,6 +28,23 @@
   font-size: 1.2em;
   font-weight: bold;
   margin: 0.5em 0 1em;
+}
+.summary .globalScore .screenshotWrapper:hover {
+  opacity: 0.75;
+}
+.summary .globalScore .screenshotWrapper:hover:after {
+  position: absolute;
+  width: 1.25em;
+  height: 1.25em;
+  top: 0.7em;
+  left: 1.55em;
+  font-size: 3em;
+  color: #FFF;
+  background: #000;
+  border-radius: 0.2em;
+  text-align: center;
+  content: "+";
+  opacity: 0.6;
 }
 .summary .notations {
   display: table;

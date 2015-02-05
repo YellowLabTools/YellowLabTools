@@ -1,0 +1,14 @@
+<div ng-include="'views/resultSubHeader.html'"></div>
+<div class="screenshot board">
+    <h2>Screenshot</h2>
+
+    <div class="screenshotWrapper desktop">
+        <div>
+            <img class="screenshotImage" ng-src="{{result.screenshotUrl}}"/>
+        </div>
+    </div>
+
+    <p>(scroll on the screenshot to see under the fold)</p>
+
+    <div class="backToDashboard"><a href="#" ng-click="backToDashboard()">Back to dashboard</a></div>
+</div>

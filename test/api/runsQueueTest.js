@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var runsQueue = require('../../lib/server/datastores/runsQueue.js');
+var runsQueue = require('../../lib/server/datastores/runsQueue');
 
 describe('runsQueue', function() {
 

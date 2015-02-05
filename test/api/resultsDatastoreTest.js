@@ -1,6 +1,9 @@
 var should = require('chai').should();
 var resultsDatastore = require('../../lib/server/datastores/resultsDatastore');
 
+var fs = require('fs');
+var path = require('path');
+
 describe('resultsDatastore', function() {
     
     var datastore = new resultsDatastore();
@@ -69,6 +72,50 @@ describe('resultsDatastore', function() {
                 done('Error, the result is still in the datastore');
             }).fail(function(err) {
                 done();
+            });
+    });
+
+
+    var testId3 = '555555';
+    var testData3 = {
+        runId: testId3,
+        other: {
+            foo: 'foo',
+            bar: 2
+        },
+        screenshotBuffer: fs.readFileSync(path.join(__dirname, '../fixtures/logo-large.png'))
+    };
+
+    it('should store a test with a screenshot', function(done) {
+
+        datastore.saveResult(testData3).then(function() {
+            done();
+        }).fail(function(err) {
+            done(err);
+        });
+    });
+
+    it('should have a normal result', function(done) {
+        datastore.getResult(testId3)
+            .then(function(results) {
+
+                results.should.not.have.a.property('screenshot');
+
+                done();
+            })
+            .fail(function(err) {
+                done(err);
+            });
+    });
+
+    it('should retrieve the saved image', function() {
+        datastore.getScreenshot(testId3)
+            .then(function(imageBuffer) {
+                imageBuffer.should.be.an.instanceof(Buffer);
+                done();
+            })
+            .fail(function(err) {
+                done(err);
             });
     });
 });

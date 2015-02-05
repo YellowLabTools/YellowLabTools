@@ -330,7 +330,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', [
         'build',
-        'jshint',
         'express:testSuite',
         'clean:coverage',
         'copy-test-server-settings',
