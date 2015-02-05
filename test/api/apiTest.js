@@ -131,7 +131,6 @@ describe('api', function() {
         }, function(error, response, body) {
             if (!error && response.statusCode === 302) {
 
-                console.log(response.headers.location);
                 response.headers.should.have.a.property('location').that.is.a('string');
                 response.headers.location.should.contain('/rules');
 
@@ -159,6 +158,14 @@ describe('api', function() {
                 body.should.have.a.property('rules').that.is.an('object');
                 body.should.have.a.property('toolsResults').that.is.an('object');
                 body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
+
+                // Check if the screenshot temporary file was correctly removed
+                body.params.options.should.not.have.a.property('screenshot');
+                // Check if the screenshot buffer was correctly removed
+                body.should.not.have.a.property('screenshotBuffer');
+                // Check if the screenshot url is here
+                body.should.have.a.property('screenshotUrl');
+                body.screenshotUrl.should.have.string('/result/' + body.runId + '/screenshot.jpg');
 
                 done();
 
