@@ -2,10 +2,19 @@
 <div class="summary board">
     
     <div class="globalScore" ng-if="globalScore === 0 || globalScore > 0">
-        <h2> Global score</h2>
-        <div class="globalScoreDisplay">
-            <grade score="result.scoreProfiles.generic.globalScore" class="globalGrade"></grade>
-            <div class="on100">{{globalScore}}/100</div>
+        <div>
+            <h2>Global score</h2>
+            <div class="globalScoreDisplay">
+                <grade score="result.scoreProfiles.generic.globalScore" class="globalGrade"></grade>
+                <div class="on100">{{globalScore}}/100</div>
+            </div>
+        </div>
+        <div>
+            <div class="screenshotWrapper desktop">
+                <div>
+                    <img class="screenshot" ng-src="{{result.screenshotUrl}}"/>
+                </div>
+            </div>
         </div>
     </div>
 

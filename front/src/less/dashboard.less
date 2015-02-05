@@ -7,7 +7,16 @@
 }
 
 .summary .globalScore {
-    margin-bottom: 3em;
+    display: table;
+    width: 60%;
+    margin: 3em auto;
+
+    > div {
+        display: table-cell;
+        width: 50%;
+        vertical-align: middle;
+    }
+
     .globalGrade {
         margin: 0.5 auto;
         width: 2.5em;
@@ -22,6 +31,48 @@
         font-size: 1.2em;
         font-weight: bold;
         margin: 0.5em 0 1em;
+    }
+
+    .screenshotWrapper.desktop {
+        display: inline-block;
+        position: relative;
+        border: 0.2em solid #AAA;
+        background: #000;
+        padding: 0.5em;
+        border-top-left-radius: 0.4em;
+        border-top-right-radius: 0.4em;
+
+        &:before {
+            position: absolute;
+            width: 15em;
+            height: 0.6em;
+            bottom: -0.75em;
+            left: -1em;
+            background: #CCC;
+            border-bottom-left-radius: 0.2em;
+            border-bottom-right-radius: 0.2em;
+            content: " ";
+        }
+
+        &:after {
+            position: absolute;
+            width: 0.4em;
+            height: 0.2em;
+            bottom: -0.55em;
+            left: 12.5em;
+            background: lime;
+            content: " ";
+        }
+
+        > div {
+            width: 12em;
+            height: 6.75em;
+            overflow: scroll;
+        }
+    }
+
+    .screenshot {
+        width: 100%;
     }
 }
 
