@@ -29,43 +29,6 @@
   font-weight: bold;
   margin: 0.5em 0 1em;
 }
-.summary .globalScore .screenshotWrapper.desktop {
-  display: inline-block;
-  position: relative;
-  border: 0.2em solid #AAA;
-  background: #000;
-  padding: 0.5em;
-  border-top-left-radius: 0.4em;
-  border-top-right-radius: 0.4em;
-}
-.summary .globalScore .screenshotWrapper.desktop:before {
-  position: absolute;
-  width: 15em;
-  height: 0.6em;
-  bottom: -0.75em;
-  left: -1em;
-  background: #CCC;
-  border-bottom-left-radius: 0.2em;
-  border-bottom-right-radius: 0.2em;
-  content: " ";
-}
-.summary .globalScore .screenshotWrapper.desktop:after {
-  position: absolute;
-  width: 0.4em;
-  height: 0.2em;
-  bottom: -0.55em;
-  left: 12.5em;
-  background: lime;
-  content: " ";
-}
-.summary .globalScore .screenshotWrapper.desktop > div {
-  width: 12em;
-  height: 6.75em;
-  overflow: scroll;
-}
-.summary .globalScore .screenshot {
-  width: 100%;
-}
 .summary .notations {
   display: table;
   width: 80%;

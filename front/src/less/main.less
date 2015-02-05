@@ -113,6 +113,49 @@ h1 span {
 }
 
 
+.screenshotWrapper.desktop {
+    display: inline-block;
+    position: relative;
+    border: 0.2em solid #AAA;
+    background: #000;
+    padding: 0.5em;
+    border-top-left-radius: 0.4em;
+    border-top-right-radius: 0.4em;
+
+    &:before {
+        position: absolute;
+        width: 15em;
+        height: 0.6em;
+        bottom: -0.75em;
+        left: -1em;
+        background: #CCC;
+        border-bottom-left-radius: 0.2em;
+        border-bottom-right-radius: 0.2em;
+        content: " ";
+    }
+
+    &:after {
+        position: absolute;
+        width: 0.4em;
+        height: 0.2em;
+        bottom: -0.55em;
+        left: 12.5em;
+        background: lime;
+        content: " ";
+    }
+
+    > div {
+        width: 12em;
+        height: 6.75em;
+        overflow: scroll;
+    }
+
+    .screenshotImage {
+        width: 100%;
+    }
+}
+
+
 .star {
     font-weight: bold;
     span {

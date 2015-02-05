@@ -10,11 +10,13 @@
             </div>
         </div>
         <div>
-            <div class="screenshotWrapper desktop">
-                <div>
-                    <img class="screenshot" ng-src="{{result.screenshotUrl}}"/>
+            <a href="/result/{{result.runId}}/screenshot">
+                <div class="screenshotWrapper desktop">
+                    <div>
+                        <img class="screenshotImage" ng-src="{{result.screenshotUrl}}"/>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 
