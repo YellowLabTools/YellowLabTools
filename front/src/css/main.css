@@ -146,6 +146,7 @@ h1 span {
   width: 12em;
   height: 6.75em;
   overflow: scroll;
+  position: relative;
 }
 .screenshotWrapper.desktop .screenshotImage {
   width: 100%;
