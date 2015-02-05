@@ -16,6 +16,7 @@ describe('api', function() {
 
     var syncRunResultUrl;
     var asyncRunId;
+    var screenshotUrl;
 
 
     it('should refuse a query with an invalid key', function(done) {
@@ -94,7 +95,8 @@ describe('api', function() {
             url: serverUrl + '/api/runs',
             body: {
                 url: wwwUrl + '/simple-page.html',
-                waitForResponse: true
+                waitForResponse: true,
+                screenshot: true
             },
             json: true,
             headers: {
@@ -165,7 +167,9 @@ describe('api', function() {
                 body.should.not.have.a.property('screenshotBuffer');
                 // Check if the screenshot url is here
                 body.should.have.a.property('screenshotUrl');
-                body.screenshotUrl.should.have.string('/result/' + body.runId + '/screenshot.jpg');
+                body.screenshotUrl.should.equal('/api/results/' + body.runId + '/screenshot.jpg');
+
+                screenshotUrl = body.screenshotUrl;
 
                 done();
 
@@ -517,6 +521,39 @@ describe('api', function() {
                 
                 done();
 
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
+    it('should retrieve the screenshot', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + screenshotUrl
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                response.headers['content-type'].should.equal('image/jpeg');
+                done();
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
+    it('should fail on a unexistant screenshot', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/000000/screenshot.jpg'
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 404) {
+                done();
             } else {
                 done(error || response.statusCode);
             }
