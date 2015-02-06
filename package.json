@@ -1,6 +1,7 @@
 {
   "name": "yellowlabtools",
   "version": "1.2.0",
+  "description": "Online tool audits a webpage for performance and front-end code quality issues",
   "repository": {
     "type": "git",
     "url": "git://github.com/gmetais/YellowLabTools.git"
