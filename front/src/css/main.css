@@ -113,6 +113,18 @@ h1 span {
   margin-top: 4em;
   color: black;
 }
+a.linkButton {
+  font-size: 1em;
+  padding: 0.3em 0.5em;
+  margin: 0.5em;
+  line-height: 2em;
+  border: 0 solid;
+  border-radius: 0.5em;
+  box-shadow: 0.1em 0.2em 0 0 #5e2846;
+  background: #e74c3c;
+  color: #fff;
+  text-decoration: none;
+}
 .screenshotWrapper.desktop {
   display: inline-block;
   position: relative;

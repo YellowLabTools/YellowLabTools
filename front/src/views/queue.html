@@ -3,8 +3,9 @@
 <div ng-if="status.statusCode == 'failed'">
     <div class="status">Test failed</div>
     <p class="statusSubMessage">{{status.error}}</p>
-    <p><a class="queueLink" href="https://github.com/gmetais/YellowLabTools/issues" target="_blank">Report a bug on GitHub</a></p>
-    <p><a class="queueLink" href="/">Back to index</a></p>
+    
+    <a class="linkButton" href="https://github.com/gmetais/YellowLabTools/issues" target="_blank">Report the issue on GitHub</a>
+    <a class="linkButton" href="/">New test</a>
 </div>
 <div ng-if="status.statusCode == 'awaiting'">
     <div class="status">
