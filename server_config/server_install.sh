@@ -3,7 +3,7 @@
 # APT-GET
 sudo apt-get update
 sudo apt-get install lsb-release libfontconfig1 libfreetype6 -y --force-yes
-sudo apt-get install curl git python-software-properties -y --force-yes
+sudo apt-get install curl git python-software-properties build-essential make g++ -y --force-yes
 
 # Installation of NodeJS
 sudo add-apt-repository -y ppa:chris-lea/node.js
