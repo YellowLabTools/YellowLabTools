@@ -2,6 +2,8 @@ var chai                = require('chai');
 var sinon               = require('sinon');
 var sinonChai           = require('sinon-chai');
 var should              = chai.should();
+var path                = require('path');
+var fs                  = require('fs');
 var ylt                 = require('../../lib/index');
 
 chai.use(sinonChai);
@@ -92,6 +94,26 @@ describe('index.js', function() {
 
                 /*jshint expr: true*/
                 console.log.should.not.have.been.called;
+
+                done();
+            }).fail(function(err) {
+                done(err);
+            });
+    });
+
+    it('should take a screenshot', function(done) {
+        this.timeout(15000);
+
+        var url = 'http://localhost:8388/simple-page.html';
+        var screenshotPath = path.join(__dirname, '../../.tmp/indexTestScreenshot.png');
+
+        ylt(url, {screenshot: screenshotPath})
+            .then(function(data) {
+
+                data.params.options.should.have.a.property('screenshot').that.equals(screenshotPath);
+                data.should.not.have.a.property('screenshotUrl');
+
+                fs.existsSync(screenshotPath).should.equal(true);
 
                 done();
             }).fail(function(err) {
