@@ -1,6 +1,6 @@
 var queueCtrl = angular.module('queueCtrl', ['runsFactory']);
 
-queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs', function($scope, $routeParams, $location, Runs) {
+queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs', 'API', function($scope, $routeParams, $location, Runs, API) {
     $scope.runId = $routeParams.runId;
 
     var numberOfTries = 0;
@@ -9,6 +9,8 @@ queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs'
         Runs.get({runId: $scope.runId}, function(data) {
             $scope.url = data.params.url;
             $scope.status = data.status;
+            $scope.notFound = false;
+            $scope.connectionLost = false;
 
             if (data.status.statusCode === 'running' || data.status.statusCode === 'awaiting') {
                 numberOfTries ++;
@@ -20,6 +22,16 @@ queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs'
                 $location.path('/result/' + $scope.runId).replace();
             } else {
                 // Handled by the view
+            }
+        }, function(response) {
+            if (response.status === 404) {
+                $scope.notFound = true;
+                $scope.connectionLost = false;
+            } else if (response.status === 0) {
+                // Connection lost, retry in 10 seconds
+                setTimeout(getRunStatus, 10000);
+                $scope.connectionLost = true;
+                $scope.notFound = false;
             }
         });
     }
