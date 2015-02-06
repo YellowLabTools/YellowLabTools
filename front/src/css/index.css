@@ -13,6 +13,18 @@
 .launchBtn.disabled {
   background: #deaca6;
 }
+.features {
+  display: table;
+  width: 50%;
+  margin: 8em auto 0;
+  font-size: 0.9em;
+  color: #413;
+}
+.features > div {
+  width: 33.3%;
+  display: table-cell;
+  padding: 0 1.5em;
+}
 input[type=submit],
 input.url {
   padding: 0 0.5em;
