@@ -10,6 +10,7 @@ var yltApp = angular.module('YellowLabTools', [
     'timelineCtrl',
     'runsFactory',
     'resultsFactory',
+    'apiService',
     'menuService',
     'gradeDirective',
     'offendersDirectives'

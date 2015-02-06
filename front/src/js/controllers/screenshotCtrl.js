@@ -1,6 +1,6 @@
 var screenshotCtrl = angular.module('screenshotCtrl', ['resultsFactory', 'menuService']);
 
-screenshotCtrl.controller('ScreenshotCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Results', 'Runs', 'Menu', function($scope, $rootScope, $routeParams, $location, Results, Runs, Menu) {
+screenshotCtrl.controller('ScreenshotCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Results', 'API', 'Menu', function($scope, $rootScope, $routeParams, $location, Results, API, Menu) {
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage(null, $scope.runId);
     
@@ -24,13 +24,7 @@ screenshotCtrl.controller('ScreenshotCtrl', ['$scope', '$rootScope', '$routePara
     };
 
     $scope.testAgain = function() {
-        Runs.save({
-                url: $scope.result.params.url,
-                waitForResponse: false,
-                screenshot: true
-            }, function(data) {
-                $location.path('/queue/' + data.runId);
-            });
+        API.launchTest($scope.result.params.url);
     };
 
     loadResults();

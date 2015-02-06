@@ -1,16 +1,9 @@
 var indexCtrl = angular.module('indexCtrl', []);
 
-indexCtrl.controller('IndexCtrl', ['$scope', '$location', 'Runs', function($scope, $location, Runs) {
+indexCtrl.controller('IndexCtrl', ['$scope', '$location', 'API', function($scope, $location, API) {
     $scope.launchTest = function() {
         if ($scope.url) {
-            Runs.save({
-                url: $scope.url,
-                waitForResponse: false,
-                screenshot: true
-            }, function(data) {
-                $location.path('/queue/' + data.runId);
-            });
-            
+            API.launchTest();
         }
     };
 }]);

@@ -1,6 +1,6 @@
 var timelineCtrl = angular.module('timelineCtrl', []);
 
-timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'Menu', 'Results', 'Runs', function($scope, $rootScope, $routeParams, $location, $timeout, Menu, Results, Runs) {
+timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'Menu', 'Results', 'API', function($scope, $rootScope, $routeParams, $location, $timeout, Menu, Results, API) {
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage('timeline', $scope.runId);
 
@@ -132,13 +132,7 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     };
 
     $scope.testAgain = function() {
-        Runs.save({
-                url: $scope.result.params.url,
-                waitForResponse: false,
-                screenshot: true
-            }, function(data) {
-                $location.path('/queue/' + data.runId);
-            });
+        API.launchTest($scope.result.params.url);
     };
 
     loadResults();
