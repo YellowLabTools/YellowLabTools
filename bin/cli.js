@@ -41,7 +41,7 @@ if (screenshot) {
         // It is not an absolute path, so it is relative to the current command-line directory
         screenshot = path.join(process.cwd(), screenshot);
     }
-    options.screenshot = cli.flags.screenshot
+    options.screenshot = cli.flags.screenshot;
 }
 
 
