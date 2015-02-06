@@ -5,6 +5,7 @@
     <base href="/">
     <link rel="icon" type="image/png" href="/img/favicon.png">
     <meta property="og:image" content="/img/logo-large.png" />
+    <meta name="description" content="Free online web performance tool. Audit your webpage for performance and front-end quality issues. And it's open-source!" />
 
     <!-- build:css /css/styles.css-->
     <link rel="stylesheet" type="text/css" href="/css/main.css">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="/css/queue.css">
     <link rel="stylesheet" type="text/css" href="/css/rule.css">
+    <link rel="stylesheet" type="text/css" href="/css/screenshot.css">
     <link rel="stylesheet" type="text/css" href="/css/timeline.css">
     <link rel="stylesheet" type="text/css" href="/css/about.css">
     <!-- endbuild -->
@@ -20,17 +22,20 @@
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/controllers/indexCtrl.js"></script>
-    <script src="/js/controllers/aboutCtrl.js"></script>
     <script src="/js/controllers/dashboardCtrl.js"></script>
     <script src="/js/controllers/queueCtrl.js"></script>
     <script src="/js/controllers/ruleCtrl.js"></script>
+    <script src="/js/controllers/screenshotCtrl.js"></script>
     <script src="/js/controllers/timelineCtrl.js"></script>
     <script src="/js/models/resultsFactory.js"></script>
     <script src="/js/models/runsFactory.js"></script>
+    <script src="/js/services/apiService.js"></script>
     <script src="/js/services/menuService.js"></script>
     <script src="/js/directives/gradeDirective.js"></script>
+    <script src="/js/directives/offendersDirectives.js"></script>
     <!-- endbuild -->
 <head>
 

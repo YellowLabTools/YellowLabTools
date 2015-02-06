@@ -1,22 +1,55 @@
 #!/usr/bin/env node
 
 var debug = require('debug')('ylt:cli');
+var meow = require('meow');
+var path = require('path');
 
 var ylt = require('../lib/index');
 
+var cli = meow({
+    help: [
+        'Usage',
+        '  yellowlabtools <url> <options>',
+        '',
+        'Options:',
+        '  --screenshot     Will take a screenshot and use this value as the output path. It needs to end with ".png".',
+        ''
+    ].join('\n'),
+    pkg: '../package.json'
+});
+
+
+
 // Check parameters
-if (process.argv.length !== 3) {
-    console.error('Incorrect parameters');
-    console.error('\nUsage: ylt <pageUrl>\n');
+if (cli.input.length < 1) {
+    console.error('Incorrect parameters: url not provided');
     process.exit(1);
 }
 
-var url = process.argv[2];
+var url = cli.input[0];
 
-(function execute(url) {
+var options = {};
+
+// Screenshot option
+var screenshot = cli.flags.screenshot;
+if (screenshot && (typeof screenshot !== 'string' || screenshot.toLowerCase().indexOf('.png', screenshot.length - 4) === -1)) {
+    console.error('Incorrect parameters: screenshot must be a path that ends with ".png"');
+    process.exit(1);
+}
+if (screenshot) {
+    if (path.resolve(screenshot) !== path.normalize(screenshot)) {
+        // It is not an absolute path, so it is relative to the current command-line directory
+        screenshot = path.join(process.cwd(), screenshot);
+    }
+    options.screenshot = cli.flags.screenshot;
+}
+
+
+
+(function execute(url, options) {
     'use strict';
 
-    ylt(url).
+    ylt(url, options).
 
         then(function(data) {
 
@@ -32,4 +65,4 @@ var url = process.argv[2];
 
     debug('Test launched...');
 
-})(url);
+})(url, options);

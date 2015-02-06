@@ -82,3 +82,111 @@
   font-size: 3em;
   margin-bottom: 1em;
 }
+.offenders .offenderButton {
+  display: inline-block;
+  position: relative;
+  background: #efe;
+  padding: 0 0.5em;
+  margin: 0.2em 0;
+  border-radius: 0.4em;
+  z-index: 1;
+}
+.offenders .offenderButton.opens {
+  padding-right: 0.75em;
+}
+.offenders .offenderButton.opens:after {
+  position: relative;
+  left: 0.5em;
+  content: '\25BC';
+  font-size: 0.8em;
+}
+.offenders .offenderButton > div {
+  display: none;
+  position: absolute;
+  right: 0;
+  min-width: 100%;
+  background: inherit;
+  border-bottom-left-radius: 0.4em;
+  border-bottom-right-radius: 0.4em;
+  border-top: 1px solid #999;
+}
+.offenders .offenderButton .domTree {
+  text-align: left;
+  white-space: nowrap;
+}
+.offenders .offenderButton .domTree > div {
+  margin: 0.5em;
+}
+.offenders .offenderButton .domTree > div div {
+  margin-left: 1em;
+}
+.offenders .offenderButton .backtrace,
+.offenders .offenderButton .cssFileAndLine {
+  white-space: nowrap;
+  padding: 0.5em;
+}
+.offenders .offenderButton.opens.mouseOver {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: #ffe0cc;
+  z-index: 2;
+}
+.offenders .offenderButton.opens.mouseOver > div {
+  display: block;
+}
+.offendersHtml {
+  display: inline-block;
+}
+.domTree div {
+  text-align: left;
+  margin-left: 1em;
+}
+.domTree div span:only-child {
+  font-weight: bold;
+}
+.domTree div span:only-child span {
+  font-style: italic;
+  font-weight: normal;
+}
+.colorPalette {
+  width: 30em;
+  border: 2px solid #000;
+  text-align: left;
+  /* Checkerboard background */
+  background-color: #ddd;
+  background-image: linear-gradient(45deg, #aaaaaa 25%, transparent 25%, transparent 75%, #aaaaaa 75%, #aaaaaa), linear-gradient(45deg, #aaaaaa 25%, transparent 25%, transparent 75%, #aaaaaa 75%, #aaaaaa);
+  background-size: 1em 1em;
+  background-position: 0 0, 0.5em 0.5em;
+}
+.colorPalette > div {
+  display: inline-block;
+  height: 2em;
+  position: relative;
+}
+.colorPalette > div div {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  background: #FFF;
+  padding: 0.5em;
+  border: 2px solid #f1c40f;
+  border-radius: 0.5em;
+  white-space: nowrap;
+  z-index: 3;
+  font-weight: bold;
+}
+.colorPalette > div:hover div {
+  display: block;
+}
+.colorPalette > div:hover:after {
+  content: " ";
+  position: absolute;
+  background-color: inherit;
+  left: -0.2em;
+  top: -0.2em;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  border: 0.2em solid #f1c40f;
+}

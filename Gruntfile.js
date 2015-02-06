@@ -93,7 +93,9 @@ module.exports = function(grunt) {
             coverage: {
                 files: [
                     {src: ['test/**'], dest: 'coverage/'},
-                    {src: ['lib/metadata/**'], dest: 'coverage/'}
+                    {src: ['lib/metadata/**'], dest: 'coverage/'},
+                    {src: ['node_modules/phantomas/**'], dest: 'coverage/'},
+                    {src: ['lib/tools/phantomas/custom_modules/**'], dest: 'coverage/'}
                 ]
             },
             build: {
@@ -139,7 +141,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['coverage/test/api/apiTest.js']
+                src: ['test/core/offendersHelpersTest.js']
             },
             coverage: {
                 options: {
@@ -179,6 +181,13 @@ module.exports = function(grunt) {
                 options: {
                     port: 8387,
                     server: './coverage/bin/server.js',
+                    showStack: true
+                }
+            },
+            'test-current-work': {
+                options: {
+                    port: 8387,
+                    server: './bin/server.js',
                     showStack: true
                 }
             },
@@ -321,7 +330,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', [
         'build',
-        'jshint',
         'express:testSuite',
         'clean:coverage',
         'copy-test-server-settings',
@@ -336,16 +344,11 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('test-current-work', [
-        'build',
         'jshint',
         'express:testSuite',
         'clean:coverage',
         'copy-test-server-settings',
-        'lineremover:beforeCoverage',
-        'copy:beforeCoverage',
-        'blanket',
-        'copy:coverage',
-        'express:test',
+        'express:test-current-work',
         'mochaTest:test-current-work',
         'clean:tmp'
     ]);

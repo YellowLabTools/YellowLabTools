@@ -112,6 +112,63 @@ h1 span {
     }
 }
 
+a.linkButton {
+    font-size: 1em;
+    padding: 0.3em 0.5em;
+    margin: 0.5em;
+    line-height: 2em;
+    border: 0 solid;
+    border-radius: 0.5em;
+    box-shadow: 0.1em 0.2em 0 0 #5e2846;
+    background: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.screenshotWrapper.desktop {
+    display: inline-block;
+    position: relative;
+    border: 0.2em solid #AAA;
+    background: #000;
+    padding: 0.5em;
+    border-top-left-radius: 0.4em;
+    border-top-right-radius: 0.4em;
+
+    &:before {
+        position: absolute;
+        width: 15em;
+        height: 0.6em;
+        bottom: -0.75em;
+        left: -1em;
+        background: #CCC;
+        border-bottom-left-radius: 0.2em;
+        border-bottom-right-radius: 0.2em;
+        content: " ";
+    }
+
+    &:after {
+        position: absolute;
+        width: 0.4em;
+        height: 0.2em;
+        bottom: -0.55em;
+        left: 12.5em;
+        background: lime;
+        content: " ";
+    }
+
+    > div {
+        width: 12em;
+        height: 6.75em;
+        overflow: scroll;
+        position: relative;
+    }
+
+    .screenshotImage {
+        width: 100%;
+    }
+}
+
 
 .star {
     font-weight: bold;

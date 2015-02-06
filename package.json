@@ -1,6 +1,7 @@
 {
   "name": "yellowlabtools",
-  "version": "1.1.0",
+  "version": "1.2.0",
+  "description": "Online tool to audit a webpage for performance and front-end quality issues",
   "repository": {
     "type": "git",
     "url": "git://github.com/gmetais/YellowLabTools.git"
@@ -16,10 +17,13 @@
     "cors": "^2.5.2",
     "debug": "~2.1.0",
     "express": "~4.10.6",
-    "phantomas": "1.8.0",
+    "lwip": "0.0.6",
+    "meow": "^3.0.0",
+    "phantomas": "1.9.0",
     "ps-node": "0.0.3",
     "q": "~1.1.2",
-    "rimraf": "~2.2.8"
+    "rimraf": "~2.2.8",
+    "temporary": "0.0.8"
   },
   "devDependencies": {
     "chai": "^1.10.0",
@@ -44,7 +48,6 @@
     "grunt-usemin": "^3.0.0",
     "matchdep": "^0.3.0",
     "mocha": "^2.1.0",
-    "phantomjs": "^1.9.13",
     "request": "^2.51.0",
     "sinon": "^1.12.1",
     "sinon-chai": "^2.6.0"

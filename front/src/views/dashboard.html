@@ -2,10 +2,21 @@
 <div class="summary board">
     
     <div class="globalScore" ng-if="globalScore === 0 || globalScore > 0">
-        <h2> Global score</h2>
-        <div class="globalScoreDisplay">
-            <grade score="result.scoreProfiles.generic.globalScore" class="globalGrade"></grade>
-            <div class="on100">{{globalScore}}/100</div>
+        <div>
+            <h2>Global score</h2>
+            <div class="globalScoreDisplay">
+                <grade score="result.scoreProfiles.generic.globalScore" class="globalGrade"></grade>
+                <div class="on100">{{globalScore}}/100</div>
+            </div>
+        </div>
+        <div>
+            <a href="/result/{{result.runId}}/screenshot">
+                <div class="screenshotWrapper desktop">
+                    <div>
+                        <img class="screenshotImage" ng-src="{{result.screenshotUrl}}"/>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 
@@ -35,7 +46,7 @@
         </div>
     </div>
 
-    <div ng-if="!error" class="apiTip">
+    <div ng-if="!error && !fromSocialShare" class="apiTip">
         <b>Did you know? Yellow Lab Tools now has an API</b>! <a href="{{getAPIUrl()}}" target="_blank">Here</a> is the JSON output for this run. Checkout <a href="https://github.com/gmetais/YellowLabTools/wiki/Public-API" target="_blank">the API doc</a>.
     </div>
 
@@ -49,8 +60,8 @@
 
     <div class="fromShare" ng-if="!error && fromSocialShare">
         <p>Yellow Lab Tools is a free online tool that analyzes performance and front-end quality.</p>
-        <a href="" ng-click="seeFullReport()">See the full report for this page</a>
-        <a href="/">Test another webpage</a>
+        <a class="linkButton" href="" ng-click="seeFullReport()">See the full report for this page</a>
+        <a class="linkButton" href="/">Test another webpage</a>
     </div>
 
     <div ng-if="error">

@@ -1,6 +1,6 @@
 var dashboardCtrl = angular.module('dashboardCtrl', ['resultsFactory', 'menuService']);
 
-dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Results', 'Runs', 'Menu', function($scope, $rootScope, $routeParams, $location, Results, Runs, Menu) {
+dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Results', 'API', 'Menu', function($scope, $rootScope, $routeParams, $location, Results, API, Menu) {
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage('dashboard', $scope.runId);
     $scope.fromSocialShare = $location.search().share;
@@ -34,12 +34,7 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
     };
 
     $scope.testAgain = function() {
-        Runs.save({
-                url: $scope.result.params.url,
-                waitForResponse: false
-            }, function(data) {
-                $location.path('/queue/' + data.runId);
-            });
+        API.launchTest($scope.result.params.url);
     };
 
     /// When comming from a social shared link, the user needs to click on "See full report" button to display the full dashboard.

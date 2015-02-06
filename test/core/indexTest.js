@@ -2,6 +2,8 @@ var chai                = require('chai');
 var sinon               = require('sinon');
 var sinonChai           = require('sinon-chai');
 var should              = chai.should();
+var path                = require('path');
+var fs                  = require('fs');
 var ylt                 = require('../../lib/index');
 
 chai.use(sinonChai);
@@ -65,14 +67,22 @@ describe('index.js', function() {
                         "message": "<p>A deep DOM makes the CSS matching with DOM elements difficult.</p><p>It also slows down JavaScript modifications to the DOM because changing the dimensions of an element makes the browser re-calculate the dimensions of it's parents. Same thing for JavaScript events, that bubble up to the document root.</p>",
                         "isOkThreshold": 10,
                         "isBadThreshold": 20,
-                        "isAbnormalThreshold": 28
+                        "isAbnormalThreshold": 28,
+                        "hasOffenders": true
                     },
                     "value": 1,
                     "bad": false,
                     "abnormal": false,
                     "score": 100,
                     "abnormalityScore": 0,
-                    "offenders": ["body > h1[1]"]
+                    "offendersObj": {
+                        "count": 1,
+                        "tree": {
+                            "body": {
+                                "h1[1]": 1
+                            }
+                        }
+                    }
                 });
 
                 // Test javascriptExecutionTree
@@ -84,6 +94,26 @@ describe('index.js', function() {
 
                 /*jshint expr: true*/
                 console.log.should.not.have.been.called;
+
+                done();
+            }).fail(function(err) {
+                done(err);
+            });
+    });
+
+    it('should take a screenshot', function(done) {
+        this.timeout(15000);
+
+        var url = 'http://localhost:8388/simple-page.html';
+        var screenshotPath = path.join(__dirname, '../../.tmp/indexTestScreenshot.png');
+
+        ylt(url, {screenshot: screenshotPath})
+            .then(function(data) {
+
+                data.params.options.should.have.a.property('screenshot').that.equals(screenshotPath);
+                data.should.not.have.a.property('screenshotUrl');
+
+                fs.existsSync(screenshotPath).should.equal(true);
 
                 done();
             }).fail(function(err) {

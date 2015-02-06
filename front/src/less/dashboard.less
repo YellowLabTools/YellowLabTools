@@ -7,7 +7,16 @@
 }
 
 .summary .globalScore {
-    margin-bottom: 3em;
+    display: table;
+    width: 60%;
+    margin: 3em auto;
+
+    > div {
+        display: table-cell;
+        width: 50%;
+        vertical-align: middle;
+    }
+
     .globalGrade {
         margin: 0.5 auto;
         width: 2.5em;
@@ -22,6 +31,25 @@
         font-size: 1.2em;
         font-weight: bold;
         margin: 0.5em 0 1em;
+    }
+
+    .screenshotWrapper:hover {
+        opacity: 0.75;
+
+        &:after {
+            position: absolute;
+            width: 1.25em;
+            height: 1.25em;
+            top: 0.7em;
+            left: 1.55em;
+            font-size: 3em;
+            color: #FFF;
+            background: #000;
+            border-radius: 0.2em;
+            text-align: center;
+            content: "+";
+            opacity: 0.85;
+        }
     }
 }
 
@@ -114,18 +142,6 @@
 
 .summary .fromShare {
     margin-bottom: 3em;
-    a {
-        font-size: 1em;
-        padding: 0.3em 0.5em;
-        margin: 0.5em;
-        line-height: 2em;
-        border: 0 solid;
-        border-radius: 0.5em;
-        box-shadow: 0.1em 0.2em 0 0 #5e2846;
-        background: #e74c3c;
-        color: #fff;
-        text-decoration: none;
-    }
 }
 
 .summary .apiTip {

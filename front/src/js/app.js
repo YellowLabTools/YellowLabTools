@@ -1,15 +1,18 @@
 var yltApp = angular.module('YellowLabTools', [
     'ngRoute',
+    'ngSanitize',
     'indexCtrl',
-    'aboutCtrl',
     'dashboardCtrl',
     'queueCtrl',
     'ruleCtrl',
+    'screenshotCtrl',
     'timelineCtrl',
     'runsFactory',
     'resultsFactory',
+    'apiService',
     'menuService',
     'gradeDirective',
+    'offendersDirectives'
 ]);
 
 yltApp.run(['$rootScope', '$location', function($rootScope, $location) {
@@ -33,8 +36,7 @@ yltApp.config(['$routeProvider', '$locationProvider',
                 controller: 'QueueCtrl'
             }).
             when('/about', {
-                templateUrl: 'views/about.html',
-                controller: 'AboutCtrl'
+                templateUrl: 'views/about.html'
             }).
             when('/result/:runId', {
                 templateUrl: 'views/dashboard.html',
@@ -43,6 +45,10 @@ yltApp.config(['$routeProvider', '$locationProvider',
             when('/result/:runId/timeline', {
                 templateUrl: 'views/timeline.html',
                 controller: 'TimelineCtrl'
+            }).
+            when('/result/:runId/screenshot', {
+                templateUrl: 'views/screenshot.html',
+                controller: 'ScreenshotCtrl'
             }).
             when('/result/:runId/rule/:policy', {
                 templateUrl: 'views/rule.html',
