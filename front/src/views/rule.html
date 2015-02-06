@@ -106,6 +106,8 @@
 
                     <div ng-if="policyName === 'cssOldPropertyPrefixes'">
                         {{offender.rule}} {<b>{{offender.property}}</b>: {{offender.value + '}' }}
+                        <br>
+                        <b>{{offender.message}}</b>
                         <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
                     </div>
 
