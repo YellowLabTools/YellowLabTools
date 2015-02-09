@@ -85,7 +85,7 @@ describe('screenshotHandler', function() {
 
     it('should respond a temporary file', function() {
         var file = screenshot.getTmpFilePath();
-        file.should.have.string('/screenshot.jpg');
+        file.should.have.string('/screenshot.png');
     });
 
 
@@ -106,7 +106,7 @@ describe('screenshotHandler', function() {
     it('should delete the temp folder with the screenshot inside', function(done) {
         screenshot = ScreenshotHandler.getScreenshotTempFile();
         var tmpFolderPath = screenshot.getTmpFolder().path;
-        var tmpImagePath = path.join(tmpFolderPath, 'screenshot.jpg');
+        var tmpImagePath = path.join(tmpFolderPath, 'screenshot.png');
 
         // Copy image
         var testImage = fs.readFileSync(imagePath);
