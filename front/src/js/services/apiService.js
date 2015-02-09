@@ -8,7 +8,8 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
             Runs.save({
                 url: url,
                 waitForResponse: false,
-                screenshot: true
+                screenshot: true,
+                jsTimeline: true
             }, function(data) {
                 $location.path('/queue/' + data.runId);
             }, function(response) {
