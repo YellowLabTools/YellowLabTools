@@ -78,7 +78,10 @@
             }">
 
             <div class="index">{{$index + 1}}</div>
-            <div class="type">{{node.data.type}}</div>
+            <div class="type">
+                {{node.data.type}}
+                <js-children node="node"></js-children>
+            </div>
 
             <div class="value">
                 {{node.data.callDetails.arguments[0]}}
