@@ -94,6 +94,7 @@
                 "notFound": 3,
                 "closedConnections": 3,
                 "multipleRequests": 3,
+                "cachingNotSpecified": 1,
                 "cachingDisabled": 1,
                 "cachingTooShort": 1,
                 "domains": 1
