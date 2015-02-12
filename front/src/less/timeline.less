@@ -197,6 +197,56 @@ input.textFilter {
     white-space:nowrap;
 }
 
+.table .children {
+    margin-top: 0.2em;
+    font-size: 0.8em;
+    line-height: 1.6em;
+}
+
+.table .child {
+    margin-left: 0.5em;
+
+    > .child {
+        margin-left: 1em;
+    }
+
+    &:before {
+        content: "↳";
+    }
+
+    .childArgs {
+        display: none;
+    }
+
+    span {
+        position: relative;
+    }
+
+    span:hover {
+        background: #EBD8E2;
+
+        .childArgs {
+            display: block;
+            position: absolute;
+            padding: 0 1em 0 2em;
+            left: 100%;
+            top: 0;
+            background: #EBD8E2;
+            line-height: 1.3em;
+            height: 1.3em;
+            z-index: 1;
+        }
+    }
+}
+
+.table .showingDetails .child span:hover {
+    background: inherit;
+
+    .childArgs {
+        display: none;
+    }
+}
+
 .table > div > .value {
     width: 70%;
     word-break: break-all;

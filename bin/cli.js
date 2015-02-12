@@ -12,7 +12,8 @@ var cli = meow({
         '  yellowlabtools <url> <options>',
         '',
         'Options:',
-        '  --screenshot     Will take a screenshot and use this value as the output path. It needs to end with ".png".',
+        '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
+        '  --js-deep-analysis   When activated, the javascriptExecutionTree will contain sub-requests.',
         ''
     ].join('\n'),
     pkg: '../package.json'
@@ -44,6 +45,10 @@ if (screenshot) {
     options.screenshot = cli.flags.screenshot;
 }
 
+// Deep JS analysis option
+if (cli.flags.jsDeepAnalysis === true || cli.flags.jsDeepAnalysis === 'true') {
+    options.jsDeepAnalysis = true;
+}
 
 
 (function execute(url, options) {

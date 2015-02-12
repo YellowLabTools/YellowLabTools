@@ -12,6 +12,7 @@ var yltApp = angular.module('YellowLabTools', [
     'apiService',
     'menuService',
     'gradeDirective',
+    'jsChildrenDirective',
     'offendersDirectives'
 ]);
 
