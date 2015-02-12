@@ -159,7 +159,10 @@ describe('api', function() {
                 body.should.have.a.property('scoreProfiles').that.is.an('object');
                 body.should.have.a.property('rules').that.is.an('object');
                 body.should.have.a.property('toolsResults').that.is.an('object');
+
+                // javascriptExecutionTree should only be filled if option jsTimeline is true
                 body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
+                body.javascriptExecutionTree.should.deep.equal({});
 
                 // Check if the screenshot temporary file was correctly removed
                 body.params.options.should.not.have.a.property('screenshot');
@@ -188,7 +191,8 @@ describe('api', function() {
             url: serverUrl + '/api/runs',
             body: {
                 url: wwwUrl + '/simple-page.html',
-                waitForResponse: false
+                waitForResponse: false,
+                jsTimeline: true
             },
             json: true,
             headers: {
