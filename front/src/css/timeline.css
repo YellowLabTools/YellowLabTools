@@ -2,6 +2,19 @@
 .execution {
   text-align: center;
 }
+.selectScript {
+  padding-bottom: 2em;
+  font-size: 0.9em;
+}
+.selectScript select {
+  max-width: 30em;
+}
+.selectScript.empty {
+  font-size: 0.8em;
+}
+.selectScript.empty select {
+  width: 10em;
+}
 .timeline {
   margin: 2em 0 5em;
 }

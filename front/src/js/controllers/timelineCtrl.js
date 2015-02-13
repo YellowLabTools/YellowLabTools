@@ -19,16 +19,48 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     }
 
     function render() {
+        initScriptFiltering();
         initExecutionTree();
         initTimeline();
         $timeout(initProfiler, 100);
     }
 
+    function initScriptFiltering() {
+        var offenders = $scope.result.rules.jsCount.offendersObj.list;
+        $scope.scripts = [];
+
+        offenders.forEach(function(script) {
+            var filePath = script.file;
+
+            if (filePath.length > 100) {
+                filePath = filePath.substr(0, 98) + '...';
+            }
+
+            var scriptObj = {
+                fullPath: script.file, 
+                shortPath: filePath
+            };
+
+            $scope.scripts.push(scriptObj);
+        });
+    }
+
     function initExecutionTree() {
         var originalExecutions = $scope.result.javascriptExecutionTree.children || [];
-        $scope.executionTree = [];
+        
+        // Detect the last event of all (before filtering) and read time
+        var lastEvent = originalExecutions[originalExecutions.length - 1];
+        $scope.endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
 
+        // Filter and calculate the search index
+        $scope.executionTree = [];
         originalExecutions.forEach(function(node) {
+            
+            // Filter by script (if enabled)
+            if ($scope.selectedScript && node.data.backtrace &&
+                    node.data.backtrace.indexOf($scope.selectedScript.fullPath + ':') === -1) {
+                return;
+            }
 
             // Prepare a faster angular search by creating a kind of search index
             node.searchIndex = (node.data.callDetails) ? [node.data.type].concat(node.data.callDetails.arguments).join('°°') : node.data.type;
@@ -41,8 +73,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
 
         // Split the timeline into 200 intervals
         var numberOfIntervals = 199;
-        var lastEvent = $scope.executionTree[$scope.executionTree.length - 1];
-        $scope.endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
         $scope.timelineIntervalDuration = $scope.endTime / numberOfIntervals;
         
         // Pre-fill array of as many elements as there are milleseconds
@@ -112,8 +142,10 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         return out;
     }
 
-    $scope.filter = function(textFilter, scriptName) {
-
+    $scope.changeScript = function() {
+        initExecutionTree();
+        initTimeline();
+        initProfiler();
     };
 
     $scope.onNodeDetailsClick = function(node) {

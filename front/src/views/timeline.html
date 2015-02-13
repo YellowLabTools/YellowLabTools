@@ -1,5 +1,12 @@
 <div ng-include="'views/resultSubHeader.html'"></div>
 <div class="execution board">
+    <div class="selectScript" ng-class="{empty:!selectedScript}">
+        Filter timeline and profiler by script:
+        <select ng-model="selectedScript" ng-options="script.shortPath for script in scripts" ng-change="changeScript()">
+            <option value="">All (no filter)</option>
+        </select>
+    </div>
+
     <h2>Javascript Timeline</h2>
     <p>This graph gives a quick view of when the Javascript interactions with the DOM occur during the loading of the page.</p>
 
