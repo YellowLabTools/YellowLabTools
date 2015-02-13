@@ -89,19 +89,25 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         var out = [];
         var splited = str.split(' / ');
         splited.forEach(function(trace) {
-            var result = /^(\S*)\s?\(?(https?:\/\/\S+):(\d+)\)?$/g.exec(trace);
-            if (result && result[2].length > 0) {
-                var filePath = result[2];
-                var chunks = filePath.split('/');
-                var fileName = chunks[chunks.length - 1];
+            var fnName = null, fileAndLine;
 
-                out.push({
-                    fnName: result[1],
-                    fileName: fileName,
-                    filePath: filePath,
-                    line: result[3]
-                });
+            var withFnResult = /^([^\s\(]+) \((.+:\d+)\)$/.exec(trace);
+            if (withFnResult === null) {
+                fileAndLine = trace;
+            } else {
+                fnName = withFnResult[1];
+                fileAndLine = withFnResult[2];
             }
+
+            var fileAndLineSplit = /^(.*):(\d+)$/.exec(fileAndLine);
+            var filePath = fileAndLineSplit[1];
+            var line = fileAndLineSplit[2];
+
+            out.push({
+                fnName: fnName,
+                filePath: filePath,
+                line: line
+            });
         });
         return out;
     }

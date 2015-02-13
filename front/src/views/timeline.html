@@ -130,7 +130,7 @@
                         <div class="table">
                             <div ng-repeat="trace in node.parsedBacktrace track by $index">
                                 <div>{{trace.fnName || '(anonymous)'}}</div>
-                                <div class="trace"><a href="{{trace.filePath}}" title="{{trace.filePath}}" target="_blank">{{trace.fileName || 'HTML'}}</a>:{{trace.line}}</div>
+                                <div class="trace"><url-link url="trace.filePath" max-length="40"></url-link>:{{trace.line}}</div>
                             </div>
                             <div ng-if="node.parsedBacktrace.length == 0 && node.data.type != 'script loaded'">
                                 <div>can't find any backtrace :/</div>
