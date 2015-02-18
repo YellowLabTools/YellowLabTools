@@ -57,9 +57,13 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         originalExecutions.forEach(function(node) {
             
             // Filter by script (if enabled)
-            if ($scope.selectedScript && node.data.backtrace &&
-                    node.data.backtrace.indexOf($scope.selectedScript.fullPath + ':') === -1) {
-                return;
+            if ($scope.selectedScript) {
+                if (node.data.backtrace && node.data.backtrace.indexOf($scope.selectedScript.fullPath + ':') === -1) {
+                    return;
+                }
+                if (node.data.type === "jQuery loaded" || node.data.type === "jQuery version change") {
+                    return;
+                }
             }
 
             // Prepare a faster angular search by creating a kind of search index
