@@ -152,6 +152,24 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         initProfiler();
     };
 
+    $scope.findLineIndexByTimestamp = function(timestamp) {
+        var lineIndex = 0;
+
+        for (var i = 0; i < $scope.executionTree.length; i ++) {
+            var delta = $scope.executionTree[i].data.timestamp - timestamp;
+            
+            if (delta < $scope.timelineIntervalDuration) {
+                lineIndex = i;
+            }
+
+            if (delta > 0) {
+                break;
+            }
+        }
+
+        return lineIndex;
+    };
+
     $scope.onNodeDetailsClick = function(node) {
         var isOpen = node.showDetails;
         if (!isOpen) {
@@ -179,4 +197,28 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
 
     loadResults();
 
+}]);
+
+timelineCtrl.directive('scrollOnClick', ['$animate', '$timeout', function($animate, $timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attributes) {            
+            // When the user clicks on the timeline, find the right profiler line and scroll to it
+            element.on('click', function() {
+                var lineIndex = scope.findLineIndexByTimestamp(attributes.scrollOnClick);
+                var lineElement = angular.element(document.getElementById('line_' + lineIndex));
+                
+                // Animate the background color to "flash" the row
+                lineElement.addClass('highlight');
+                $timeout(function() {
+                    $animate.removeClass(lineElement, 'highlight');
+                    scope.$digest();
+                }, 50);
+
+
+                window.scrollTo(0, lineElement[0].offsetTop);
+                console.log(lineElement[0]);
+            });
+        }
+    };
 }]);

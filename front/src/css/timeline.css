@@ -52,6 +52,9 @@
   bottom: 0;
   width: 100%;
 }
+.timeline .interval .color.clickable {
+  cursor: pointer;
+}
 .timeline div.interval:hover {
   background: #9C4274;
 }
@@ -183,6 +186,15 @@ input.textFilter {
 }
 .table > div.showingDetails > div {
   background: #f1c40f;
+}
+.table > div.highlight > div.startTime {
+  background-color: #C0F090;
+}
+.table > div.highlight-remove {
+  transition: 3s;
+}
+.table > div.highlight-remove > div.startTime {
+  transition: background-color 3s ease-in;
 }
 .table > div > .index {
   color: #bbb;
