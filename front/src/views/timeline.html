@@ -18,9 +18,11 @@
                             && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domComplete,
                         domComplete: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domComplete
                      }">
-                    <div style="height: {{100 * duration / timelineMax | number: 0}}px" class="color"></div>
+                    <div style="height: {{100 * duration / timelineMax | number: 0}}px" class="color" ng-class="{clickable: duration > 0}" scroll-on-click="{{$index * timelineIntervalDuration}}"></div>
                     <div class="tooltip detailsOverlay">
-                        <div>Timestamp: {{$index * timelineIntervalDuration | number: 0}} ms</div>
+                        <div>
+                            Timestamp: {{$index * timelineIntervalDuration | number: 0}} ms
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,7 +77,7 @@
                 showingDetails: node.showDetails,
                 jsError: node.error,
                 windowPerformance: node.windowPerformance
-            }">
+             }" id="line_{{$index}}">
 
             <div class="index">{{$index + 1}}</div>
             <div class="type">
