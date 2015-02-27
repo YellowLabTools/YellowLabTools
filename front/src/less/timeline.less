@@ -14,6 +14,23 @@
     text-align: center;
 }
 
+.selectScript {
+    padding-bottom: 2em;
+    font-size: 0.9em;
+
+    select {
+        max-width: 30em;
+    }
+
+    &.empty {
+        font-size: 0.8em;
+
+        select {
+            width: 10em;
+        }
+    }
+}
+
 .timeline {
     margin: 2em 0 5em;
 }
@@ -191,6 +208,7 @@ input.textFilter {
 
 .table > div > .index {
     color: #bbb;
+    word-break: normal;
 }
 
 .table > div > .type {

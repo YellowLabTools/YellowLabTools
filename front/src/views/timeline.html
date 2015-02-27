@@ -1,5 +1,12 @@
 <div ng-include="'views/resultSubHeader.html'"></div>
 <div class="execution board">
+    <div class="selectScript" ng-class="{empty:!selectedScript}">
+        Filter timeline and profiler by script:
+        <select ng-model="selectedScript" ng-options="script.shortPath for script in scripts" ng-change="changeScript()">
+            <option value="">All (no filter)</option>
+        </select>
+    </div>
+
     <h2>Javascript Timeline</h2>
     <p>This graph gives a quick view of when the Javascript interactions with the DOM occur during the loading of the page.</p>
 
@@ -130,7 +137,7 @@
                         <div class="table">
                             <div ng-repeat="trace in node.parsedBacktrace track by $index">
                                 <div>{{trace.fnName || '(anonymous)'}}</div>
-                                <div class="trace"><a href="{{trace.filePath}}" title="{{trace.filePath}}" target="_blank">{{trace.fileName || 'HTML'}}</a>:{{trace.line}}</div>
+                                <div class="trace"><url-link url="trace.filePath" max-length="40"></url-link>:{{trace.line}}</div>
                             </div>
                             <div ng-if="node.parsedBacktrace.length == 0 && node.data.type != 'script loaded'">
                                 <div>can't find any backtrace :/</div>
