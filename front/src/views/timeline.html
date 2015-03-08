@@ -93,10 +93,237 @@
             </div>
 
             <div class="value">
-                {{node.data.callDetails.arguments[0]}}
-                <span ng-if="node.data.callDetails.arguments.length > 1"> : {{node.data.callDetails.arguments[1]}}</span>
-                <span ng-if="node.data.callDetails.arguments.length > 2"> : {{node.data.callDetails.arguments[2]}}</span>
-                <span ng-if="node.data.callDetails.arguments.length > 3"> : {{node.data.callDetails.arguments[3]}}</span>
+                <span ng-if="node.data.type == 'getElementById' || node.data.type == 'createElement'">
+                    <b>{{node.data.callDetails.arguments[0]}}</b>
+                </span>
+                <span ng-if="node.data.type == 'getElementsByClassName' || node.data.type == 'getElementsByTagName' || node.data.type == 'querySelector' || node.data.type == 'querySelectorAll'" class="offenders">
+                    <b>{{node.data.callDetails.arguments[0]}}</b> on <dom-element-button obj="node.data.callDetails.context.elements[0]"></dom-element-button>
+                </span>
+                <span ng-if="node.data.type == 'appendChild'" class="offenders">
+                    <dom-element-button obj="node.data.callDetails.arguments[0]"></dom-element-button> appended to <dom-element-button obj="node.data.callDetails.context.elements[0]"></dom-element-button>
+                </span>
+                <span ng-if="node.data.type == 'insertBefore'" class="offenders">
+                    insert <dom-element-button obj="node.data.callDetails.arguments[0]"></dom-element-button> in <dom-element-button obj="node.data.callDetails.context.elements[0]"></dom-element-button> before <dom-element-button obj="node.data.callDetails.arguments[1]"></dom-element-button>
+                </span>
+                <span ng-if="node.data.type == 'createTextNode' || node.data.type == 'createDocumentFragment'">
+                    
+                </span>
+                
+
+                <span ng-if="node.data.type == 'addEventListener'" class="offenders">
+                    <b>{{node.data.callDetails.arguments[0]}}</b> bound to <dom-element-button obj="node.data.callDetails.context.elements[0]"></dom-element-button>
+                </span>
+
+                <span ng-if="node.data.type == 'jQuery loaded' || node.data.type == 'jQuery version change'">
+                    {{node.data.callDetails.arguments[0]}}
+                </span>
+                <span ng-if="node.data.type == 'jQuery - onDOMReady' || node.data.type == 'jQuery - windowOnLoad'">
+                    (function)
+                </span>
+                <span ng-if="node.data.type == 'jQuery - Sizzle call'" class="offenders">
+                    <b>{{node.data.callDetails.arguments[0]}}</b>
+                    <span ng-if="node.data.callDetails.context.elements[0].type != 'document'"> on <dom-element-button obj="node.data.callDetails.context.elements[0]"></dom-element-button></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - find'" class="offenders">
+                    <b>{{node.data.callDetails.arguments[0]}}</b>
+                    <span ng-if="node.data.callDetails.context"> on <dom-element-button obj="node.data.callDetails.context.elements[0]"></dom-element-button></span>
+                </span>
+
+
+
+                <span ng-if="node.data.type == 'jQuery - html'" class="offenders">
+                    <span ng-if="node.data.callDetails.arguments[0] != undefined">set content "<b>{{node.data.callDetails.arguments[0]}}</b>" to <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                    <span ng-if="node.data.callDetails.arguments[0] == undefined">get content from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - append'" class="offenders">
+                    append <b>{{node.data.callDetails.arguments[0]}}</b><span ng-if="node.data.callDetails.arguments[1]">, <b>{{node.data.callDetails.arguments[1]}}</b></span><span ng-if="node.data.callDetails.arguments[2]">, <b>{{node.data.callDetails.arguments[2]}}</b></span><span ng-if="node.data.callDetails.arguments[3]">, <b>and more...</b></span> to <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - appendTo'" class="offenders">
+                    append <jquery-context-button context="node.data.callDetails.context"></jquery-context-button> to {{node.data.callDetails.arguments[0]}}
+                </span>
+                <span ng-if="node.data.type == 'jQuery - prepend'" class="offenders">
+                    prepend <b>{{node.data.callDetails.arguments[0]}}</b><span ng-if="node.data.callDetails.arguments[1]">, <b>{{node.data.callDetails.arguments[1]}}</b></span><span ng-if="node.data.callDetails.arguments[2]">, <b>{{node.data.callDetails.arguments[2]}}</b></span><span ng-if="node.data.callDetails.arguments[3]">, <b>and more...</b></span> to <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - prependTo'" class="offenders">
+                    prepend <jquery-context-button context="node.data.callDetails.context"></jquery-context-button> to {{node.data.callDetails.arguments[0]}}
+                </span>
+                <span ng-if="node.data.type == 'jQuery - before'" class="offenders">
+                    insert <b>{{node.data.callDetails.arguments[0]}}</b><span ng-if="node.data.callDetails.arguments[1]">, <b>{{node.data.callDetails.arguments[1]}}</b></span><span ng-if="node.data.callDetails.arguments[2]">, <b>{{node.data.callDetails.arguments[2]}}</b></span><span ng-if="node.data.callDetails.arguments[3]">, <b>and more...</b></span> before <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - insertBefore'" class="offenders">
+                    insert <jquery-context-button context="node.data.callDetails.context"></jquery-context-button> before {{node.data.callDetails.arguments[0]}}
+                </span>
+                <span ng-if="node.data.type == 'jQuery - after'" class="offenders">
+                    insert <b>{{node.data.callDetails.arguments[0]}}</b><span ng-if="node.data.callDetails.arguments[1]">, <b>{{node.data.callDetails.arguments[1]}}</b></span><span ng-if="node.data.callDetails.arguments[2]">, <b>{{node.data.callDetails.arguments[2]}}</b></span><span ng-if="node.data.callDetails.arguments[3]">, <b>and more...</b></span> after <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - insertAfter'" class="offenders">
+                    insert <jquery-context-button context="node.data.callDetails.context"></jquery-context-button> after {{node.data.callDetails.arguments[0]}}
+                </span>
+                <span ng-if="node.data.type == 'jQuery - remove'" class="offenders">
+                    remove <jquery-context-button context="node.data.callDetails.context"></jquery-context-button><span ng-if="node.data.callDetails.arguments[0] != undefined"> filtered by <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - detach'" class="offenders">
+                    detach <jquery-context-button context="node.data.callDetails.context"></jquery-context-button><span ng-if="node.data.callDetails.arguments[0] != undefined"> filtered by <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - empty'" class="offenders">
+                    empty <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - clone'" class="offenders">
+                    clone <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - replaceWith'" class="offenders">
+                    replace <jquery-context-button context="node.data.callDetails.context"></jquery-context-button> with <b>{{node.data.callDetails.arguments[0]}}</b>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - replaceAll'" class="offenders">
+                    replace <b>{{node.data.callDetails.arguments[0]}}</b> with <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - text'" class="offenders">
+                    <span ng-if="node.data.callDetails.arguments[0] != undefined">set text "<b>{{node.data.callDetails.arguments[0]}}</b>" to <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                    <span ng-if="node.data.callDetails.arguments[0] == undefined">get text from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - wrap' || node.data.type == 'jQuery - wrapAll'" class="offenders">
+                    wrap <jquery-context-button context="node.data.callDetails.context"></jquery-context-button> with <b>{{node.data.callDetails.arguments[0]}}</b>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - wrapInner'" class="offenders">
+                    wrap the content of <jquery-context-button context="node.data.callDetails.context"></jquery-context-button> with <b>{{node.data.callDetails.arguments[0]}}</b>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - unwrap'" class="offenders">
+                    unwrap <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - css' || node.data.type == 'jQuery - attr' || node.data.type == 'jQuery - prop'" class="offenders">
+                    <span ng-if="isStringOfObject(node.data.callDetails.arguments[0])">set <b>{{node.data.callDetails.arguments[0]}}</b> to <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                    <span ng-if="!isStringOfObject(node.data.callDetails.arguments[0])">
+                        <span ng-if="node.data.callDetails.arguments[1] == undefined">get <b>{{node.data.callDetails.arguments[0]}}</b> from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                        <span ng-if="node.data.callDetails.arguments[1] != undefined">set <b>{{node.data.callDetails.arguments[0]}}</b> : <b>{{node.data.callDetails.arguments[1]}}</b> to <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                    </span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - offset' || node.data.type == 'jQuery - height' || node.data.type == 'jQuery - innerHeight' || node.data.type == 'jQuery - outerHeight' || node.data.type == 'jQuery - width' || node.data.type == 'jQuery - innerWidth' || node.data.type == 'jQuery - outerWidth' || node.data.type == 'jQuery - scrollLeft' || node.data.type == 'jQuery - scrollTop'" class="offenders">
+                    <span ng-if="node.data.callDetails.arguments[0] == undefined">get from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                    <span ng-if="node.data.callDetails.arguments[0] != undefined">set <b>{{node.data.callDetails.arguments[0]}}</b> to <jquery-context-button context="node.data.callDetails.context"></jquery-context-button></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - position'" class="offenders">
+                    get from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - show' || node.data.type == 'jQuery - hide' || node.data.type == 'jQuery - animate'  || node.data.type == 'jQuery - fadeIn' || node.data.type == 'jQuery - fadeOut' || node.data.type == 'jQuery - fadeTo' || node.data.type == 'jQuery - fadeToggle' || node.data.type == 'jQuery - slideDown' || node.data.type == 'jQuery - slideUp' || node.data.type == 'jQuery - slideToggle'" class="offenders">
+                    <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - toggle'" class="offenders">
+                    <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0] == 'true'"> to visible</span>
+                    <span ng-if="node.data.callDetails.arguments[0] == 'false'"> to hidden</span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - on' || node.data.type == 'jQuery - one'" class="offenders">
+                    bind <b>{{node.data.callDetails.arguments[0]}}</b> on <jquery-context-button context="node.data.callDetails.context"></jquery-context-button><span ng-if="isPureString(node.data.callDetails.arguments[1])">'s children filtered by <b>{{node.data.callDetails.arguments[1]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - off'" class="offenders">
+                    <span ng-if="node.data.callDetails.arguments[0]">
+                        unbind <b>{{node.data.callDetails.arguments[0]}}</b> from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button><span ng-if="isPureString(node.data.callDetails.arguments[1])">'s children filtered by <b>{{node.data.callDetails.arguments[1]}}</b></span>
+                    </span>
+                    <span ng-if="!node.data.callDetails.arguments[0]">
+                        unbind all events
+                    </span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - live'" class="offenders">
+                    bind <b>{{node.data.callDetails.arguments[0]}}</b> on <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - die'" class="offenders">
+                    <span ng-if="node.data.callDetails.arguments[0]">
+                        unbind <b>{{node.data.callDetails.arguments[0]}}</b> from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    </span>
+                    <span ng-if="!node.data.callDetails.arguments[0]">
+                        unbind all events
+                    </span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - delegate'" class="offenders">
+                    bind <b>{{node.data.callDetails.arguments[1]}}</b> on <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>'s children filtered by <b>{{node.data.callDetails.arguments[0]}}</b>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - undelegate'" class="offenders">
+                    <span ng-if="node.data.callDetails.arguments[1]">
+                        unbind <b>{{node.data.callDetails.arguments[1]}}</b> from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>'s children filtered by <b>{{node.data.callDetails.arguments[0]}}</b>
+                    </span>
+                    <span ng-if="node.data.callDetails.arguments[0] && !node.data.callDetails.arguments[1]">
+                        unbind namespace <b>{{node.data.callDetails.arguments[0]}}</b>
+                    </span>
+                    <span ng-if="!node.data.callDetails.arguments[0]">
+                        unbind all events
+                    </span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - bind'" class="offenders">
+                    bind <b>{{node.data.callDetails.arguments[0]}}</b> on <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - unbind'" class="offenders">
+                    <span ng-if="node.data.callDetails.arguments[0]">
+                        unbind <b>{{node.data.callDetails.arguments[0]}}</b> from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    </span>
+                    <span ng-if="!node.data.callDetails.arguments[0]">
+                        unbind all events
+                    </span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - blur' || node.data.type == 'jQuery - change' || node.data.type == 'jQuery - click' || node.data.type == 'jQuery - dblclick' || node.data.type == 'jQuery - error' || node.data.type == 'jQuery - focus' || node.data.type == 'jQuery - focusin' || node.data.type == 'jQuery - focusout' || node.data.type == 'jQuery - hover' || node.data.type == 'jQuery - keydown' || node.data.type == 'jQuery - keypress' || node.data.type == 'jQuery - keyup' || node.data.type == 'jQuery - load' || node.data.type == 'jQuery - mousedown' || node.data.type == 'jQuery - mouseenter' || node.data.type == 'jQuery - mouseleave' || node.data.type == 'jQuery - mousemove' || node.data.type == 'jQuery - mouseout' || node.data.type == 'jQuery - mouseover' || node.data.type == 'jQuery - mouseup' || node.data.type == 'jQuery - resize' || node.data.type == 'jQuery - scroll' || node.data.type == 'jQuery - select' || node.data.type == 'jQuery - submit' || node.data.type == 'jQuery - unload'" class="offenders">
+                    bind on <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - removeAttr' || node.data.type == 'jQuery - removeProp'" class="offenders">
+                    remove <b>{{node.data.callDetails.arguments[0]}}</b> from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - val'" class="offenders">
+                    <span ng-if="node.data.callDetails.arguments[0]">
+                        set value <b>{{node.data.callDetails.arguments[0]}}</b> to <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    </span>
+                    <span ng-if="!node.data.callDetails.arguments[0]">
+                        get value from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    </span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - hasClass' || node.data.type == 'jQuery - addClass' || node.data.type == 'jQuery - removeClass'" class="offenders">
+                    <b>{{node.data.callDetails.arguments[0]}}</b> on <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - toggleClass'" class="offenders">
+                    <span ng-if="!node.data.callDetails.arguments[0]">magic no-argument toggleClass</span>
+                    <span ng-if="node.data.callDetails.arguments[0]">toggle <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                    on <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[1]">to <b>{{node.data.callDetails.arguments[1]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - children'" class="offenders">
+                    of <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0]">filtered by <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - closest'" class="offenders">
+                    closest <b>{{node.data.callDetails.arguments[0]}}</b> from <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[1]">in context <b>{{node.data.callDetails.arguments[1]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - next' || node.data.type == 'jQuery - nextAll'" class="offenders">
+                    after <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0]">matching <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - nextUntil'" class="offenders">
+                    after <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0]">until <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                    <span ng-if="node.data.callDetails.arguments[1]">and matching <b>{{node.data.callDetails.arguments[1]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - offsetParent'" class="offenders">
+                    of <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - prev' || node.data.type == 'jQuery - prevAll'" class="offenders">
+                    before <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0]">matching <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - prevUntil'" class="offenders">
+                    before <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0]">until <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                    <span ng-if="node.data.callDetails.arguments[1]">and matching <b>{{node.data.callDetails.arguments[1]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - parent' || node.data.type == 'jQuery - parents'" class="offenders">
+                    of <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0]">matching <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - parentsUntil'" class="offenders">
+                    of <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0]">until <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                    <span ng-if="node.data.callDetails.arguments[1]">and matching <b>{{node.data.callDetails.arguments[1]}}</b></span>
+                </span>
+                <span ng-if="node.data.type == 'jQuery - siblings'" class="offenders">
+                    near <jquery-context-button context="node.data.callDetails.context"></jquery-context-button>
+                    <span ng-if="node.data.callDetails.arguments[0]">matching <b>{{node.data.callDetails.arguments[0]}}</b></span>
+                </span>
             </div>
             
             <div class="details">
@@ -106,11 +333,6 @@
                 
                 <div class="detailsOverlay" ng-if="node.showDetails">
                     <div class="closeBtn" ng-click="onNodeDetailsClick(node)">✖</div>
-
-                    <div ng-if="node.data.callDetails.context.domElement">
-                        <h4>Called on DOM element</h4>
-                        <div>{{node.data.callDetails.context.domElement}}</div>
-                    </div>
 
                     <div ng-if="node.data.callDetails.context.length === 0">
                         <h4>Called on 0 jQuery element</h4>
@@ -132,6 +354,9 @@
 
                     <p class="advice" ng-if="node.data.resultsNumber === 0">
                         The query returned 0 results. Could it be unused or dead code?
+                    </p>
+                    <p ng-if="node.data.resultsNumber > 0">
+                        The query returned <ng-pluralize count="node.data.resultsNumber" when="{'one': '1 result', 'other': '{} results'}"></ng-pluralize>.
                     </p>
 
                     <div ng-if="node.parsedBacktrace">

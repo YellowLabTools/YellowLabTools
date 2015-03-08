@@ -187,6 +187,15 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         node.showDetails = !isOpen;
     };
 
+    $scope.isStringOfObject = function(str) {
+        return typeof str === 'string' && str[0] === '{' && str[str.length - 1] === '}';
+    };
+
+    $scope.isPureString = function(str) {
+        return typeof str === 'string' && str[0] !== '{' && str !== '(function)' && str !== '[Object]' && str !== '[Array]' && str !== 'true' && str !== 'false' && str !== 'undefined' && str !== 'unknown';
+    };
+
+
     $scope.backToDashboard = function() {
         $location.path('/result/' + $scope.runId);
     };

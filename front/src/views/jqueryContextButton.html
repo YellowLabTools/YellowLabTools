@@ -1,0 +1,9 @@
+<span>
+    <span ng-if="context.length == 0" class="offenderButton">Empty jQuery object</span>
+    <span ng-if="context.length == 1"><dom-element-button obj="context.elements[0]"></dom-element-button></span>
+    <span ng-if="context.length > 1">
+        {{context.length}} elements
+        (<dom-element-button obj="context.elements[0]"></dom-element-button>, <dom-element-button obj="context.elements[1]"></dom-element-button>
+        <span ng-if="context.length > 2">and {{context.length - 2}} more...</span>)
+    </span>
+</span>

@@ -3,5 +3,6 @@
     <span ng-if="obj.type == 'domElement'">DOM element <b>{{obj.element}}</b></span>
     <span ng-if="obj.type == 'fragmentElement'">Fragment element <b>{{obj.element}}</b></span>
     <span ng-if="obj.type == 'createdElement'">Created element <b>{{obj.element}}</b></span>
+    <span ng-if="obj.type == 'notAnElement'">Incorrect element</span>
     <dom-tree ng-if="obj.tree" tree="obj.tree"></dom-tree>
 </div>

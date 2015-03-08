@@ -43,6 +43,17 @@ offendersDirectives.directive('domElementButton', function() {
     };
 });
 
+offendersDirectives.directive('jqueryContextButton', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            context: '='
+        },
+        templateUrl: 'views/jqueryContextButton.html',
+        replace: true
+    };
+});
+
 offendersDirectives.filter('shortenUrl', function() {
     return function(url, maxLength) {
         if (!maxLength) {
@@ -103,8 +114,6 @@ offendersDirectives.directive('offenderButton', function() {
     return {
         restrict: 'C',
         link: function(scope, element, attrs) {
-
-            console.log('initializing touchstart');
 
             element.bind('touchstart mouseenter', function(e) {
                 element.addClass('mouseOver');
