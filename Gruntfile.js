@@ -66,7 +66,9 @@ module.exports = function(grunt) {
                 'app/nodeControllers/*.js',
                 'app/public/scripts/*.js',
                 'phantomas_custom/**/*.js',
-                'test/**/*.js',
+                'test/api/*.js',
+                'test/core/*.js',
+                'test/fixtures/*.js',
                 'front/src/js/**/*.js'
             ]
         },
