@@ -63,11 +63,6 @@
             <input type="checkbox" ng-model="warningsFilterOn" id="warningsFilterOn" />
             <label for="warningsFilterOn">Show warnings only</label>
         </div>
-        <div>
-            <input type="checkbox" ng-model="textFilterOn" />
-            Filter by
-            <input type="text" ng-model="textFilter" placeholder="search..." class="textFilter" ng-change="textFilterOn = true" />
-        </div>
     </div>
     <div class="table">
 
@@ -79,7 +74,7 @@
             <div><!-- details --></div>
             <div>Timestamp</div>
         </div>
-        <div ng-if="(!warningsFilterOn || node.warning || node.error) && (!textFilterOn || !textFilter.length || node.searchIndex.indexOf(textFilter) >= 0)"
+        <div ng-if="(!warningsFilterOn || node.warning || node.error)"
              ng-repeat="node in profilerData" ng-class="{
                 showingDetails: node.showDetails,
                 jsError: node.error,

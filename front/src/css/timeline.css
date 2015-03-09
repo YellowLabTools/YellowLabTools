@@ -143,20 +143,6 @@
   border: 1px dotted #aaa;
   text-align: left;
 }
-.slowRequestsLimit {
-  width: 3em;
-  font-size: 1em;
-  text-align: right;
-  border: 1px solid #aaa;
-}
-input.textFilter {
-  box-shadow: none;
-  font-size: 1em;
-  padding: 0 0.2em;
-  border: 1px solid #aaa;
-  border-radius: none;
-  width: 15em;
-}
 .table {
   display: table;
   width: 100%;

@@ -52,7 +52,7 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         var lastEvent = originalExecutions[originalExecutions.length - 1];
         $scope.endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
 
-        // Filter and calculate the search index
+        // Filter
         $scope.executionTree = [];
         originalExecutions.forEach(function(node) {
             
@@ -65,9 +65,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
                     return;
                 }
             }
-
-            // Prepare a faster angular search by creating a kind of search index
-            node.searchIndex = (node.data.callDetails) ? [node.data.type].concat(node.data.callDetails.arguments).join('°°') : node.data.type;
 
             $scope.executionTree.push(node);
         });
