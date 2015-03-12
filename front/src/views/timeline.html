@@ -75,15 +75,15 @@
             <div>Timestamp</div>
         </div>
         <div ng-if="(!warningsFilterOn || node.warning || node.error)"
-             ng-repeat="node in ::profilerData" ng-class="{
+             ng-repeat="node in profilerData" ng-class="{
                 showingDetails: node.showDetails,
                 jsError: node.error,
                 windowPerformance: node.windowPerformance
-             }" id="line_{{::$index}}">
+             }" id="line_{{$index}}">
 
-            <div class="index">{{::$index + 1}}</div>
+            <div class="index">{{$index + 1}}</div>
             <div class="type">
-                {{::node.data.type}}
+                {{node.data.type}}
                 <js-children node="node"></js-children>
             </div>
 
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <div class="startTime" ng-class="::node.data.loadingStep">{{::node.data.timestamp | number: 0}} ms</div>
+            <div class="startTime" ng-class="node.data.loadingStep">{{node.data.timestamp | number: 0}} ms</div>
         </div>
     </div>
 
