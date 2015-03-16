@@ -62,6 +62,19 @@
                         </div>
                     </div>
 
+                    <div ng-if="policyName === 'documentWriteCalls'">
+                        <b>{{offender.writeFn}}</b>
+                        <span ng-if="offender.from">
+                            called from
+                            <span ng-if="offender.from.functionName">{{offender.from.functionName}}()</span>
+                            <url-link url="offender.from.file" max-length="50"></url-link>
+                            line {{offender.from.line}}
+                        </span>
+                        <span ng-if="!offender.from">
+                            called from (no backtrace available)
+                        </span>
+                    </div>
+
                     <div ng-if="policyName === 'cssParsingErrors'">
                         <b>{{offender.error}}</b>
                         <file-and-line file="offender.file" line="offender.line" column="offender.column"></file-and-line>
