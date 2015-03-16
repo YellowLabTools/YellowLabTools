@@ -52,7 +52,7 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         var lastEvent = originalExecutions[originalExecutions.length - 1];
         $scope.endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
 
-        // Filter and calculate the search index
+        // Filter
         $scope.executionTree = [];
         originalExecutions.forEach(function(node) {
             
@@ -65,9 +65,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
                     return;
                 }
             }
-
-            // Prepare a faster angular search by creating a kind of search index
-            node.searchIndex = (node.data.callDetails) ? [node.data.type].concat(node.data.callDetails.arguments).join('°°') : node.data.type;
 
             $scope.executionTree.push(node);
         });
@@ -114,38 +111,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         $scope.profilerData = $scope.executionTree;
     }
 
-
-    function parseBacktrace(str) {
-        if (!str) {
-            return null;
-        }
-
-        var out = [];
-        var splited = str.split(' / ');
-        splited.forEach(function(trace) {
-            var fnName = null, fileAndLine;
-
-            var withFnResult = /^([^\s\(]+) \((.+:\d+)\)$/.exec(trace);
-            if (withFnResult === null) {
-                fileAndLine = trace;
-            } else {
-                fnName = withFnResult[1];
-                fileAndLine = withFnResult[2];
-            }
-
-            var fileAndLineSplit = /^(.*):(\d+)$/.exec(fileAndLine);
-            var filePath = fileAndLineSplit[1];
-            var line = fileAndLineSplit[2];
-
-            out.push({
-                fnName: fnName,
-                filePath: filePath,
-                line: line
-            });
-        });
-        return out;
-    }
-
     $scope.changeScript = function() {
         initExecutionTree();
         initTimeline();
@@ -170,22 +135,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         return lineIndex;
     };
 
-    $scope.onNodeDetailsClick = function(node) {
-        var isOpen = node.showDetails;
-        if (!isOpen) {
-            // Close all other nodes
-            $scope.executionTree.forEach(function(currentNode) {
-                currentNode.showDetails = false;
-            });
-
-            // Parse the backtrace
-            if (!node.parsedBacktrace) {
-                node.parsedBacktrace = parseBacktrace(node.data.backtrace);
-            }
-
-        }
-        node.showDetails = !isOpen;
-    };
 
     $scope.backToDashboard = function() {
         $location.path('/result/' + $scope.runId);
