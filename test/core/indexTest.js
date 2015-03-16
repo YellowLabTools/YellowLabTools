@@ -54,7 +54,7 @@ describe('index.js', function() {
                 data.toolsResults.phantomas.should.have.a.property('offenders').that.is.an('object');
                 data.toolsResults.phantomas.offenders.should.have.a.property('DOMelementMaxDepth');
                 data.toolsResults.phantomas.offenders.DOMelementMaxDepth.should.have.length(1);
-                data.toolsResults.phantomas.offenders.DOMelementMaxDepth[0].should.equal('body > h1[1]');
+                data.toolsResults.phantomas.offenders.DOMelementMaxDepth[0].should.equal('body > h1[0]');
 
                 // Test rules
                 data.should.have.a.property('rules').that.is.an('object');
@@ -79,7 +79,7 @@ describe('index.js', function() {
                         "count": 1,
                         "tree": {
                             "body": {
-                                "h1[1]": 1
+                                "h1[0]": 1
                             }
                         }
                     }
