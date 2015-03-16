@@ -162,22 +162,6 @@
     text-align: left;
 }
 
-.slowRequestsLimit {
-    width: 3em;
-    font-size: 1em;
-    text-align: right;
-    border: 1px solid #aaa;
-}
-
-input.textFilter {
-    box-shadow: none;
-    font-size: 1em;
-    padding: 0 0.2em;
-    border: 1px solid #aaa;
-    border-radius: none;
-    width: 15em;
-}
-
 .table {
     display: table;
     width: 100%;
@@ -260,6 +244,10 @@ input.textFilter {
     span:hover {
         background: #EBD8E2;
 
+        div {
+            display: inline-block;
+        }
+
         .childArgs {
             display: block;
             position: absolute;
@@ -300,6 +288,7 @@ input.textFilter {
 }
 
 .detailsOverlay {
+    display: none;
     position: absolute;
     right: 3em;
     top: -3em;
@@ -309,12 +298,15 @@ input.textFilter {
     background: #fff;
     border: 2px solid #f1c40f;
     border-radius: 0.5em;
-    z-index: 1;
+    z-index: 2;
 }
 @media screen and (max-width: 1024px) {
     .detailsOverlay {
         width: 25em;
     }
+}
+.showDetails .detailsOverlay {
+    display: block;
 }
 .detailsOverlay .closeBtn {
     position: absolute;

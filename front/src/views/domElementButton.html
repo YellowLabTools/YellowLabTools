@@ -1,7 +1,0 @@
-<div class="offenderButton" ng-class="{opens: obj.tree}">
-    <span ng-if="obj.type == 'html' || obj.type == 'body' || obj.type == 'head' || obj.type == 'window' || obj.type == 'document' || obj.type == 'fragment'"><b>{{obj.type}}</b></span>
-    <span ng-if="obj.type == 'domElement'">DOM element <b>{{obj.element}}</b></span>
-    <span ng-if="obj.type == 'fragmentElement'">Fragment element <b>{{obj.element}}</b></span>
-    <span ng-if="obj.type == 'createdElement'">Created element <b>{{obj.element}}</b></span>
-    <dom-tree ng-if="obj.tree" tree="obj.tree"></dom-tree>
-</div>
