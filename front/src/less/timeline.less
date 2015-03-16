@@ -244,6 +244,10 @@
     span:hover {
         background: #EBD8E2;
 
+        div {
+            display: inline-block;
+        }
+
         .childArgs {
             display: block;
             position: absolute;
@@ -284,6 +288,7 @@
 }
 
 .detailsOverlay {
+    display: none;
     position: absolute;
     right: 3em;
     top: -3em;
@@ -299,6 +304,9 @@
     .detailsOverlay {
         width: 25em;
     }
+}
+.showDetails .detailsOverlay {
+    display: block;
 }
 .detailsOverlay .closeBtn {
     position: absolute;

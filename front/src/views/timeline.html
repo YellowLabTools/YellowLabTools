@@ -65,8 +65,6 @@
         </div>
     </div>
     <div class="table">
-
-        <toto data-info="mavariable"></toto>
         <div class="headers">
             <div><!-- index --></div>
             <div>Type</div>
@@ -74,61 +72,9 @@
             <div><!-- details --></div>
             <div>Timestamp</div>
         </div>
-        <div ng-if="(!warningsFilterOn || node.warning || node.error)"
-             ng-repeat="node in profilerData" ng-class="{
-                showingDetails: node.showDetails,
-                jsError: node.error,
-                windowPerformance: node.windowPerformance
-             }" id="line_{{$index}}">
 
-            <div class="index">{{$index + 1}}</div>
-            <div class="type">
-                {{node.data.type}}
-                <js-children node="node"></js-children>
-            </div>
+        <profiler-line ng-repeat="node in profilerData" data-index="$index" node="node"></profiler-line>
 
-            <timeline-params node="node"></timeline-params>
-
-            <div class="details">
-                <div ng-class="{'icon-question': !node.warning && !node.error, 'icon-warning': node.warning || node.error}"
-                     ng-click="onNodeDetailsClick(node)"
-                     ng-if="node.data.type != 'jQuery loaded' && node.data.type != 'jQuery version change' && !node.windowPerformance"></div>
-                
-                <div class="detailsOverlay" ng-if="node.showDetails">
-                    <div class="closeBtn" ng-click="onNodeDetailsClick(node)">✖</div>
-
-                    <div ng-if="node.data.callDetails.context.length === 0">
-                        <h4>Called on 0 jQuery element</h4>
-                        <p class="advice">Useless function call, as the jQuery object is empty.</p>
-                    </div>
-
-                    <p class="advice" ng-if="node.data.type == 'jQuery - bind' && node.data.callDetails.context.length > 5">
-                        The .bind() method attaches the event listener to each jQuery element one by one. Using the .on() method is preferable if available (from v1.7).
-                    </p>
-
-                    <p class="advice" ng-if="node.data.resultsNumber === 0">
-                        The query returned 0 results. Could it be unused or dead code?
-                    </p>
-                    <p ng-if="node.data.resultsNumber > 0">
-                        The query returned <ng-pluralize count="node.data.resultsNumber" when="{'one': '1 result', 'other': '{} results'}"></ng-pluralize>.
-                    </p>
-
-                    <div ng-if="node.parsedBacktrace">
-                        <h4>Backtrace</h4>
-                        <div class="table">
-                            <div ng-repeat="trace in node.parsedBacktrace track by $index">
-                                <div>{{trace.fnName || '(anonymous)'}}</div>
-                                <div class="trace"><url-link url="trace.filePath" max-length="40"></url-link>:{{trace.line}}</div>
-                            </div>
-                            <div ng-if="node.parsedBacktrace.length == 0 && node.data.type != 'script loaded'">
-                                <div>can't find any backtrace :/</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="startTime" ng-class="node.data.loadingStep">{{node.data.timestamp | number: 0}} ms</div>
-        </div>
     </div>
 
     <div class="backToDashboard"><a href="#" ng-click="backToDashboard()">Back to dashboard</a></div>
