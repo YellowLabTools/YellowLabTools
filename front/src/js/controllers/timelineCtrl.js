@@ -111,38 +111,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         $scope.profilerData = $scope.executionTree;
     }
 
-
-    function parseBacktrace(str) {
-        if (!str) {
-            return null;
-        }
-
-        var out = [];
-        var splited = str.split(' / ');
-        splited.forEach(function(trace) {
-            var fnName = null, fileAndLine;
-
-            var withFnResult = /^([^\s\(]+) \((.+:\d+)\)$/.exec(trace);
-            if (withFnResult === null) {
-                fileAndLine = trace;
-            } else {
-                fnName = withFnResult[1];
-                fileAndLine = withFnResult[2];
-            }
-
-            var fileAndLineSplit = /^(.*):(\d+)$/.exec(fileAndLine);
-            var filePath = fileAndLineSplit[1];
-            var line = fileAndLineSplit[2];
-
-            out.push({
-                fnName: fnName,
-                filePath: filePath,
-                line: line
-            });
-        });
-        return out;
-    }
-
     $scope.changeScript = function() {
         initExecutionTree();
         initTimeline();
@@ -165,23 +133,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         }
 
         return lineIndex;
-    };
-
-    $scope.onNodeDetailsClick = function(node) {
-        var isOpen = node.showDetails;
-        if (!isOpen) {
-            // Close all other nodes
-            $scope.executionTree.forEach(function(currentNode) {
-                currentNode.showDetails = false;
-            });
-
-            // Parse the backtrace
-            if (!node.parsedBacktrace) {
-                node.parsedBacktrace = parseBacktrace(node.data.backtrace);
-            }
-
-        }
-        node.showDetails = !isOpen;
     };
 
 

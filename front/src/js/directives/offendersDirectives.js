@@ -560,8 +560,8 @@
         } else {
             for (var i = 0 ; i < parsedBacktrace.length ; i++) {
                 html += '<div>';
-                html += '<div>' + (parsedBacktrace[i].fnName || '(anonymous)') + '</div>';
-                html += '<div class="trace"><url-link url="trace.filePath" max-length="40"></url-link>:' + parsedBacktrace[i].line + '</div>';
+                html += '<div>' + (parsedBacktrace[i].fnName || '(anonymous function)') + '</div>';
+                html += '<div class="trace">' + getUrlLink(parsedBacktrace[i].filePath, 40) + ':' + parsedBacktrace[i].line + '</div>';
                 html += '</div>';
             }
         }
@@ -729,20 +729,25 @@
         };
     }]);
 
+    function shortenUrl(url, maxLength) {
+        if (!maxLength) {
+            maxLength = 110;
+        }
+
+        // Why dividing by 2.1? Because it adds a 5% margin.
+        var leftLength = Math.floor((maxLength - 5) / 2.1);
+        var rightLength = Math.ceil((maxLength - 5) / 2.1);
+
+        return (url.length > maxLength) ? url.substr(0, leftLength) + ' ... ' + url.substr(-rightLength) : url;
+    }
 
     offendersDirectives.filter('shortenUrl', function() {
-        return function(url, maxLength) {
-            if (!maxLength) {
-                maxLength = 110;
-            }
-
-            // Why dividing by 2.1? Because it adds a 5% margin.
-            var leftLength = Math.floor((maxLength - 5) / 2.1);
-            var rightLength = Math.ceil((maxLength - 5) / 2.1);
-
-            return (url.length > maxLength) ? url.substr(0, leftLength) + ' ... ' + url.substr(-rightLength) : url;
-        };
+        return shortenUrl;
     });
+
+    function getUrlLink(url, maxLength) {
+        return '<a href="' + url + '" target="_blank" title="' + url + '">' + shortenUrl(url, maxLength) + '</a>';
+    }
 
     offendersDirectives.directive('urlLink', function() {
         return {
