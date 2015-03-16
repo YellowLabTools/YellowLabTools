@@ -773,7 +773,7 @@
                 line: '=',
                 column: '='
             },
-            template: '<span><span ng-if="file"><url-link url="file" max-length="60"></url-link></span><span ng-if="!file">&lt;inline CSS&gt;</span> @ {{line}}:{{column}}</span>',
+            template: '<span><span ng-if="file"><url-link url="file" max-length="60"></url-link></span><span ng-if="!file">&lt;inline CSS&gt;</span><span ng-if="line !== null && column !== null"> @ {{line}}:{{column}}</span></span>',
             replace: true
         };
     });
