@@ -156,7 +156,7 @@ module.exports = function(grunt) {
             dev: {
                 NODE_ENV: 'development'
             },
-            builded: {
+            built: {
                 NODE_ENV: 'production'
             }
         },
@@ -169,7 +169,7 @@ module.exports = function(grunt) {
                     showStack: true
                 }
             },
-            builded: {
+            built: {
                 options: {
                     port: 8383,
                     server: './bin/server.js',
@@ -323,9 +323,9 @@ module.exports = function(grunt) {
         'express:dev'
     ]);
 
-    grunt.registerTask('builded', [
-        'env:builded',
-        'express:builded'
+    grunt.registerTask('built', [
+        'env:built',
+        'express:built'
     ]);
 
     grunt.registerTask('test', [
