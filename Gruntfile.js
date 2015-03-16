@@ -94,10 +94,10 @@ module.exports = function(grunt) {
             },
             coverage: {
                 files: [
-                    {src: ['test/**'], dest: 'coverage/'},
-                    {src: ['lib/metadata/**'], dest: 'coverage/'},
-                    {src: ['node_modules/phantomas/**'], dest: 'coverage/'},
-                    {src: ['lib/tools/phantomas/custom_modules/**'], dest: 'coverage/'}
+                    {cwd: 'test', src: '**/*', dest: 'coverage/test', expand: true},
+                    {cwd: 'lib/metadata', src: '**/*', dest: 'coverage/lib/metadata', expand: true},
+                    {cwd: 'node_modules/phantomas', src: '**/*', dest: 'coverage/node_modules/phantomas', expand: true},
+                    {cwd: 'lib/tools/phantomas/custom_modules', src: '**/*', dest: 'coverage/lib/tools/phantomas/custom_modules', expand: true}
                 ]
             },
             build: {
