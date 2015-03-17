@@ -1,0 +1,193 @@
+<html>
+<head>
+    <title>Simple page</title>
+    <script src="jquery1.8.3.js"></script>
+</head>
+<body>
+    <h1>Simple page</h1>
+
+    <ul>
+        <li>li 1</li>
+        <li>li 2</li>
+        <li>li 3</li>
+    </ul>
+
+    <ul id="foo">
+        <li>li4</li>
+    </ul>
+
+    <script>
+
+        // Let's start the spaghetti code!!!
+
+        $('ul').find('li');
+        $('li', $('#foo'));
+        var foo = document.getElementById('foo');
+        $('li', foo);
+        foo.getElementsByClassName('bar');
+        document.getElementsByClassName('bar');
+        foo.querySelector('ul li');
+        document.querySelector('ul li');
+        foo.querySelectorAll('ul li');
+        document.querySelectorAll('ul li');
+
+        var li = document.createElement('li');
+        foo.insertBefore(li, foo.children[0]);
+
+        li.addEventListener('click', function() {});
+
+        var $li = $(li);
+        $li.html();
+        $li.html('some content');
+        $('li').html();
+        $li.html('');
+        $('select').html();
+
+        $li.append('<div>woot</div>');
+        $li.append(document.createElement('span'));
+        $li.append($('<b>what</b>'));
+        $li.append(['<div>test1</div>', document.createElement('div')]);
+        $li.append('<div>test3</div>', '<div>test4</div>');
+
+        $('<div>test4</div>').appendTo($li);
+        $('<div>test5</div>').appendTo('<div class="bar"></div>');
+
+        $('li').prepend('<span class="prepended">prepended!</span>');
+        $('<div>test0</div>').prependTo($li);
+
+        $('<div>before bar</div>').before('.bar');
+        $('<div>before $li</div>').insertBefore($li);
+
+        $li.after('textnode after');
+        $('<div>after $li</div>').insertAfter($li);
+
+        $('.prepended').remove('.someClass');
+        $('.prepended').remove();
+        $('.prepended').detach();
+
+        $li.find('div').empty();
+        var $ulClones = $('ul').clone();
+
+        $('span').replaceWith('<span class="newspan">New span</span>');
+        $('<span class="newnewspan">New new span</span>').replaceAll('.newspan');
+
+        $('li').text();
+        $('li').eq(0).text('New li 1');
+
+        $('li').eq(0).wrap('<div></div>');
+        $('ul').wrapAll('<div class="ulWrapper"></div>');
+        $('.ulWrapper').wrapInner('<div class="doubleUlWrapper"></div>');
+        $('.doubleUlWrapper').unwrap();
+
+        $li.css('color', '#F00');
+        $li.css('color');
+        $li.css({'font-size': '1.2em', 'background': '#BFF'});
+        $li.offset();
+        $li.offset({left: 12, top: 23});
+        $li.offset(function() {return {left: 55, top: 44};});
+        $li.height();
+
+        $li.hide();
+        $li.hide(120);
+        $li.hide({duration: 133, done: function() {console.log(12);}});
+        $li.hide(222, 'swing', function() {console.log(9);});
+        $li.toggle();
+        $li.toggle(true);
+        $li.toggle(false);
+        $li.toggle(200);
+
+        var handler = function() {};
+        var $tbody = $('#dataTable tbody');
+        var $tbodytr = $('#dataTable tbody tr');
+        $tbodytr.on('click', handler);
+        $tbody.on('click', 'tr', handler);
+        $tbody.on('click', {someData: 'Joe'}, handler);
+        $tbodytr.off('click', handler);
+        $tbodytr.off('click', 'tr');
+        $tbodytr.off('click');
+        $tbodytr.off();
+        $tbody.delegate('tr', 'click', handler);
+        $tbody.undelegate('tr', 'click');
+        $tbody.undelegate('someNamespage');
+        $tbody.undelegate();
+        $tbody.one('zoop', handler);
+        $tbody.bind('zoop', handler);
+        $tbody.unbind('zoop', handler);
+        $tbody.bind();
+
+        $tbody.blur(handler);
+        $tbody.change(handler);
+        $tbody.click(handler);
+        $tbody.dblclick(handler);        
+        $tbody.error(handler);
+        $tbody.focus(handler);
+        $tbody.focusin(handler);
+        $tbody.focusout(handler);
+        $tbody.hover(handler);
+        $tbody.keydown(handler);
+        $tbody.keypress(handler);
+        $tbody.keyup(handler);
+        $tbody.load(handler);
+        $tbody.mousedown(handler);
+        $tbody.mouseenter(handler);
+        $tbody.mouseleave(handler);
+        $tbody.mousemove(handler);
+        $tbody.mouseout(handler);
+        $tbody.mouseover(handler);
+        $tbody.mouseup(handler);
+        $tbody.resize(handler);
+        $tbody.scroll(handler);
+        $tbody.select(handler);
+        $tbody.submit(handler);
+        $tbody.unload(handler);
+
+        $tbody.attr({alt: "Beijing Brush Seller", title: "photo by Kelly Clark"});
+        $tbody.attr('alt');
+        $tbody.attr('alt', 'An alternative alt');
+        $tbody.attr('alt', '');
+        $tbody.removeAttr('alt');
+
+        $tbody.prop({checked: true});
+        $tbody.prop('checked');
+        $tbody.prop('checked', true);
+        $tbody.prop('checked', '');
+        $tbody.removeProp('checked');
+
+        var $input = $('<input type="text"></input>');
+        $input.val('some value');
+        $input.val();
+
+        $tbody.addClass(function() {return 'foo';});
+        $tbody.hasClass('foo');
+        $tbody.removeClass('foo');
+        $tbody.toggleClass('foo');
+        $tbody.toggleClass('foo', true);
+        $tbody.toggleClass();
+
+        $li.children();
+        $li.children('span');
+        $li.closest('ul');
+        $li.closest('ul', document.getElementById('foo'));
+        $li.find('span');
+        $li.find(document.getElementById('foo'));
+        $li.find($li);
+        $li.next();
+        $li.next('li');
+        $li.nextAll();
+        $li.nextAll('li');
+        $li.nextUntil('.theEnd', 'li');
+        $li.offsetParent();
+        $li.prevAll();
+        $li.prevAll('li');
+        $li.prevUntil('.theBeginning', 'li');
+        $li.parent();
+        $li.parent('ul');
+        $li.parents();
+        $li.parents('div');
+        $li.parentsUntil('ul');
+        $li.parentsUntil('body', 'div');
+        $li.siblings();
+        $li.siblings('li');
+    </script>
+</body>
+</html>

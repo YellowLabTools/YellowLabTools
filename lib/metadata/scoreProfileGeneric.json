@@ -91,9 +91,10 @@
         "network": {
             "label": "Network",
             "policies": {
-                "notFound": 3,
-                "closedConnections": 3,
-                "multipleRequests": 3,
+                "notFound": 2,
+                "closedConnections": 2,
+                "multipleRequests": 2,
+                "cachingNotSpecified": 1,
                 "cachingDisabled": 1,
                 "cachingTooShort": 1,
                 "domains": 1

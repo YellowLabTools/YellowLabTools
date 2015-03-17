@@ -12,7 +12,7 @@ Online tool that lets you test a webpage and detects **performance** and **front
 
 ## How it works
 
-The tool loads the given URL via [PhantomasJS](http://phantomjs.org/) (a headless browser) and collects various metrics and statistics with the help of [Phantomas](https://github.com/macbre/phantomas). These metrics are categorized and transformed into scores. It also gives in-depth details so developpers can correct the detected issues.
+The tool loads the given URL via [PhantomJS](http://phantomjs.org/) (a headless browser) and collects various metrics and statistics with the help of [Phantomas](https://github.com/macbre/phantomas). These metrics are categorized and transformed into scores. It also gives in-depth details so developpers can correct the detected issues.
 
 By the way, it's free because we are geeks, not businessmen. All we want is a ★ on GitHub, it will boost our motivation to add more awesome features!!!
 

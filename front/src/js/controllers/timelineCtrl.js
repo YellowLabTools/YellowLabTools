@@ -19,19 +19,52 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     }
 
     function render() {
+        initScriptFiltering();
         initExecutionTree();
         initTimeline();
         $timeout(initProfiler, 100);
     }
 
+    function initScriptFiltering() {
+        var offenders = $scope.result.rules.jsCount.offendersObj.list;
+        $scope.scripts = [];
+
+        offenders.forEach(function(script) {
+            var filePath = script.file;
+
+            if (filePath.length > 100) {
+                filePath = filePath.substr(0, 98) + '...';
+            }
+
+            var scriptObj = {
+                fullPath: script.file, 
+                shortPath: filePath
+            };
+
+            $scope.scripts.push(scriptObj);
+        });
+    }
+
     function initExecutionTree() {
         var originalExecutions = $scope.result.javascriptExecutionTree.children || [];
+        
+        // Detect the last event of all (before filtering) and read time
+        var lastEvent = originalExecutions[originalExecutions.length - 1];
+        $scope.endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
+
+        // Filter
         $scope.executionTree = [];
-
         originalExecutions.forEach(function(node) {
-
-            // Prepare a faster angular search by creating a kind of search index
-            node.searchIndex = (node.data.callDetails) ? [node.data.type].concat(node.data.callDetails.arguments).join('°°') : node.data.type;
+            
+            // Filter by script (if enabled)
+            if ($scope.selectedScript) {
+                if (node.data.backtrace && node.data.backtrace.indexOf($scope.selectedScript.fullPath + ':') === -1) {
+                    return;
+                }
+                if (node.data.type === "jQuery loaded" || node.data.type === "jQuery version change") {
+                    return;
+                }
+            }
 
             $scope.executionTree.push(node);
         });
@@ -41,8 +74,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
 
         // Split the timeline into 200 intervals
         var numberOfIntervals = 199;
-        var lastEvent = $scope.executionTree[$scope.executionTree.length - 1];
-        $scope.endTime =  lastEvent.data.timestamp + (lastEvent.data.time || 0);
         $scope.timelineIntervalDuration = $scope.endTime / numberOfIntervals;
         
         // Pre-fill array of as many elements as there are milleseconds
@@ -80,52 +111,30 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
         $scope.profilerData = $scope.executionTree;
     }
 
-
-    function parseBacktrace(str) {
-        if (!str) {
-            return null;
-        }
-
-        var out = [];
-        var splited = str.split(' / ');
-        splited.forEach(function(trace) {
-            var result = /^(\S*)\s?\(?(https?:\/\/\S+):(\d+)\)?$/g.exec(trace);
-            if (result && result[2].length > 0) {
-                var filePath = result[2];
-                var chunks = filePath.split('/');
-                var fileName = chunks[chunks.length - 1];
-
-                out.push({
-                    fnName: result[1],
-                    fileName: fileName,
-                    filePath: filePath,
-                    line: result[3]
-                });
-            }
-        });
-        return out;
-    }
-
-    $scope.filter = function(textFilter, scriptName) {
-
+    $scope.changeScript = function() {
+        initExecutionTree();
+        initTimeline();
+        initProfiler();
     };
 
-    $scope.onNodeDetailsClick = function(node) {
-        var isOpen = node.showDetails;
-        if (!isOpen) {
-            // Close all other nodes
-            $scope.executionTree.forEach(function(currentNode) {
-                currentNode.showDetails = false;
-            });
+    $scope.findLineIndexByTimestamp = function(timestamp) {
+        var lineIndex = 0;
 
-            // Parse the backtrace
-            if (!node.parsedBacktrace) {
-                node.parsedBacktrace = parseBacktrace(node.data.backtrace);
+        for (var i = 0; i < $scope.executionTree.length; i ++) {
+            var delta = $scope.executionTree[i].data.timestamp - timestamp;
+            
+            if (delta < $scope.timelineIntervalDuration) {
+                lineIndex = i;
             }
 
+            if (delta > 0) {
+                break;
+            }
         }
-        node.showDetails = !isOpen;
+
+        return lineIndex;
     };
+
 
     $scope.backToDashboard = function() {
         $location.path('/result/' + $scope.runId);
@@ -137,4 +146,28 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
 
     loadResults();
 
+}]);
+
+timelineCtrl.directive('scrollOnClick', ['$animate', '$timeout', function($animate, $timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attributes) {            
+            // When the user clicks on the timeline, find the right profiler line and scroll to it
+            element.on('click', function() {
+                var lineIndex = scope.findLineIndexByTimestamp(attributes.scrollOnClick);
+                var lineElement = angular.element(document.getElementById('line_' + lineIndex));
+                
+                // Animate the background color to "flash" the row
+                lineElement.addClass('highlight');
+                $timeout(function() {
+                    $animate.removeClass(lineElement, 'highlight');
+                    scope.$digest();
+                }, 50);
+
+
+                window.scrollTo(0, lineElement[0].offsetTop);
+                console.log(lineElement[0]);
+            });
+        }
+    };
 }]);

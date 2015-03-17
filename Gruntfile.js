@@ -66,7 +66,9 @@ module.exports = function(grunt) {
                 'app/nodeControllers/*.js',
                 'app/public/scripts/*.js',
                 'phantomas_custom/**/*.js',
-                'test/**/*.js',
+                'test/api/*.js',
+                'test/core/*.js',
+                'test/fixtures/*.js',
                 'front/src/js/**/*.js'
             ]
         },
@@ -92,10 +94,10 @@ module.exports = function(grunt) {
             },
             coverage: {
                 files: [
-                    {src: ['test/**'], dest: 'coverage/'},
-                    {src: ['lib/metadata/**'], dest: 'coverage/'},
-                    {src: ['node_modules/phantomas/**'], dest: 'coverage/'},
-                    {src: ['lib/tools/phantomas/custom_modules/**'], dest: 'coverage/'}
+                    {cwd: 'test', src: '**/*', dest: 'coverage/test', expand: true},
+                    {cwd: 'lib/metadata', src: '**/*', dest: 'coverage/lib/metadata', expand: true},
+                    {cwd: 'node_modules/phantomas', src: '**/*', dest: 'coverage/node_modules/phantomas', expand: true},
+                    {cwd: 'lib/tools/phantomas/custom_modules', src: '**/*', dest: 'coverage/lib/tools/phantomas/custom_modules', expand: true}
                 ]
             },
             build: {
@@ -156,7 +158,7 @@ module.exports = function(grunt) {
             dev: {
                 NODE_ENV: 'development'
             },
-            builded: {
+            built: {
                 NODE_ENV: 'production'
             }
         },
@@ -169,7 +171,7 @@ module.exports = function(grunt) {
                     showStack: true
                 }
             },
-            builded: {
+            built: {
                 options: {
                     port: 8383,
                     server: './bin/server.js',
@@ -218,7 +220,8 @@ module.exports = function(grunt) {
         htmlmin: {
             options: {
                 removeComments: true,
-                collapseWhitespace: true
+                collapseWhitespace: true,
+                conservativeCollapse: true
             },
             main: {
                 files: [{
@@ -323,9 +326,9 @@ module.exports = function(grunt) {
         'express:dev'
     ]);
 
-    grunt.registerTask('builded', [
-        'env:builded',
-        'express:builded'
+    grunt.registerTask('built', [
+        'env:built',
+        'express:built'
     ]);
 
     grunt.registerTask('test', [

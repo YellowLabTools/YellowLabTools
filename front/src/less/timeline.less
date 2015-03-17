@@ -14,6 +14,23 @@
     text-align: center;
 }
 
+.selectScript {
+    padding-bottom: 2em;
+    font-size: 0.9em;
+
+    select {
+        max-width: 30em;
+    }
+
+    &.empty {
+        font-size: 0.8em;
+
+        select {
+            width: 10em;
+        }
+    }
+}
+
 .timeline {
     margin: 2em 0 5em;
 }
@@ -49,6 +66,10 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+
+    &.clickable {
+        cursor: pointer;
+    }
 }
 .timeline div.interval:hover {
     background: #9C4274;
@@ -141,22 +162,6 @@
     text-align: left;
 }
 
-.slowRequestsLimit {
-    width: 3em;
-    font-size: 1em;
-    text-align: right;
-    border: 1px solid #aaa;
-}
-
-input.textFilter {
-    box-shadow: none;
-    font-size: 1em;
-    padding: 0 0.2em;
-    border: 1px solid #aaa;
-    border-radius: none;
-    width: 15em;
-}
-
 .table {
     display: table;
     width: 100%;
@@ -189,12 +194,80 @@ input.textFilter {
     background: #f1c40f;
 }
 
+.table > div.highlight {
+    > div.startTime {
+        background-color: #C0F090;
+    }
+}
+.table > div.highlight-remove {
+    transition: 3s;
+
+    > div.startTime {
+        transition: background-color 3s ease-in;
+    }
+}
+
 .table > div > .index {
     color: #bbb;
+    word-break: normal;
 }
 
 .table > div > .type {
     white-space:nowrap;
+}
+
+.table .children {
+    margin-top: 0.2em;
+    font-size: 0.8em;
+    line-height: 1.6em;
+}
+
+.table .child {
+    margin-left: 0.5em;
+
+    > .child {
+        margin-left: 1em;
+    }
+
+    &:before {
+        content: "↳";
+    }
+
+    .childArgs {
+        display: none;
+    }
+
+    span {
+        position: relative;
+    }
+
+    span:hover {
+        background: #EBD8E2;
+
+        div {
+            display: inline-block;
+        }
+
+        .childArgs {
+            display: block;
+            position: absolute;
+            padding: 0 1em 0 2em;
+            left: 100%;
+            top: 0;
+            background: #EBD8E2;
+            line-height: 1.3em;
+            height: 1.3em;
+            z-index: 1;
+        }
+    }
+}
+
+.table .showingDetails .child span:hover {
+    background: inherit;
+
+    .childArgs {
+        display: none;
+    }
 }
 
 .table > div > .value {
@@ -215,6 +288,7 @@ input.textFilter {
 }
 
 .detailsOverlay {
+    display: none;
     position: absolute;
     right: 3em;
     top: -3em;
@@ -224,12 +298,15 @@ input.textFilter {
     background: #fff;
     border: 2px solid #f1c40f;
     border-radius: 0.5em;
-    z-index: 1;
+    z-index: 2;
 }
 @media screen and (max-width: 1024px) {
     .detailsOverlay {
         width: 25em;
     }
+}
+.showDetails .detailsOverlay {
+    display: block;
 }
 .detailsOverlay .closeBtn {
     position: absolute;
