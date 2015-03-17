@@ -142,7 +142,7 @@
                 return 'append ' + getDomElementButtonHTML(args[0], onASingleLine) + ' to ' + getDomElementButtonHTML(ctxt.elements[0], onASingleLine);
 
             case 'insertBefore':
-                return 'insert' + getDomElementButtonHTML(args[0], onASingleLine) + ' into ' + getDomElementButtonHTML(ctxt.elements[0], onASingleLine) + ' before ' + getDomElementButtonHTML(args[1], onASingleLine);
+                return 'insert ' + getDomElementButtonHTML(args[0], onASingleLine) + ' into ' + getDomElementButtonHTML(ctxt.elements[0], onASingleLine) + ' before ' + getDomElementButtonHTML(args[1], onASingleLine);
 
             case 'addEventListener':
                 return 'bind <b>' + args[0] + '</b> to ' + getDomElementButtonHTML(ctxt.elements[0], onASingleLine);
