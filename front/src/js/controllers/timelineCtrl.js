@@ -166,7 +166,6 @@ timelineCtrl.directive('scrollOnClick', ['$animate', '$timeout', function($anima
 
 
                 window.scrollTo(0, lineElement[0].offsetTop);
-                console.log(lineElement[0]);
             });
         }
     };

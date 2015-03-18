@@ -306,3 +306,9 @@
   color: #e74c3c;
   cursor: pointer;
 }
+.warningsFilterOn > div {
+  display: none;
+}
+.warningsFilterOn > div.warning {
+  display: table-row;
+}
