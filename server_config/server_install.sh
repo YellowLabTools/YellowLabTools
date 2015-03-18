@@ -30,4 +30,4 @@ grunt build
 # Start the server
 rm server_config/settings.json
 cp server_config/settings-prod.json server_config/settings.json
-NODE_ENV=production forever start -c "node --stack-size=65500" bin/server.js
+NODE_ENV=production forever start -c "node --stack-size=262000" bin/server.js

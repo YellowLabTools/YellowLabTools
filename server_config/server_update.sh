@@ -23,4 +23,4 @@ npm install phantomjs -g
 grunt build
 
 # Restart the server
-NODE_ENV=production forever start -c "node --stack-size=65500" bin/server.js
+NODE_ENV=production forever start -c "node --stack-size=262000" bin/server.js
