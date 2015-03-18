@@ -157,13 +157,14 @@
 
     function getJQueryHTML(node, onASingleLine) {
         var type = node.data.type;
-        var args = node.data.callDetails.arguments;
+        var unescapedArgs = node.data.callDetails.arguments;
+        var args = [];
         var ctxt = node.data.callDetails.context;
         
         // escape HTML in args
         for (var i = 0 ; i < 4 ; i ++) {
-            if (args[i]) {
-                args[i] = escapeHTML(args[i]);
+            if (unescapedArgs[i]) {
+                args[i] = escapeHTML(unescapedArgs[i]);
             }
         }
 
@@ -706,7 +707,7 @@
                 index: '=',
                 node: '='
             },
-            template: '<div id="line_{{index}}"></div>',
+            template: '<div></div>',
             replace: true,
             link: function(scope, element) {
                 
@@ -717,6 +718,11 @@
                 }
 
                 element.append(getProfilerLineHTML(scope.index, scope.node));
+                element[0].id = 'line_' + scope.index;
+
+                if (scope.node.warning || scope.node.error) {
+                    element[0].classList.add('warning');
+                }
 
                 // Bind click on the details icon
                 var detailsIcon = element[0].querySelector('.details div');
