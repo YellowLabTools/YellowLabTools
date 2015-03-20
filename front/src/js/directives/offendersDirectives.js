@@ -368,15 +368,10 @@
             case 'jQuery - change':
             case 'jQuery - click':
             case 'jQuery - dblclick':
-            case 'jQuery - error':
             case 'jQuery - focus':
-            case 'jQuery - focusin':
-            case 'jQuery - focusout':
-            case 'jQuery - hover':
             case 'jQuery - keydown':
             case 'jQuery - keypress':
             case 'jQuery - keyup':
-            case 'jQuery - load':
             case 'jQuery - mousedown':
             case 'jQuery - mouseenter':
             case 'jQuery - mouseleave':
@@ -388,6 +383,17 @@
             case 'jQuery - scroll':
             case 'jQuery - select':
             case 'jQuery - submit':
+                if (args[0]) {
+                    return 'bind on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                } else {
+                    return 'trigger on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                }
+
+            case 'jQuery - error':
+            case 'jQuery - focusin':
+            case 'jQuery - focusout':
+            case 'jQuery - hover':
+            case 'jQuery - load':
             case 'jQuery - unload':
                 return 'bind on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
 
