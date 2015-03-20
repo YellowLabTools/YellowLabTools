@@ -147,6 +147,9 @@
             case 'addEventListener':
                 return 'bind <b>' + args[0] + '</b> to ' + getDomElementButtonHTML(ctxt.elements[0], onASingleLine);
 
+            case 'getComputedStyle':
+                return getDomElementButtonHTML(args[0], onASingleLine) + (args[1] || '');
+
             case 'error':
                 return args[0];
 
@@ -200,7 +203,7 @@
                 return 'append ' + joinArgs(args) + ' to ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
 
             case 'jQuery - appendTo':
-                return 'append' + getJQueryContextButtonHTML(ctxt, onASingleLine) + ' to <b>' + args[0] + '</b>';
+                return 'append ' + getJQueryContextButtonHTML(ctxt, onASingleLine) + ' to <b>' + args[0] + '</b>';
 
             case 'jQuery - prepend':
                 return 'prepend ' + joinArgs(args) + ' to ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
@@ -280,10 +283,8 @@
             case 'jQuery - offset':
             case 'jQuery - height':
             case 'jQuery - innerHeight':
-            case 'jQuery - outerHeight':
             case 'jQuery - width':
             case 'jQuery - innerWidth':
-            case 'jQuery - outerWidth':
             case 'jQuery - scrollLeft':
             case 'jQuery - scrollTop':
             case 'jQuery - position':
@@ -293,6 +294,16 @@
                     return 'get from ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
                 }
                 break;
+
+            case 'jQuery - outerHeight':
+            case 'jQuery - outerWidth':
+                if (args[0] && args[0] !== 'true') {
+                    return 'set <b>' + args[0] + '</b> on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                } else if (args[0] === 'true') {
+                    return 'get from ' + getJQueryContextButtonHTML(ctxt, onASingleLine) + ' (with include margins option)';
+                } else {
+                    return 'get from ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                }
 
             case 'jQuery - toggle':
                 if (args[0] === 'true') {
