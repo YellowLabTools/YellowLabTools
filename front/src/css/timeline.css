@@ -224,7 +224,7 @@
   background: #EBD8E2;
   line-height: 1.3em;
   height: 1.3em;
-  z-index: 1;
+  z-index: 2;
 }
 .table .showingDetails .child span:hover {
   background: inherit;

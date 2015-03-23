@@ -147,6 +147,9 @@
             case 'addEventListener':
                 return 'bind <b>' + args[0] + '</b> to ' + getDomElementButtonHTML(ctxt.elements[0], onASingleLine);
 
+            case 'getComputedStyle':
+                return getDomElementButtonHTML(args[0], onASingleLine) + (args[1] || '');
+
             case 'error':
                 return args[0];
 
@@ -200,7 +203,7 @@
                 return 'append ' + joinArgs(args) + ' to ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
 
             case 'jQuery - appendTo':
-                return 'append' + getJQueryContextButtonHTML(ctxt, onASingleLine) + ' to <b>' + args[0] + '</b>';
+                return 'append ' + getJQueryContextButtonHTML(ctxt, onASingleLine) + ' to <b>' + args[0] + '</b>';
 
             case 'jQuery - prepend':
                 return 'prepend ' + joinArgs(args) + ' to ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
@@ -280,15 +283,24 @@
             case 'jQuery - offset':
             case 'jQuery - height':
             case 'jQuery - innerHeight':
-            case 'jQuery - outerHeight':
             case 'jQuery - width':
             case 'jQuery - innerWidth':
-            case 'jQuery - outerWidth':
             case 'jQuery - scrollLeft':
             case 'jQuery - scrollTop':
             case 'jQuery - position':
                 if (args[0]) {
                     return 'set <b>' + args[0] + '</b> on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                } else {
+                    return 'get from ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                }
+                break;
+
+            case 'jQuery - outerHeight':
+            case 'jQuery - outerWidth':
+                if (args[0] && args[0] !== 'true') {
+                    return 'set <b>' + args[0] + '</b> on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                } else if (args[0] === 'true') {
+                    return 'get from ' + getJQueryContextButtonHTML(ctxt, onASingleLine) + ' (with include margins option)';
                 } else {
                     return 'get from ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
                 }
@@ -357,15 +369,10 @@
             case 'jQuery - change':
             case 'jQuery - click':
             case 'jQuery - dblclick':
-            case 'jQuery - error':
             case 'jQuery - focus':
-            case 'jQuery - focusin':
-            case 'jQuery - focusout':
-            case 'jQuery - hover':
             case 'jQuery - keydown':
             case 'jQuery - keypress':
             case 'jQuery - keyup':
-            case 'jQuery - load':
             case 'jQuery - mousedown':
             case 'jQuery - mouseenter':
             case 'jQuery - mouseleave':
@@ -377,6 +384,18 @@
             case 'jQuery - scroll':
             case 'jQuery - select':
             case 'jQuery - submit':
+                if (args[0]) {
+                    return 'bind on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                } else {
+                    return 'triggered on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                }
+                break;
+
+            case 'jQuery - error':
+            case 'jQuery - focusin':
+            case 'jQuery - focusout':
+            case 'jQuery - hover':
+            case 'jQuery - load':
             case 'jQuery - unload':
                 return 'bind on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
 
