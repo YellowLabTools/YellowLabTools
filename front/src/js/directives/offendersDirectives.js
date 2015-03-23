@@ -304,6 +304,7 @@
                 } else {
                     return 'get from ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
                 }
+                break;
 
             case 'jQuery - toggle':
                 if (args[0] === 'true') {
@@ -386,8 +387,9 @@
                 if (args[0]) {
                     return 'bind on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
                 } else {
-                    return 'trigger on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
+                    return 'triggered on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
                 }
+                break;
 
             case 'jQuery - error':
             case 'jQuery - focusin':
