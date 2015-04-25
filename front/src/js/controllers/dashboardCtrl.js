@@ -59,10 +59,5 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
         window.open(url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
     }
 
-    // Returns the URL of the JSON result
-    $scope.getAPIUrl = function() {
-        return '/api/results/' + $scope.runId;
-    };
-
     loadResults();
 }]);
