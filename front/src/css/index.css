@@ -22,6 +22,9 @@
 .launchBtn.disabled {
   background: #deaca6;
 }
+.launchBtn.disabled:focus {
+  color: #ddd;
+}
 .features {
   display: table;
   width: 50%;
