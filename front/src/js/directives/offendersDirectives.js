@@ -166,7 +166,7 @@
         
         // escape HTML in args
         for (var i = 0 ; i < 4 ; i ++) {
-            if (unescapedArgs[i]) {
+            if (unescapedArgs[i] !== undefined) {
                 args[i] = escapeHTML(unescapedArgs[i]);
             }
         }
@@ -254,7 +254,7 @@
                 return 'replace <b>' + args[0] + '</b> with ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
 
             case 'jQuery - text':
-                if (args[0]) {
+                if (args[0] !== undefined) {
                     return 'set text "<b>' + args[0] + '</b>" to ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
                 } else {
                     return 'get text from ' + getJQueryContextButtonHTML(ctxt, onASingleLine);

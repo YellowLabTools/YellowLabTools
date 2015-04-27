@@ -32,6 +32,9 @@ Can be used to build automation tools in NodeJS. The documentation is [here](htt
 #### The Public API:
 Hosted on our http://yellowlab.tools server, it is a RESTful API that allows you to launch distant tests. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Public-API).
 
+#### The Grunt task:
+If you have a Continuous Integration platform, may I suggest you to use [grunt-yellowlabtools](https://github.com/gmetais/grunt-yellowlabtools)? You set it up once, then the task fails if the front-end quality conditions you defined are not met.
+
 
 ## Install your own private instance
 

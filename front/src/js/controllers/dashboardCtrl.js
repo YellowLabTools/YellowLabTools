@@ -34,7 +34,7 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
     };
 
     $scope.testAgain = function() {
-        API.launchTest($scope.result.params.url);
+        API.relaunchTest($scope.result);
     };
 
     /// When comming from a social shared link, the user needs to click on "See full report" button to display the full dashboard.
@@ -58,11 +58,6 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
         var winLeft = (screen.width / 2) - (winWidth / 2);
         window.open(url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
     }
-
-    // Returns the URL of the JSON result
-    $scope.getAPIUrl = function() {
-        return '/api/results/' + $scope.runId;
-    };
 
     loadResults();
 }]);
