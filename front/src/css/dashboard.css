@@ -46,6 +46,14 @@
   content: "+";
   opacity: 0.85;
 }
+.summary .globalScore .screenshotWrapper.phone:hover:after {
+  top: 1.7em;
+  left: 0.64em;
+}
+.summary .globalScore .screenshotWrapper.tablet:hover:after {
+  top: 1.5em;
+  left: 0.9em;
+}
 .summary .notations {
   display: table;
   width: 80%;
