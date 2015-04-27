@@ -16,6 +16,9 @@
   background: #e74c3c;
   color: #fff;
 }
+.launchBtn:focus {
+  background: #ffa319;
+}
 .launchBtn.disabled {
   background: #deaca6;
 }
