@@ -4,6 +4,14 @@
 <form ng-submit="launchTest()" >
     <input type="text" name="url" ng-model="url" placeholder="http://www.mysite.com" class="url" />
     <input type="submit" value="Launch test" class="launchBtn" ng-class="{disabled: !url}" />
+    <div class="settings">
+        <div class="device">
+            <div>Choose the simulated device:</div>
+            <div class="item" ng-class="{active: settings.device == 'desktop'}" ng-click="settings.device = 'desktop'"><div class="icon-screen"></div>Desktop</div>
+            <div class="item" ng-class="{active: settings.device == 'tablet'}" ng-click="settings.device = 'tablet'"><div class="icon-tablet"></div>Tablet</div>
+            <div class="item" ng-class="{active: settings.device == 'phone'}" ng-click="settings.device = 'phone'"><div class="icon-mobile"></div>Phone</div>
+        </div>
+    </div>
 </form>
 
 
