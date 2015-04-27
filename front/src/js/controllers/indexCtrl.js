@@ -8,7 +8,7 @@ indexCtrl.controller('IndexCtrl', ['$scope', 'Settings', 'API', function($scope,
     $scope.launchTest = function() {
         if ($scope.url) {
             Settings.saveSettings($scope.settings);
-            API.launchTest($scope.url);
+            API.launchTest($scope.url, $scope.settings);
         }
     };
 }]);

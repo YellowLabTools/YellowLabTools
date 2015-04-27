@@ -26,11 +26,11 @@
   color: #ddd;
 }
 .device {
-  margin-top: 2em;
+  margin-top: 3em;
 }
 .device .item {
   display: inline-block;
-  margin: 0.7em 0.3em;
+  margin: 1em 0.75em;
   width: 5.5em;
   height: 5.5em;
   color: #FFF;

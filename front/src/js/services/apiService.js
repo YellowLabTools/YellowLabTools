@@ -4,12 +4,13 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
 
     return {
 
-        launchTest: function(url) {
+        launchTest: function(url, settings) {
             Runs.save({
                 url: url,
                 waitForResponse: false,
                 screenshot: true,
-                jsTimeline: true
+                jsTimeline: true,
+                device: settings.device
             }, function(data) {
                 $location.path('/queue/' + data.runId);
             }, function(response) {
@@ -19,9 +20,11 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
                     alert('An error occured...');
                 }
             });
+        },
+
+        relaunchTest: function(result) {
+            this.launchTest(result.params.url, result.params.options);
         }
-
-
     };
 
 }]);

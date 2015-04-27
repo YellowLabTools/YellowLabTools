@@ -186,11 +186,20 @@ a.linkButton {
   color: #fff;
   text-decoration: none;
 }
-.screenshotWrapper.desktop {
+.screenshotWrapper {
   display: inline-block;
   position: relative;
-  border: 0.2em solid #AAA;
   background: #000;
+}
+.screenshotWrapper > div {
+  overflow: scroll;
+  position: relative;
+}
+.screenshotWrapper .screenshotImage {
+  width: 100%;
+}
+.screenshotWrapper.desktop {
+  border: 0.2em solid #AAA;
   padding: 0.5em;
   border-top-left-radius: 0.4em;
   border-top-right-radius: 0.4em;
@@ -218,11 +227,54 @@ a.linkButton {
 .screenshotWrapper.desktop > div {
   width: 12em;
   height: 6.75em;
-  overflow: scroll;
-  position: relative;
 }
-.screenshotWrapper.desktop .screenshotImage {
-  width: 100%;
+.screenshotWrapper.phone {
+  border: 0.07em solid #CCC;
+  padding: 1em 0.3em 1.5em;
+  border-radius: 0.6em;
+}
+.screenshotWrapper.phone:before {
+  position: absolute;
+  width: 0.8em;
+  height: 0.8em;
+  bottom: 0.3em;
+  left: 3.3em;
+  border: 0.07em solid #CCC;
+  border-radius: 0.5em;
+  content: " ";
+}
+.screenshotWrapper.phone:after {
+  position: absolute;
+  width: 1em;
+  height: 0.1em;
+  bottom: 13.9em;
+  left: 3.2em;
+  background: #555;
+  border-radius: 0.05em;
+  content: " ";
+}
+.screenshotWrapper.phone > div {
+  width: 6.75em;
+  height: 12em;
+}
+.screenshotWrapper.tablet {
+  border: 0.07em solid #CCC;
+  padding: 0.8em 0.5em 0.9em;
+  border-radius: 0.6em;
+}
+.screenshotWrapper.tablet:before {
+  position: absolute;
+  width: 0.5em;
+  height: 0.5em;
+  bottom: 0.15em;
+  left: 4.35em;
+  border: 0.07em solid #CCC;
+  border-radius: 0.4em;
+  content: " ";
+}
+.screenshotWrapper.tablet > div {
+  width: 8.25em;
+  height: 11em;
 }
 .star {
   font-weight: bold;

@@ -29,7 +29,7 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
     };
 
     $scope.testAgain = function() {
-        API.launchTest($scope.result.params.url);
+        API.relaunchTest($scope.result);
     };
 
     loadResults();
