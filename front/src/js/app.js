@@ -12,8 +12,10 @@ var yltApp = angular.module('YellowLabTools', [
     'resultsFactory',
     'apiService',
     'menuService',
+    'settingsService',
     'gradeDirective',
-    'offendersDirectives'
+    'offendersDirectives',
+    'LocalStorageModule'
 ]);
 
 yltApp.run(['$rootScope', '$location', function($rootScope, $location) {

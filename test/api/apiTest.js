@@ -96,7 +96,8 @@ describe('api', function() {
             body: {
                 url: wwwUrl + '/simple-page.html',
                 waitForResponse: true,
-                screenshot: true
+                screenshot: true,
+                device: 'tablet'
             },
             json: true,
             headers: {
@@ -163,6 +164,9 @@ describe('api', function() {
                 // javascriptExecutionTree should only be filled if option jsTimeline is true
                 body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
                 body.javascriptExecutionTree.should.deep.equal({});
+
+                // Check if the device is set to tablet
+                body.params.options.should.have.a.property('device').that.equals('tablet');
 
                 // Check if the screenshot temporary file was correctly removed
                 body.params.options.should.not.have.a.property('screenshot');

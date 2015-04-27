@@ -34,7 +34,7 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
     };
 
     $scope.testAgain = function() {
-        API.launchTest($scope.result.params.url);
+        API.relaunchTest($scope.result);
     };
 
     /// When comming from a social shared link, the user needs to click on "See full report" button to display the full dashboard.

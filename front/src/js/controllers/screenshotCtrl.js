@@ -10,7 +10,6 @@ screenshotCtrl.controller('ScreenshotCtrl', ['$scope', '$rootScope', '$routePara
             Results.get({runId: $routeParams.runId}, function(result) {
                 $rootScope.loadedResult = result;
                 $scope.result = result;
-                init();
             }, function(err) {
                 $scope.error = true;
             });
@@ -24,7 +23,7 @@ screenshotCtrl.controller('ScreenshotCtrl', ['$scope', '$rootScope', '$routePara
     };
 
     $scope.testAgain = function() {
-        API.launchTest($scope.result.params.url);
+        API.relaunchTest($scope.result);
     };
 
     loadResults();

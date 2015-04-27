@@ -11,17 +11,18 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         settings: grunt.file.readJSON('./server_config/settings.json'),
         
-        font: {
+        webfont: {
             icons: {
-                src: ['front/src/fonts/svg-icons/*.svg'],
-                destCss: 'front/src/less/icons.less',
-                destFonts: 'front/src/fonts/icons.woff',
-
-                // Optional: Custom routing of font filepaths for CSS
-                cssRouter: function (fontpath) {
-                    var pathArray = fontpath.split('/');
-                    var fileName = pathArray[pathArray.length - 1];
-                    return '/fonts/' + fileName;
+                src: 'front/src/fonts/svg-icons/*.svg',
+                dest: 'tmp',
+                destCss: 'front/src/less',
+                options: {
+                    engine: 'node',
+                    types: 'woff',
+                    stylesheet: 'less',
+                    embed: true,
+                    htmlDemo: false,
+                    syntax: 'bootstrap'
                 }
             }
         },
@@ -102,7 +103,6 @@ module.exports = function(grunt) {
             },
             build: {
                 files: [
-                    {src: ['./front/src/fonts/icons.woff'], dest: './front/build/fonts/icons.woff'},
                     {src: ['./front/src/img/favicon.png'], dest: './front/build/img/favicon.png'},
                     {src: ['./front/src/img/logo-large.png'], dest: './front/build/img/logo-large.png'},
                 ]
@@ -211,10 +211,7 @@ module.exports = function(grunt) {
             html: './front/build/main.html',
             css: './front/build/css/*.css',
             options: {
-                assetsDirs: ['front/build'],
-                patterns: {
-                    css: [[/(\/fonts\/icons\.woff)/gm, 'Replacing reference to icons.woff']]
-                }
+                assetsDirs: ['front/build']
             }
         },
         htmlmin: {
@@ -294,7 +291,7 @@ module.exports = function(grunt) {
 
 
     grunt.registerTask('icons', [
-        'font:icons',
+        'webfont:icons',
         'less',
         'clean:tmp'
     ]);

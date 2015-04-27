@@ -12,6 +12,7 @@ var cli = meow({
         '  yellowlabtools <url> <options>',
         '',
         'Options:',
+        '  --device             Use "phone" or "tablet" to simulate a mobile device (by user-agent and viewport size).',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
         '  --js-deep-analysis   When activated, the javascriptExecutionTree will contain sub-requests.',
         ''
@@ -49,6 +50,9 @@ if (screenshot) {
 if (cli.flags.jsDeepAnalysis === true || cli.flags.jsDeepAnalysis === 'true') {
     options.jsDeepAnalysis = true;
 }
+
+// Device simulation
+options.device = cli.flags.device || 'desktop';
 
 
 (function execute(url, options) {
