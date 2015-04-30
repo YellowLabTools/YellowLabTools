@@ -16,10 +16,10 @@
 }
 
 .launchBtn {
-    background: #e74c3c;
+    background: #ffa319;
     color: #fff;
     &:focus {
-        background: #ffa319;
+        background: #e74c3c;
     }
     &.disabled {
         background: #deaca6;
@@ -28,6 +28,20 @@
         }
     }
     
+}
+
+.settings {
+    width: 50%;
+    margin: 0 auto;
+
+    input, select {
+        font-size: 1em;
+    }
+
+    input[type=text] {
+        width: 100%;
+        min-width: 4em;
+    }
 }
 
 .device {
@@ -62,10 +76,99 @@
     }
 }
 
+.settingsTooltip {
+    position: relative;
+    span {
+        font-size: 0.8em;
+        vertical-align: text-top;
+    }
+    
+    div {
+        display: none;
+        position: absolute;
+        padding: 0.5em;
+        width: 25em;
+        background: #FFF;
+        color: #000;
+        font-size: 0.8em;
+        border-radius: 1em;
+        border: 2px solid #ffa319;
+        white-space: normal;
+        z-index: 2;
+    }
+
+    &:hover div {
+        display: block;
+    }
+}
+
+.showAdvanced {
+    display: inline-block;
+    margin-top: 2em;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 0.9em;
+    
+    &:hover {
+        color: #ffa319;
+    }
+}
+
+.currentSettings {
+    font-size: 0.9em;
+
+    span {
+        color: #ffa319;
+        &:after {
+            color: #FFF;
+            content: ",";
+        }
+
+        &:last-child:after {
+            content: "";
+        }
+    }
+}
+
+.advanced {
+    margin: 1em 0 0;
+    display: table;
+    width: 100%;
+    text-align: left;
+    border-spacing: 0.75em;
+
+    > div {
+        display: table-row;
+
+        > div {
+            display: table-cell;
+            width: 75%;
+
+            &.label {
+                width: 25%;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .subTable {
+        display: table;
+        border-spacing: 0;
+        width: 100%;
+        > div {
+            display: table-row;
+            > div {
+                display: table-cell;
+                padding: 0 0 0.75em;
+            }
+        }
+    }
+}
+
 .features {
     display: table;
     width: 50%;
-    margin: 8em auto 0;
+    margin: 6em auto 0;
     font-size: 0.9em;
     color: #413;
 
