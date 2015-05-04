@@ -43,7 +43,7 @@
     "grunt-inline-angular-templates": "^0.1.5",
     "grunt-line-remover": "^0.0.2",
     "grunt-mocha-test": "^0.12.7",
-    "grunt-replace": "^0.9.1",
+    "grunt-replace": "^0.8.0",
     "grunt-usemin": "^3.0.0",
     "grunt-webfont": "^0.5.2",
     "matchdep": "^0.3.0",

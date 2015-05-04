@@ -35,12 +35,6 @@
                 "jQueryVersionsLoaded": 0.1
             }
         },
-        "cssSyntaxError": {
-            "label": "CSS syntax errors",
-            "policies": {
-                "cssParsingErrors": 1
-            }
-        },
         "cssComplexity": {
             "label": "CSS complexity",
             "policies": {
@@ -53,6 +47,7 @@
         "badCSS": {
             "label": "Bad CSS",
             "policies": {
+                "cssParsingErrors": 4,
                 "cssImports": 3,
                 "cssDuplicatedSelectors": 2,
                 "cssDuplicatedProperties": 1,
