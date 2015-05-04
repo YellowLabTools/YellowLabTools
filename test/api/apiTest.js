@@ -97,7 +97,11 @@ describe('api', function() {
                 url: wwwUrl + '/simple-page.html',
                 waitForResponse: true,
                 screenshot: true,
-                device: 'tablet'
+                device: 'tablet',
+                waitForSelector: '*',
+                cookie: 'foo=bar',
+                authUser: 'joe',
+                authPass: 'secret'
             },
             json: true,
             headers: {
@@ -165,8 +169,12 @@ describe('api', function() {
                 body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
                 body.javascriptExecutionTree.should.deep.equal({});
 
-                // Check if the device is set to tablet
+                // Check if settings are correctly sent and retrieved
                 body.params.options.should.have.a.property('device').that.equals('tablet');
+                body.params.options.should.have.a.property('waitForSelector').that.equals('*');
+                body.params.options.should.have.a.property('cookie').that.equals('foo=bar');
+                body.params.options.should.have.a.property('authUser').that.equals('joe');
+                body.params.options.should.have.a.property('authPass').that.equals('secret');
 
                 // Check if the screenshot temporary file was correctly removed
                 body.params.options.should.not.have.a.property('screenshot');

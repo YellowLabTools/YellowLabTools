@@ -10,7 +10,11 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
                 waitForResponse: false,
                 screenshot: true,
                 jsTimeline: true,
-                device: settings.device
+                device: settings.device,
+                waitForSelector: settings.waitForSelector,
+                cookie: settings.cookie,
+                authUser: settings.authUser,
+                authPass: settings.authPass,
             };
 
             if (settings.waitForSelector && settings.waitForSelector !== '') {
