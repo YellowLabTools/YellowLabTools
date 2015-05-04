@@ -15,6 +15,10 @@ var cli = meow({
         '  --device             Use "phone" or "tablet" to simulate a mobile device (by user-agent and viewport size).',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
         '  --js-deep-analysis   When activated, the javascriptExecutionTree will contain sub-requests.',
+        '  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
+        '  --cookie             Adds a cookie on the main domain.',
+        '  --auth-user          Basic HTTP authentication username.',
+        '  --auth-pass          Basic HTTP authentication password.',
         ''
     ].join('\n'),
     pkg: '../package.json'
@@ -53,6 +57,16 @@ if (cli.flags.jsDeepAnalysis === true || cli.flags.jsDeepAnalysis === 'true') {
 
 // Device simulation
 options.device = cli.flags.device || 'desktop';
+
+// Wait for CSS selector
+options.waitForSelector = cli.flags.waitForSelector || null;
+
+// Cookie
+options.cookie = cli.flags.cookie || null;
+
+// HTTP basic auth
+options.authUser = cli.flags.authUser || null;
+options.authPass = cli.flags.authPass || null;
 
 
 (function execute(url, options) {
