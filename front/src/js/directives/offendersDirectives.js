@@ -119,6 +119,22 @@
     function getNonJQueryHTML(node, onASingleLine) {
         var type = node.data.type;
 
+        if (node.windowPerformance) {
+            switch (type) {
+                case 'documentScroll':
+                    return '(triggering the scroll event on <b>document</b>)';
+
+                case 'windowScroll':
+                    return '(triggering the scroll event on <b>window</b>)';
+
+                case 'window.onscroll':
+                    return '(calling the <b>window.onscroll</b> function)';
+
+                default:
+                    return '';
+            }
+        }
+
         if (!node.data.callDetails) {
             return '';
         }
@@ -152,6 +168,18 @@
 
             case 'error':
                 return args[0];
+
+            case 'jQuery - onDOMReady':
+                return '(function)';
+
+            case 'documentScroll':
+                return 'The scroll event just triggered on document';
+
+            case 'windowScroll':
+                return 'The scroll event just triggered on window';
+
+            case 'window.onscroll':
+                return 'The window.onscroll function just got called';
 
             default:
                 return '';
@@ -518,9 +546,6 @@
                 }
                 break;
 
-            case 'jQuery - onDOMReady':
-                return '(function)';
-
             default:
                 return '';
         }
@@ -674,7 +699,7 @@
         function getProfilerLineHTML(index, node) {
             return  '<div class="index">' + (index + 1) + '</div>' +
                     '<div class="type">' + node.data.type + (node.children ? '<div class="children">' + recursiveChildrenHTML(node) + '</div>' : '') + '</div>' +
-                    '<div class="value offenders">' + getTimelineParamsHTML(node, false) + '</div>' +
+                    '<div class="value">' + getTimelineParamsHTML(node, false) + '</div>' +
                     '<div class="details">' + getTimelineDetailsHTML(node) + '</div>' +
                     '<div class="startTime ' + node.data.loadingStep + '">' + numberWithCommas(node.data.timestamp, 0) + ' ms</div>';
         }
