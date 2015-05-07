@@ -346,7 +346,9 @@
 
             case 'jQuery - on':
             case 'jQuery - one':
-                if (args[1]) {
+                if (isStringOfObject(args[0])) {
+                    return '<b>' + args[0].replace(/&quot;\(function\)&quot;/g, '(function)') + '</b>';
+                } else if (args[1] && isPureString(args[1])) {
                     return 'bind <b>' + args[0] + '</b> on ' + getJQueryContextButtonHTML(ctxt, onASingleLine) + '\'s children filtered by <b>' + args[1] + '</b>';
                 } else {
                     return 'bind <b>' + args[0] + '</b> on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
