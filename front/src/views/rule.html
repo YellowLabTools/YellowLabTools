@@ -48,6 +48,9 @@
                     </div>
 
                     <div ng-if="policyName === 'eventsScrollBound'">
+                        <span ng-if="offender.target == 'window'">Scroll event bound on <b>window</b></span>
+                        <span ng-if="offender.target == '#document'">Scroll event bound on <b>document</b></span>
+                        <span ng-if="offender.target == 'window.onscroll'"><b>window.onscroll</b> function declared</span>
                         <div class="offenderButton" ng-if="offender.backtrace.length == 0">no backtrace</div>
                         <div class="offenderButton opens" ng-if="offender.backtrace.length > 0">
                             backtrace
