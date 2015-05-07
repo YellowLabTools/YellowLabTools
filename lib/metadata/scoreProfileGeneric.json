@@ -95,6 +95,7 @@
             "label": "Network",
             "policies": {
                 "notFound": 2,
+                "assetsNotGzipped": 1.5,
                 "closedConnections": 2,
                 "multipleRequests": 2,
                 "cachingNotSpecified": 1,
