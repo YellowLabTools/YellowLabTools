@@ -28,8 +28,7 @@ var cli = meow({
 
 // Check parameters
 if (cli.input.length < 1) {
-    console.error('Incorrect parameters: url not provided');
-    process.exit(1);
+    cli.showHelp();
 }
 
 var url = cli.input[0];
