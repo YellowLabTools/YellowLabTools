@@ -47,6 +47,23 @@
                         <b>{{offender.eventName}}</b> bound to <dom-element-button obj="offender.element"></dom-element-button>
                     </div>
 
+                    <div ng-if="policyName === 'eventsScrollBound'">
+                        <span ng-if="offender.target == 'window'">Scroll event bound on <b>window</b></span>
+                        <span ng-if="offender.target == '#document'">Scroll event bound on <b>document</b></span>
+                        <span ng-if="offender.target == 'window.onscroll'"><b>window.onscroll</b> function declared</span>
+                        <div class="offenderButton" ng-if="offender.backtrace.length == 0">no backtrace</div>
+                        <div class="offenderButton opens" ng-if="offender.backtrace.length > 0">
+                            backtrace
+                            <div class="backtrace">
+                                <div ng-repeat="obj in offender.backtrace track by $index">
+                                    <span ng-if="obj.functionName">{{obj.functionName}}()</span>
+                                    <url-link url="obj.file" max-length="60"></url-link>
+                                    line {{obj.line}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div ng-if="policyName === 'jsErrors'">
                         <b>{{offender.error}}</b>
                         <div class="offenderButton" ng-if="offender.backtrace.length == 0">no backtrace</div>
@@ -156,6 +173,19 @@
             
             <div ng-if="policyName === 'DOMelementMaxDepth'">
                 <dom-tree tree="rule.offendersObj.tree"></dom-tree>
+            </div>
+
+            <div ng-if="policyName === 'DOMaccessesOnScroll' && rule.offendersObj.children.length > 0">
+                <p>The table below shows the interactions between the JavaScript and the DOM on a scroll event.</p>
+                <div class="table" ng-class="{warningsFilterOn: warningsFilterOn}">
+                    <div class="headers">
+                        <div><!-- index --></div>
+                        <div>Type</div>
+                        <div>Params</div>
+                        <div><!-- details --></div>
+                    </div>
+                    <profiler-line ng-repeat="node in rule.offendersObj.children" data-index="$index" node="node"></profiler-line>
+                </div>
             </div>
 
             <div ng-if="policyName === 'cssColors' && rule.offendersObj.count > 0">

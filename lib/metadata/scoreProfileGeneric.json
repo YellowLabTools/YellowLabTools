@@ -12,11 +12,19 @@
         "domManipulations": {
             "label": "DOM manipulations",
             "policies": {
+                "DOMaccesses": 3,
                 "DOMinserts": 2,
                 "DOMqueries": 1,
                 "DOMqueriesWithoutResults": 2,
                 "DOMqueriesAvoidable": 2,
                 "eventsBound": 1
+            }
+        },
+        "scroll": {
+            "label": "Scroll bottlenecks",
+            "policies": {
+                "eventsScrollBound": 1,
+                "DOMaccessesOnScroll": 4
             }
         },
         "badJavascript": {
@@ -99,6 +107,7 @@
     "globalScore": {
         "domComplexity": 1,
         "domManipulations": 2,
+        "scroll": 1,
         "badJavascript": 1,
         "jQueryVersion": 1,
         "cssSyntaxError": 1,

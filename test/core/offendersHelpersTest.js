@@ -166,6 +166,40 @@ describe('offendersHelpers', function() {
             ]);
         });
 
+        it('should transform another backtrace syntax into an array', function() {
+            var result = offendersHelpers.backtraceToArray('phantomjs://webpage.evaluate():38 / e (http://s7.addthis.com/js/300/addthis_widget.js:1) / a (http://s7.addthis.com/js/300/addthis_widget.js:1) / http://s7.addthis.com/js/300/addthis_widget.js:3 / e (http://s7.addthis.com/js/300/addthis_widget.js:1) / http://s7.addthis.com/js/300/addthis_widget.js:8');
+
+            result.should.deep.equal([
+                {
+                    file: 'phantomjs://webpage.evaluate()',
+                    line: 38
+                },
+                {
+                    functionName: 'e',
+                    file: 'http://s7.addthis.com/js/300/addthis_widget.js',
+                    line: 1
+                },
+                {
+                    functionName: 'a',
+                    file: 'http://s7.addthis.com/js/300/addthis_widget.js',
+                    line: 1
+                },
+                {
+                    file: 'http://s7.addthis.com/js/300/addthis_widget.js',
+                    line: 3
+                },
+                {
+                    functionName: 'e',
+                    file: 'http://s7.addthis.com/js/300/addthis_widget.js',
+                    line: 1
+                },
+                {
+                    file: 'http://s7.addthis.com/js/300/addthis_widget.js',
+                    line: 8
+                }
+            ]);
+        });
+
         it('should return null if it fails', function() {
             var result = offendersHelpers.backtraceToArray('http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js:1 /http://pouet.com/js/main.js:1');
 
