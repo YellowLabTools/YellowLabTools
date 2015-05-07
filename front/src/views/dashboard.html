@@ -11,7 +11,7 @@
         </div>
         <div>
             <a href="/result/{{result.runId}}/screenshot">
-                <div class="screenshotWrapper" ng-class="result.params.options.device">
+                <div class="screenshotWrapper" ng-class="result.params.options.device || 'desktop'">
                     <div>
                         <img class="screenshotImage" ng-src="{{result.screenshotUrl}}"/>
                     </div>
