@@ -198,6 +198,9 @@ a.linkButton {
 .screenshotWrapper .screenshotImage {
   width: 100%;
 }
+.screenshotWrapper .screenshotError {
+  color: #fff;
+}
 .screenshotWrapper.desktop {
   border: 0.2em solid #AAA;
   padding: 0.5em;
