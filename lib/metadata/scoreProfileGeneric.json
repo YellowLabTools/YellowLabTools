@@ -12,7 +12,6 @@
         "domManipulations": {
             "label": "DOM manipulations",
             "policies": {
-                "DOMaccesses": 3,
                 "DOMinserts": 2,
                 "DOMqueries": 1,
                 "DOMqueriesWithoutResults": 2,
