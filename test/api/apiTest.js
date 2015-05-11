@@ -544,6 +544,110 @@ describe('api', function() {
     });
 
 
+    it('should return the entire object and exclude toolsResults', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '?exclude=toolsResults',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                
+                body.should.have.a.property('runId').that.equals(asyncRunId);
+                body.should.have.a.property('params').that.is.an('object');
+                body.should.have.a.property('scoreProfiles').that.is.an('object');
+                body.should.have.a.property('rules').that.is.an('object');
+                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
+                
+                body.should.not.have.a.property('toolsResults').that.is.an('object');
+
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
+    it('should return the entire object and exclude params and toolsResults', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '?exclude=toolsResults,params',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                
+                body.should.have.a.property('runId').that.equals(asyncRunId);
+                body.should.have.a.property('scoreProfiles').that.is.an('object');
+                body.should.have.a.property('rules').that.is.an('object');
+                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
+                
+                body.should.not.have.a.property('params').that.is.an('object');
+                body.should.not.have.a.property('toolsResults').that.is.an('object');
+
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+    it('should return the entire object and don\'t exclude anything', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '?exclude=',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                
+                body.should.have.a.property('runId').that.equals(asyncRunId);
+                body.should.have.a.property('scoreProfiles').that.is.an('object');
+                body.should.have.a.property('rules').that.is.an('object');
+                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
+                body.should.have.a.property('params').that.is.an('object');
+                body.should.have.a.property('toolsResults').that.is.an('object');
+
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+    it('should return the entire object and don\'t exclude anything', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'GET',
+            url: serverUrl + '/api/results/' + asyncRunId + '?exclude=null',
+            json: true,
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                
+                body.should.have.a.property('runId').that.equals(asyncRunId);
+                body.should.have.a.property('scoreProfiles').that.is.an('object');
+                body.should.have.a.property('rules').that.is.an('object');
+                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
+                body.should.have.a.property('params').that.is.an('object');
+                body.should.have.a.property('toolsResults').that.is.an('object');
+
+                done();
+
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
+
     it('should retrieve the screenshot', function(done) {
         this.timeout(5000);
 
