@@ -35,11 +35,12 @@
                 "globalVariables": 0.5
             }
         },
-        "jQueryVersion": {
-            "label": "jQuery version",
+        "jQuery": {
+            "label": "jQuery",
             "policies": {
-                "jQueryVersion": 5,
-                "jQueryVersionsLoaded": 0.1
+                "jQueryVersion": 10,
+                "jQueryVersionsLoaded": 1,
+                "jQueryFunctionsUsed": 1
             }
         },
         "cssComplexity": {
@@ -109,7 +110,7 @@
         "domManipulations": 2,
         "scroll": 1,
         "badJavascript": 1,
-        "jQueryVersion": 1,
+        "jQuery": 1,
         "cssSyntaxError": 1,
         "cssComplexity": 1,
         "badCSS": 1,
