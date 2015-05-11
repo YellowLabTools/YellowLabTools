@@ -7,7 +7,7 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     function loadResults() {
         // Load result if needed
         if (!$rootScope.loadedResult || $rootScope.loadedResult.runId !== $routeParams.runId) {
-            Results.get({runId: $routeParams.runId}, function(result) {
+            Results.get({runId: $routeParams.runId, exclude: 'toolsResults'}, function(result) {
                 $rootScope.loadedResult = result;
                 $scope.result = result;
                 render();
