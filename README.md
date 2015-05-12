@@ -19,21 +19,26 @@ By the way, it's free because we are geeks, not businessmen. All we want is a â˜
 
 ## Different ways to use YLT
 
-#### The web interface:
+#### The online tool:
 This is the best way to discover the tool: [http://yellowlab.tools](http://yellowlab.tools).  
 Please note the server is hosted in Baltimore, USA.
 
-#### The Command Line Client:
+#### The Command Line Client (CLI):
 Might be useful if you want to build an automation tool. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Command-Line-Interface).
 
 #### The NPM module:
 Can be used to build automation tools in NodeJS. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/NodeJS-module).
 
-#### The Public API:
+#### The public API:
 Hosted on our http://yellowlab.tools server, it is a RESTful API that allows you to launch distant tests. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Public-API).
 
 #### The Grunt task:
 If you have a Continuous Integration platform, may I suggest you to use [grunt-yellowlabtools](https://github.com/gmetais/grunt-yellowlabtools)? You set it up once, then the task fails if the front-end quality conditions you defined are not met.
+
+
+## Use the online tool on your localhost
+
+You can use [ngrok](https://ngrok.com/), a tool that creates a secure tunnel, to test your localhost website with the online tool (or with the public API).
 
 
 ## Install your own private instance
