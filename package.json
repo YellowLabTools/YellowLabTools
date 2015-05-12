@@ -1,6 +1,6 @@
 {
   "name": "yellowlabtools",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Online tool to audit a webpage for performance and front-end quality issues",
   "repository": {
     "type": "git",
