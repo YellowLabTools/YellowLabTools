@@ -20,6 +20,7 @@
 
         // Let's start the spaghetti code!!!
 
+        $('li').bind('mouseover', function() {});
         $('ul').find('li');
         $('li', $('#foo'));
         var foo = document.getElementById('foo');
@@ -102,6 +103,7 @@
         $tbodytr.on('click', handler);
         $tbody.on('click', 'tr', handler);
         $tbody.on('click', {someData: 'Joe'}, handler);
+        $tbody.on({event1: handler, event2: handler});
         $tbodytr.off('click', handler);
         $tbodytr.off('click', 'tr');
         $tbodytr.off('click');

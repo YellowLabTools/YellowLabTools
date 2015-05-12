@@ -12,7 +12,7 @@ sudo apt-get install -y nodejs
 source ~/.profile
 
 # Installation of some packages globally
-npm install bower forever grunt-cli phantomjs -g
+npm install bower forever grunt-cli -g
 source ~/.profile
 
 # Installation of YellowLabTools

@@ -5,13 +5,32 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
     return {
 
         launchTest: function(url, settings) {
-            Runs.save({
+            var runObject = {
                 url: url,
                 waitForResponse: false,
                 screenshot: true,
                 jsTimeline: true,
-                device: settings.device
-            }, function(data) {
+                device: settings.device,
+                waitForSelector: settings.waitForSelector,
+                cookie: settings.cookie,
+                authUser: settings.authUser,
+                authPass: settings.authPass,
+            };
+
+            if (settings.waitForSelector && settings.waitForSelector !== '') {
+                runObject.waitForSelector = settings.waitForSelector;
+            }
+
+            if (settings.cookie && settings.cookie !== '') {
+                runObject.cookie = settings.cookie;
+            }
+
+            if (settings.authUser && settings.authUser !== '' && settings.authPass && settings.authPass !== '') {
+                runObject.authUser = settings.authUser;
+                runObject.authPass = settings.authPass;
+            }
+
+            Runs.save(runObject, function(data) {
                 $location.path('/queue/' + data.runId);
             }, function(response) {
                 if (response.status === 429) {

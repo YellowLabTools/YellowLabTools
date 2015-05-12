@@ -19,6 +19,13 @@
                 "eventsBound": 1
             }
         },
+        "scroll": {
+            "label": "Scroll bottlenecks",
+            "policies": {
+                "eventsScrollBound": 1,
+                "DOMaccessesOnScroll": 4
+            }
+        },
         "badJavascript": {
             "label": "Bad JavaScript",
             "policies": {
@@ -28,17 +35,13 @@
                 "globalVariables": 0.5
             }
         },
-        "jQueryVersion": {
-            "label": "jQuery version",
+        "jQuery": {
+            "label": "jQuery",
             "policies": {
-                "jQueryVersion": 5,
-                "jQueryVersionsLoaded": 0.1
-            }
-        },
-        "cssSyntaxError": {
-            "label": "CSS syntax errors",
-            "policies": {
-                "cssParsingErrors": 1
+                "jQueryVersion": 1,
+                "jQueryVersionsLoaded": 1,
+                "jQueryFunctionsUsed": 1,
+                "jQueryNotDelegatedEvents": 1
             }
         },
         "cssComplexity": {
@@ -53,6 +56,7 @@
         "badCSS": {
             "label": "Bad CSS",
             "policies": {
+                "cssParsingErrors": 4,
                 "cssImports": 3,
                 "cssDuplicatedSelectors": 2,
                 "cssDuplicatedProperties": 1,
@@ -92,6 +96,7 @@
             "label": "Network",
             "policies": {
                 "notFound": 2,
+                "assetsNotGzipped": 1.5,
                 "closedConnections": 2,
                 "multipleRequests": 2,
                 "cachingNotSpecified": 1,
@@ -104,8 +109,9 @@
     "globalScore": {
         "domComplexity": 1,
         "domManipulations": 2,
+        "scroll": 1,
         "badJavascript": 1,
-        "jQueryVersion": 1,
+        "jQuery": 1,
         "cssSyntaxError": 1,
         "cssComplexity": 1,
         "badCSS": 1,

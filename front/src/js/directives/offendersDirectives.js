@@ -109,7 +109,7 @@
         } else if (context.length > 3) {
             html += ' and ' + (context.length - 2) + ' more...';
         }
-        return html + '}';
+        return html + ')';
     }
 
     function isJQuery(node) {
@@ -118,6 +118,22 @@
 
     function getNonJQueryHTML(node, onASingleLine) {
         var type = node.data.type;
+
+        if (node.windowPerformance) {
+            switch (type) {
+                case 'documentScroll':
+                    return '(triggering the scroll event on <b>document</b>)';
+
+                case 'windowScroll':
+                    return '(triggering the scroll event on <b>window</b>)';
+
+                case 'window.onscroll':
+                    return '(calling the <b>window.onscroll</b> function)';
+
+                default:
+                    return '';
+            }
+        }
 
         if (!node.data.callDetails) {
             return '';
@@ -152,6 +168,18 @@
 
             case 'error':
                 return args[0];
+
+            case 'jQuery - onDOMReady':
+                return '(function)';
+
+            case 'documentScroll':
+                return 'The scroll event just triggered on document';
+
+            case 'windowScroll':
+                return 'The scroll event just triggered on window';
+
+            case 'window.onscroll':
+                return 'The window.onscroll function just got called';
 
             default:
                 return '';
@@ -318,7 +346,9 @@
 
             case 'jQuery - on':
             case 'jQuery - one':
-                if (args[1]) {
+                if (isStringOfObject(args[0])) {
+                    return '<b>' + args[0].replace(/&quot;\(function\)&quot;/g, '(function)') + '</b>';
+                } else if (args[1] && isPureString(args[1])) {
                     return 'bind <b>' + args[0] + '</b> on ' + getJQueryContextButtonHTML(ctxt, onASingleLine) + '\'s children filtered by <b>' + args[1] + '</b>';
                 } else {
                     return 'bind <b>' + args[0] + '</b> on ' + getJQueryContextButtonHTML(ctxt, onASingleLine);
@@ -518,9 +548,6 @@
                 }
                 break;
 
-            case 'jQuery - onDOMReady':
-                return '(function)';
-
             default:
                 return '';
         }
@@ -643,8 +670,8 @@
 
             if (node.data.callDetails.context && node.data.callDetails.context.length === 0) {
                 html += '<h4>Called on 0 jQuery element</h4><p class="advice">Useless function call, as the jQuery object is empty.</p>';
-            } else if (node.data.type === 'jQuery - bind' && node.data.callDetails.context.length > 5) {
-                html += '<p class="advice">The .bind() method attaches the event listener to each jQuery element one by one. Using the .on() method is preferable if available (from v1.7).</p>';
+            } else if (node.eventNotDelegated) {
+                html += '<p class="advice">This binding should use Event Delegation instead of binding each element one by one.</p>';
             }
 
             if (node.data.resultsNumber === 0) {
@@ -674,7 +701,7 @@
         function getProfilerLineHTML(index, node) {
             return  '<div class="index">' + (index + 1) + '</div>' +
                     '<div class="type">' + node.data.type + (node.children ? '<div class="children">' + recursiveChildrenHTML(node) + '</div>' : '') + '</div>' +
-                    '<div class="value offenders">' + getTimelineParamsHTML(node, false) + '</div>' +
+                    '<div class="value">' + getTimelineParamsHTML(node, false) + '</div>' +
                     '<div class="details">' + getTimelineDetailsHTML(node) + '</div>' +
                     '<div class="startTime ' + node.data.loadingStep + '">' + numberWithCommas(node.data.timestamp, 0) + ' ms</div>';
         }

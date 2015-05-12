@@ -7,9 +7,69 @@
     <div class="settings">
         <div class="device">
             <div>Choose the simulated device:</div>
-            <div class="item" ng-class="{active: settings.device == 'desktop'}" ng-click="settings.device = 'desktop'"><div class="icon-screen"></div>Desktop</div>
-            <div class="item" ng-class="{active: settings.device == 'tablet'}" ng-click="settings.device = 'tablet'"><div class="icon-tablet"></div>Tablet</div>
-            <div class="item" ng-class="{active: settings.device == 'phone'}" ng-click="settings.device = 'phone'"><div class="icon-mobile"></div>Phone</div>
+            <a href="" class="item" ng-class="{active: settings.device == 'desktop'}" ng-click="settings.device = 'desktop'"><div class="icon-screen"></div>Desktop</a>
+            <a href="" class="item" ng-class="{active: settings.device == 'tablet'}" ng-click="settings.device = 'tablet'"><div class="icon-tablet"></div>Tablet</a>
+            <a href="" class="item" ng-class="{active: settings.device == 'phone'}" ng-click="settings.device = 'phone'"><div class="icon-mobile"></div>Phone</a>
+        </div>
+        [ <a href="" class="showAdvanced" ng-click="settings.showAdvanced = !settings.showAdvanced">
+            <span ng-if="!settings.showAdvanced">Advanced settings &nbsp;✚</span>
+            <span ng-if="settings.showAdvanced">Hide advanced settings &nbsp;✖</span>
+        </a> ]
+        <span class="currentSettings" ng-if="!settings.showAdvanced && (settings.waitForSelector || settings.cookie || settings.authUser || settings.authPass)">
+            Currently set:
+            <span ng-if="settings.waitForSelector">wait for selector</span>
+            <span ng-if="settings.cookie">cookie</span>
+            <span ng-if="settings.authUser || settings.authPass">authentication</span>
+        </span>
+        <div class="advanced" ng-show="settings.showAdvanced">
+            <!--<div>
+                <div class="label">
+                    Wait selector
+                    <span class="settingsTooltip">
+                        <span class="icon-question"></span>
+                        <div><b>Wait for a CSS selector</b><br><br>Once the page is considered loaded, PhantomJS will repeatedly try to match the given CSS selector until it is found in the page. A 60 seconds timeout still applies anyway.<br><br>Example: "body.loaded"</div>
+                    </span>
+                </div>
+                <div><input type="text" name="waitForSelector" ng-model="settings.waitForSelector" /></div>
+            </div>-->
+            <div>
+                <div class="label">
+                    Cookie
+                    <span class="settingsTooltip">
+                        <span class="icon-question"></span>
+                        <div><b>Cookie</b><br><br>Adds a cookie on the main domain.<br><br>Example: "bar=foo;domain=url"</div>
+                    </span>
+                </div>
+                <div><input type="text" name="cookie" ng-model="settings.cookie" /></div>
+            </div>
+            <!--<div>
+                <div class="label">
+                    Authent
+                    <span class="settingsTooltip">
+                        <span class="icon-question"></span>
+                        <div><b>Basic HTTP authentication</b><br><br>Enter your credentials here if you need to bypass a basic authentication.<br><br><i>PS: if your authentication is not basic, you might be able to copy the session cookie from your browser, paste it in the "Cookie" setting and launch a run before your cookie expires.</i></div>
+                    </span>
+                </div>
+                <div class="subTable">
+                    <div>
+                        <div>username</div>
+                        <div><input type="text" class="authField" name="authUser" ng-model="settings.authUser" /></div>
+                    </div>
+                    <div>
+                        <div><span>password</div>
+                        <div><input type="text" class="authField" name="authPass" ng-model="settings.authPass" /></div>
+                    </div>
+                </div>
+            </div>-->
+            <!--<div>
+                <div class="label">Blocked domains</div>
+                <div>
+                    <div>
+                        Blacklist / Whitelist
+                    </div>
+                    <textarea name=""></textarea>
+                </div>
+            </div>-->
         </div>
     </div>
 </form>

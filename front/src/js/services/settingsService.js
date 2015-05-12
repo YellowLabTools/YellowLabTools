@@ -6,7 +6,8 @@ settingsService.factory('Settings', ['localStorageService', function(localStorag
 
         getMergedSettings: function() {
             var defaultSettings = {
-                device: 'desktop'
+                device: 'desktop',
+                showAdvanced: false
             };
             
             var savedValues = localStorageService.get('settings');
