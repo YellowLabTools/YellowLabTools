@@ -83,6 +83,21 @@
                         Function <b>{{offender.functionName}}</b> used {{offender.count}} times
                     </div>
 
+                    <div ng-if="policyName === 'jQueryNotDelegatedEvents'">
+                        function <b>{{offender.functionName}}</b> used on {{offender.contextLength}} DOM elements without event delegation
+                        <div class="offenderButton" ng-if="offender.backtrace.length == 0">no backtrace</div>
+                        <div class="offenderButton opens" ng-if="offender.backtrace.length > 0">
+                            backtrace
+                            <div class="backtrace">
+                                <div ng-repeat="obj in offender.backtrace track by $index">
+                                    <span ng-if="obj.functionName">{{obj.functionName}}()</span>
+                                    <url-link url="obj.file" max-length="60"></url-link>
+                                    line {{obj.line}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div ng-if="policyName === 'documentWriteCalls'">
                         <b>{{offender.writeFn}}</b>
                         <span ng-if="offender.from">

@@ -38,9 +38,10 @@
         "jQuery": {
             "label": "jQuery",
             "policies": {
-                "jQueryVersion": 10,
+                "jQueryVersion": 1,
                 "jQueryVersionsLoaded": 1,
-                "jQueryFunctionsUsed": 1
+                "jQueryFunctionsUsed": 1,
+                "jQueryNotDelegatedEvents": 1
             }
         },
         "cssComplexity": {

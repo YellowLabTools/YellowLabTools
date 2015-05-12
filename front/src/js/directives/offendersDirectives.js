@@ -109,7 +109,7 @@
         } else if (context.length > 3) {
             html += ' and ' + (context.length - 2) + ' more...';
         }
-        return html + '}';
+        return html + ')';
     }
 
     function isJQuery(node) {
@@ -670,10 +670,8 @@
 
             if (node.data.callDetails.context && node.data.callDetails.context.length === 0) {
                 html += '<h4>Called on 0 jQuery element</h4><p class="advice">Useless function call, as the jQuery object is empty.</p>';
-            } else if (node.data.type === 'jQuery - bind' && node.data.callDetails.context.length > 3) {
-                html += '<p class="advice">The .bind() method attaches the event listener to each jQuery element one by one. Using the .on() method with event delegation is preferable if available (from v1.7).</p>';
-            } else if (node.data.type === 'jQuery - on' && node.data.callDetails.context.length > 3) {
-                html += '<p class="advice">The .on() method used this way attaches the event listener to each jQuery element one by one. Using the event delegation version of the method is preferable if available (from v1.7).</p>';
+            } else if (node.eventNotDelegated) {
+                html += '<p class="advice">This binding should use Event Delegation instead of binding each element one by one.</p>';
             }
 
             if (node.data.resultsNumber === 0) {
