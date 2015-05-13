@@ -1,56 +1,57 @@
 <img src="./doc/img/logo.png" ></img>
 
-Useful tool that analyzes a webpage and detects **performance** and **front-end code quality** issues.
+Analyzes a webpage and detects **performance** or **front-end code quality** issues.
 
 
 ### Choose your way to use the tool:
 
 <table>
-<tr>
-<td width="70%">
-The online tool (recommended)  
-[http://yellowlab.tools](http://yellowlab.tools)
-</td>
-<td width="30%">
-<img src="./doc/img/YLT-animated.gif"></img>
-</td>
-</tr>
-<tr>
-<td width="70%">
-The CLI (Command Line Interface) - [doc here](https://github.com/gmetais/YellowLabTools/wiki/Command-Line-Interface)  
-```npm install yellowlabtools -g```
-</td>
-<td width="30%">
-<img src="./doc/img/YLT-cli-animated.gif"></img>
-</td>
-</tr>
-<tr>
-<td width="70%">
-The Grunt task for developers or Continuous integration
-Visit [gmetais/grunt-yellowlabtools](https://github.com/gmetais/grunt-yellowlabtools)
-</td>
-<td width="30%">
-<img src="./doc/img/grunt-logo.png" ></img>
-</td>
-</tr>
-<tr>
-<td width="70%">
-The NPM package - [doc here](https://github.com/gmetais/YellowLabTools/wiki/NodeJS-module)  
-```npm install yellowlabtools```
-</td>
-<td width="30%">
-<img src="./doc/img/npm-logo.png" ></img>
-</td>
-</tr>
-<tr>
-<td width="70%">
-The public API - [doc here](https://github.com/gmetais/YellowLabTools/wiki/Public-API)  
-Allows you to launch runs in a RESTful way
-</td>
-<td width="30%">
-<h3>REST</h3>
-</td>
-</tr>
+    <tr>
+        <td width="70%">
+            The <b>online tool</b> (recommended)
+            <br>
+            <a href="http://yellowlab.tools" target="_blank">http://yellowlab.tools</a>
+        </td>
+        <td width="30%">
+            <img src="./doc/img/YLT-animated.gif"></img>
+        </td>
+    </tr>
+    <tr>
+        <td width="70%">
+            The <b>CLI</b> (Command Line Interface) - <a href="https://github.com/gmetais/YellowLabTools/wiki/Command-Line-Interface" target="_blank">doc here</a>
+        </td>
+        <td width="30%">
+            <img src="./doc/img/YLT-cli-animated.gif"></img>
+        </td>
+    </tr>
+    <tr>
+        <td width="70%">
+            The <b>Grunt task</b> for devs or CI
+            <br>
+            Visit <a href="https://github.com/gmetais/grunt-yellowlabtools" traget="_blank">gmetais/grunt-yellowlabtools</a>
+        </td>
+        <td width="30%">
+            <img src="./doc/img/grunt-logo.png" ></img>
+        </td>
+    </tr>
+    <tr>
+        <td width="70%">
+            The NPM package - <a href="https://github.com/gmetais/YellowLabTools/wiki/NodeJS-module" target="_blank">doc here</a>
+        </td>
+        <td width="30%">
+            <img src="./doc/img/npm-logo.png" ></img>
+        </td>
+    </tr>
+    <tr>
+        <td width="70%">
+            The public API - <a href="https://github.com/gmetais/YellowLabTools/wiki/Public-API" target="_blank">doc here</a>
+            <br>
+            Allows you to launch runs from any language
+        </td>
+        <td width="30%">
+            <img src="./doc/img/api-logo.png" ></img>
+        </td>
+    </tr>
 </table>
 
 
