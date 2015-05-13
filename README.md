@@ -1,13 +1,58 @@
-[![Dependency Status](https://gemnasium.com/gmetais/YellowLabTools.svg)](https://gemnasium.com/gmetais/YellowLabTools) [![Build Status](https://travis-ci.org/gmetais/YellowLabTools.svg?branch=master)](https://travis-ci.org/gmetais/YellowLabTools)
+<img src="./doc/img/logo.png" ></img>
 
-# Yellow Lab Tools
-
-Online tool that lets you test a webpage and detects **performance** and **front-end code quality** issues.
+Useful tool that analyzes a webpage and detects **performance** and **front-end code quality** issues.
 
 
-### Access the tool here: [http://yellowlab.tools](http://yellowlab.tools)
+### Choose your way to use the tool:
 
-![example dashboard screenshot](screenshot.png)
+<table>
+<tr>
+<td width="70%">
+The online tool (recommended)  
+[http://yellowlab.tools](http://yellowlab.tools)
+</td>
+<td width="30%">
+<img src="./doc/img/YLT-animated.gif"></img>
+</td>
+</tr>
+<tr>
+<td width="70%">
+The CLI (Command Line Interface) - [doc here](https://github.com/gmetais/YellowLabTools/wiki/Command-Line-Interface)  
+```npm install yellowlabtools -g```
+</td>
+<td width="30%">
+<img src="./doc/img/YLT-cli-animated.gif"></img>
+</td>
+</tr>
+<tr>
+<td width="70%">
+The Grunt task for developers or Continuous integration
+Visit [gmetais/grunt-yellowlabtools](https://github.com/gmetais/grunt-yellowlabtools)
+</td>
+<td width="30%">
+<img src="./doc/img/grunt-logo.png" ></img>
+</td>
+</tr>
+<tr>
+<td width="70%">
+The NPM package - [doc here](https://github.com/gmetais/YellowLabTools/wiki/NodeJS-module)  
+```npm install yellowlabtools```
+</td>
+<td width="30%">
+<img src="./doc/img/npm-logo.png" ></img>
+</td>
+</tr>
+<tr>
+<td width="70%">
+The public API - [doc here](https://github.com/gmetais/YellowLabTools/wiki/Public-API)  
+Allows you to launch runs in a RESTful way
+</td>
+<td width="30%">
+<h3>REST</h3>
+</td>
+</tr>
+</table>
+
 
 
 ## How it works
@@ -16,24 +61,7 @@ The tool loads the given URL via [PhantomJS](http://phantomjs.org/) (a headless 
 
 By the way, it's free because we are geeks, not businessmen. All we want is a ★ on GitHub, it will boost our motivation to add more awesome features!!!
 
-
-## Different ways to use YLT
-
-#### The online tool:
-This is **the best way** to discover the tool: [http://yellowlab.tools](http://yellowlab.tools).  
-Please note the server is hosted in Baltimore, USA.
-
-#### The Command Line Interface (CLI):
-Might be useful if you want to build an automation tool. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Command-Line-Interface).
-
-#### The NPM module:
-Can be used to build automation tools in NodeJS. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/NodeJS-module).
-
-#### The public API:
-Hosted on our http://yellowlab.tools server, it is a RESTful API that allows you to launch distant tests. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Public-API).
-
-#### The Grunt task:
-If you have a Continuous Integration platform, may I suggest you to use [grunt-yellowlabtools](https://github.com/gmetais/grunt-yellowlabtools)? You set it up once, then the task fails if the front-end quality conditions you defined are not met.
+![example dashboard screenshot](./doc/img/screenshot.png)
 
 
 ## Test your localhost
