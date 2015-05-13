@@ -1,15 +1,13 @@
-<img src="./doc/img/logo.png" ></img>
+<img src="./doc/img/logo.png" alt="Yellow Lab Tools"></img>
 
-Analyzes a webpage and detects **performance** or **front-end code quality** issues.
+Analyzes a webpage and detects **performance** or **front-end code quality** issues. Easy to launch, easy to understand, in-depth details.
 
-
-### Choose your way to use the tool:
+<img src="./doc/img/commandment.png" alt="No website should go live without being tested with Yellow Lab Tools"></img>
 
 <table>
     <tr>
         <td width="70%">
-            The <b>online tool</b> (recommended)
-            <br>
+            The <b>online tool</b> (recommended): 
             <a href="http://yellowlab.tools" target="_blank">http://yellowlab.tools</a>
         </td>
         <td width="30%">
@@ -18,7 +16,7 @@ Analyzes a webpage and detects **performance** or **front-end code quality** iss
     </tr>
     <tr>
         <td width="70%">
-            The <b>CLI</b> (Command Line Interface) - <a href="https://github.com/gmetais/YellowLabTools/wiki/Command-Line-Interface" target="_blank">doc here</a>
+            The <b>CLI</b> (Command Line Interface) - <a href="https://github.com/gmetais/YellowLabTools/wiki/Command-Line-Interface" target="_blank">Doc here</a>
         </td>
         <td width="30%">
             <img src="./doc/img/YLT-cli-animated.gif"></img>
@@ -26,30 +24,29 @@ Analyzes a webpage and detects **performance** or **front-end code quality** iss
     </tr>
     <tr>
         <td width="70%">
-            The <b>Grunt task</b> for devs or CI
-            <br>
-            Visit <a href="https://github.com/gmetais/grunt-yellowlabtools" traget="_blank">gmetais/grunt-yellowlabtools</a>
+            The <b>Grunt task</b>: <a href="https://github.com/gmetais/grunt-yellowlabtools" traget="_blank">gmetais/grunt-yellowlabtools</a>
+            <br>For developers or Continuous Integration
         </td>
         <td width="30%">
-            <img src="./doc/img/grunt-logo.png" ></img>
+            <img src="./doc/img/grunt-logo.png"></img>
         </td>
     </tr>
     <tr>
         <td width="70%">
-            The NPM package - <a href="https://github.com/gmetais/YellowLabTools/wiki/NodeJS-module" target="_blank">doc here</a>
+            The <b>NodeJS</b> package - <a href="https://github.com/gmetais/YellowLabTools/wiki/NodeJS-module" target="_blank">Doc here</a>
         </td>
         <td width="30%">
-            <img src="./doc/img/npm-logo.png" ></img>
+            <img src="./doc/img/npm-logo.png"></img>
         </td>
     </tr>
     <tr>
         <td width="70%">
-            The public API - <a href="https://github.com/gmetais/YellowLabTools/wiki/Public-API" target="_blank">doc here</a>
+            The <b>public API</b> - <a href="https://github.com/gmetais/YellowLabTools/wiki/Public-API" target="_blank">Doc here</a>
             <br>
             Allows you to launch runs from any language
         </td>
         <td width="30%">
-            <img src="./doc/img/api-logo.png" ></img>
+            <img src="./doc/img/api-logo.png"></img>
         </td>
     </tr>
 </table>
