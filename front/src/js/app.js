@@ -19,6 +19,7 @@ var yltApp = angular.module('YellowLabTools', [
 ]);
 
 yltApp.run(['$rootScope', '$location', function($rootScope, $location) {
+    $rootScope.isTouchDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent);
     $rootScope.loadedRunId = null;
 
     // Google Analytics
