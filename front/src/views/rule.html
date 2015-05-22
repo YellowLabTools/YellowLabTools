@@ -30,10 +30,6 @@
                     <div ng-if="policyName === 'DOMidDuplicated'">
                         <b>{{offender.id}}</b>: {{offender.occurrences}} occurrences
                     </div>
-
-                    <div ng-if="policyName === 'DOMinserts'">
-                        <dom-element-button obj="offender.insertedElement"></dom-element-button> appended to <dom-element-button obj="offender.receiverElement"></dom-element-button>
-                    </div>
                     
                     <div ng-if="policyName === 'DOMqueriesWithoutResults'">
                         <b>{{offender.query}}</b> (in <dom-element-button obj="offender.context"></dom-element-button>) using {{offender.fn}}
@@ -41,10 +37,6 @@
 
                     <div ng-if="policyName === 'DOMqueriesAvoidable'">
                         <b>{{offender.query}}</b> (in <dom-element-button obj="offender.context"></dom-element-button>) using {{offender.fn}}: <b>{{offender.count}} queries</b>
-                    </div>
-
-                    <div ng-if="policyName === 'eventsBound'">
-                        <b>{{offender.eventName}}</b> bound to <dom-element-button obj="offender.element"></dom-element-button>
                     </div>
 
                     <div ng-if="policyName === 'eventsScrollBound'">
@@ -218,10 +210,14 @@
                     <div ng-repeat="offender in rule.offendersObj.palette" style="background-color: {{offender.color}}; width: {{offender.occurrences * 100 / rule.offendersObj.palette[0].occurrences}}%"><div>{{offender.color}} ({{offender.occurrences}} times)</div></div>
                 </div>
             </div>
-
         </div>
-
     </div>
+
+    <div ng-if="policyName === 'DOMaccesses'">
+        <h3>Offenders</h3>
+        Please open the <a href="/result/{{runId}}/timeline">JS timeline</a>
+    </div>
+
     <div ng-if="!rule && rule !== null" class="notFound">
         <h2>404</h2>
         Rule "{{policyName}}"" not found

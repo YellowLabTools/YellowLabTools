@@ -12,11 +12,9 @@
         "domManipulations": {
             "label": "DOM manipulations",
             "policies": {
-                "DOMinserts": 2,
-                "DOMqueries": 1,
-                "DOMqueriesWithoutResults": 2,
-                "DOMqueriesAvoidable": 2,
-                "eventsBound": 1
+                "DOMaccesses": 3,
+                "DOMqueriesWithoutResults": 1,
+                "DOMqueriesAvoidable": 1
             }
         },
         "scroll": {
