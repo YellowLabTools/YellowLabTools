@@ -22,6 +22,17 @@ yltApp.run(['$rootScope', '$location', function($rootScope, $location) {
     $rootScope.isTouchDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent);
     $rootScope.loadedRunId = null;
 
+    var oldHash;
+
+    // We don't want the hash to be kept between two pages
+    $rootScope.$on('$locationChangeStart', function(param1, param2, param3, param4){
+        var newHash = $location.hash();
+        if (newHash === oldHash) {
+            $location.hash(null);
+        }
+        oldHash = newHash;
+    });
+
     // Google Analytics
     $rootScope.$on('$routeChangeSuccess', function(){
         ga('send', 'pageview', {'page': $location.path()});

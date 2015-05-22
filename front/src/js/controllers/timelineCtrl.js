@@ -4,14 +4,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage('timeline', $scope.runId);
 
-    $scope.warningsFilterOn = false;
-    $scope.warningsFilters = {
-        queryWithoutResults: true,
-        jQueryCallOnEmptyObject: true,
-        eventNotDelegated: true,
-        jsError: true
-    };
-
     function loadResults() {
         // Load result if needed
         if (!$rootScope.loadedResult || $rootScope.loadedResult.runId !== $routeParams.runId) {
@@ -27,10 +19,38 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     }
 
     function render() {
+        initFilters();
         initScriptFiltering();
         initExecutionTree();
         initTimeline();
         $timeout(initProfiler, 100);
+    }
+
+    function initFilters() {
+        var hash = $location.hash();
+        var filter = null;
+        
+        if (hash.indexOf('filter=') === 0) {
+            filter = hash.substr(7);
+        }
+
+        $scope.warningsFilterOn = (filter !== null);
+        $scope.warningsFilters = {
+            queryWithoutResults: (filter === null || filter === 'queryWithoutResults'),
+            jQueryCallOnEmptyObject: (filter === null || filter === 'jQueryCallOnEmptyObject'),
+            eventNotDelegated: (filter === null || filter === 'eventNotDelegated'),
+            jsError: (filter === null || filter === 'jsError')
+        };
+
+        // If a filter is defined in the hash (ie: "/result/xxxxx/timeline#filter=queryWithoutResults")
+        var hash = $location.hash();
+        if (hash.indexOf('filter=') === 0) {
+            var filter = hash.substr(7);
+            $scope.warningsFilterOn = true;
+            for (var key in $scope.warningsFilter) {
+
+            }
+        }
     }
 
     function initScriptFiltering() {

@@ -30,10 +30,6 @@
                     <div ng-if="policyName === 'DOMidDuplicated'">
                         <b>{{offender.id}}</b>: {{offender.occurrences}} occurrences
                     </div>
-                    
-                    <div ng-if="policyName === 'DOMqueriesWithoutResults'">
-                        <b>{{offender.query}}</b> (in <dom-element-button obj="offender.context"></dom-element-button>) using {{offender.fn}}
-                    </div>
 
                     <div ng-if="policyName === 'DOMqueriesAvoidable'">
                         <b>{{offender.query}}</b> (in <dom-element-button obj="offender.context"></dom-element-button>) using {{offender.fn}}: <b>{{offender.count}} queries</b>
@@ -214,8 +210,13 @@
     </div>
 
     <div ng-if="policyName === 'DOMaccesses'">
-        <h3>Offenders</h3>
+        <h3>{{rule.value}} offenders</h3>
         Please open the <a href="/result/{{runId}}/timeline">JS timeline</a>
+    </div>
+
+    <div ng-if="policyName === 'queriesWithoutResults'">
+        <h3>{{rule.value}} offenders</h3>
+        Please open the <a href="/result/{{runId}}/timeline#filter=queryWithoutResults">JS timeline, filtered by "Queries without results"</a>
     </div>
 
     <div ng-if="!rule && rule !== null" class="notFound">
