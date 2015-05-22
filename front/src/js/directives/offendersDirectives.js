@@ -766,9 +766,22 @@
                 element.append(getProfilerLineHTML(scope.index, scope.node));
                 element[0].id = 'line_' + scope.index;
 
-                if (scope.node.warning || scope.node.error) {
+                if (scope.node.warning) {
                     element[0].classList.add('warning');
+
+                    if (scope.node.queryWithoutResults) {
+                        element[0].classList.add('queryWithoutResults');
+                    }
+
+                    if (scope.node.jQueryCallOnEmptyObject) {
+                        element[0].classList.add('jQueryCallOnEmptyObject');
+                    }
+
+                    if (scope.node.eventNotDelegated) {
+                        element[0].classList.add('eventNotDelegated');
+                    }
                 }
+
 
                 // Bind click on the details icon
                 var detailsIcon = element[0].querySelector('.details div');

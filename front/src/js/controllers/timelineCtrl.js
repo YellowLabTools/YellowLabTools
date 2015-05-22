@@ -4,6 +4,14 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage('timeline', $scope.runId);
 
+    $scope.warningsFilterOn = false;
+    $scope.warningsFilters = {
+        queryWithoutResults: true,
+        jQueryCallOnEmptyObject: true,
+        eventNotDelegated: true,
+        jsError: true
+    };
+
     function loadResults() {
         // Load result if needed
         if (!$rootScope.loadedResult || $rootScope.loadedResult.runId !== $routeParams.runId) {

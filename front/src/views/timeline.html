@@ -60,11 +60,30 @@
     </p>
     <div class="filters">
         <div>
-            <input type="checkbox" ng-model="warningsFilterOn" id="warningsFilterOn" />
-            <label for="warningsFilterOn">Show warnings only</label>
+            <input type="checkbox" name="warningsFilter" ng-model="warningsFilterOn" id="warningsFilterOn" />
+            <label for="warningsFilterOn">Filter on warnings and errors</label>
+            <div class="subFilters" ng-if="warningsFilterOn">
+                <div>
+                    <input type="checkbox" name="filters" ng-model="warningsFilters.queryWithoutResults" id="queryWithoutResultsFilterOn"/>
+                    <label for="queryWithoutResultsFilterOn">Queries without results</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="filters" ng-model="warningsFilters.jQueryCallOnEmptyObject" id="jQueryCallOnEmptyObjectFilterOn" />
+                    <label for="jQueryCallOnEmptyObjectFilterOn">jQuery calls on empty object</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="filters" ng-model="warningsFilters.eventNotDelegated" id="eventNotDelegatedFilterOn" />
+                    <label for="eventNotDelegatedFilterOn">Events not delegated</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="filters" ng-model="warningsFilters.jsError" id="jsErrorFilterOn" />
+                    <label for="jsErrorFilterOn">Errors</label>
+                </div>
+            </div>
         </div>
+        {{queryWithoutResultsFilterOn}}
     </div>
-    <div class="table" ng-class="{warningsFilterOn: warningsFilterOn}">
+    <div class="table" ng-class="{queryWithoutResultsFilterOn: warningsFilterOn && warningsFilters.queryWithoutResults, jQueryCallOnEmptyObjectFilterOn: warningsFilterOn && warningsFilters.jQueryCallOnEmptyObject, eventNotDelegatedFilterOn: warningsFilterOn && warningsFilters.eventNotDelegated, jsErrorFilterOn: warningsFilterOn && warningsFilters.jsError}">
         <div class="headers">
             <div><!-- index --></div>
             <div>Type</div>

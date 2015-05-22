@@ -162,6 +162,11 @@
     text-align: left;
 }
 
+.subFilters {
+    margin-left: 3em;
+    font-size: 0.9em;
+}
+
 .table {
     display: table;
     width: 100%;
@@ -346,10 +351,34 @@
     color: #e74c3c;
     cursor: pointer;
 }
-.warningsFilterOn {
+.queryWithoutResultsFilterOn {
     > div {
         display: none;
-        &.warning {
+        &.queryWithoutResults {
+            display: table-row;
+        }
+    }
+}
+.jQueryCallOnEmptyObjectFilterOn {
+    > div {
+        display: none;
+        &.jQueryCallOnEmptyObject {
+            display: table-row;
+        }
+    }
+}
+.eventNotDelegatedFilterOn {
+    > div {
+        display: none;
+        &.eventNotDelegated {
+            display: table-row;
+        }
+    }
+}
+.jsErrorFilterOn {
+    > div {
+        display: none;
+        &.jsError {
             display: table-row;
         }
     }
