@@ -25,8 +25,7 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
         // By default, Angular sorts object's attributes alphabetically. Countering this problem by retrieving the keys order here.
         $scope.categoriesOrder = Object.keys($scope.result.scoreProfiles.generic.categories);
         
-        $scope.globalScore = Math.max($scope.result.scoreProfiles.generic.globalScore, 0);
-        $scope.tweetText = 'My website\'s score is ' + $scope.globalScore + '/100 on #YellowLabTools!';
+        $scope.tweetText = 'I\'ve discovered this cool open-source tool that audits the front-end quality of a web page: ';
     }
 
     $scope.showRulePage = function(ruleName) {
@@ -37,18 +36,18 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
         API.relaunchTest($scope.result);
     };
 
-    /// When comming from a social shared link, the user needs to click on "See full report" button to display the full dashboard.
+    // When comming from a social shared link, the user needs to click on "See full report" button to display the full dashboard.
     $scope.seeFullReport = function() {
         $scope.fromSocialShare = false;
         $location.search({});
     };
 
     $scope.shareOnTwitter = function(message) {
-        openSocialPopup('https://twitter.com/intent/tweet?url=' + document.URL + '%3Fshare&text=' + encodeURIComponent(message));
+        openSocialPopup('https://twitter.com/intent/tweet?text=' + encodeURIComponent(message + 'http://yellowlab.tools'));
     };
 
     $scope.shareOnLinkedin = function(message) {
-        openSocialPopup('https://www.linkedin.com/shareArticle?mini=true&url=' + document.URL + '%3Fshare&title=' + encodeURIComponent(message) + '&summary=' + encodeURIComponent('YellowLabTools is a free online tool that analyzes performance and front-end quality of a webpage.'));
+        openSocialPopup('https://www.linkedin.com/shareArticle?mini=true&url=http://yellowlab.tools&title=' + encodeURIComponent(message) + '&summary=' + encodeURIComponent('YellowLabTools is a free online tool that analyzes performance and front-end quality of a webpage.'));
     };
 
     function openSocialPopup(url) {
