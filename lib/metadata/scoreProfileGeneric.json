@@ -36,9 +36,10 @@
         "jQuery": {
             "label": "jQuery",
             "policies": {
-                "jQueryVersion": 1,
-                "jQueryVersionsLoaded": 1,
+                "jQueryVersion": 2,
+                "jQueryVersionsLoaded": 2,
                 "jQueryFunctionsUsed": 1,
+                "jQueryCallsOnEmptyObject": 1,
                 "jQueryNotDelegatedEvents": 1
             }
         },
