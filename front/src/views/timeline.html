@@ -16,14 +16,14 @@
                 <div ng-repeat="duration in timeline track by $index"
                      class="interval"
                      ng-class="{
-                        domCreation: $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domInteractive,
-                        domInteractive: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domInteractive
-                            && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domContentLoaded,
-                        domContentLoaded: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domContentLoaded
-                            && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domContentLoadedEnd,
-                        domContentLoadedEnd: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domContentLoadedEnd
-                            && $index * timelineIntervalDuration < result.toolsResults.phantomas.metrics.domComplete,
-                        domComplete: $index * timelineIntervalDuration >= result.toolsResults.phantomas.metrics.domComplete
+                        domCreation: $index * timelineIntervalDuration < result.javascriptExecutionTree.data.domInteractive,
+                        domInteractive: $index * timelineIntervalDuration >= result.javascriptExecutionTree.data.domInteractive
+                            && $index * timelineIntervalDuration < result.javascriptExecutionTree.data.domContentLoaded,
+                        domContentLoaded: $index * timelineIntervalDuration >= result.javascriptExecutionTree.data.domContentLoaded
+                            && $index * timelineIntervalDuration < result.javascriptExecutionTree.data.domContentLoadedEnd,
+                        domContentLoadedEnd: $index * timelineIntervalDuration >= result.javascriptExecutionTree.data.domContentLoadedEnd
+                            && $index * timelineIntervalDuration < result.javascriptExecutionTree.data.domComplete,
+                        domComplete: $index * timelineIntervalDuration >= result.javascriptExecutionTree.data.domComplete
                      }">
                     <div style="height: {{100 * duration / timelineMax | number: 0}}px" class="color" ng-class="{clickable: duration > 0}" scroll-on-click="{{$index * timelineIntervalDuration}}"></div>
                     <div class="tooltip detailsOverlay">
