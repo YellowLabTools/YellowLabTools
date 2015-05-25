@@ -12,11 +12,9 @@
         "domManipulations": {
             "label": "DOM manipulations",
             "policies": {
-                "DOMinserts": 2,
-                "DOMqueries": 1,
-                "DOMqueriesWithoutResults": 2,
-                "DOMqueriesAvoidable": 2,
-                "eventsBound": 1
+                "DOMaccesses": 3,
+                "queriesWithoutResults": 1,
+                "DOMqueriesAvoidable": 1
             }
         },
         "scroll": {
@@ -38,9 +36,10 @@
         "jQuery": {
             "label": "jQuery",
             "policies": {
-                "jQueryVersion": 1,
-                "jQueryVersionsLoaded": 1,
+                "jQueryVersion": 2,
+                "jQueryVersionsLoaded": 2,
                 "jQueryFunctionsUsed": 1,
+                "jQueryCallsOnEmptyObject": 1,
                 "jQueryNotDelegatedEvents": 1
             }
         },

@@ -31,20 +31,8 @@
                         <b>{{offender.id}}</b>: {{offender.occurrences}} occurrences
                     </div>
 
-                    <div ng-if="policyName === 'DOMinserts'">
-                        <dom-element-button obj="offender.insertedElement"></dom-element-button> appended to <dom-element-button obj="offender.receiverElement"></dom-element-button>
-                    </div>
-                    
-                    <div ng-if="policyName === 'DOMqueriesWithoutResults'">
-                        <b>{{offender.query}}</b> (in <dom-element-button obj="offender.context"></dom-element-button>) using {{offender.fn}}
-                    </div>
-
                     <div ng-if="policyName === 'DOMqueriesAvoidable'">
                         <b>{{offender.query}}</b> (in <dom-element-button obj="offender.context"></dom-element-button>) using {{offender.fn}}: <b>{{offender.count}} queries</b>
-                    </div>
-
-                    <div ng-if="policyName === 'eventsBound'">
-                        <b>{{offender.eventName}}</b> bound to <dom-element-button obj="offender.element"></dom-element-button>
                     </div>
 
                     <div ng-if="policyName === 'eventsScrollBound'">
@@ -81,21 +69,6 @@
 
                     <div ng-if="policyName === 'jQueryFunctionsUsed'">
                         function <b>{{offender.functionName}}</b> used {{offender.count}} times
-                    </div>
-
-                    <div ng-if="policyName === 'jQueryNotDelegatedEvents'">
-                        function <b>{{offender.functionName}}</b> used on {{offender.contextLength}} DOM elements without event delegation
-                        <div class="offenderButton" ng-if="offender.backtrace.length == 0">no backtrace</div>
-                        <div class="offenderButton opens" ng-if="offender.backtrace.length > 0">
-                            backtrace
-                            <div class="backtrace">
-                                <div ng-repeat="obj in offender.backtrace track by $index">
-                                    <span ng-if="obj.functionName">{{obj.functionName}}()</span>
-                                    <url-link url="obj.file" max-length="60"></url-link>
-                                    line {{obj.line}}
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div ng-if="policyName === 'documentWriteCalls'">
@@ -218,10 +191,29 @@
                     <div ng-repeat="offender in rule.offendersObj.palette" style="background-color: {{offender.color}}; width: {{offender.occurrences * 100 / rule.offendersObj.palette[0].occurrences}}%"><div>{{offender.color}} ({{offender.occurrences}} times)</div></div>
                 </div>
             </div>
-
         </div>
-
     </div>
+
+    <div ng-if="policyName === 'DOMaccesses'">
+        <h3>{{rule.value}} offenders</h3>
+        Please open the <a href="/result/{{runId}}/timeline">JS timeline</a>
+    </div>
+
+    <div ng-if="policyName === 'queriesWithoutResults'">
+        <h3>{{rule.value}} offenders</h3>
+        Please open the <a href="/result/{{runId}}/timeline#filter=queryWithoutResults">JS timeline, filtered by "Queries without results"</a>
+    </div>
+
+    <div ng-if="policyName === 'jQueryCallsOnEmptyObject'">
+        <h3>{{rule.value}} offenders</h3>
+        Please open the <a href="/result/{{runId}}/timeline#filter=jQueryCallOnEmptyObject">JS timeline, filtered by "jQuery calls on empty object"</a>
+    </div>
+
+    <div ng-if="policyName === 'jQueryNotDelegatedEvents'">
+        <h3>{{rule.value}} offenders</h3>
+        Please open the <a href="/result/{{runId}}/timeline#filter=eventNotDelegated">JS timeline, filtered by "Events not delegated"</a>
+    </div>
+
     <div ng-if="!rule && rule !== null" class="notFound">
         <h2>404</h2>
         Rule "{{policyName}}"" not found

@@ -7,12 +7,14 @@ var cors                    = require('cors');
 
 var authMiddleware          = require('../lib/server/middlewares/authMiddleware');
 var apiLimitsMiddleware     = require('../lib/server/middlewares/apiLimitsMiddleware');
+var wwwRedirectMiddleware   = require('../lib/server/middlewares/wwwRedirectMiddleware');
 
 
 // Middlewares
 app.use(compress());
 app.use(bodyParser.json());
 app.use(cors());
+app.use(wwwRedirectMiddleware);
 app.use(authMiddleware);
 app.use(apiLimitsMiddleware);
 

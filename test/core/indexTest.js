@@ -53,8 +53,9 @@ describe('index.js', function() {
                 data.toolsResults.phantomas.metrics.should.have.a.property('requests').that.equals(1);
                 data.toolsResults.phantomas.should.have.a.property('offenders').that.is.an('object');
                 data.toolsResults.phantomas.offenders.should.have.a.property('DOMelementMaxDepth');
-                data.toolsResults.phantomas.offenders.DOMelementMaxDepth.should.have.length(1);
+                data.toolsResults.phantomas.offenders.DOMelementMaxDepth.should.have.length(2);
                 data.toolsResults.phantomas.offenders.DOMelementMaxDepth[0].should.equal('body > h1[0]');
+                data.toolsResults.phantomas.offenders.DOMelementMaxDepth[1].should.equal('body > script[1]');
 
                 // Test rules
                 data.should.have.a.property('rules').that.is.an('object');
@@ -76,10 +77,11 @@ describe('index.js', function() {
                     "score": 100,
                     "abnormalityScore": 0,
                     "offendersObj": {
-                        "count": 1,
+                        "count": 2,
                         "tree": {
                             "body": {
-                                "h1[0]": 1
+                                "h1[0]": 1,
+                                "script[1]": 1
                             }
                         }
                     }
@@ -91,6 +93,10 @@ describe('index.js', function() {
                 data.should.have.a.property('javascriptExecutionTree').that.is.an('object');
                 data.javascriptExecutionTree.should.have.a.property('data');
                 data.javascriptExecutionTree.data.should.have.a.property('type').that.equals('main');
+                data.javascriptExecutionTree.data.should.have.a.property('domInteractive').that.is.a('number');
+                data.javascriptExecutionTree.data.should.have.a.property('domContentLoaded').that.is.a('number');
+                data.javascriptExecutionTree.data.should.have.a.property('domContentLoadedEnd').that.is.a('number');
+                data.javascriptExecutionTree.data.should.have.a.property('domComplete').that.is.a('number');
 
                 /*jshint expr: true*/
                 console.log.should.not.have.been.called;

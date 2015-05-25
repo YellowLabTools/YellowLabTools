@@ -143,6 +143,10 @@
   border: 1px dotted #aaa;
   text-align: left;
 }
+.subFilters {
+  margin-left: 3em;
+  font-size: 0.9em;
+}
 .table {
   display: table;
   width: 100%;
@@ -306,9 +310,27 @@
   color: #e74c3c;
   cursor: pointer;
 }
-.warningsFilterOn > div {
+.queryWithoutResultsFilterOn > div {
   display: none;
 }
-.warningsFilterOn > div.warning {
+.queryWithoutResultsFilterOn > div.queryWithoutResults {
+  display: table-row;
+}
+.jQueryCallOnEmptyObjectFilterOn > div {
+  display: none;
+}
+.jQueryCallOnEmptyObjectFilterOn > div.jQueryCallOnEmptyObject {
+  display: table-row;
+}
+.eventNotDelegatedFilterOn > div {
+  display: none;
+}
+.eventNotDelegatedFilterOn > div.eventNotDelegated {
+  display: table-row;
+}
+.jsErrorFilterOn > div {
+  display: none;
+}
+.jsErrorFilterOn > div.jsError {
   display: table-row;
 }
