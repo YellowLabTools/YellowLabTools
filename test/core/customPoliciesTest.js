@@ -1,7 +1,7 @@
 var should = require('chai').should();
 var rulesChecker = require('../../lib/rulesChecker');
 
-describe('rulesChecker', function() {
+describe('customPolicies', function() {
     
     var policies = require('../../lib/metadata/policies.js');
     var results;
@@ -70,131 +70,6 @@ describe('rulesChecker', function() {
         });
     });
 
-    
-    it('should transform DOMinserts offenders', function() {
-        results = rulesChecker.check({
-            "toolsResults": {
-                "phantomas": {
-                    "metrics": {
-                        "DOMinserts": 4
-                    },
-                    "offenders": {
-                        "DOMinserts": [
-                            "\"div\" appended to \"html\"",
-                            "\"DocumentFragment > link[0]\" appended to \"head\"",
-                            "\"div#Netaff-yh1XbS0vK3NaRGu\" appended to \"body > div#Global\"",
-                            "\"img\" appended to \"body\""
-                        ]
-                    }
-                }
-            }
-        }, policies);
-
-        results.should.have.a.property('DOMinserts');
-        results.DOMinserts.should.have.a.property('offendersObj').that.deep.equals({
-            "count": 4,
-            "list": [
-                {
-                    "insertedElement": {
-                        "type": "createdElement",
-                        "element": "div"
-                    },
-                    "receiverElement": {
-                        "type": "html"
-                    }
-                },
-                {
-                    "insertedElement": {
-                        "type": "fragmentElement",
-                        "element": "link[0]",
-                        "tree": {
-                            "DocumentFragment": {
-                                "link[0]": 1
-                            }
-                        }
-                    },
-                    "receiverElement": {
-                        "type": "head"
-                    }
-                },
-                {
-                    "insertedElement": {
-                        "type": "createdElement",
-                        "element": "div#Netaff-yh1XbS0vK3NaRGu"
-                    },
-                    "receiverElement": {
-                        "type": "domElement",
-                        "element": "div#Global",
-                        "tree": {
-                            "body": {
-                                "div#Global": 1
-                            }
-                        }
-                    }
-                },
-                {
-                    "insertedElement": {
-                        "type": "createdElement",
-                        "element": "img"
-                    },
-                    "receiverElement": {
-                        "type": "body"
-                    }
-                }
-            ]
-        });
-    });
-
-    
-    it('should transform DOMqueriesWithoutResults offenders', function() {
-        results = rulesChecker.check({
-            "toolsResults": {
-                "phantomas": {
-                    "metrics": {
-                        "DOMqueriesWithoutResults": 2
-                    },
-                    "offenders": {
-                        "DOMqueriesWithoutResults": [
-                            "#SearchMenu (in #document) using getElementById",
-                            ".partnership-link (in body > div#Global > div#Header > ul#MainMenu) using getElementsByClassName"
-                        ]
-                    }
-                }
-            }
-        }, policies);
-
-        results.should.have.a.property('DOMqueriesWithoutResults');
-        results.DOMqueriesWithoutResults.should.have.a.property('offendersObj').that.deep.equals({
-            "count": 2,
-            "list": [
-                {
-                    "context": {
-                        "type": "document"
-                    },
-                    "fn": "getElementById",
-                    "query": "#SearchMenu "
-                },
-                {
-                    "context": {
-                        "element": "ul#MainMenu",
-                        "tree": {
-                            "body": {
-                                "div#Global": {
-                                    "div#Header": {
-                                        "ul#MainMenu": 1
-                                    }
-                                }
-                            }
-                        },
-                        "type": "domElement"
-                    },
-                    "fn": "getElementsByClassName",
-                    "query": ".partnership-link "
-                }
-            ]
-        });
-    });
-
 
     it('should transform DOMqueriesAvoidable offenders', function() {
         results = rulesChecker.check({
@@ -240,61 +115,6 @@ describe('rulesChecker', function() {
                     },
                     "fn": "getElementsByClassName ",
                     "count": 4
-                }
-            ]
-        });
-    });
-
-
-    it('should transform eventsBound offenders', function() {
-        results = rulesChecker.check({
-            "toolsResults": {
-                "phantomas": {
-                    "metrics": {
-                        "eventsBound": 2
-                    },
-                    "offenders": {
-                        "eventsBound": [
-                            "\"DOMContentLoaded\" bound to \"#document\"",
-                            "\"unload\" bound to \"window\"",
-                            "\"submit\" bound to \"body > div#Global > div#Header > form#search_mini_form\""
-                        ]
-                    }
-                }
-            }
-        }, policies);
-
-        results.should.have.a.property('eventsBound');
-        results.eventsBound.should.have.a.property('offendersObj').that.deep.equals({
-            "count": 3,
-            "list": [
-                {
-                    "element": {
-                        "type": "document"
-                    },
-                    "eventName": "DOMContentLoaded"
-                },
-                {
-                    "element": {
-                        "type": "window"
-                    },
-                    "eventName": "unload"
-                },
-                {
-                    "element": {
-                        "element": "form#search_mini_form",
-                        "tree": {
-                            "body": {
-                                "div#Global": {
-                                    "div#Header": {
-                                        "form#search_mini_form": 1
-                                    }
-                                }
-                            }
-                        },
-                        "type": "domElement"
-                    },
-                    "eventName": "submit"
                 }
             ]
         });

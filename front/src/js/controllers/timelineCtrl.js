@@ -41,16 +41,6 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
             eventNotDelegated: (filter === null || filter === 'eventNotDelegated'),
             jsError: (filter === null || filter === 'jsError')
         };
-
-        // If a filter is defined in the hash (ie: "/result/xxxxx/timeline#filter=queryWithoutResults")
-        var hash = $location.hash();
-        if (hash.indexOf('filter=') === 0) {
-            var filter = hash.substr(7);
-            $scope.warningsFilterOn = true;
-            for (var key in $scope.warningsFilter) {
-
-            }
-        }
     }
 
     function initScriptFiltering() {
