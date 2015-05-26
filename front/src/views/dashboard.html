@@ -1,12 +1,12 @@
 <div ng-include="'views/resultSubHeader.html'"></div>
 <div class="summary board">
-    
-    <div class="globalScore" ng-if="globalScore === 0 || globalScore > 0">
+
+    <div class="globalScore" ng-if="result.scoreProfiles.generic.globalScore === 0 || result.scoreProfiles.generic.globalScore > 0">
         <div>
             <h2>Global score</h2>
             <div class="globalScoreDisplay">
                 <grade score="result.scoreProfiles.generic.globalScore" class="globalGrade"></grade>
-                <div class="on100">{{globalScore}}/100</div>
+                <div class="on100">{{result.scoreProfiles.generic.globalScore}}/100</div>
             </div>
         </div>
         <div>
