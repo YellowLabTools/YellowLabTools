@@ -42,10 +42,13 @@ describe('phantomasWrapper', function() {
         phantomasWrapper.execute({
             params: {
                 url: url,
-                options: {}
+                options: {
+                    device: 'desktop'
+                }
             }
         }).then(function(data) {
 
+            console.log(data);
             done('Error: unwanted success');
 
         }).fail(function(err) {
