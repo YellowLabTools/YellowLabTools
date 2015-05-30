@@ -9,7 +9,11 @@
             <div>{{rule.score}}/100</div>
         </div>
         <div class="right">
-            <h3>Value: {{rule.value}}</h3>
+            <h3>
+                Value:
+                <span ng-if="rule.policy.unit == 'bytes'">{{rule.value | bytes}}</span>
+                <span ng-if="rule.policy.unit != 'bytes'">{{rule.value}}</span>
+            </h3>
             <div ng-bind-html="rule.policy.message" class="message"></div>
         </div>
     </div>
@@ -165,7 +169,6 @@
             </div>
         </div>
 
-
         <div ng-if="!rule.offendersObj.list" class="offendersHtml">
             
             <div ng-if="policyName === 'DOMelementMaxDepth'">
@@ -189,6 +192,22 @@
                 <p>This is the colors palette, sized by total occurrences:</p>
                 <div class="colorPalette">
                     <div ng-repeat="offender in rule.offendersObj.palette" style="background-color: {{offender.color}}; width: {{offender.occurrences * 100 / rule.offendersObj.palette[0].occurrences}}%"><div>{{offender.color}} ({{offender.occurrences}} times)</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'totalWeight'">
+        <h3>Weight by MIME type</h3>
+        <div class="totalWeightPie">
+            <canvas class="chart chart-doughnut" data="weightData" labels="weightLabels" options="weightOptions" colours="weightColours" legend="true"></canvas>
+        </div>
+        <div ng-repeat="type in weightLabels">
+            <h3>{{rule.offendersObj.list.byType[type].totalWeight | bytes}} of {{type}}</h3>
+            <div class="offendersTable">
+                <div ng-repeat="request in rule.offendersObj.list.byType[type].requests | orderBy:'-weight'" ng-if="request.weight > 0">
+                    <div><url-link url="request.url" max-length="60"></url-link></div>
+                    <div ng-class="{hugeFile: request.weight > 102400}">{{request.weight | bytes}}</div>
                 </div>
             </div>
         </div>
