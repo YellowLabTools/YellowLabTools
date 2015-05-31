@@ -133,11 +133,61 @@ describe('imageOptimizer', function() {
     });
 
 
+    it('should optimize an SVG image losslessly', function(done) {
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/svg-image.svg'));
 
+        var fileSize = fileContent.length;
 
+        imageOptimizer.compressSvgLosslessly(fileContent).then(function(newFile) {
+            var newFileSize = newFile.contents.length;
+            newFileSize.should.be.below(fileSize);
+            done();
+        }).fail(function(err) {
+            done(err);
+        });
+    });
 
+    it('should optimize an SVG', function(done) {
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/svg-image.svg'));
+        var fileSize = fileContent.length;
 
+        var entry = {
+            method: 'GET',
+            url: 'http://localhost:8388/an-image.svg',
+            requestHeaders: {
+                'User-Agent': 'something',
+                Referer: 'http://www.google.fr/',
+                Accept: '*/*',
+                'Accept-Encoding': 'gzip, deflate'
+            },
+            status: 200,
+            isImage: true,
+            type: 'image',
+            contentType: 'image/svg+xml',
+            contentLength: 999,
+            weightCheck: {
+                body: fileContent,
+                totalWeight: fileSize + 200,
+                headersSize: 200,
+                bodySize: fileSize,
+                isCompressed: false,
+                uncompressedSize: fileSize
+            }
+        };
 
+        imageOptimizer.optimizeImage(entry)
+
+        .then(function(newEntry) {
+            newEntry.weightCheck.should.have.a.property('isOptimized').that.equals(false);
+            newEntry.weightCheck.should.have.a.property('lossless').that.is.below(fileSize);
+
+            done();
+        })
+
+        .fail(function(err) {
+            done(err);
+        });
+    });
 
 
     it('shouldn\'t fail optimizing a corrupted jpeg', function(done) {
