@@ -76,7 +76,7 @@ describe('weightChecker', function() {
             newEntry.weightCheck.bodySize.should.equal(93636);
             newEntry.weightCheck.uncompressedSize.should.equal(newEntry.weightCheck.bodySize);
             newEntry.weightCheck.isCompressed.should.equal(false);
-            newEntry.weightCheck.headersSize.should.be.above(300).and.below(350);
+            newEntry.weightCheck.headersSize.should.be.above(200).and.below(400);
             newEntry.weightCheck.body.should.have.string('1.8.3');
 
             done();
