@@ -7,7 +7,7 @@ ruleCtrl.config(['ChartJsProvider', function (ChartJsProvider) {
         colours: ['#FF5252', '#FF8A80'],
         responsive: true
     });
-}])
+}]);
 
 ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$sce', 'Menu', 'Results', 'API', function($scope, $rootScope, $routeParams, $location, $sce, Menu, Results, API) {
     $scope.runId = $routeParams.runId;

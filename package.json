@@ -17,6 +17,8 @@
     "cors": "^2.6.0",
     "debug": "~2.2.0",
     "express": "~4.12.4",
+    "imagemin": "~3.2.0",
+    "imagemin-jpegoptim": "~4.0.0",
     "lwip": "0.0.6",
     "meow": "^3.1.0",
     "phantomas": "1.10.2",

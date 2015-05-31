@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var weightChecker = require('../../lib/tools/weightChecker');
+var weightChecker = require('../../lib/tools/weightChecker/weightChecker');
 
 describe('weightChecker', function() {
     
@@ -69,8 +69,9 @@ describe('weightChecker', function() {
             isJS: true
         };
 
-        weightChecker.redownloadEntry(entry, function(err, newEntry) {
-            should.not.exist(err);
+        weightChecker.redownloadEntry(entry)
+
+        .then(function(newEntry) {
 
             newEntry.weightCheck.bodySize.should.equal(93636);
             newEntry.weightCheck.uncompressedSize.should.equal(newEntry.weightCheck.bodySize);
@@ -79,6 +80,10 @@ describe('weightChecker', function() {
             newEntry.weightCheck.body.should.have.string('1.8.3');
 
             done();
+        })
+
+        .fail(function(err) {
+            done(err);
         });
     });
 
@@ -96,12 +101,16 @@ describe('weightChecker', function() {
             contentLength: 999
         };
 
-        weightChecker.redownloadEntry(entry, function(err, newEntry) {
-            should.not.exist(err);
+        weightChecker.redownloadEntry(entry)
 
+        .then(function(errnewEntry) {
             newEntry.weightCheck.should.have.a.property('message').that.equals('error while downloading: 404');
 
             done();
+        })
+
+        .fail(function(err) {
+            done(err);
         });
     });
 
@@ -119,12 +128,16 @@ describe('weightChecker', function() {
             contentLength: 999
         };
 
-        weightChecker.redownloadEntry(entry, function(err, newEntry) {
-            should.not.exist(err);
+        weightChecker.redownloadEntry(entry)
 
+        .then(function(newEntry) {
             newEntry.weightCheck.should.have.a.property('message').that.equals('only downloading requests with status code 200');
 
             done();
+        })
+
+        .fail(function(err) {
+            done(err);
         });
     });
 

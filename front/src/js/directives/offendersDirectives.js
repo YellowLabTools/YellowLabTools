@@ -879,7 +879,7 @@
             }
 
             return mega.toFixed(1) + ' MB';
-        }
+        };
     });
 
 })();
