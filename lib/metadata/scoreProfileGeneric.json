@@ -72,7 +72,8 @@
         "pageWeight": {
             "label": "Page weight",
             "policies": {
-                "totalWeight": 5
+                "totalWeight": 5,
+                "imageOptimization": 3
             }
         },
         "requests": {

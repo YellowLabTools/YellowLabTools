@@ -6,7 +6,7 @@ var path = require('path');
 describe('imageOptimizer', function() {
     
     it('should optimize a JPEG image losslessly', function(done) {
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/jpeg-image.jpg'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/jpeg-image.jpg'));
 
         var fileSize = fileContent.length;
 
@@ -20,7 +20,7 @@ describe('imageOptimizer', function() {
     });
 
     it('should optimize a JPEG image lossly', function(done) {
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/jpeg-image.jpg'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/jpeg-image.jpg'));
 
         var fileSize = fileContent.length;
 
@@ -34,7 +34,7 @@ describe('imageOptimizer', function() {
     });
 
     it('should find the best optimization for a jpeg', function(done) {
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/jpeg-image.jpg'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/jpeg-image.jpg'));
         var fileSize = fileContent.length;
 
         var entry = {
@@ -77,7 +77,7 @@ describe('imageOptimizer', function() {
     });
 
     it('should optimize a PNG image losslessly', function(done) {
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/png-image.png'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/png-image.png'));
 
         var fileSize = fileContent.length;
 
@@ -90,8 +90,36 @@ describe('imageOptimizer', function() {
         });
     });
 
+    it('should fail to optimize an already optimized PNG', function(done) {
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/logo-large.png'));
+
+        var fileSize = fileContent.length;
+
+        imageOptimizer.compressPngLosslessly(fileContent).then(function(newFile) {
+            var newFileSize = newFile.contents.length;
+            newFileSize.should.equal(fileSize);
+            done();
+        }).fail(function(err) {
+            done(err);
+        });
+    });
+
+    it('should fail to optimize a non-PNG', function(done) {
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/svg-image.svg'));
+
+        var fileSize = fileContent.length;
+
+        imageOptimizer.compressPngLosslessly(fileContent).then(function(newFile) {
+            var newFileSize = newFile.contents.length;
+            newFileSize.should.equal(fileSize);
+            done();
+        }).fail(function(err) {
+            done(err);
+        });
+    });
+
     it('should optimize a png', function(done) {
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/png-image.png'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/png-image.png'));
         var fileSize = fileContent.length;
 
         var entry = {
@@ -132,9 +160,8 @@ describe('imageOptimizer', function() {
         });
     });
 
-
     it('should optimize an SVG image losslessly', function(done) {
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/svg-image.svg'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/svg-image.svg'));
 
         var fileSize = fileContent.length;
 
@@ -148,7 +175,7 @@ describe('imageOptimizer', function() {
     });
 
     it('should optimize an SVG', function(done) {
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/svg-image.svg'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/svg-image.svg'));
         var fileSize = fileContent.length;
 
         var entry = {
@@ -194,7 +221,7 @@ describe('imageOptimizer', function() {
 
         // In this test, we try to optimize a PNG but with a falsy "image/jpeg" content type
 
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/png-image.png'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/png-image.png'));
         var fileSize = fileContent.length;
 
         var entry = {
@@ -237,7 +264,7 @@ describe('imageOptimizer', function() {
 
         // In this test, we try to optimize a JPEG but with a falsy "image/png" content type
 
-        var fileContent = fs.readFileSync(path.resolve(__dirname, '../fixtures/jpeg-image.jpg'));
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/jpeg-image.jpg'));
         var fileSize = fileContent.length;
 
         var entry = {
@@ -274,6 +301,17 @@ describe('imageOptimizer', function() {
         .fail(function(err) {
             done(err);
         });
+    });
+
+    it('should determine if gain is enough', function() {
+        imageOptimizer.gainIsEnough(20000, 10000).should.equal(true);
+        imageOptimizer.gainIsEnough(2000, 1000).should.equal(true);
+        imageOptimizer.gainIsEnough(20000, 21000).should.equal(false);
+        imageOptimizer.gainIsEnough(20000, 40000).should.equal(false);
+        imageOptimizer.gainIsEnough(20000, 19500).should.equal(false);
+        imageOptimizer.gainIsEnough(200, 100).should.equal(true);
+        imageOptimizer.gainIsEnough(2000, 1900).should.equal(false);
+        imageOptimizer.gainIsEnough(200000, 197000).should.equal(true);
     });
 
 });
