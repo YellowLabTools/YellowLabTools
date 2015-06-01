@@ -87,8 +87,7 @@ describe('weightChecker', function() {
 
             data.toolsResults.weightChecker.offenders.should.have.a.property('imageOptimization');
             data.toolsResults.weightChecker.offenders.imageOptimization.totalGain.should.be.above(0);
-            data.toolsResults.weightChecker.offenders.imageOptimization.byType.jpeg.requests.length.should.equal(1);
-            data.toolsResults.weightChecker.offenders.imageOptimization.byType.svg.requests.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.imageOptimization.images.length.should.equal(2);
 
             done();
         })

@@ -864,6 +864,10 @@
             
             var kilo = bytes / 1024;
 
+            if (kilo < 1) {
+                return bytes + ' Bytes';
+            }
+
             if (kilo < 100) {
                 return kilo.toFixed(1) + ' KB';
             }

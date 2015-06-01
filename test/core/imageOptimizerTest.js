@@ -309,7 +309,8 @@ describe('imageOptimizer', function() {
         imageOptimizer.gainIsEnough(20000, 21000).should.equal(false);
         imageOptimizer.gainIsEnough(20000, 40000).should.equal(false);
         imageOptimizer.gainIsEnough(20000, 19500).should.equal(false);
-        imageOptimizer.gainIsEnough(200, 100).should.equal(true);
+        imageOptimizer.gainIsEnough(250, 120).should.equal(true);
+        imageOptimizer.gainIsEnough(200, 120).should.equal(false);
         imageOptimizer.gainIsEnough(2000, 1900).should.equal(false);
         imageOptimizer.gainIsEnough(200000, 197000).should.equal(true);
     });

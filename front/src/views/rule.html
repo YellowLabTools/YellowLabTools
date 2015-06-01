@@ -190,7 +190,7 @@
 
             <div ng-if="policyName === 'cssColors' && rule.offendersObj.count > 0">
                 <p>This is the colors palette, sized by total occurrences:</p>
-                <div class="colorPalette">
+                <div class="colorPalette checker">
                     <div ng-repeat="offender in rule.offendersObj.palette" style="background-color: {{offender.color}}; width: {{offender.occurrences * 100 / rule.offendersObj.palette[0].occurrences}}%"><div>{{offender.color}} ({{offender.occurrences}} times)</div></div>
                 </div>
             </div>
@@ -208,6 +208,23 @@
                 <div ng-repeat="request in rule.offendersObj.list.byType[type].requests | orderBy:'-weight'" ng-if="request.weight > 0">
                     <div><url-link url="request.url" max-length="60"></url-link></div>
                     <div ng-class="{hugeFile: request.weight > 102400}">{{request.weight | bytes}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'imageOptimization'">
+        <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.images.length" when="{'one': '1 image', 'other': '{} images'}"></ng-pluralize></h3>
+        <div class="imageOffenders">
+            <div ng-repeat="image in rule.offendersObj.list.images | orderBy:'-gain'">
+                <div>
+                    Current file: <url-link url="image.url" max-length="50"></url-link>
+                    <div><a href="{{image.url}}" target="_blank"><img ng-src="{{image.url}}" class="checker" /></a></div>
+                </div>
+                <div>
+                    <p>Current weight: {{image.original | bytes}}</p>
+                    <p ng-if="image.lossless">With a lossless optimization:<br/>{{image.lossless | bytes}} (<b>-{{image.original - image.lossless | bytes}}</b>)</p>
+                    <p ng-if="image.lossy">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.original - image.lossy | bytes}}</b>)</p>
                 </div>
             </div>
         </div>
