@@ -56,6 +56,16 @@ describe('weightChecker', function() {
                 isImage: true,
                 type: 'image',
                 contentType: 'image/svg+xml'
+            },
+            {
+                method: 'GET',
+                url: 'about:blank',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200
             }
         ];
 
@@ -84,6 +94,7 @@ describe('weightChecker', function() {
             data.toolsResults.weightChecker.offenders.totalWeight.byType.html.requests.length.should.equal(1);
             data.toolsResults.weightChecker.offenders.totalWeight.byType.js.requests.length.should.equal(1);
             data.toolsResults.weightChecker.offenders.totalWeight.byType.image.requests.length.should.equal(2);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.other.requests.length.should.equal(1);
 
             data.toolsResults.weightChecker.offenders.should.have.a.property('imageOptimization');
             data.toolsResults.weightChecker.offenders.imageOptimization.totalGain.should.be.above(0);
