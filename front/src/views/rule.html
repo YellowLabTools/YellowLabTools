@@ -137,9 +137,9 @@
                         <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
                     </div>
 
-                    <div ng-if="policyName === 'requests' || policyName === 'htmlCount' || policyName === 'jsCount' || policyName === 'cssCount' || policyName === 'imageCount' || policyName === 'webfontCount' || policyName === 'videoCount' || policyName === 'jsonCount' || policyName === 'otherCount' || policyName === 'smallJsFiles' || policyName === 'smallCssFiles' || policyName === 'smallImages'">
+                    <div ng-if="policyName === 'requests' || policyName === 'smallJsFiles' || policyName === 'smallCssFiles' || policyName === 'smallImages'">
                         <url-link url="offender.file" max-length="100"></url-link>
-                        <span ng-if="offender.size || offender.size === 0">({{offender.size}} kB)</span>
+                        <span ng-if="offender.size || offender.size === 0">({{offender.size}} KB)</span>
                     </div>
 
                     <div ng-if="policyName === 'notFound' || policyName === 'closedConnections' || policyName === 'multipleRequests' || policyName === 'cachingDisabled' || policyName === 'cachingNotSpecified'">
@@ -226,6 +226,26 @@
                     <p ng-if="image.lossless">With a lossless optimization:<br/>{{image.lossless | bytes}} (<b>-{{image.original - image.lossless | bytes}}</b>)</p>
                     <p ng-if="image.lossy">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.original - image.lossy | bytes}}</b>)</p>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'fileMinification'">
+        <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.files.length" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize></h3>
+        <div class="table">
+            <div class="headers">
+                <div>File</div>
+                <div>Current weight</div>
+                <div>Minified</div>
+                <div>Gain</div>
+            </div>
+            <div ng-repeat="file in rule.offendersObj.list.files | orderBy:'-gain'">
+                <div>
+                    <url-link url="file.url" max-length="60"></url-link>
+                </div>
+                <div>{{file.original | bytes}}</div>
+                <div>{{file.minified | bytes}}</div>
+                <div><b>-{{file.gain | bytes}}</b></div>
             </div>
         </div>
     </div>

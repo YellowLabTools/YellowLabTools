@@ -865,7 +865,7 @@
             var kilo = bytes / 1024;
 
             if (kilo < 1) {
-                return bytes + ' Bytes';
+                return bytes + ' bytes';
             }
 
             if (kilo < 100) {

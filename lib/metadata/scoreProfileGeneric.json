@@ -73,7 +73,9 @@
             "label": "Page weight",
             "policies": {
                 "totalWeight": 5,
-                "imageOptimization": 3
+                "imageOptimization": 2,
+                "fileMinification": 1,
+                "assetsNotGzipped": 2
             }
         },
         "requests": {

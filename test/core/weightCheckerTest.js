@@ -59,6 +59,30 @@ describe('weightChecker', function() {
             },
             {
                 method: 'GET',
+                url: 'http://localhost:8388/unminified-script.js',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200,
+                isJS: true,
+                type: 'js'
+            },
+            {
+                method: 'GET',
+                url: 'http://localhost:8388/unminified-stylesheet.css',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200,
+                isCSS: true,
+                type: 'css'
+            },
+            {
+                method: 'GET',
                 url: 'about:blank',
                 requestHeaders: {
                     'User-Agent': 'something',
@@ -92,13 +116,18 @@ describe('weightChecker', function() {
             data.toolsResults.weightChecker.offenders.should.have.a.property('totalWeight');
             data.toolsResults.weightChecker.offenders.totalWeight.totalWeight.should.be.above(0);
             data.toolsResults.weightChecker.offenders.totalWeight.byType.html.requests.length.should.equal(1);
-            data.toolsResults.weightChecker.offenders.totalWeight.byType.js.requests.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.js.requests.length.should.equal(2);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.css.requests.length.should.equal(1);
             data.toolsResults.weightChecker.offenders.totalWeight.byType.image.requests.length.should.equal(2);
-            data.toolsResults.weightChecker.offenders.totalWeight.byType.other.requests.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.other.requests.length.should.equal(0);
 
             data.toolsResults.weightChecker.offenders.should.have.a.property('imageOptimization');
             data.toolsResults.weightChecker.offenders.imageOptimization.totalGain.should.be.above(0);
             data.toolsResults.weightChecker.offenders.imageOptimization.images.length.should.equal(2);
+
+            data.toolsResults.weightChecker.offenders.should.have.a.property('fileMinification');
+            data.toolsResults.weightChecker.offenders.fileMinification.totalGain.should.be.above(0);
+            data.toolsResults.weightChecker.offenders.fileMinification.files.length.should.equal(2);
 
             done();
         })
@@ -222,8 +251,7 @@ describe('weightChecker', function() {
         weightChecker.redownloadEntry(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('message').that.equals('only downloading requests with status code 200');
-
+            newEntry.should.not.have.a.property('weightCheck');
             done();
         })
 
