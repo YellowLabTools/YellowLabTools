@@ -6,8 +6,8 @@ var path = require('path');
 describe('weightChecker', function() {
     
     it('should download a list of files', function(done) {
-        this.timeout(5000);
-        
+        this.timeout(10000);
+
         var requestsList = [
             {
                 method: 'GET',
