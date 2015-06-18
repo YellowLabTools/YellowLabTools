@@ -51,7 +51,7 @@ describe('fileMinifier', function() {
         .then(function(newEntry) {
             newEntry.weightCheck.should.have.a.property('isOptimized').that.equals(false);
             newEntry.weightCheck.should.have.a.property('optimized').that.is.below(fileSize);
-            newEntry.weightCheck.should.have.a.property('bodyAfterOptimization');
+            newEntry.weightCheck.should.have.a.property('bodyAfterOptimization').that.is.a('string');
 
             done();
         })
@@ -193,7 +193,7 @@ describe('fileMinifier', function() {
         .then(function(newEntry) {
             newEntry.weightCheck.should.have.a.property('isOptimized').that.equals(false);
             newEntry.weightCheck.should.have.a.property('optimized').that.is.below(fileSize);
-            newEntry.weightCheck.should.have.a.property('bodyAfterOptimization');
+            newEntry.weightCheck.should.have.a.property('bodyAfterOptimization').that.is.a('string');
 
             done();
         })
