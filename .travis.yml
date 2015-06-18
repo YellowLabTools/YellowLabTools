@@ -2,7 +2,8 @@ language: node_js
 node_js:
     - "0.10.33"
 before_install:
-    - "npm install -g npm@2.10.0"
+    - sudo apt-get install build-essential
+    - "npm install -g npm@2.9.0"
     - "npm install -g grunt-cli"
 install:
     - "npm install"

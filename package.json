@@ -58,6 +58,6 @@
     "sinon-chai": "^2.7.0"
   },
   "scripts": {
-    "test": "DEBUG=ylt:imageOptimizer grunt test"
+    "test": "grunt test"
   }
 }
