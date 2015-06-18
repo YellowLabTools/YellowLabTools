@@ -56,6 +56,7 @@ describe('weightChecker', function() {
                 },
                 status: 200,
                 isImage: true,
+                isSVG: true,
                 type: 'image',
                 contentType: 'image/svg+xml'
             },
@@ -127,6 +128,10 @@ describe('weightChecker', function() {
             data.toolsResults.weightChecker.offenders.imageOptimization.totalGain.should.be.above(0);
             data.toolsResults.weightChecker.offenders.imageOptimization.images.length.should.equal(2);
 
+            data.toolsResults.weightChecker.offenders.should.have.a.property('gzipCompression');
+            data.toolsResults.weightChecker.offenders.gzipCompression.totalGain.should.be.above(0);
+            data.toolsResults.weightChecker.offenders.gzipCompression.files.length.should.equal(4);
+
             data.toolsResults.weightChecker.offenders.should.have.a.property('fileMinification');
             data.toolsResults.weightChecker.offenders.fileMinification.totalGain.should.be.above(0);
             data.toolsResults.weightChecker.offenders.fileMinification.files.length.should.equal(2);
@@ -149,7 +154,8 @@ describe('weightChecker', function() {
                Accept: '*/*'
             },
             status: 200,
-            isJS: true
+            isJS: true,
+            type: 'js'
         };
 
         weightChecker.redownloadEntry(entry)

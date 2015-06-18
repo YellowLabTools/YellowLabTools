@@ -29,7 +29,7 @@ describe('gzipCompressor', function() {
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 
@@ -65,14 +65,14 @@ describe('gzipCompressor', function() {
             contentLength: 999,
             weightCheck: {
                 body: fileContent.toString('utf8'),
-                bodyAfterMinification: minifiedContent.toString('utf8'),
+                bodyAfterOptimization: minifiedContent.toString('utf8'),
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: false,
-                minified: minifiedSize
+                isOptimized: false,
+                optimized: minifiedSize
             }
         };
 
@@ -109,14 +109,14 @@ describe('gzipCompressor', function() {
             contentLength: 999,
             weightCheck: {
                 body: fileContent.toString('utf8'),
-                bodyAfterMinification: minifiedContent.toString('utf8'),
+                bodyAfterOptimization: minifiedContent.toString('utf8'),
                 totalWeight: gzipedSize + 200,
                 headersSize: 200,
                 bodySize: gzipedSize,
                 isCompressed: true,
                 uncompressedSize: fileSize,
-                isMinified: false,
-                minified: minifiedSize
+                isOptimized: false,
+                optimized: minifiedSize
             }
         };
 
@@ -156,7 +156,7 @@ describe('gzipCompressor', function() {
                 bodySize: gzipedSize,
                 isCompressed: true,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 
@@ -164,7 +164,7 @@ describe('gzipCompressor', function() {
 
         .then(function(newEntry) {
             newEntry.weightCheck.should.not.have.a.property('minified');
-            newEntry.weightCheck.should.not.have.a.property('bodyAfterMinification');
+            newEntry.weightCheck.should.not.have.a.property('bodyAfterOptimization');
             newEntry.weightCheck.should.not.have.a.property('afterCompression');
             newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
 
@@ -194,7 +194,7 @@ describe('gzipCompressor', function() {
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 
@@ -230,7 +230,7 @@ describe('gzipCompressor', function() {
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 
@@ -267,7 +267,7 @@ describe('gzipCompressor', function() {
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 
@@ -303,7 +303,7 @@ describe('gzipCompressor', function() {
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 
@@ -339,7 +339,7 @@ describe('gzipCompressor', function() {
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 
@@ -376,7 +376,7 @@ describe('gzipCompressor', function() {
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 
@@ -413,7 +413,7 @@ describe('gzipCompressor', function() {
                 bodySize: fileSize,
                 isCompressed: false,
                 uncompressedSize: fileSize,
-                isMinified: true
+                isOptimized: true
             }
         };
 

@@ -207,6 +207,8 @@ describe('imageOptimizer', function() {
         .then(function(newEntry) {
             newEntry.weightCheck.should.have.a.property('isOptimized').that.equals(false);
             newEntry.weightCheck.should.have.a.property('lossless').that.is.below(fileSize);
+            newEntry.weightCheck.should.have.a.property('optimized').that.equals(newEntry.weightCheck.lossless);
+            newEntry.weightCheck.should.have.a.property('bodyAfterOptimization');
 
             done();
         })

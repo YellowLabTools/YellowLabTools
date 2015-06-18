@@ -49,8 +49,9 @@ describe('fileMinifier', function() {
         fileMinifier.minifyFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('isMinified').that.equals(false);
-            newEntry.weightCheck.should.have.a.property('minified').that.is.below(fileSize);
+            newEntry.weightCheck.should.have.a.property('isOptimized').that.equals(false);
+            newEntry.weightCheck.should.have.a.property('optimized').that.is.below(fileSize);
+            newEntry.weightCheck.should.have.a.property('bodyAfterOptimization');
 
             done();
         })
@@ -62,7 +63,7 @@ describe('fileMinifier', function() {
 
     it('should fail minifying an already minified JS', function(done) {
         this.timeout(5000);
-        
+
         var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/jquery1.8.3.js'));
         var fileSize = fileContent.length;
 
@@ -92,8 +93,9 @@ describe('fileMinifier', function() {
         fileMinifier.minifyFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.not.have.a.property('isMinified');
-            newEntry.weightCheck.should.not.have.a.property('minified');
+            newEntry.weightCheck.should.not.have.a.property('isOptimized');
+            newEntry.weightCheck.should.not.have.a.property('optimized');
+            newEntry.weightCheck.should.not.have.a.property('bodyAfterOptimization');
 
             done();
         })
@@ -133,8 +135,9 @@ describe('fileMinifier', function() {
         fileMinifier.minifyFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.not.have.a.property('isMinified');
-            newEntry.weightCheck.should.not.have.a.property('minified');
+            newEntry.weightCheck.should.not.have.a.property('isOptimized');
+            newEntry.weightCheck.should.not.have.a.property('optimized');
+            newEntry.weightCheck.should.not.have.a.property('bodyAfterOptimization');
 
             done();
         })
@@ -188,8 +191,9 @@ describe('fileMinifier', function() {
         fileMinifier.minifyFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('isMinified').that.equals(false);
-            newEntry.weightCheck.should.have.a.property('minified').that.is.below(fileSize);
+            newEntry.weightCheck.should.have.a.property('isOptimized').that.equals(false);
+            newEntry.weightCheck.should.have.a.property('optimized').that.is.below(fileSize);
+            newEntry.weightCheck.should.have.a.property('bodyAfterOptimization');
 
             done();
         })
