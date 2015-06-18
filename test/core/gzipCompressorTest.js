@@ -79,9 +79,6 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            delete newEntry.weightCheck.body;
-            delete newEntry.weightCheck.bodyAfterMinification;
-            console.log(newEntry.weightCheck);
             newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
             newEntry.weightCheck.should.have.a.property('afterOptimizationAndCompression').that.is.not.undefined;
             newEntry.weightCheck.should.have.a.property('afterOptimizationAndCompression').that.is.below(newEntry.weightCheck.afterCompression);

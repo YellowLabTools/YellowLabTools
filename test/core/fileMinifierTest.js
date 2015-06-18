@@ -61,6 +61,8 @@ describe('fileMinifier', function() {
     });
 
     it('should fail minifying an already minified JS', function(done) {
+        this.timeout(5000);
+        
         var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/jquery1.8.3.js'));
         var fileSize = fileContent.length;
 
