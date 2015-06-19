@@ -74,8 +74,8 @@
             "policies": {
                 "totalWeight": 5,
                 "imageOptimization": 2,
-                "fileMinification": 1,
-                "assetsNotGzipped": 2
+                "gzipCompression": 2,
+                "fileMinification": 1
             }
         },
         "requests": {

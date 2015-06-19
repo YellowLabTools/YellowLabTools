@@ -146,11 +146,6 @@
                         <url-link url="offender" max-length="100"></url-link>
                     </div>
 
-                    <div ng-if="policyName === 'assetsNotGzipped'">
-                        <url-link url="offender.file" max-length="100"></url-link>
-                        ({{offender.type}})
-                    </div>
-
                     <div ng-if="policyName === 'cachingTooShort'">
                         <url-link url="offender.file" max-length="100"></url-link>
                         cached for <b>{{offender.ttlWithUnit}} {{offender.unit}}</b>
@@ -241,10 +236,12 @@
             </div>
             <div ng-repeat="file in rule.offendersObj.list.files | orderBy:'-gain'">
                 <div>
-                    <url-link url="file.url" max-length="60"></url-link>
+                    <url-link url="file.url" max-length="70"></url-link>
                 </div>
-                <div>{{file.original | bytes}}</div>
-                <div>{{file.minified | bytes}}</div>
+                <div ng-if="!file.afterCompression">{{file.original | bytes}} (gzipped)</div>
+                <div ng-if="file.afterCompression">{{file.original | bytes}} ({{file.afterCompression | bytes}} gzipped)</div>
+                <div ng-if="!file.afterCompression">{{file.afterOptimizationAndCompression | bytes}} (gzipped)</div>
+                <div ng-if="file.afterCompression">{{file.optimized | bytes}} ({{file.afterOptimizationAndCompression | bytes}} gzipped)</div>
                 <div><b>-{{file.gain | bytes}}</b></div>
             </div>
         </div>
