@@ -217,4 +217,23 @@ describe('fileMinifier', function() {
         });
     });
 
+    it('should avoid minifying some JS files known as minified', function() {
+        fileMinifier.isKnownAsMinified('https://platform.twitter.com/widgets.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('http://platform.twitter.com/widgets.js').should.equal(true);
+
+        fileMinifier.isKnownAsMinified('https://connect.facebook.net/fr_FR/sdk.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('https://connect.facebook.net/en_EN/sdk.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('https://connect.facebook.net/fr_FR/all.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('https://connect.facebook.net/en_EN/all.js').should.equal(true);
+
+        fileMinifier.isKnownAsMinified('https://apis.google.com/js/plusone.js').should.equal(true);
+
+        fileMinifier.isKnownAsMinified('https://code.jquery.com/jquery-2.1.4.min.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('http://code.jquery.com/jquery-2.1.4.min.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('https://code.jquery.com/jquery-2.1.4.js').should.equal(false);
+        fileMinifier.isKnownAsMinified('http://code.jquery.com/jquery-2.1.4.js').should.equal(false);
+
+        fileMinifier.isKnownAsMinified('http://anydomain.com/anyurl').should.equal(false);
+    });
+
 });
