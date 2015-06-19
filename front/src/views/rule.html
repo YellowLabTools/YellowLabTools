@@ -137,8 +137,9 @@
                         <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
                     </div>
 
-                    <div ng-if="policyName === 'requests'">
-                        <url-link url="offender.file" max-length="100"></url-link>
+                    <div ng-if="policyName === 'lazyLoadableImagesBelowTheFold'">
+                        <url-link url="offender" max-length="100"></url-link>
+                        <img ng-src="{{offender}}" class="smallPreview checker"></img>
                     </div>
 
                     <div ng-if="policyName === 'notFound' || policyName === 'closedConnections' || policyName === 'multipleRequests' || policyName === 'cachingDisabled' || policyName === 'cachingNotSpecified'">

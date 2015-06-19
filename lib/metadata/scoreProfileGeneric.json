@@ -85,7 +85,8 @@
                 "domains": 3,
                 "notFound": 3,
                 "multipleRequests": 2,
-                "smallRequests": 1
+                "smallRequests": 1,
+                "lazyLoadableImagesBelowTheFold": 2
             }
         },
         "serverConfig": {
