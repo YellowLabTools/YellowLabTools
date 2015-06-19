@@ -137,9 +137,8 @@
                         <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
                     </div>
 
-                    <div ng-if="policyName === 'requests' || policyName === 'smallJsFiles' || policyName === 'smallCssFiles' || policyName === 'smallImages'">
+                    <div ng-if="policyName === 'requests'">
                         <url-link url="offender.file" max-length="100"></url-link>
-                        <span ng-if="offender.size || offender.size === 0">({{offender.size}} KB)</span>
                     </div>
 
                     <div ng-if="policyName === 'notFound' || policyName === 'closedConnections' || policyName === 'multipleRequests' || policyName === 'cachingDisabled' || policyName === 'cachingNotSpecified'">
