@@ -269,6 +269,44 @@
         </div>
     </div>
 
+    <div ng-if="policyName === 'totalRequests'">
+        <h3>Requests by MIME type</h3>
+        <div ng-repeat="(type, requests) in rule.offendersObj.list.byType">
+            <h3><ng-pluralize count="requests.length" when="{'0': 'No ' + type + ' request', 'one': '1 ' + type + ' request', 'other': '{} ' + type + ' requests'}"></ng-pluralize></h3>
+            <p ng-if="type == 'css' && requests.length > 2">Reduce the number of stylesheets by concatenating them.</p>
+            <p ng-if="type == 'js' && requests.length > 3">Reduce the number of scripts by concatenating them.</p>
+            <p ng-if="type == 'image' && requests.length > 5">Reduce the number of images by lazyloading them or by spriting them.</p>
+            <p ng-if="type == 'webfont' && requests.length > 1">Fonts are generally loaded on the critical path of the head. Load as few as possible.</p>
+            <p ng-if="type == 'other' && requests.length > 0">They can be Flash, XML, music or any undetected format.</p>
+            <div class="offendersTable">
+                <div ng-repeat="request in requests track by $index">
+                    <div><url-link url="request" max-length="100"></url-link></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'smallRequests'">
+        <div ng-repeat="(type, requests) in rule.offendersObj.list.byType">
+            <h3><ng-pluralize count="requests.length" when="{'0': 'small ' + type + ' file', 'one': '1 small ' + type + ' file', 'other': '{} small ' + type + ' files'}"></ng-pluralize></h3>
+            <p ng-if="type == 'css' && requests.length > 0">Try to inline these styles in the head of the HTML or to merge them with other files.</p>
+            <p ng-if="type == 'js' && requests.length > 0">Try to inline these scripts in the HTML or merge them with other files.</p>
+            <p ng-if="type == 'image' && requests.length > 0">Try to inline these images (with base64 encoding for most image types except SVG that don't need base64 encoding). You can also create sprites.</p>
+            <div class="table">
+                <div class="headers">
+                    <div ng-if="type == 'image'">Preview</div>
+                    <div>File</div>
+                    <div>Weight (bytes)</div>
+                </div>
+                <div ng-repeat="request in requests track by $index">
+                    <div ng-if="type == 'image'"><img ng-src="{{request.url}}" class="smallPreview checker" /></div>
+                    <div><url-link url="request.url" max-length="100"></url-link></div>
+                    <div>{{request.size}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div ng-if="policyName === 'DOMaccesses'">
         <h3>{{rule.value}} offenders</h3>
         Please open the <a href="/result/{{runId}}/timeline">JS timeline</a>

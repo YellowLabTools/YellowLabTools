@@ -81,7 +81,7 @@
         "requests": {
             "label": "Requests",
             "policies": {
-                "requests": 5,
+                "totalRequests": 5,
                 "domains": 3,
                 "notFound": 3,
                 "multipleRequests": 2,

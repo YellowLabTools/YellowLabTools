@@ -136,6 +136,23 @@ describe('weightChecker', function() {
             data.toolsResults.weightChecker.offenders.fileMinification.totalGain.should.be.above(0);
             data.toolsResults.weightChecker.offenders.fileMinification.files.length.should.equal(2);
 
+            data.toolsResults.weightChecker.metrics.should.have.a.property('totalRequests').that.equals(6);
+            data.toolsResults.weightChecker.offenders.should.have.a.property('totalRequests');
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.html.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.js.length.should.equal(2);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.css.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.image.length.should.equal(2);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.json.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.webfont.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.video.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.other.length.should.equal(0);
+
+            data.toolsResults.weightChecker.metrics.should.have.a.property('smallRequests').that.equals(0);
+            data.toolsResults.weightChecker.offenders.should.have.a.property('smallRequests');
+            data.toolsResults.weightChecker.offenders.smallRequests.byType.js.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.smallRequests.byType.css.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.smallRequests.byType.image.length.should.equal(0);
+
             done();
         })
 
