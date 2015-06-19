@@ -189,6 +189,7 @@ describe('imageOptimizer', function() {
             },
             status: 200,
             isImage: true,
+            isSVG: true,
             type: 'image',
             contentType: 'image/svg+xml',
             contentLength: 999,
