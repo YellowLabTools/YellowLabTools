@@ -217,9 +217,12 @@
                     <div><a href="{{image.url}}" target="_blank"><img ng-src="{{image.url}}" class="checker" /></a></div>
                 </div>
                 <div>
-                    <p>Current weight: {{image.original | bytes}}</p>
-                    <p ng-if="image.lossless">With a lossless optimization:<br/>{{image.lossless | bytes}} (<b>-{{image.original - image.lossless | bytes}}</b>)</p>
-                    <p ng-if="image.lossy">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.original - image.lossy | bytes}}</b>)</p>
+                    <p ng-if="!image.afterCompression">Current weight: {{image.original | bytes}}</p>
+                    <p ng-if="image.afterCompression">Current weight: {{image.original | bytes}} ({{image.afterCompression | bytes}} gzipped)</p>
+                    <p ng-if="image.lossless && image.afterOptimizationAndCompression">With a lossless optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} gzipped (<b>-{{image.gain | bytes}}</b> gzipped)</p>
+                    <p ng-if="image.lossless && !image.afterOptimizationAndCompression">With a lossless optimization:<br/>{{image.lossless | bytes}} (<b>-{{image.gain | bytes}}</b>)</p>
+                    <p ng-if="image.lossy && image.afterOptimizationAndCompression">With a lossy optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} gzipped (<b>-{{image.gain | bytes}} gzipped</b>)</p>
+                    <p ng-if="image.lossy && !image.afterOptimizationAndCompression">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.gain | bytes}}</b>)</p>
                 </div>
             </div>
         </div>
