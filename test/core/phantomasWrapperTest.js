@@ -48,7 +48,6 @@ describe('phantomasWrapper', function() {
             }
         }).then(function(data) {
 
-            console.log(data);
             done('Error: unwanted success');
 
         }).fail(function(err) {

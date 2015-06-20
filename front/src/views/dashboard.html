@@ -35,7 +35,8 @@
                         </div>
                         <div class="label">{{rule.policy.label}}</div>
                         <div class="result">
-                            {{rule.value}}
+                            <span ng-if="rule.policy.unit == 'bytes'">{{rule.value | bytes}}</span>
+                            <span ng-if="rule.policy.unit != 'bytes'">{{rule.value}}</span>
                             <span ng-if="rule.abnormal" class="icon-warning"></span>
                             <span ng-if="rule.abnormalityScore <= -100" class="icon-warning"></span>
                             <span ng-if="rule.abnormalityScore <= -300" class="icon-warning"></span>

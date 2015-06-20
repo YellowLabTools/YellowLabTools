@@ -1,6 +1,8 @@
 language: node_js
 node_js:
-    - "0.10.33"
+    - "0.12.4"
 before_install:
+    - "npm install -g npm"
     - "npm install -g grunt-cli"
-install: npm install
+install:
+    - "npm install"

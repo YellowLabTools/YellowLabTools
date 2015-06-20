@@ -9,7 +9,11 @@
             <div>{{rule.score}}/100</div>
         </div>
         <div class="right">
-            <h3>Value: {{rule.value}}</h3>
+            <h3>
+                Value:
+                <span ng-if="rule.policy.unit == 'bytes'">{{rule.value | bytes}}</span>
+                <span ng-if="rule.policy.unit != 'bytes'">{{rule.value}}</span>
+            </h3>
             <div ng-bind-html="rule.policy.message" class="message"></div>
         </div>
     </div>
@@ -133,18 +137,13 @@
                         <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
                     </div>
 
-                    <div ng-if="policyName === 'requests' || policyName === 'htmlCount' || policyName === 'jsCount' || policyName === 'cssCount' || policyName === 'imageCount' || policyName === 'webfontCount' || policyName === 'videoCount' || policyName === 'jsonCount' || policyName === 'otherCount' || policyName === 'smallJsFiles' || policyName === 'smallCssFiles' || policyName === 'smallImages'">
-                        <url-link url="offender.file" max-length="100"></url-link>
-                        <span ng-if="offender.size || offender.size === 0">({{offender.size}} kB)</span>
+                    <div ng-if="policyName === 'lazyLoadableImagesBelowTheFold'">
+                        <url-link url="offender" max-length="100"></url-link>
+                        <img ng-src="{{offender}}" class="smallPreview checker"></img>
                     </div>
 
                     <div ng-if="policyName === 'notFound' || policyName === 'closedConnections' || policyName === 'multipleRequests' || policyName === 'cachingDisabled' || policyName === 'cachingNotSpecified'">
                         <url-link url="offender" max-length="100"></url-link>
-                    </div>
-
-                    <div ng-if="policyName === 'assetsNotGzipped'">
-                        <url-link url="offender.file" max-length="100"></url-link>
-                        ({{offender.type}})
                     </div>
 
                     <div ng-if="policyName === 'cachingTooShort'">
@@ -164,7 +163,6 @@
                 </div>
             </div>
         </div>
-
 
         <div ng-if="!rule.offendersObj.list" class="offendersHtml">
             
@@ -187,8 +185,124 @@
 
             <div ng-if="policyName === 'cssColors' && rule.offendersObj.count > 0">
                 <p>This is the colors palette, sized by total occurrences:</p>
-                <div class="colorPalette">
+                <div class="colorPalette checker">
                     <div ng-repeat="offender in rule.offendersObj.palette" style="background-color: {{offender.color}}; width: {{offender.occurrences * 100 / rule.offendersObj.palette[0].occurrences}}%"><div>{{offender.color}} ({{offender.occurrences}} times)</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'totalWeight'">
+        <h3>Weight by MIME type</h3>
+        <div class="totalWeightPie">
+            <canvas class="chart chart-doughnut" data="weightData" labels="weightLabels" options="weightOptions" colours="weightColours" legend="true"></canvas>
+        </div>
+        <div ng-repeat="type in weightLabels">
+            <h3>{{rule.offendersObj.list.byType[type].totalWeight | bytes}} of {{type}}</h3>
+            <div class="offendersTable">
+                <div ng-repeat="request in rule.offendersObj.list.byType[type].requests | orderBy:'-weight'" ng-if="request.weight > 0">
+                    <div><url-link url="request.url" max-length="60"></url-link></div>
+                    <div ng-class="{hugeFile: request.weight > 102400}">{{request.weight | bytes}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'imageOptimization'">
+        <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.images.length" when="{'one': '1 image', 'other': '{} images'}"></ng-pluralize></h3>
+        <div class="imageOffenders">
+            <div ng-repeat="image in rule.offendersObj.list.images | orderBy:'-gain'">
+                <div>
+                    Current file: <url-link url="image.url" max-length="50"></url-link>
+                    <div><a href="{{image.url}}" target="_blank"><img ng-src="{{image.url}}" class="checker" /></a></div>
+                </div>
+                <div>
+                    <p ng-if="!image.afterCompression">Current weight: {{image.original | bytes}}</p>
+                    <p ng-if="image.afterCompression">Current weight: {{image.original | bytes}} ({{image.afterCompression | bytes}} gzipped)</p>
+                    <p ng-if="image.lossless && image.afterOptimizationAndCompression">With a lossless optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} gzipped (<b>-{{image.gain | bytes}}</b> gzipped)</p>
+                    <p ng-if="image.lossless && !image.afterOptimizationAndCompression">With a lossless optimization:<br/>{{image.lossless | bytes}} <span ng-if="!image.lossy">(<b>-{{image.gain | bytes}}</b>)</span></p>
+                    <p ng-if="image.lossy && image.afterOptimizationAndCompression">With a lossy optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} gzipped (<b>-{{image.gain | bytes}} gzipped</b>)</p>
+                    <p ng-if="image.lossy && !image.afterOptimizationAndCompression">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.gain | bytes}}</b>)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'gzipCompression'">
+        <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.images.length" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize></h3>
+        <div class="table">
+            <div class="headers">
+                <div>File</div>
+                <div>Current weight</div>
+                <div>Gzipped</div>
+                <div>Gain</div>
+            </div>
+            <div ng-repeat="file in rule.offendersObj.list.files | orderBy:'-gain'">
+                <div>
+                    <url-link url="file.url" max-length="70"></url-link>
+                </div>
+                <div>{{file.original | bytes}}</div>
+                <div>{{file.gzipped | bytes}}</div>
+                <div><b>-{{file.gain | bytes}}</b></div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'fileMinification'">
+        <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.files.length" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize></h3>
+        <div class="table">
+            <div class="headers">
+                <div>File</div>
+                <div>Current weight</div>
+                <div>Minified</div>
+                <div>Gain</div>
+            </div>
+            <div ng-repeat="file in rule.offendersObj.list.files | orderBy:'-gain'">
+                <div>
+                    <url-link url="file.url" max-length="70"></url-link>
+                </div>
+                <div ng-if="!file.afterCompression">{{file.original | bytes}} (gzipped)</div>
+                <div ng-if="file.afterCompression">{{file.original | bytes}} ({{file.afterCompression | bytes}} gzipped)</div>
+                <div ng-if="!file.afterCompression">{{file.afterOptimizationAndCompression | bytes}} (gzipped)</div>
+                <div ng-if="file.afterCompression">{{file.optimized | bytes}} ({{file.afterOptimizationAndCompression | bytes}} gzipped)</div>
+                <div><b>-{{file.gain | bytes}}</b></div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'totalRequests'">
+        <h3>Requests by MIME type</h3>
+        <div ng-repeat="(type, requests) in rule.offendersObj.list.byType">
+            <h3><ng-pluralize count="requests.length" when="{'0': 'No ' + type + ' request', 'one': '1 ' + type + ' request', 'other': '{} ' + type + ' requests'}"></ng-pluralize></h3>
+            <p ng-if="type == 'css' && requests.length > 2">Reduce the number of stylesheets by concatenating them.</p>
+            <p ng-if="type == 'js' && requests.length > 3">Reduce the number of scripts by concatenating them.</p>
+            <p ng-if="type == 'image' && requests.length > 5">Reduce the number of images by lazyloading them or by spriting them.</p>
+            <p ng-if="type == 'webfont' && requests.length > 1">Fonts are generally loaded on the critical path of the head. Load as few as possible.</p>
+            <p ng-if="type == 'other' && requests.length > 0">They can be Flash, XML, music or any undetected format.</p>
+            <div class="offendersTable">
+                <div ng-repeat="request in requests track by $index">
+                    <div><url-link url="request" max-length="100"></url-link></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'smallRequests'">
+        <div ng-repeat="(type, requests) in rule.offendersObj.list.byType">
+            <h3><ng-pluralize count="requests.length" when="{'0': 'small ' + type + ' file', 'one': '1 small ' + type + ' file', 'other': '{} small ' + type + ' files'}"></ng-pluralize></h3>
+            <p ng-if="type == 'css' && requests.length > 0">Try to inline these styles in the head of the HTML or to merge them with other files.</p>
+            <p ng-if="type == 'js' && requests.length > 0">Try to inline these scripts in the HTML or merge them with other files.</p>
+            <p ng-if="type == 'image' && requests.length > 0">Try to inline these images (with base64 encoding for most image types except SVG that don't need base64 encoding). You can also create sprites.</p>
+            <div class="table">
+                <div class="headers">
+                    <div ng-if="type == 'image'">Preview</div>
+                    <div>File</div>
+                    <div>Weight (bytes)</div>
+                </div>
+                <div ng-repeat="request in requests track by $index">
+                    <div ng-if="type == 'image'"><img ng-src="{{request.url}}" class="smallPreview checker" /></div>
+                    <div><url-link url="request.url" max-length="100"></url-link></div>
+                    <div>{{request.size}}</div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,772 @@
+/* Timeline colors, related to Window Performances */
+.execution {
+  text-align: center;
+}
+.selectScript {
+  padding-bottom: 2em;
+  font-size: 0.9em;
+}
+.selectScript select {
+  max-width: 30em;
+}
+.selectScript.empty {
+  font-size: 0.8em;
+}
+.selectScript.empty select {
+  width: 10em;
+}
+.timeline {
+  margin: 2em 0 5em;
+}
+.timeline .chart {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+.timeline .startTime,
+.timeline .endTime {
+  position: absolute;
+  bottom: 0.5em;
+  font-size: 0.8em;
+}
+.timeline .startTime {
+  left: 0em;
+}
+.timeline .endTime {
+  right: 0em;
+}
+.timeline .chartPoints {
+  display: table;
+  height: 100px;
+  width: 99%;
+  margin: 0 auto;
+}
+.timeline .interval {
+  display: table-cell;
+  position: relative;
+  height: 100px;
+  width: 0.5%;
+}
+.timeline .interval .color {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.timeline .interval .color.clickable {
+  cursor: pointer;
+}
+.timeline div.interval:hover {
+  background: #9C4274;
+}
+.timeline .interval:hover .color {
+  background: #F04DA7;
+}
+.timeline .domComplete.interval {
+  background: #ede3ff;
+}
+.timeline .domComplete .color {
+  background: #c2a3ff;
+}
+.timeline .domContentLoadedEnd.interval {
+  background: #d8f0f0;
+}
+.timeline .domContentLoadedEnd .color {
+  background: #7ecccc;
+}
+.timeline .domContentLoaded.interval {
+  background: #e0ffd1;
+}
+.timeline .domContentLoaded .color {
+  background: #a7e846;
+}
+.timeline .domInteractive.interval {
+  background: #fffccc;
+}
+.timeline .domInteractive .color {
+  background: #ffe433;
+}
+.timeline .domCreation.interval {
+  background: #ffe0cc;
+}
+.timeline .domCreation .color {
+  background: #ff6600;
+}
+.timeline .tooltip.detailsOverlay {
+  position: absolute;
+  display: none;
+  width: auto;
+  padding: 0.5em 1em;
+  top: -1.5em;
+  right: 1em;
+}
+.timeline .interval:hover .tooltip {
+  display: block;
+}
+.timeline .legend {
+  display: table;
+  width: 100%;
+  margin-top: 1em;
+}
+.timeline .legend > div {
+  display: table-row;
+}
+.timeline .legend > div > div {
+  position: relative;
+  display: table-cell;
+  margin-top: 1em;
+}
+.timeline .titles {
+  font-weight: bold;
+}
+.timeline .titles > div {
+  padding: 0 1em 0 2em;
+}
+.timeline .tips {
+  font-size: 0.7em;
+}
+.timeline .tips > div {
+  padding: 1em 1em 0 0;
+}
+.timeline .legend .color {
+  display: block;
+  position: absolute;
+  left: 0;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 0.2em;
+}
+.filters {
+  margin: 1em auto;
+  padding: 0.5em;
+  min-width: 30em;
+  width: 30%;
+  border: 1px dotted #aaa;
+  text-align: left;
+}
+.subFilters {
+  margin-left: 3em;
+  font-size: 0.9em;
+}
+.table {
+  display: table;
+  width: 100%;
+  border-spacing: 0.25em;
+}
+.table > div {
+  display: table-row;
+}
+.table > .headers > div {
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+.table > div > div {
+  padding: 0.1em 1em;
+  background: #f2f2f2;
+  display: table-cell;
+  text-align: left;
+}
+.table > div.jsError > .type,
+.table > div.jsError > .value {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.table > div.windowPerformance > div,
+.table > div.windowPerformance > div.startTime {
+  background: #EBD8E2;
+}
+.table > div.showingDetails > div {
+  background: #f1c40f;
+}
+.table > div.highlight > div.startTime {
+  background-color: #C0F090;
+}
+.table > div.highlight-remove {
+  transition: 3s;
+}
+.table > div.highlight-remove > div.startTime {
+  transition: background-color 3s ease-in;
+}
+.table > div > .index {
+  color: #bbb;
+  word-break: normal;
+}
+.table > div > .type {
+  white-space: nowrap;
+}
+.table .children {
+  margin-top: 0.2em;
+  font-size: 0.8em;
+  line-height: 1.6em;
+}
+.table .child {
+  margin-left: 0.5em;
+}
+.table .child > .child {
+  margin-left: 1em;
+}
+.table .child:before {
+  content: "↳";
+}
+.table .child .childArgs {
+  display: none;
+}
+.table .child span {
+  position: relative;
+}
+.table .child span:hover {
+  background: #EBD8E2;
+}
+.table .child span:hover div {
+  display: inline-block;
+}
+.table .child span:hover .childArgs {
+  display: block;
+  position: absolute;
+  padding: 0 1em 0 2em;
+  left: 100%;
+  top: 0;
+  background: #EBD8E2;
+  line-height: 1.3em;
+  height: 1.3em;
+  z-index: 2;
+}
+.table .showingDetails .child span:hover {
+  background: inherit;
+}
+.table .showingDetails .child span:hover .childArgs {
+  display: none;
+}
+.table > div > .value {
+  width: 70%;
+  word-break: break-all;
+}
+.table > div > .details {
+  position: relative;
+}
+.table .details .icon-question {
+  color: #f1c40f;
+  cursor: pointer;
+}
+.table .icon-warning {
+  display: inline-block;
+  width: 0.8em;
+}
+.detailsOverlay {
+  display: none;
+  position: absolute;
+  right: 3em;
+  top: -3em;
+  width: 45em;
+  min-height: 1em;
+  padding: 0 1em 1em;
+  background: #fff;
+  border: 2px solid #f1c40f;
+  border-radius: 0.5em;
+  z-index: 2;
+}
+@media screen and (max-width: 1024px) {
+  .detailsOverlay {
+    width: 25em;
+  }
+}
+.showDetails .detailsOverlay {
+  display: block;
+}
+.detailsOverlay .closeBtn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  color: #f1c40f;
+  cursor: pointer;
+}
+.detailsOverlay .advice {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.detailsOverlay .trace {
+  word-break: break-all;
+}
+.table > div > .duration,
+.table > div > .startTime {
+  text-align: center;
+  white-space: nowrap;
+}
+.table > div > .startTime.domComplete {
+  background: #ede3ff;
+}
+.table > div > .startTime.domContentLoadedEnd {
+  background: #d8f0f0;
+}
+.table > div > .startTime.domContentLoaded {
+  background: #e0ffd1;
+}
+.table > div > .startTime.domInteractive {
+  background: #fffccc;
+}
+.table > div > .startTime.domCreation {
+  background: #ffe0cc;
+}
+.execution .icon-warning {
+  color: #e74c3c;
+  cursor: pointer;
+}
+.queryWithoutResultsFilterOn > div {
+  display: none;
+}
+.queryWithoutResultsFilterOn > div.queryWithoutResults {
+  display: table-row;
+}
+.jQueryCallOnEmptyObjectFilterOn > div {
+  display: none;
+}
+.jQueryCallOnEmptyObjectFilterOn > div.jQueryCallOnEmptyObject {
+  display: table-row;
+}
+.eventNotDelegatedFilterOn > div {
+  display: none;
+}
+.eventNotDelegatedFilterOn > div.eventNotDelegated {
+  display: table-row;
+}
+.jsErrorFilterOn > div {
+  display: none;
+}
+.jsErrorFilterOn > div.jsError {
+  display: table-row;
+}
+.testedUrl {
+  color: inherit;
+}
+.summary {
+  text-align: center;
+}
+.summary .globalScore {
+  display: table;
+  width: 60%;
+  margin: 3em auto;
+}
+.summary .globalScore > div {
+  display: table-cell;
+  width: 50%;
+  vertical-align: middle;
+}
+.summary .globalScore .globalGrade {
+  margin: 0.5 auto;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  border-radius: 0.5em;
+  font-size: 3em;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.summary .globalScore .on100 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0.5em 0 1em;
+}
+.summary .globalScore .screenshotWrapper:hover {
+  opacity: 0.75;
+}
+.summary .globalScore .screenshotWrapper:hover:after {
+  position: absolute;
+  width: 1.25em;
+  height: 1.25em;
+  top: 0.7em;
+  left: 1.55em;
+  font-size: 3em;
+  color: #FFF;
+  background: #000;
+  border-radius: 0.2em;
+  text-align: center;
+  content: "+";
+  opacity: 0.85;
+}
+.summary .globalScore .screenshotWrapper.phone:hover:after {
+  top: 1.7em;
+  left: 0.64em;
+}
+.summary .globalScore .screenshotWrapper.tablet:hover:after {
+  top: 1.5em;
+  left: 0.9em;
+}
+.summary .notations {
+  display: table;
+  width: 80%;
+  margin: 0 10% 1.5em;
+  border-spacing: 1em;
+}
+.summary .notations > div {
+  display: table-row;
+}
+.summary .notations > div > div {
+  display: table-cell;
+  height: 2.5em;
+  vertical-align: middle;
+}
+.summary .notations .category {
+  font-weight: bold;
+  text-align: center;
+  width: 20%;
+}
+.summary .notations .criteria {
+  font-weight: normal;
+  width: 75%;
+}
+.summary .notations .A.categoryScore,
+.summary .notations .B.categoryScore,
+.summary .notations .C.categoryScore,
+.summary .notations .D.categoryScore,
+.summary .notations .E.categoryScore,
+.summary .notations .F.categoryScore,
+.summary .notations .NA.categoryScore {
+  width: 2.5em;
+  max-width: 2.5em;
+  min-width: 2.5em;
+  font-size: 2em;
+  text-align: center;
+  border-radius: 0.5em;
+  font-weight: bold;
+}
+.summary .notations .grade .A,
+.summary .notations .grade .B,
+.summary .notations .grade .C,
+.summary .notations .grade .D,
+.summary .notations .grade .E,
+.summary .notations .grade .F,
+.summary .notations .grade .NA {
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  color: transparent;
+  margin: 0 auto;
+  border-radius: 0.5em;
+}
+.summary .notations .criteria .table {
+  width: 100%;
+}
+.summary .notations .criteria .table > div:hover > div {
+  background: #EBD8E2;
+  cursor: pointer;
+}
+.summary .notations .criteria .table > div:hover > div.info {
+  background: #FFF;
+}
+.summary .notations .criteria .table > div:hover > div.info .icon-question {
+  color: #EBD8E2;
+}
+.summary .notations .criteria .grade {
+  width: 10%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  vertical-align: middle;
+}
+.summary .notations .criteria .label {
+  width: 70%;
+}
+.summary .notations .criteria .result {
+  width: 18%;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+}
+.summary .notations .warning .label,
+.summary .notations .warning .result,
+.summary .notations .icon-warning {
+  color: #FF1919;
+}
+.summary .notations .criteria .info {
+  width: 2%;
+  text-align: center;
+  vertical-align: middle;
+  background: #FFF;
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+}
+.summary .notations .criteria .icon-question {
+  color: transparent;
+}
+.summary .fromShare {
+  margin-bottom: 3em;
+}
+.summary .apiTip {
+  font-size: 0.8em;
+  margin-bottom: 4em;
+  color: #413;
+}
+.summary .apiTip a {
+  color: inherit;
+}
+.summary .tweet .tweetText {
+  color: #413;
+  background: #F2F2F2;
+  border: none;
+  width: 25em;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  box-shadow: 0.05em 0.1em 0 0 #999;
+}
+.summary .tweet .tweetButton,
+.summary .tweet .linkedinButton {
+  color: #413;
+  background: #F2F2F2;
+  margin-right: 0;
+}
+.summary .tweet .tweetButton:hover,
+.summary .tweet .linkedinButton:hover {
+  color: #F2F2F2;
+  background: #e74c3c;
+}
+.summary .tweet input {
+  font-size: 0.9em;
+}
+
+
+.promess {
+  padding: 0em 2em;
+  margin-bottom: 0.5em;
+  font-weight: normal;
+  font-size: 1.2em;
+}
+.price {
+  padding: 0em 2em 3em;
+  margin-top: 0em;
+  font-size: 0.9em;
+}
+.url {
+  width: 50%;
+}
+.launchBtn {
+  background: #ffa319;
+  color: #fff;
+}
+.launchBtn:focus {
+  background: #e74c3c;
+}
+.launchBtn.disabled {
+  background: #deaca6;
+}
+.launchBtn.disabled:focus {
+  color: #ddd;
+}
+.settings {
+  width: 50%;
+  margin: 0 auto;
+}
+.settings input,
+.settings select {
+  font-size: 1em;
+}
+.settings input[type=text] {
+  width: 100%;
+  min-width: 4em;
+}
+.device {
+  margin-top: 3em;
+}
+.device .item {
+  display: inline-block;
+  margin: 1em 0.75em;
+  width: 5.5em;
+  height: 5.5em;
+  color: #FFF;
+  border: 1px solid #FFF;
+  padding: 1px;
+  border-radius: 0.5em;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.8em;
+}
+                                                                                       
+.device .item.active {                             
+  color: #ffa319;                             
+  border: 2px solid #ffa319;                             
+  padding: 0;                             
+}                             
+.device .item:hover {                             
+  color: #ffa319;                             
+}                             
+.device .item > div {                             
+  margin: 0.2em 0 0.1em;                             
+  font-size: 3em;                             
+}                             
+.settingsTooltip {
+  position: relative;
+}
+.settingsTooltip span {
+  font-size: 0.8em;
+  vertical-align: text-top;
+}
+.settingsTooltip div {
+  display: none;
+  position: absolute;
+  padding: 0.5em;
+  width: 25em;
+  background: #FFF;
+  color: #000;
+  font-size: 0.8em;
+  border-radius: 1em;
+  border: 2px solid #ffa319;
+  white-space: normal;
+  z-index: 2;
+}
+.settingsTooltip:hover div {
+  display: block;
+}
+.showAdvanced {
+  display: inline-block;
+  margin-top: 2em;
+  color: #FFF;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.showAdvanced:hover {
+  color: #ffa319;
+}
+.currentSettings {
+  font-size: 0.9em;
+}
+.currentSettings span {
+  color: #ffa319;
+}
+.currentSettings span:after {
+  color: #FFF;
+  content: ",";
+}
+.currentSettings span:last-child:after {
+  content: "";
+}
+.advanced {
+  margin: 1em 0 0;
+  display: table;
+  width: 100%;
+  text-align: left;
+  border-spacing: 0.75em;
+}
+.advanced > div {
+  display: table-row;
+}
+.advanced > div > div {
+  display: table-cell;
+  width: 75%;
+}
+.advanced > div > div.label {
+  width: 25%;
+  white-space: nowrap;
+}
+.advanced .subTable {
+  display: table;
+  border-spacing: 0;
+  width: 100%;
+}
+.advanced .subTable > div {
+  display: table-row;
+}
+.advanced .subTable > div > div {
+  display: table-cell;
+  padding: 0 0 0.75em;
+}
+.features {
+  display: table;
+  width: 50%;
+  margin: 6em auto 0;
+  font-size: 0.9em;
+  color: #413;
+}
+.features > div {
+  width: 33.3%;
+  display: table-cell;
+  padding: 0 1.5em;
+}
+input[type=submit],
+input.url {
+  padding: 0 0.5em;
+  margin: 0.5em;
+  font-size: 1.2em;
+  height: 2em;
+  border: 0 solid;
+  border-radius: 0.5em;
+  box-shadow: 0.1em 0.2em 0 0 #5e2846;
+  outline: none;
+}
+input[type=submit]:hover {
+  color: #ddd;
+}
+input[type=submit].clicked {
+  color: #ddd;
+  position: relative;
+  left: 0.1em;
+  top: 0.2em;
+  box-shadow: none;
+}
+/* 
+ *  Core Owl Carousel CSS File
+ *  v1.3.2
+ */
+
+/* clearfix */
+.owl-carousel .owl-wrapper:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+/* display none until init */
+.owl-carousel{
+  display: none;
+  position: relative;
+  width: 100%;
+  -ms-touch-action: pan-y;
+}
+.owl-carousel .owl-wrapper{
+  display: none;
+  position: relative;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+.owl-carousel .owl-wrapper-outer{
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.owl-carousel .owl-wrapper-outer.autoHeight{
+  -webkit-transition: height 500ms ease-in-out;
+  -moz-transition: height 500ms ease-in-out;
+  -ms-transition: height 500ms ease-in-out;
+  -o-transition: height 500ms ease-in-out;
+  transition: height 500ms ease-in-out;
+}
+  
+.owl-carousel .owl-item{
+  float: left;
+}
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div{
+  cursor: pointer;
+}
+.owl-controls {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* mouse grab icon */
+.grabbing { 
+    cursor:url(grabbing.png) 8 8, move;
+}
+
+/* fix */
+.owl-carousel  .owl-wrapper,
+.owl-carousel  .owl-item{
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility:    hidden;
+  -ms-backface-visibility:     hidden;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+}

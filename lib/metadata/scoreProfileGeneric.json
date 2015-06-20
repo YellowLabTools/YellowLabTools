@@ -1,9 +1,29 @@
 {
     "categories": {
+        "pageWeight": {
+            "label": "Page weight",
+            "policies": {
+                "totalWeight": 5,
+                "imageOptimization": 2,
+                "gzipCompression": 2,
+                "fileMinification": 1
+            }
+        },
+        "requests": {
+            "label": "Requests",
+            "policies": {
+                "totalRequests": 5,
+                "domains": 3,
+                "notFound": 3,
+                "multipleRequests": 2,
+                "smallRequests": 1,
+                "lazyLoadableImagesBelowTheFold": 2
+            }
+        },
         "domComplexity": {
             "label": "DOM complexity",
             "policies": {
-                "DOMelementsCount": 1,
+                "DOMelementsCount": 3,
                 "DOMelementMaxDepth": 1,
                 "iframesCount": 1,
                 "DOMidDuplicated": 1
@@ -69,44 +89,20 @@
                 "cssRedundantChildNodesSelectors": 1
             }
         },
-        "requests": {
-            "label": "Requests number",
+        "serverConfig": {
+            "label": "Server config",
             "policies": {
-                "requests": 5,
-                "htmlCount": 0,
-                "jsCount": 1,
-                "cssCount": 1,
-                "imageCount": 0,
-                "webfontCount": 2,
-                "videoCount": 0,
-                "jsonCount": 0,
-                "otherCount": 0
-            }
-        },
-        "smallRequests": {
-            "label": "Small requests",
-            "policies": {
-                "smallJsFiles": 1,
-                "smallCssFiles": 1,
-                "smallImages": 1
-            }
-        },
-        "network": {
-            "label": "Network",
-            "policies": {
-                "notFound": 2,
-                "assetsNotGzipped": 1.5,
                 "closedConnections": 2,
-                "multipleRequests": 2,
                 "cachingNotSpecified": 1,
                 "cachingDisabled": 1,
-                "cachingTooShort": 1,
-                "domains": 1
+                "cachingTooShort": 1
             }
         }
     },
     "globalScore": {
-        "domComplexity": 1,
+        "pageWeight": 3,
+        "requests": 3,
+        "domComplexity": 2,
         "domManipulations": 2,
         "scroll": 1,
         "badJavascript": 1,
@@ -114,8 +110,6 @@
         "cssSyntaxError": 1,
         "cssComplexity": 1,
         "badCSS": 1,
-        "requests": 3,
-        "smallRequests": 1,
-        "network": 2
+        "serverConfig": 1
     }
 }

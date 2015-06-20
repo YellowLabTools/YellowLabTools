@@ -1,4 +1,13 @@
-var ruleCtrl = angular.module('ruleCtrl', []);
+var ruleCtrl = angular.module('ruleCtrl', ['chart.js']);
+
+ruleCtrl.config(['ChartJsProvider', function (ChartJsProvider) {
+    // Configure all charts
+    ChartJsProvider.setOptions({
+        animation: false,
+        colours: ['#FF5252', '#FF8A80'],
+        responsive: true
+    });
+}]);
 
 ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$sce', 'Menu', 'Results', 'API', function($scope, $rootScope, $routeParams, $location, $sce, Menu, Results, API) {
     $scope.runId = $routeParams.runId;
@@ -22,6 +31,23 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
 
     function init() {
         $scope.rule = $scope.result.rules[$scope.policyName];
+
+        // Init "Total Weight" chart
+        if ($scope.policyName === 'totalWeight') {
+            $scope.weightLabels = [];
+            $scope.weightColours = ['#7ECCCC', '#A7E846', '#FF944D', '#FFE74A', '#C2A3FF', '#5A9AED', '#FF6452', '#C1C1C1'];
+            $scope.weightData = [];
+
+            var types = ['html', 'css', 'js', 'json', 'image', 'video', 'webfont', 'other'];
+            types.forEach(function(type) {
+                $scope.weightLabels.push(type);
+                $scope.weightData.push(Math.round($scope.rule.offendersObj.list.byType[type].totalWeight / 1024));
+            });
+
+            $scope.weightOptions = {
+                tooltipTemplate: '<%=label%>: <%=value%> KB'
+            };
+        }
     }
 
     $scope.backToDashboard = function() {

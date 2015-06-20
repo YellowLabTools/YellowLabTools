@@ -1,6 +1,6 @@
 {
   "name": "yellowlabtools",
-  "version": "1.6.4",
+  "version": "1.7.0",
   "description": "Online tool to audit a webpage for performance and front-end quality issues",
   "repository": {
     "type": "git",
@@ -11,22 +11,27 @@
   },
   "main": "./lib/index.js",
   "dependencies": {
-    "async": "~1.0.0",
-    "body-parser": "~1.12.4",
-    "compression": "~1.4.4",
-    "cors": "^2.6.0",
-    "debug": "~2.2.0",
-    "express": "~4.12.4",
-    "lwip": "0.0.6",
-    "meow": "^3.1.0",
-    "phantomas": "1.10.2",
+    "async": "1.2.1",
+    "body-parser": "1.13.1",
+    "clean-css": "3.3.0",
+    "compression": "1.5.0",
+    "cors": "2.7.1",
+    "debug": "2.2.0",
+    "express": "4.12.4",
+    "imagemin": "3.2.0",
+    "imagemin-jpegoptim": "4.0.0",
+    "lwip": "0.0.7",
+    "meow": "3.3.0",
+    "minimize": "1.4.1",
+    "phantomas": "1.11.0",
     "ps-node": "0.0.4",
-    "q": "~1.4.1",
-    "rimraf": "~2.3.4",
-    "temporary": "0.0.8"
+    "q": "1.4.1",
+    "rimraf": "2.4.0",
+    "temporary": "0.0.8",
+    "uglify-js": "2.4.23"
   },
   "devDependencies": {
-    "chai": "^2.3.0",
+    "chai": "^3.0.0",
     "grunt": "^0.4.5",
     "grunt-blanket": "^0.0.8",
     "grunt-contrib-clean": "^0.6.0",
@@ -48,9 +53,9 @@
     "grunt-webfont": "^0.5.3",
     "matchdep": "^0.3.0",
     "mocha": "^2.2.5",
-    "request": "^2.55.0",
-    "sinon": "^1.14.1",
-    "sinon-chai": "^2.7.0"
+    "request": "^2.58.0",
+    "sinon": "^1.15.3",
+    "sinon-chai": "^2.8.0"
   },
   "scripts": {
     "test": "grunt test"

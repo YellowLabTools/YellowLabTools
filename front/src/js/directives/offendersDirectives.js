@@ -856,4 +856,34 @@
         };
     });
 
+    offendersDirectives.filter('bytes', function() {
+        return function(bytes) {
+            if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) {
+                return '-';
+            }
+            
+            var kilo = bytes / 1024;
+
+            if (kilo < 1) {
+                return bytes + ' bytes';
+            }
+
+            if (kilo < 100) {
+                return kilo.toFixed(1) + ' KB';
+            }
+
+            if (kilo < 1024) {
+                return kilo.toFixed(0) + ' KB';
+            }
+
+            var mega = kilo / 1024;
+
+            if (mega < 10) {
+                return mega.toFixed(2) + ' MB';
+            }
+
+            return mega.toFixed(1) + ' MB';
+        };
+    });
+
 })();

@@ -1,9 +1,13 @@
 var should = require('chai').should();
-var weightChecker = require('../../lib/tools/weightChecker');
+var weightChecker = require('../../lib/tools/weightChecker/weightChecker');
+var fs = require('fs');
+var path = require('path');
 
 describe('weightChecker', function() {
     
     it('should download a list of files', function(done) {
+        this.timeout(10000);
+
         var requestsList = [
             {
                 method: 'GET',
@@ -14,7 +18,8 @@ describe('weightChecker', function() {
                    Accept: '*/*'
                 },
                 status: 200,
-                isHTML: true
+                isHTML: true,
+                type: 'html'
             },
             {
                 method: 'GET',
@@ -25,7 +30,69 @@ describe('weightChecker', function() {
                    Accept: '*/*'
                 },
                 status: 200,
-                isJS: true
+                isJS: true,
+                type: 'js'
+            },
+            {
+                method: 'GET',
+                url: 'http://localhost:8388/jpeg-image.jpg',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200,
+                isImage: true,
+                type: 'image',
+                contentType: 'image/jpeg'
+            },
+            {
+                method: 'GET',
+                url: 'http://localhost:8388/svg-image.svg',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200,
+                isImage: true,
+                isSVG: true,
+                type: 'image',
+                contentType: 'image/svg+xml'
+            },
+            {
+                method: 'GET',
+                url: 'http://localhost:8388/unminified-script.js',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200,
+                isJS: true,
+                type: 'js'
+            },
+            {
+                method: 'GET',
+                url: 'http://localhost:8388/unminified-stylesheet.css',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200,
+                isCSS: true,
+                type: 'css'
+            },
+            {
+                method: 'GET',
+                url: 'about:blank',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200
             }
         ];
 
@@ -48,6 +115,44 @@ describe('weightChecker', function() {
             data.toolsResults.should.have.a.property('weightChecker');
             data.toolsResults.weightChecker.should.have.a.property('metrics');
             data.toolsResults.weightChecker.should.have.a.property('offenders');
+
+            data.toolsResults.weightChecker.offenders.should.have.a.property('totalWeight');
+            data.toolsResults.weightChecker.offenders.totalWeight.totalWeight.should.be.above(0);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.html.requests.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.js.requests.length.should.equal(2);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.css.requests.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.image.requests.length.should.equal(2);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.other.requests.length.should.equal(0);
+
+            data.toolsResults.weightChecker.offenders.should.have.a.property('imageOptimization');
+            data.toolsResults.weightChecker.offenders.imageOptimization.totalGain.should.be.above(0);
+            data.toolsResults.weightChecker.offenders.imageOptimization.images.length.should.equal(2);
+
+            data.toolsResults.weightChecker.offenders.should.have.a.property('gzipCompression');
+            data.toolsResults.weightChecker.offenders.gzipCompression.totalGain.should.be.above(0);
+            data.toolsResults.weightChecker.offenders.gzipCompression.files.length.should.equal(4);
+
+            data.toolsResults.weightChecker.offenders.should.have.a.property('fileMinification');
+            data.toolsResults.weightChecker.offenders.fileMinification.totalGain.should.be.above(0);
+            data.toolsResults.weightChecker.offenders.fileMinification.files.length.should.equal(2);
+
+            data.toolsResults.weightChecker.metrics.should.have.a.property('totalRequests').that.equals(6);
+            data.toolsResults.weightChecker.offenders.should.have.a.property('totalRequests');
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.html.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.js.length.should.equal(2);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.css.length.should.equal(1);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.image.length.should.equal(2);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.json.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.webfont.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.video.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.other.length.should.equal(0);
+
+            data.toolsResults.weightChecker.metrics.should.have.a.property('smallRequests').that.equals(0);
+            data.toolsResults.weightChecker.offenders.should.have.a.property('smallRequests');
+            data.toolsResults.weightChecker.offenders.smallRequests.byType.js.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.smallRequests.byType.css.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.smallRequests.byType.image.length.should.equal(0);
+
             done();
         })
 
@@ -66,19 +171,64 @@ describe('weightChecker', function() {
                Accept: '*/*'
             },
             status: 200,
-            isJS: true
+            isJS: true,
+            type: 'js'
         };
 
-        weightChecker.redownloadEntry(entry, function(err, newEntry) {
-            should.not.exist(err);
+        weightChecker.redownloadEntry(entry)
+
+        .then(function(newEntry) {
 
             newEntry.weightCheck.bodySize.should.equal(93636);
             newEntry.weightCheck.uncompressedSize.should.equal(newEntry.weightCheck.bodySize);
             newEntry.weightCheck.isCompressed.should.equal(false);
             newEntry.weightCheck.headersSize.should.be.above(200).and.below(400);
-            newEntry.weightCheck.body.should.have.string('1.8.3');
+            newEntry.weightCheck.body.toString().should.have.string('1.8.3');
 
             done();
+        })
+
+        .fail(function(err) {
+            done(err);
+        });
+    });
+
+    it('should download a PNG image and find the same body as fs.readFile', function(done) {
+        var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/logo-large.png'));
+
+        var entry = {
+            method: 'GET',
+            url: 'http://localhost:8388/logo-large.png',
+            requestHeaders: {
+                'User-Agent': 'something',
+               Referer: 'http://www.google.fr/',
+               Accept: '*/*'
+            },
+            status: 200,
+            isImage: true,
+            contentType: 'image/png'
+        };
+
+        weightChecker.redownloadEntry(entry)
+
+        .then(function(newEntry) {
+
+            newEntry.weightCheck.bodySize.should.equal(4193);
+            newEntry.weightCheck.body.should.equal(fileContent.toString('binary'));
+
+            // Opening the image in lwip to check if the format is good
+            var lwip = require('lwip');
+            var buffer = new Buffer(newEntry.weightCheck.body, 'binary');
+            lwip.open(buffer, 'png', function(err, image) {
+                image.width().should.equal(620);
+                image.height().should.equal(104);
+                done(err);
+            });
+            
+        })
+
+        .fail(function(err) {
+            done(err);
         });
     });
 
@@ -96,12 +246,16 @@ describe('weightChecker', function() {
             contentLength: 999
         };
 
-        weightChecker.redownloadEntry(entry, function(err, newEntry) {
-            should.not.exist(err);
+        weightChecker.redownloadEntry(entry)
 
+        .then(function(newEntry) {
             newEntry.weightCheck.should.have.a.property('message').that.equals('error while downloading: 404');
 
             done();
+        })
+
+        .fail(function(err) {
+            done(err);
         });
     });
 
@@ -119,12 +273,15 @@ describe('weightChecker', function() {
             contentLength: 999
         };
 
-        weightChecker.redownloadEntry(entry, function(err, newEntry) {
-            should.not.exist(err);
+        weightChecker.redownloadEntry(entry)
 
-            newEntry.weightCheck.should.have.a.property('message').that.equals('only downloading requests with status code 200');
-
+        .then(function(newEntry) {
+            newEntry.should.not.have.a.property('weightCheck');
             done();
+        })
+
+        .fail(function(err) {
+            done(err);
         });
     });
 
