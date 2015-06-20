@@ -233,6 +233,11 @@ describe('fileMinifier', function() {
         fileMinifier.isKnownAsMinified('https://code.jquery.com/jquery-2.1.4.js').should.equal(false);
         fileMinifier.isKnownAsMinified('http://code.jquery.com/jquery-2.1.4.js').should.equal(false);
 
+        fileMinifier.isKnownAsMinified('https://ssl.google-analytics.com/ga.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('http://www.google-analytics.com/ga.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('https://www.google-analytics.com/analytics.js').should.equal(true);
+        fileMinifier.isKnownAsMinified('http://www.google-analytics.com/analytics.js').should.equal(true);
+
         fileMinifier.isKnownAsMinified('http://anydomain.com/anyurl').should.equal(false);
     });
 
