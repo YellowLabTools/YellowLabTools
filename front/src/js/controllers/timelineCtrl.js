@@ -44,19 +44,19 @@ timelineCtrl.controller('TimelineCtrl', ['$scope', '$rootScope', '$routeParams',
     }
 
     function initScriptFiltering() {
-        var offenders = $scope.result.rules.jsCount.offendersObj.list;
+        var offenders = $scope.result.rules.totalRequests.offendersObj.list.byType.js;
         $scope.scripts = [];
 
-        offenders.forEach(function(script) {
-            var filePath = script.file;
+        offenders.forEach(function(filePath) {
+            var shortPath = filePath;
 
             if (filePath.length > 100) {
-                filePath = filePath.substr(0, 98) + '...';
+                shortPath = filePath.substr(0, 98) + '...';
             }
 
             var scriptObj = {
-                fullPath: script.file, 
-                shortPath: filePath
+                fullPath: filePath,
+                shortPath: shortPath
             };
 
             $scope.scripts.push(scriptObj);
