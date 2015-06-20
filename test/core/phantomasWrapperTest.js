@@ -42,7 +42,9 @@ describe('phantomasWrapper', function() {
         phantomasWrapper.execute({
             params: {
                 url: url,
-                options: {}
+                options: {
+                    device: 'desktop'
+                }
             }
         }).then(function(data) {
 

@@ -164,15 +164,17 @@
   font-style: italic;
   font-weight: normal;
 }
-.colorPalette {
-  width: 30em;
-  border: 2px solid #000;
-  text-align: left;
+.checker {
   /* Checkerboard background */
   background-color: #ddd;
   background-image: linear-gradient(45deg, #aaaaaa 25%, transparent 25%, transparent 75%, #aaaaaa 75%, #aaaaaa), linear-gradient(45deg, #aaaaaa 25%, transparent 25%, transparent 75%, #aaaaaa 75%, #aaaaaa);
   background-size: 1em 1em;
   background-position: 0 0, 0.5em 0.5em;
+}
+.colorPalette {
+  width: 30em;
+  border: 2px solid #000;
+  text-align: left;
 }
 .colorPalette > div {
   display: inline-block;
@@ -204,4 +206,39 @@
   height: 100%;
   z-index: 2;
   border: 0.2em solid #f1c40f;
+}
+.totalWeightPie {
+  max-width: 39em;
+  margin: 2em auto 4em;
+}
+.totalWeightPie canvas {
+  max-width: inherit;
+}
+.hugeFile {
+  font-weight: bold;
+  color: #e74c3c;
+}
+.imageOffenders {
+  display: table;
+  border-spacing: 3em;
+  width: 90%;
+}
+.imageOffenders > div {
+  display: table-row;
+}
+.imageOffenders > div > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.imageOffenders img {
+  max-height: 10em;
+  max-width: 40em;
+  border: 1px solid #000;
+  margin-top: 0.5em;
+}
+.smallPreview {
+  max-height: 1.6em;
+  max-width: 4em;
+  border: 1px solid #000;
+  margin-top: 0.2em;
 }

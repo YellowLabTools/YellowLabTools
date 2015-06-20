@@ -101,8 +101,10 @@ describe('index.js', function() {
                 /*jshint expr: true*/
                 console.log.should.not.have.been.called;
 
+                console.log.restore();
                 done();
             }).fail(function(err) {
+                console.log.restore();
                 done(err);
             });
     });
