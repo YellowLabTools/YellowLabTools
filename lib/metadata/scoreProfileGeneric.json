@@ -1,5 +1,25 @@
 {
     "categories": {
+        "pageWeight": {
+            "label": "Page weight",
+            "policies": {
+                "totalWeight": 5,
+                "imageOptimization": 2,
+                "gzipCompression": 2,
+                "fileMinification": 1
+            }
+        },
+        "requests": {
+            "label": "Requests",
+            "policies": {
+                "totalRequests": 5,
+                "domains": 3,
+                "notFound": 3,
+                "multipleRequests": 2,
+                "smallRequests": 1,
+                "lazyLoadableImagesBelowTheFold": 2
+            }
+        },
         "domComplexity": {
             "label": "DOM complexity",
             "policies": {
@@ -69,26 +89,6 @@
                 "cssRedundantChildNodesSelectors": 1
             }
         },
-        "pageWeight": {
-            "label": "Page weight",
-            "policies": {
-                "totalWeight": 5,
-                "imageOptimization": 2,
-                "gzipCompression": 2,
-                "fileMinification": 1
-            }
-        },
-        "requests": {
-            "label": "Requests",
-            "policies": {
-                "totalRequests": 5,
-                "domains": 3,
-                "notFound": 3,
-                "multipleRequests": 2,
-                "smallRequests": 1,
-                "lazyLoadableImagesBelowTheFold": 2
-            }
-        },
         "serverConfig": {
             "label": "Server config",
             "policies": {
@@ -100,6 +100,8 @@
         }
     },
     "globalScore": {
+        "pageWeight": 3,
+        "requests": 3,
         "domComplexity": 2,
         "domManipulations": 2,
         "scroll": 1,
@@ -108,8 +110,6 @@
         "cssSyntaxError": 1,
         "cssComplexity": 1,
         "badCSS": 1,
-        "pageWeight": 3,
-        "requests": 3,
         "serverConfig": 1
     }
 }
