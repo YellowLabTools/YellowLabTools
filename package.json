@@ -26,6 +26,7 @@
     "phantomas": "1.11.0",
     "ps-node": "0.0.4",
     "q": "1.4.1",
+    "request": "^2.58.0",
     "rimraf": "2.4.0",
     "temporary": "0.0.8",
     "uglify-js": "2.4.23"
@@ -53,7 +54,6 @@
     "grunt-webfont": "^0.5.3",
     "matchdep": "^0.3.0",
     "mocha": "^2.2.5",
-    "request": "^2.58.0",
     "sinon": "^1.15.3",
     "sinon-chai": "^2.8.0"
   },
