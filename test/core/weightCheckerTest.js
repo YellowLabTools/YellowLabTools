@@ -86,6 +86,18 @@ describe('weightChecker', function() {
             },
             {
                 method: 'GET',
+                url: 'http://localhost:8388/xml.xml',
+                requestHeaders: {
+                    'User-Agent': 'something',
+                   Referer: 'http://www.google.fr/',
+                   Accept: '*/*'
+                },
+                status: 200,
+                isXML: true,
+                type: 'xml'
+            },
+            {
+                method: 'GET',
                 url: 'about:blank',
                 requestHeaders: {
                     'User-Agent': 'something',
@@ -122,7 +134,7 @@ describe('weightChecker', function() {
             data.toolsResults.weightChecker.offenders.totalWeight.byType.js.requests.length.should.equal(2);
             data.toolsResults.weightChecker.offenders.totalWeight.byType.css.requests.length.should.equal(1);
             data.toolsResults.weightChecker.offenders.totalWeight.byType.image.requests.length.should.equal(2);
-            data.toolsResults.weightChecker.offenders.totalWeight.byType.other.requests.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.totalWeight.byType.other.requests.length.should.equal(1);
 
             data.toolsResults.weightChecker.offenders.should.have.a.property('imageOptimization');
             data.toolsResults.weightChecker.offenders.imageOptimization.totalGain.should.be.above(0);
@@ -130,13 +142,13 @@ describe('weightChecker', function() {
 
             data.toolsResults.weightChecker.offenders.should.have.a.property('gzipCompression');
             data.toolsResults.weightChecker.offenders.gzipCompression.totalGain.should.be.above(0);
-            data.toolsResults.weightChecker.offenders.gzipCompression.files.length.should.equal(4);
+            data.toolsResults.weightChecker.offenders.gzipCompression.files.length.should.equal(5);
 
             data.toolsResults.weightChecker.offenders.should.have.a.property('fileMinification');
             data.toolsResults.weightChecker.offenders.fileMinification.totalGain.should.be.above(0);
             data.toolsResults.weightChecker.offenders.fileMinification.files.length.should.equal(2);
 
-            data.toolsResults.weightChecker.metrics.should.have.a.property('totalRequests').that.equals(6);
+            data.toolsResults.weightChecker.metrics.should.have.a.property('totalRequests').that.equals(7);
             data.toolsResults.weightChecker.offenders.should.have.a.property('totalRequests');
             data.toolsResults.weightChecker.offenders.totalRequests.byType.html.length.should.equal(1);
             data.toolsResults.weightChecker.offenders.totalRequests.byType.js.length.should.equal(2);
@@ -145,7 +157,7 @@ describe('weightChecker', function() {
             data.toolsResults.weightChecker.offenders.totalRequests.byType.json.length.should.equal(0);
             data.toolsResults.weightChecker.offenders.totalRequests.byType.webfont.length.should.equal(0);
             data.toolsResults.weightChecker.offenders.totalRequests.byType.video.length.should.equal(0);
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.other.length.should.equal(0);
+            data.toolsResults.weightChecker.offenders.totalRequests.byType.other.length.should.equal(1);
 
             data.toolsResults.weightChecker.metrics.should.have.a.property('smallRequests').that.equals(0);
             data.toolsResults.weightChecker.offenders.should.have.a.property('smallRequests');
