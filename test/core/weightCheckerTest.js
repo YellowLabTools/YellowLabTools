@@ -142,7 +142,7 @@ describe('weightChecker', function() {
 
             data.toolsResults.weightChecker.offenders.should.have.a.property('gzipCompression');
             data.toolsResults.weightChecker.offenders.gzipCompression.totalGain.should.be.above(0);
-            data.toolsResults.weightChecker.offenders.gzipCompression.files.length.should.equal(4);
+            data.toolsResults.weightChecker.offenders.gzipCompression.files.length.should.equal(5);
 
             data.toolsResults.weightChecker.offenders.should.have.a.property('fileMinification');
             data.toolsResults.weightChecker.offenders.fileMinification.totalGain.should.be.above(0);
