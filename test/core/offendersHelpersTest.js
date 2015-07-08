@@ -299,6 +299,17 @@ describe('offendersHelpers', function() {
             });
         });
 
+        it('should handle line breaks inside the string', function() {
+            var result = offendersHelpers.cssOffenderPattern('.card-mask-wrap { -moz-transform: translate3d(0, \n-288px\n, 0) } // was required by firefox 15 and earlier [inline CSS] @ 29:3');
+
+            result.should.deep.equal({
+                css: '.card-mask-wrap { -moz-transform: translate3d(0, -288px, 0) } // was required by firefox 15 and earlier',
+                file: null,
+                line: 29,
+                column: 3
+            });
+        }); 
+
     });
 
     describe('fileWithSizePattern', function() {
