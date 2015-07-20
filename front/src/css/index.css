@@ -33,7 +33,8 @@
 .settings select {
   font-size: 1em;
 }
-.settings input[type=text] {
+.settings input[type=text],
+.settings input[type=password] {
   width: 100%;
   min-width: 4em;
 }
