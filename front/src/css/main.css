@@ -279,12 +279,6 @@ a.linkButton {
   width: 8.25em;
   height: 11em;
 }
-.star {
-  font-weight: bold;
-}
-.star span {
-  font-size: 1.2em;
-}
 .footer {
   padding: 3em;
   color: #413;
@@ -294,6 +288,9 @@ a.linkButton {
 }
 .footer .version {
   font-size: 0.7em;
+}
+.footer .github {
+  margin: 1em 0 0 0.5em;
 }
 [class^="icon-"]:before,
 [class*=" icon-"]:before {

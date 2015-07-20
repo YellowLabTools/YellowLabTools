@@ -37,6 +37,11 @@ yltApp.run(['$rootScope', '$location', function($rootScope, $location) {
     $rootScope.$on('$routeChangeSuccess', function(){
         ga('send', 'pageview', {'page': $location.path()});
     });
+
+    // GitHub star button (asynchronously loaded iframe)
+    window.addEventListener('load', function() {
+        window.document.getElementById('ghbtn').src = 'http://ghbtns.com/github-btn.html?user=gmetais&repo=YellowLabTools&type=star&count=true&size=large';
+    });
 }]);
 
 yltApp.config(['$routeProvider', '$locationProvider',
