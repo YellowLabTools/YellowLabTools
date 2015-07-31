@@ -109,14 +109,18 @@
 .summary .notations .criteria .table {
   width: 100%;
 }
-.summary .notations .criteria .table > div:hover > div {
+.summary .notations .criteria .table > a {
+  text-decoration: none;
+  color: inherit;
+}
+.summary .notations .criteria .table > a:hover > div {
   background: #EBD8E2;
   cursor: pointer;
 }
-.summary .notations .criteria .table > div:hover > div.info {
+.summary .notations .criteria .table > a:hover > div.info {
   background: #FFF;
 }
-.summary .notations .criteria .table > div:hover > div.info .icon-question {
+.summary .notations .criteria .table > a:hover > div.info .icon-question {
   color: #EBD8E2;
 }
 .summary .notations .criteria .grade {

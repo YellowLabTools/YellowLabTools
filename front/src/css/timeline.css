@@ -152,14 +152,16 @@
   width: 100%;
   border-spacing: 0.25em;
 }
-.table > div {
+.table > div,
+.table > a {
   display: table-row;
 }
 .table > .headers > div {
   font-weight: bold;
   padding: 0.5em 1em;
 }
-.table > div > div {
+.table > div > div,
+.table > a > div {
   padding: 0.1em 1em;
   background: #f2f2f2;
   display: table-cell;
