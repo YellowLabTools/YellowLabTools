@@ -12,9 +12,9 @@ git stash pop
 
 # In case something was added in package.json or bower.json
 rm -rf node_modules
-npm install
+npm install || exit 1
 rm -rf bower_components
-bower install --config.interactive=false --allow-root
+bower install --config.interactive=false --allow-root || exit 1
 
 # Front-end compilation
 rm -rf front/build
