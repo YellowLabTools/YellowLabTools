@@ -108,7 +108,11 @@
 
 .summary .notations .criteria .table {
     width: 100%;
-    > div:hover > div {
+    > a {
+        text-decoration: none;
+        color: inherit;
+    }
+    > a:hover > div {
         background: #EBD8E2;
         cursor: pointer;
         &.info {
