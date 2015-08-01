@@ -30,10 +30,6 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
         $scope.tweetText = 'I\'ve discovered this cool open-source tool that audits the front-end quality of a web page: ';
     }
 
-    $scope.showRulePage = function(ruleName) {
-        $location.path('/result/' + $scope.runId + '/rule/' + ruleName);
-    };
-
     $scope.testAgain = function() {
         API.relaunchTest($scope.result);
     };
