@@ -21,8 +21,8 @@ sudo chown $USER /space
 cd /space
 git clone https://github.com/gmetais/YellowLabTools.git --branch master
 cd YellowLabTools
-npm install
-bower install --config.interactive=false --allow-root
+npm install || exit 1
+bower install --config.interactive=false --allow-root || exit 1
 
 # Front-end compilation
 grunt build

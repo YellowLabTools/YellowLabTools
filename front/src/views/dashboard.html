@@ -28,8 +28,8 @@
             <div class="category">{{category.label}}</div>
             <div class="criteria">
                 <div class="table" title="Click to see details">
-                    <div ng-repeat="ruleName in category.rules" ng-if="result.rules[ruleName]" ng-init="rule = result.rules[ruleName]"
-                         ng-class="{'warning': rule.abnormal}" ng-click="showRulePage(ruleName)">
+                    <a ng-repeat="ruleName in category.rules" ng-if="result.rules[ruleName]" ng-init="rule = result.rules[ruleName]"
+                         ng-class="{'warning': rule.abnormal}" href="/result/{{runId}}/rule/{{ruleName}}">
                         <div class="grade">
                             <grade score="rule.score"></grade>
                         </div>
@@ -42,7 +42,7 @@
                             <span ng-if="rule.abnormalityScore <= -300" class="icon-warning"></span>
                         </div>
                         <div class="info"><span class="icon-question"></span></div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

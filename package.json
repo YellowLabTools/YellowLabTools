@@ -1,7 +1,8 @@
 {
   "name": "yellowlabtools",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "description": "Online tool to audit a webpage for performance and front-end quality issues",
+  "license" : "GPL-2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/gmetais/YellowLabTools.git"
