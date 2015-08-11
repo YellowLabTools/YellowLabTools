@@ -60,5 +60,13 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "keywords": [
+    "performance",
+    "metrics",
+    "webperf",
+    "pagespeed",
+    "budget",
+    "phantomas"
+  ]
 }
