@@ -3,6 +3,11 @@
   "version": "1.7.4",
   "description": "Online tool to audit a webpage for performance and front-end quality issues",
   "license" : "GPL-2.0",
+  "author": {
+    "name": "Gaël Métais",
+    "email": "gael@gaelmetais.com",
+    "url": "http://www.gaelmetais.com"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/gmetais/YellowLabTools.git"
