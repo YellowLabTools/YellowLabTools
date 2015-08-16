@@ -12,7 +12,7 @@ sudo apt-get install -y nodejs
 source ~/.profile
 
 # Installation of some packages globally
-npm install bower forever grunt-cli -g
+npm install forever grunt-cli -g
 source ~/.profile
 
 # Installation of YellowLabTools
@@ -22,7 +22,6 @@ cd /space
 git clone https://github.com/gmetais/YellowLabTools.git --branch master
 cd YellowLabTools
 npm install || exit 1
-bower install --config.interactive=false --allow-root || exit 1
 
 # Front-end compilation
 grunt build
