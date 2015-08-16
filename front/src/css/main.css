@@ -192,8 +192,11 @@ a.linkButton {
   background: #000;
 }
 .screenshotWrapper > div {
-  overflow: scroll;
   position: relative;
+  overflow: hidden;
+}
+.screenshotWrapper > div:hover {
+  overflow: auto;
 }
 .screenshotWrapper .screenshotImage {
   width: 100%;

@@ -132,8 +132,12 @@ a.linkButton {
     background: #000;
 
     > div {
-        overflow: scroll;
         position: relative;
+        overflow: hidden;
+
+        &:hover {
+            overflow: auto;
+        }
     }
 
     .screenshotImage {
