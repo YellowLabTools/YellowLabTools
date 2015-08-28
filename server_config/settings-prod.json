@@ -1,5 +1,6 @@
 {
     "serverPort": 80,
+    "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
 
     "authorizedKeys": {
