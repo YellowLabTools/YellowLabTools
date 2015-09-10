@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-var debug = require('debug')('ylt:cli');
-var meow = require('meow');
-var path = require('path');
+var debug       = require('debug')('ylt:cli');
+var meow        = require('meow');
+var path        = require('path');
+var jstoxml     = require('jstoxml');
 
-var ylt = require('../lib/index');
+var ylt         = require('../lib/index');
 
 var cli = meow({
     help: [
@@ -19,6 +20,7 @@ var cli = meow({
         '  --cookie             Adds a cookie on the main domain.',
         '  --auth-user          Basic HTTP authentication username.',
         '  --auth-pass          Basic HTTP authentication password.',
+        '  --reporter           The output format: "json" or "xml". Default is "json".',
         ''
     ].join('\n'),
     pkg: '../package.json'
@@ -67,6 +69,12 @@ options.cookie = cli.flags.cookie || null;
 options.authUser = cli.flags.authUser || null;
 options.authPass = cli.flags.authPass || null;
 
+// Output format
+if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !== 'xml') {
+    console.error('Incorrect parameters: reporter has to be "json" or "xml"');
+    process.exit(1);
+}
+
 
 (function execute(url, options) {
     'use strict';
@@ -76,7 +84,13 @@ options.authPass = cli.flags.authPass || null;
         then(function(data) {
 
             debug('Success');
-            console.log(JSON.stringify(data, null, 2));
+            switch(cli.flags.reporter) {
+                case 'xml':
+                    console.log(jstoxml.toXML(data, {indent: '  '}));
+                    break;
+                default:
+                    console.log(JSON.stringify(data, null, 2));
+            }
 
         }).fail(function(err) {
             
