@@ -1,6 +1,6 @@
 {
   "name": "yellowlabtools",
-  "version": "1.7.7",
+  "version": "1.7.8",
   "description": "Online tool to audit a webpage for performance and front-end quality issues",
   "license": "GPL-2.0",
   "author": {
@@ -27,7 +27,7 @@
     "async": "1.4.2",
     "body-parser": "1.13.3",
     "chart.js": "1.0.2",
-    "clean-css": "3.4.1",
+    "clean-css": "3.4.2",
     "compression": "1.5.2",
     "cors": "2.7.1",
     "debug": "2.2.0",
@@ -37,8 +37,8 @@
     "jstoxml": "0.2.3",
     "lwip": "0.0.7",
     "meow": "3.3.0",
-    "minimize": "1.7.0",
-    "phantomas": "1.11.0",
+    "minimize": "1.7.1",
+    "phantomas": "1.12.0",
     "ps-node": "0.0.4",
     "q": "1.4.1",
     "request": "2.61.0",

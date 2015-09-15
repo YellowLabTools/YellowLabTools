@@ -14,7 +14,7 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
                 waitForSelector: settings.waitForSelector,
                 cookie: settings.cookie,
                 authUser: settings.authUser,
-                authPass: settings.authPass,
+                authPass: settings.authPass
             };
 
             if (settings.waitForSelector && settings.waitForSelector !== '') {
