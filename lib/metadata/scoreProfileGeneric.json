@@ -17,7 +17,8 @@
                 "notFound": 3,
                 "multipleRequests": 2,
                 "smallRequests": 1,
-                "lazyLoadableImagesBelowTheFold": 2
+                "lazyLoadableImagesBelowTheFold": 2,
+                "hiddenImages": 1
             }
         },
         "domComplexity": {
