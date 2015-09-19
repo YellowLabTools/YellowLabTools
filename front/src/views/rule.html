@@ -96,6 +96,10 @@
                         </span>
                     </div>
 
+                    <div ng-if="policyName === 'similarColors'">
+                        <div class="similarColors checker"><div ng-style="{'background-color': offender.color1, 'color': offender.isDark ? '#FFF' : '#000'}">{{offender.color1}}</div><div ng-style="{'background-color': offender.color2, 'color': offender.isDark ? '#FFF' : '#000'}">{{offender.color2}}</div></div>
+                    </div>
+
                     <div ng-if="policyName === 'cssParsingErrors'">
                         <b>{{offender.error}}</b>
                         <file-and-line file="offender.file" line="offender.line" column="offender.column"></file-and-line>
