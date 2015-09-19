@@ -608,7 +608,12 @@
             for (var i = 0 ; i < parsedBacktrace.length ; i++) {
                 html += '<div>';
                 html += '<div>' + (parsedBacktrace[i].fnName || '(anonymous function)') + '</div>';
-                html += '<div class="trace">' + getUrlLink(parsedBacktrace[i].filePath, 40) + ':' + parsedBacktrace[i].line + '</div>';
+                html += '<div class="trace">' + getUrlLink(parsedBacktrace[i].filePath, 40) + '</div>';
+                if (parsedBacktrace[i].column) {
+                    html += '<div>' + parsedBacktrace[i].line + ':' + parsedBacktrace[i].column + '</div>';    
+                } else {
+                    html += '<div>line ' + parsedBacktrace[i].line + '</div>';
+                }
                 html += '</div>';
             }
         }
@@ -630,6 +635,17 @@
                 var fnName = null, fileAndLine;
 
                 var withFnResult = /^([^\s\(]+) \((.+:\d+)\)$/.exec(trace);
+                
+                if (withFnResult === null) {
+                    // Try the PhantomJS 2 format
+                    withFnResult = /^([^\s\(]+) \((.+:\d+:\d+)\)$/.exec(trace);
+                }
+
+                if (withFnResult === null) {
+                    // Try the PhantomJS 2 ERROR format
+                    withFnResult = /^([^\s\(]+) (http.+:\d+)$/.exec(trace);
+                }
+
                 if (withFnResult === null) {
                     fileAndLine = trace;
                 } else {
@@ -637,14 +653,22 @@
                     fileAndLine = withFnResult[2];
                 }
 
-                var fileAndLineSplit = /^(.*):(\d+)$/.exec(fileAndLine);
+                // And now the second part
+                var fileAndLineSplit = /^(.*):(\d+):(\d+)$/.exec(fileAndLine);
+
+                if (fileAndLineSplit === null) {
+                    fileAndLineSplit = /^(.*):(\d+)$/.exec(fileAndLine);
+                }
+
                 var filePath = fileAndLineSplit[1];
                 var line = fileAndLineSplit[2];
+                var column = fileAndLineSplit[3];
 
                 out.push({
                     fnName: fnName,
                     filePath: filePath,
-                    line: line
+                    line: line,
+                    column: column
                 });
             });
 
