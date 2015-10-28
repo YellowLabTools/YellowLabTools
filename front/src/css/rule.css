@@ -101,6 +101,7 @@
   margin: 0.2em 0;
   border-radius: 0.4em;
   z-index: 1;
+  cursor: pointer;
 }
 .offendersTable .offenderButton.opens,
 .value .offenderButton.opens {
@@ -156,6 +157,10 @@
 .value .offenderButton.opens:hover > div {
   display: block;
   background: #ffe0cc;
+}
+.offendersTable .smallerOffenders,
+.value .smallerOffenders {
+  font-size: 0.9em;
 }
 .offendersHtml {
   display: inline-block;
