@@ -51,11 +51,14 @@ describe('phantomasWrapper', function() {
             done('Error: unwanted success');
 
         }).fail(function(err) {
+            try {
+                should.exist(err);
+                err.should.equal(254);
 
-            should.exist(err);
-            err.should.equal(254);
-
-            done();
+                done();
+            } catch(error) {
+                done(error);
+            }
         });
     });
 
@@ -72,16 +75,20 @@ describe('phantomasWrapper', function() {
             }
         }).then(function(data) {
             /*jshint -W030 */
-            
-            data.should.be.an('object');
-            data.should.have.a.property('generator');
-            data.generator.should.contain('phantomas');
-            data.should.have.a.property('url').that.equals(url);
-            data.should.have.a.property('metrics').that.is.an('object').not.empty;
-            data.should.have.a.property('offenders').that.is.an('object').not.empty;
-            data.offenders.should.have.a.property('javascriptExecutionTree').that.is.a('array').not.empty;
 
-            done();
+            try {            
+                data.should.be.an('object');
+                data.should.have.a.property('generator');
+                data.generator.should.contain('phantomas');
+                data.should.have.a.property('url').that.equals(url);
+                data.should.have.a.property('metrics').that.is.an('object').not.empty;
+                data.should.have.a.property('offenders').that.is.an('object').not.empty;
+                data.offenders.should.have.a.property('javascriptExecutionTree').that.is.a('array').not.empty;
+
+                done();
+            } catch(error) {
+                done(error);
+            }
         }).fail(function(err) {
             done(err);
         });

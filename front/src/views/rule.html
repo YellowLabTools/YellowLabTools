@@ -143,10 +143,18 @@
                     </div>
 
                     <div ng-if="policyName === 'cssOldPropertyPrefixes'">
-                        {{offender.rule}} {<b>{{offender.property}}</b>: {{offender.value + '}' }}
-                        <br>
-                        <b>{{offender.message}}</b>
-                        <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
+                        <b>{{offender.property}} {{offender.message}}</b>
+                        <div ng-if="offender.rules.length" ng-click="offender.showMore = !offender.showMore" class="offenderButton">
+                            <span ng-if="!offender.showMore">show</span>
+                            <span ng-if="offender.showMore">hide</span>
+                            <ng-pluralize count="offender.rules.length" when="{'one':'1 offender','other':'{} offenders'}"></ng-pluralize>
+                        </div>
+                        <div ng-if="offender.showMore" class="smallerOffenders">
+                            <div ng-repeat="cssRule in offender.rules">
+                                {{cssRule.rule}} {{'{' + offender.property}}: {{cssRule.value + '}' }}
+                                <file-and-line-button file="cssRule.file" line="cssRule.line" column="cssRule.column"></file-and-line-button>
+                            </div>
+                        </div>
                     </div>
 
                     <div ng-if="policyName === 'lazyLoadableImagesBelowTheFold' || policyName === 'hiddenImages'">
