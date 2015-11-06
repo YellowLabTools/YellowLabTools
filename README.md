@@ -1,6 +1,6 @@
 <img src="./doc/img/logo.png" alt="Yellow Lab Tools"></img>
 
-Analyzes a webpage and detects **performance** or **front-end code quality** issues. Easy to launch, easy to understand, in-depth details.
+Analyzes a webpage and detects **performance** or **front-end code quality** issues. Free, easy to launch, easy to understand, in-depth details.
 
 
 #  
@@ -84,7 +84,9 @@ Please read the [license](LICENSE). Icons are the property of [IcoMoon.io](https
 
 
 ## Author
-Gaël Métais. I'm a webperf freelance based in Paris. If you understand French, you can visit [my website](http://www.gaelmetais.com).
+Gaël Métais. I'm a webperf freelance. Follow me on Twitter [@gaelmetais](https://twitter.com/gaelmetais), I tweet about Web Performances, Front-end and new versions of YellowLabTools!
+
+If you understand French, you can visit [my website](http://www.gaelmetais.com) (will be soon in English too).
 
 
 ## Contributors
