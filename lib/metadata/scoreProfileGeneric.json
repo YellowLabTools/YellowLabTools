@@ -71,7 +71,9 @@
                 "cssComplexSelectors": 2,
                 "cssComplexSelectorsByAttribute": 1.5,
                 "cssColors": 0.5,
-                "similarColors": 0.5
+                "similarColors": 0.5,
+                "cssBreakpoints": 1,
+                "cssMobileFirst": 1
             }
         },
         "badCSS": {
