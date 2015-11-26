@@ -62,34 +62,34 @@
   background: #F04DA7;
 }
 .timeline .domComplete.interval {
-  background: #ede3ff;
+  background: #EDE3FF;
 }
 .timeline .domComplete .color {
-  background: #c2a3ff;
+  background: #C2A3FF;
 }
 .timeline .domContentLoadedEnd.interval {
-  background: #d8f0f0;
+  background: #D8F0F0;
 }
 .timeline .domContentLoadedEnd .color {
-  background: #7ecccc;
+  background: #7ECCCC;
 }
 .timeline .domContentLoaded.interval {
-  background: #e0ffd1;
+  background: #E0FFD1;
 }
 .timeline .domContentLoaded .color {
-  background: #a7e846;
+  background: #A7E846;
 }
 .timeline .domInteractive.interval {
-  background: #fffccc;
+  background: #FFFCCC;
 }
 .timeline .domInteractive .color {
-  background: #ffe433;
+  background: #FFE433;
 }
 .timeline .domCreation.interval {
-  background: #ffe0cc;
+  background: #FFE0CC;
 }
 .timeline .domCreation .color {
-  background: #ff6600;
+  background: #FF6600;
 }
 .timeline .tooltip.detailsOverlay {
   position: absolute;
@@ -294,19 +294,19 @@
   white-space: nowrap;
 }
 .table > div > .startTime.domComplete {
-  background: #ede3ff;
+  background: #EDE3FF;
 }
 .table > div > .startTime.domContentLoadedEnd {
-  background: #d8f0f0;
+  background: #D8F0F0;
 }
 .table > div > .startTime.domContentLoaded {
-  background: #e0ffd1;
+  background: #E0FFD1;
 }
 .table > div > .startTime.domInteractive {
-  background: #fffccc;
+  background: #FFFCCC;
 }
 .table > div > .startTime.domCreation {
-  background: #ffe0cc;
+  background: #FFE0CC;
 }
 .execution .icon-warning {
   color: #e74c3c;

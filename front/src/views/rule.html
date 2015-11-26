@@ -100,6 +100,11 @@
                         <div class="similarColors checker"><div ng-style="{'background-color': offender.color1, 'color': offender.isDark ? '#FFF' : '#000'}">{{offender.color1}}</div><div ng-style="{'background-color': offender.color2, 'color': offender.isDark ? '#FFF' : '#000'}">{{offender.color2}}</div></div>
                     </div>
 
+                    <div ng-if="policyName === 'cssMobileFirst'">
+                        <b>{{offender.query}}</b> for <ng-pluralize count="offender.rules" when="{'one':'1 rule','other':'{} rules'}"></ng-pluralize>
+                        <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
+                    </div>
+
                     <div ng-if="policyName === 'cssParsingErrors'">
                         <b>{{offender.error}}</b>
                         <file-and-line file="offender.file" line="offender.line" column="offender.column"></file-and-line>
@@ -346,6 +351,22 @@
     <div ng-if="policyName === 'jQueryNotDelegatedEvents'">
         <h3>{{rule.value}} offenders</h3>
         Please open the <a href="/result/{{runId}}/timeline#filter=eventNotDelegated">JS timeline, filtered by "Events not delegated"</a>
+    </div>
+
+    <div ng-if="policyName === 'cssBreakpoints'">
+        <div ng-if="rule.value > 0" class="cssBreakpointsGraph">
+            <h3>Breakpoints distribution graph</h3>
+            <canvas class="chart chart-line" chart-data="breakpointsData" chart-labels="breakpointsLabels" chart-options="breakpointsOptions" chart-legend="true" chart-colours="breakpointsColours" width="600" height="250"></canvas>
+            <h3>Breakpoints list</h3>
+            <div class="offendersTable">
+                <div ng-repeat="offender in rule.offendersObj | orderBy:'pixels'">
+                    <div>Breakpoint <b>{{offender.breakpoint}}</b> involves <ng-pluralize count="offender.count" when="{'one': '1 rule', 'other': '{} rules'}"></ng-pluralize></div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="rule.value === 0">
+        No breakpoint
+        </div>
     </div>
 
     <div ng-if="!rule && rule !== null" class="notFound">
