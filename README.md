@@ -75,14 +75,6 @@ You can use [ngrok](https://ngrok.com/), a tool that creates a secure tunnel bet
 If your project is not accessible from outside, or if you want to fork and improve the tool, you can build your own instance. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Install-your-private-server).
 
 
-## Help needed!
-There are so many things left to do, **your help would be greatly appreciated**! Please report bugs, ask for evolutions and come code with me.
-
-
-## License
-Please read the [license](LICENSE). Icons are the property of [IcoMoon.io](https://icomoon.io/)
-
-
 ## Author
 Gaël Métais. I'm a webperf freelance. Follow me on Twitter [@gaelmetais](https://twitter.com/gaelmetais), I tweet about Web Performances, Front-end and new versions of YellowLabTools!
 
