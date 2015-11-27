@@ -84,6 +84,7 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
                 $scope.breakpointsData[0][group] += offender.count;
             });
 
+            $scope.breakpointsSeries = ['Number of CSS rules per breakpoint'];
             $scope.breakpointsColours = ['#9c4274'];
             $scope.breakpointsOptions = {
                 scaleShowGridLines: false,
