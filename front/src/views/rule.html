@@ -356,7 +356,7 @@
     <div ng-if="policyName === 'cssBreakpoints'">
         <div ng-if="rule.value > 0" class="cssBreakpointsGraph">
             <h3>Breakpoints distribution graph</h3>
-            <canvas class="chart chart-line" chart-data="breakpointsData" chart-labels="breakpointsLabels" chart-options="breakpointsOptions" chart-legend="true" chart-colours="breakpointsColours" width="600" height="250"></canvas>
+            <canvas class="chart chart-line" chart-data="breakpointsData" chart-labels="breakpointsLabels" chart-options="breakpointsOptions" chart-legend="true" chart-colours="breakpointsColours" chart-series="breakpointsSeries" width="600" height="250"></canvas>
             <h3>Breakpoints list</h3>
             <div class="offendersTable">
                 <div ng-repeat="offender in rule.offendersObj | orderBy:'pixels'">
