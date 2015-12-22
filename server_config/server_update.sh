@@ -2,8 +2,9 @@
 
 cd /space/YellowLabTools
 
-# Stop the server
+# Stop the server and start the maintenance mode
 forever stopall
+forever start server_config/maintenance.js
 
 # Keep the settings.json file
 git stash
@@ -18,5 +19,6 @@ npm install || exit 1
 rm -rf front/build
 grunt build
 
-# Restart the server
+# Stop the maintenance mode and restart the server
+forever stopall
 NODE_ENV=production forever start -c "node --stack-size=262000" bin/server.js
