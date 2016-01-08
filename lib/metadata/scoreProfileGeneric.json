@@ -96,6 +96,7 @@
         "serverConfig": {
             "label": "Server config",
             "policies": {
+                "http2": 2,
                 "closedConnections": 2,
                 "cachingNotSpecified": 1,
                 "cachingDisabled": 1,
