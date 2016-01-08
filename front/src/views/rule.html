@@ -369,6 +369,18 @@
         </div>
     </div>
 
+    <div ng-if="policyName === 'http2'">
+        <h3>Protocols advertised by the server</h3>
+        <div class="offendersTable">
+            <div ng-repeat="protocol in rule.offendersObj.list">
+                <div>{{protocol}}</div>
+            </div>
+            <div ng-if="!rule.offendersObj || rule.offendersObj.count == 0">
+                <div>none</div>
+            </div>
+        </div>
+    </div>
+
     <div ng-if="!rule && rule !== null" class="notFound">
         <h2>404</h2>
         Rule "{{policyName}}"" not found

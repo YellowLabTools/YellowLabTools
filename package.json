@@ -39,6 +39,7 @@
     "express": "4.13.3",
     "imagemin": "4.0.0",
     "imagemin-jpegoptim": "4.1.0",
+    "is-http2": "1.0.4",
     "jstoxml": "0.2.3",
     "lwip": "0.0.8",
     "meow": "3.6.0",
