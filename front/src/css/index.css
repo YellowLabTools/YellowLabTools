@@ -34,7 +34,8 @@
   font-size: 1em;
 }
 .settings input[type=text],
-.settings input[type=password] {
+.settings input[type=password],
+.settings textarea {
   width: 100%;
   min-width: 4em;
 }
