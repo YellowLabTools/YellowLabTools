@@ -31,6 +31,7 @@ describe('api', function() {
             },
             json: true,
             headers: {
+                'Content-Type': 'application/json',
                 'X-Api-Key': 'invalid'
             }
         }, function(error, response, body) {
@@ -53,6 +54,7 @@ describe('api', function() {
             },
             json: true,
             headers: {
+                'Content-Type': 'application/json',
                 'X-Api-Key': Object.keys(config.authorizedKeys)[0]
             }
         }, function(error, response, body) {
@@ -76,6 +78,7 @@ describe('api', function() {
             },
             json: true,
             headers: {
+                'Content-Type': 'application/json',
                 'X-Api-Key': Object.keys(config.authorizedKeys)[0]
             }
         }, function(error, response, body) {
@@ -99,12 +102,13 @@ describe('api', function() {
                 screenshot: true,
                 device: 'tablet',
                 //waitForSelector: '*',
-                cookie: 'foo=bar',
+                //cookie: 'foo=bar;domain=google.com',
                 authUser: 'joe',
                 authPass: 'secret'
             },
             json: true,
             headers: {
+                'Content-Type': 'application/json',
                 'X-Api-Key': Object.keys(config.authorizedKeys)[0]
             }
         }, function(error, response, body) {
@@ -133,6 +137,7 @@ describe('api', function() {
             },
             json: true,
             headers: {
+                'Content-Type': 'application/json',
                 'X-Api-Key': Object.keys(config.authorizedKeys)[0]
             }
         }, function(error, response, body) {
@@ -172,7 +177,7 @@ describe('api', function() {
                 // Check if settings are correctly sent and retrieved
                 body.params.options.should.have.a.property('device').that.equals('tablet');
                 //body.params.options.should.have.a.property('waitForSelector').that.equals('*');
-                body.params.options.should.have.a.property('cookie').that.equals('foo=bar');
+                //body.params.options.should.have.a.property('cookie').that.equals('foo=bar');
                 body.params.options.should.have.a.property('authUser').that.equals('joe');
                 body.params.options.should.have.a.property('authPass').that.equals('secret');
 
@@ -208,6 +213,7 @@ describe('api', function() {
             },
             json: true,
             headers: {
+                'Content-Type': 'application/json',
                 'X-Api-Key': Object.keys(config.authorizedKeys)[0]
             }
         }, function(error, response, body) {
@@ -232,6 +238,7 @@ describe('api', function() {
             url: serverUrl + '/api/runs/' + asyncRunId,
             json: true,
             headers: {
+                'Content-Type': 'application/json',
                 'X-Api-Key': Object.keys(config.authorizedKeys)[0]
             }
         }, function(error, response, body) {

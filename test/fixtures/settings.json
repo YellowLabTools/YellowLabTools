@@ -2,6 +2,7 @@
     "serverPort": "8387",
     "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
+    "screenshotWidth": 400,
     
     "authorizedKeys": {
         "1234567890": "contact@gaelmetais.com"

@@ -61,15 +61,22 @@
                     </div>
                 </div>
             </div>
-            <!--<div>
-                <div class="label">Blocked domains</div>
+            <div>
+                <div class="label">
+                    Block domains
+                    <span class="settingsTooltip">
+                        <span class="icon-question"></span>
+                        <div><b>Block some domains</b><br><br>One line per domain or subdomain.<br><br><i><b>Example:</b><br>google-analytics.com<br>ads.yahoo.com<br>ajax.googleapis.com</i><br><br>An empty whitelist will block all domains except the main domain.</div>
+                    </span>
+                </div>
                 <div>
                     <div>
-                        Blacklist / Whitelist
+                        <input type="radio" name="blackOrWhite" ng-model="settings.domainsBlackOrWhite" value="black" />blacklist
+                        <input type="radio" name="blackOrWhite" ng-model="settings.domainsBlackOrWhite" value="white" />whitelist
                     </div>
-                    <textarea name=""></textarea>
+                    <textarea name="domains" ng-model="settings.domains" rows="5"></textarea>
                 </div>
-            </div>-->
+            </div>
         </div>
     </div>
 </form>

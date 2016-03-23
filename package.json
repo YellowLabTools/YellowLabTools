@@ -45,7 +45,7 @@
     "meow": "3.6.0",
     "minimize": "1.7.4",
     "parse-color": "1.0.0",
-    "phantomas": "1.13.0",
+    "phantomas": "git://github.com/gmetais/phantomas.git#fix-about-blank",
     "ps-node": "0.0.5",
     "q": "1.4.1",
     "request": "2.67.0",
