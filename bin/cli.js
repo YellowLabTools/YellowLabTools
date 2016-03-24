@@ -3,7 +3,7 @@
 var debug       = require('debug')('ylt:cli');
 var meow        = require('meow');
 var path        = require('path');
-var jstoxml     = require('jstoxml');
+var EasyXml     = require('easyxml');
 
 var ylt         = require('../lib/index');
 
@@ -80,7 +80,8 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
             debug('Success');
             switch(cli.flags.reporter) {
                 case 'xml':
-                    console.log(jstoxml.toXML(data, {indent: '  '}));
+                    var serializer = new EasyXml();
+                    console.log(serializer.render(data));
                     break;
                 default:
                     console.log(JSON.stringify(data, null, 2));
