@@ -170,9 +170,8 @@ describe('api', function() {
                 body.should.have.a.property('rules').that.is.an('object');
                 body.should.have.a.property('toolsResults').that.is.an('object');
 
-                // javascriptExecutionTree should only be filled if option jsTimeline is true
                 body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
-                body.javascriptExecutionTree.should.deep.equal({});
+                body.javascriptExecutionTree.should.not.deep.equal({});
 
                 // Check if settings are correctly sent and retrieved
                 body.params.options.should.have.a.property('device').that.equals('tablet');

@@ -15,7 +15,6 @@ var cli = meow({
         'Options:',
         '  --device             Use "phone" or "tablet" to simulate a mobile device (by user-agent and viewport size).',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
-        '  --js-deep-analysis   When activated, the javascriptExecutionTree will contain sub-requests.',
         '  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
         '  --cookie             Adds a cookie on the main domain.',
         '  --auth-user          Basic HTTP authentication username.',
@@ -49,11 +48,6 @@ if (screenshot) {
         screenshot = path.join(process.cwd(), screenshot);
     }
     options.screenshot = cli.flags.screenshot;
-}
-
-// Deep JS analysis option
-if (cli.flags.jsDeepAnalysis === true || cli.flags.jsDeepAnalysis === 'true') {
-    options.jsDeepAnalysis = true;
 }
 
 // Device simulation

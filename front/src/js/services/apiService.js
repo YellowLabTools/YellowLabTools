@@ -9,7 +9,6 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
                 url: url,
                 waitForResponse: false,
                 screenshot: true,
-                jsTimeline: true,
                 device: settings.device,
                 waitForSelector: settings.waitForSelector,
                 cookie: settings.cookie,
