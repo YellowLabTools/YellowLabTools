@@ -3,7 +3,7 @@
 var debug       = require('debug')('ylt:cli');
 var meow        = require('meow');
 var path        = require('path');
-var jstoxml     = require('jstoxml');
+var EasyXml     = require('easyxml');
 
 var ylt         = require('../lib/index');
 
@@ -15,7 +15,6 @@ var cli = meow({
         'Options:',
         '  --device             Use "phone" or "tablet" to simulate a mobile device (by user-agent and viewport size).',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
-        '  --js-deep-analysis   When activated, the javascriptExecutionTree will contain sub-requests.',
         '  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
         '  --cookie             Adds a cookie on the main domain.',
         '  --auth-user          Basic HTTP authentication username.',
@@ -51,11 +50,6 @@ if (screenshot) {
     options.screenshot = cli.flags.screenshot;
 }
 
-// Deep JS analysis option
-if (cli.flags.jsDeepAnalysis === true || cli.flags.jsDeepAnalysis === 'true') {
-    options.jsDeepAnalysis = true;
-}
-
 // Device simulation
 options.device = cli.flags.device || 'desktop';
 
@@ -86,7 +80,8 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
             debug('Success');
             switch(cli.flags.reporter) {
                 case 'xml':
-                    console.log(jstoxml.toXML(data, {indent: '  '}));
+                    var serializer = new EasyXml();
+                    console.log(serializer.render(data));
                     break;
                 default:
                     console.log(JSON.stringify(data, null, 2));

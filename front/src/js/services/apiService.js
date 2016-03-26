@@ -9,25 +9,26 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
                 url: url,
                 waitForResponse: false,
                 screenshot: true,
-                jsTimeline: true,
                 device: settings.device,
                 waitForSelector: settings.waitForSelector,
                 cookie: settings.cookie,
                 authUser: settings.authUser,
-                authPass: settings.authPass
+                authPass: settings.authPass,
+                blockDomain: settings.blockDomain,
+                allowedDomains: settings.allowedDomains,
+                noExternals: settings.noExternals
             };
 
-            if (settings.waitForSelector && settings.waitForSelector !== '') {
-                runObject.waitForSelector = settings.waitForSelector;
-            }
-
-            if (settings.cookie && settings.cookie !== '') {
-                runObject.cookie = settings.cookie;
-            }
-
-            if (settings.authUser && settings.authUser !== '' && settings.authPass && settings.authPass !== '') {
-                runObject.authUser = settings.authUser;
-                runObject.authPass = settings.authPass;
+            
+            if (settings.domainsBlackOrWhite === 'black') {
+                runObject.blockDomain = this.parseDomains(settings.domains);
+            } else if (settings.domainsBlackOrWhite === 'white') {
+                var allowedDomains = this.parseDomains(settings.domains);
+                if (allowedDomains.length > 0) {
+                    runObject.allowDomain = allowedDomains;
+                } else {
+                    runObject.noExternals = true;
+                }
             }
 
             Runs.save(runObject, function(data) {
@@ -43,6 +44,17 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
 
         relaunchTest: function(result) {
             this.launchTest(result.params.url, result.params.options);
+        },
+
+        parseDomains: function(textareaContent) {
+            var lines = textareaContent.split('\n');
+            
+            function removeEmptyLines (line) {
+                return line.trim() !== '';
+            }
+
+            // Remove empty lines
+            return lines.filter(removeEmptyLines).join(',');
         }
     };
 

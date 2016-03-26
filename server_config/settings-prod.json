@@ -2,6 +2,7 @@
     "serverPort": 80,
     "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
+    "screenshotWidth": 400,
 
     "authorizedKeys": {
         
