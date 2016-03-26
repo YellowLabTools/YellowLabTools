@@ -102,7 +102,7 @@ describe('api', function() {
                 screenshot: true,
                 device: 'tablet',
                 //waitForSelector: '*',
-                //cookie: 'foo=bar;domain=google.com',
+                cookie: 'foo=bar;domain=google.com',
                 authUser: 'joe',
                 authPass: 'secret'
             },
@@ -176,7 +176,7 @@ describe('api', function() {
                 // Check if settings are correctly sent and retrieved
                 body.params.options.should.have.a.property('device').that.equals('tablet');
                 //body.params.options.should.have.a.property('waitForSelector').that.equals('*');
-                //body.params.options.should.have.a.property('cookie').that.equals('foo=bar');
+                body.params.options.should.have.a.property('cookie').that.equals('foo=bar;domain=google.com');
                 body.params.options.should.have.a.property('authUser').that.equals('joe');
                 body.params.options.should.have.a.property('authPass').that.equals('secret');
 
