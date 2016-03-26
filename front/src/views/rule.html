@@ -96,6 +96,12 @@
                         </span>
                     </div>
 
+                    <div ng-if="policyName === 'cssRules'">
+                        <span ng-if="offender.file === 'inline CSS'">inline CSS</span>
+                        <span ng-if="offender.file !== 'inline CSS'"><url-link url="offender.file" max-length="80"></url-link></span>
+                        : <ng-pluralize count="offender.rules" when="{'0': '0 rule', 'one':'1 rule','other':'{} rules'}"></ng-pluralize>
+                    </div>
+
                     <div ng-if="policyName === 'similarColors'">
                         <div class="similarColors checker"><div ng-style="{'background-color': offender.color1, 'color': offender.isDark ? '#FFF' : '#000'}">{{offender.color1}}</div><div ng-style="{'background-color': offender.color2, 'color': offender.isDark ? '#FFF' : '#000'}">{{offender.color2}}</div></div>
                     </div>
