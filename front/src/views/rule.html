@@ -30,7 +30,7 @@
         <p>This rule reached the abnormality threshold, which means there is a real problem you should care about.</p>
     </div>
     <div class="offenders" ng-if="rule.policy.hasOffenders">
-        <h3><ng-pluralize count="rule.offendersObj.count" when="{'0': 'No offenders', 'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize></h3>
+        <h3 ng-if="rule.offendersObj.count >= 0"><ng-pluralize count="rule.offendersObj.count" when="{'0': 'No offenders', 'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize></h3>
 
         <div ng-if="rule.offendersObj.list" class="offendersTable">
             <div ng-repeat="offender in rule.offendersObj.list track by $index">
@@ -106,51 +106,19 @@
                         <div class="similarColors checker"><div ng-style="{'background-color': offender.color1, 'color': offender.isDark ? '#FFF' : '#000'}">{{offender.color1}}</div><div ng-style="{'background-color': offender.color2, 'color': offender.isDark ? '#FFF' : '#000'}">{{offender.color2}}</div></div>
                     </div>
 
-                    <div ng-if="policyName === 'cssMobileFirst'">
-                        <b>{{offender.query}}</b> for <ng-pluralize count="offender.rules" when="{'one':'1 rule','other':'{} rules'}"></ng-pluralize>
-                        <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
-                    </div>
-
                     <div ng-if="policyName === 'cssParsingErrors'">
                         <b>{{offender.error}}</b>
                         <file-and-line file="offender.file" line="offender.line" column="offender.column"></file-and-line>
                         <span ng-if="offender.file">(<a href="http://jigsaw.w3.org/css-validator/validator?profile=css3&usermedium=all&warning=no&uri={{offender.file | encodeURIComponent}}" target="_blank">Check on the W3C validator</a>)</span>
                     </div>
 
-                    <div ng-if="policyName === 'cssComplexSelectors' || policyName === 'cssComplexSelectorsByAttribute' || policyName === 'cssImports' || policyName === 'cssUniversalSelectors' || policyName === 'cssRedundantBodySelectors' || policyName === 'cssRedundantChildNodesSelectors'">
-                        <span ng-if="offender.bolded" ng-bind-html="offender.bolded"></span>
-                        <b ng-if="!offender.bolded">{{offender.css}}</b>
+                    <div ng-if="policyName === 'cssImports'">
+                        {{offender.css}}
                         <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
                     </div>
 
                     <div ng-if="policyName === 'cssDuplicatedSelectors'">
                         {{offender.rule}} (<b>x{{offender.occurrences}}</b>)
-                    </div>
-
-                    <div ng-if="policyName === 'cssDuplicatedProperties'">
-                        Property <b>{{offender.property}}</b> duplicated in <b>{{offender.rule}} { }</b>
-                        <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
-                    </div>
-
-                    <div ng-if="policyName === 'cssEmptyRules'">
-                        <b>{{offender.css}} { }</b>
-                        <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
-                    </div>
-
-                    <div ng-if="policyName === 'cssExpressions'">
-                        {{offender.rule}} {{ '{' + offender.property}}: <b>expression(</b>{{offender.expression}}<b>)</b>}
-                        <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
-                    </div>
-
-                    <div ng-if="policyName === 'cssImportants'">
-                        {{offender.rule}} {{ '{' + offender.property}}: {{offender.value}} <b>!important</b>}
-                        <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
-                    </div>
-
-                    <div ng-if="policyName === 'cssOldIEFixes'">
-                        <span ng-if="offender.browser"><b>{{offender.browser}} fix:</b></span>
-                        <span ng-bind-html="offender.bolded"></span>
-                        <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
                     </div>
 
                     <div ng-if="policyName === 'cssOldPropertyPrefixes'">
@@ -195,7 +163,57 @@
             </div>
         </div>
 
-        <div ng-if="!rule.offendersObj.list" class="offendersHtml">
+        <div ng-repeat="(file, fileDetails) in rule.offendersObj.byFile track by $index">
+            <h3>
+                <ng-pluralize count="fileDetails.count" when="{'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize>
+                in
+                <url-link ng-if="file !== 'Inline CSS'" url="file" max-length="80"></url-link>
+                <span ng-if="file === 'Inline CSS'">inline CSS</span>
+            </h3>
+
+            <div class="offendersTable">
+                <div ng-repeat="offender in fileDetails.offenders track by $index">
+                    <div ng-if="policyName === 'cssComplexSelectors' || policyName === 'cssComplexSelectorsByAttribute' || policyName === 'cssUniversalSelectors' || policyName === 'cssRedundantBodySelectors' || policyName === 'cssRedundantChildNodesSelectors'">
+                        <span ng-if="offender.bolded" ng-bind-html="offender.bolded"></span>
+                        <b ng-if="!offender.bolded">{{offender.css}}</b>
+                        <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
+                    </div>
+
+                    <div ng-if="policyName === 'cssMobileFirst'">
+                        <b>{{offender.query}}</b> for <ng-pluralize count="offender.rules" when="{'one':'1 rule','other':'{} rules'}"></ng-pluralize>
+                        <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
+                    </div>
+
+                    <div ng-if="policyName === 'cssDuplicatedProperties'">
+                        Property <b>{{offender.property}}</b> duplicated in <b>{{offender.rule}} { }</b>
+                        <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
+                    </div>
+
+                    <div ng-if="policyName === 'cssEmptyRules'">
+                        <b>{{offender.css}} { }</b>
+                        <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
+                    </div>
+
+                    <div ng-if="policyName === 'cssExpressions'">
+                        {{offender.rule}} {{ '{' + offender.property}}: <b>expression(</b>{{offender.expression}}<b>)</b>}
+                        <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
+                    </div>
+
+                    <div ng-if="policyName === 'cssImportants'">
+                        {{offender.rule}} {{ '{' + offender.property}}: {{offender.value}} <b>!important</b>}
+                        <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
+                    </div>
+
+                    <div ng-if="policyName === 'cssOldIEFixes'">
+                        <span ng-if="offender.browser"><b>{{offender.browser}} fix:</b></span>
+                        <span ng-bind-html="offender.bolded"></span>
+                        <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="!rule.offendersObj.list && !rule.offendersObj.byFile" class="offendersHtml">
             
             <div ng-if="policyName === 'DOMelementMaxDepth'">
                 <dom-tree tree="rule.offendersObj.tree"></dom-tree>
