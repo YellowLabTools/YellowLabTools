@@ -6,8 +6,7 @@ sudo apt-get install lsb-release libfontconfig1 libfreetype6 libjpeg-dev -y --fo
 sudo apt-get install curl git python-software-properties build-essential make g++ -y --force-yes
 
 # Installation of NodeJS
-sudo add-apt-repository -y ppa:chris-lea/node.js
-sudo apt-get update
+curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
 sudo apt-get install -y nodejs
 source ~/.profile
 
