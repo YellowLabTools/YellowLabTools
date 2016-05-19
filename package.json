@@ -1,6 +1,6 @@
 {
   "name": "yellowlabtools",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "Online tool to audit a webpage for performance and front-end quality issues",
   "license": "GPL-2.0",
   "author": {
@@ -41,7 +41,7 @@
     "imagemin": "4.0.0",
     "imagemin-jpegoptim": "4.1.0",
     "is-http2": "1.0.4",
-    "lwip": "0.0.8",
+    "lwip": "0.0.9",
     "meow": "3.7.0",
     "minimize": "1.8.1",
     "parse-color": "1.0.0",
