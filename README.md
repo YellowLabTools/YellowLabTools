@@ -83,4 +83,7 @@ If you understand French, you can visit [my website](http://www.gaelmetais.com) 
 
 ## Contributors
 - Achraf Ben Younes [achrafbenyounes](https://github.com/achrafbenyounes)
+- [camlafit](https://github.com/camlafit)
+- Vincent L. [magikcypress](https://github.com/magikcypress)
+- Ousama Ben Younes [ousamabenyounes](https://github.com/ousamabenyounes)
 

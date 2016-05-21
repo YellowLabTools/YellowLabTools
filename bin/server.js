@@ -17,6 +17,7 @@ app.use(cors());
 app.use(wwwRedirectMiddleware);
 app.use(authMiddleware);
 app.use(apiLimitsMiddleware);
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 
 // Initialize the controllers
