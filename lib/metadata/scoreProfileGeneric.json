@@ -50,6 +50,7 @@
             "policies": {
                 "jsErrors": 1,
                 "documentWriteCalls": 2,
+                "synchronousXHR": 5,
                 "consoleMessages": 0.5,
                 "globalVariables": 0.5
             }
@@ -108,7 +109,7 @@
         "domComplexity": 2,
         "domManipulations": 2,
         "scroll": 1,
-        "badJavascript": 1,
+        "badJavascript": 2,
         "jQuery": 1,
         "cssSyntaxError": 1,
         "cssComplexity": 1,
