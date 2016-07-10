@@ -82,3 +82,7 @@ yltApp.config(['$routeProvider', '$locationProvider',
     }
 ]);
 
+// Disable debugging https://docs.angularjs.org/guide/production
+yltApp.config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
+}]);
