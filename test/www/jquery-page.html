@@ -190,6 +190,11 @@
         $li.parentsUntil('body', 'div');
         $li.siblings();
         $li.siblings('li');
+
+        $.ajax({
+            url: 'xml.xml',
+            async: false
+        });
     </script>
 </body>
 </html>
