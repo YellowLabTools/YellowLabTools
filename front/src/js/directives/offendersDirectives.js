@@ -642,6 +642,11 @@
                 }
 
                 if (withFnResult === null) {
+                    // Yet another PhantomJS 2 format?
+                    withFnResult = /^([^\s\(]+|global code)@(.+:\d+:\d+)$/.exec(trace);
+                }
+
+                if (withFnResult === null) {
                     // Try the PhantomJS 2 ERROR format
                     withFnResult = /^([^\s\(]+) (http.+:\d+)$/.exec(trace);
                 }
@@ -664,12 +669,15 @@
                 var line = fileAndLineSplit[2];
                 var column = fileAndLineSplit[3];
 
-                out.push({
-                    fnName: fnName,
-                    filePath: filePath,
-                    line: line,
-                    column: column
-                });
+                // Filter phantomas code
+                if (filePath.indexOf('phantomjs://') === -1) {
+                    out.push({
+                        fnName: fnName,
+                        filePath: filePath,
+                        line: line,
+                        column: column
+                    });
+                }
             });
 
         } catch(e) {

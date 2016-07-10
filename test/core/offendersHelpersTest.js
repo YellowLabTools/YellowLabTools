@@ -200,6 +200,47 @@ describe('offendersHelpers', function() {
             ]);
         });
 
+        it('should transform a backtrace with the new PhantomJS 2.x syntax into an array', function() {
+            var result = offendersHelpers.backtraceToArray('each@http://m.australia.fr/js/min/vendors.js?20160706185900:4:5365 / f@http://m.australia.fr/js/min/vendors.js?20160706185900:17:82 / http://m.australia.fr/js/min/vendors.js?20160706185900:17:855 / handle@http://m.australia.fr/js/min/vendors.js?20160706185900:5:10871 / report@phantomjs://platform/phantomas.js:535:20 / phantomjs://platform/phantomas.js:524:15');
+
+            result.should.deep.equal([
+                {
+                    functionName: 'each',
+                    file: 'http://m.australia.fr/js/min/vendors.js?20160706185900',
+                    line: 4,
+                    column: 5365
+                },
+                {
+                    functionName: 'f',
+                    file: 'http://m.australia.fr/js/min/vendors.js?20160706185900',
+                    line: 17,
+                    column: 82
+                },
+                {
+                    file: 'http://m.australia.fr/js/min/vendors.js?20160706185900',
+                    line: 17,
+                    column: 855
+                },
+                {
+                    functionName: 'handle',
+                    file: 'http://m.australia.fr/js/min/vendors.js?20160706185900',
+                    line: 5,
+                    column: 10871
+                },
+                {
+                    functionName: 'report',
+                    file: 'phantomjs://platform/phantomas.js',
+                    line: 535,
+                    column: 20
+                },
+                {
+                    file: 'phantomjs://platform/phantomas.js',
+                    line: 524,
+                    column: 15
+                }
+            ]);
+        });
+
         it('should return null if it fails', function() {
             var result = offendersHelpers.backtraceToArray('http://pouet.com/js/jquery.footer-transverse-min-v1.0.20.js:1 /http://pouet.com/js/main.js:1');
 
