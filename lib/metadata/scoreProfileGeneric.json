@@ -50,6 +50,7 @@
             "policies": {
                 "jsErrors": 1,
                 "documentWriteCalls": 2,
+                "synchronousXHR": 3,
                 "consoleMessages": 0.5,
                 "globalVariables": 0.5
             }
