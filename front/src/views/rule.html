@@ -335,6 +335,17 @@
         </div>
     </div>
 
+    <div ng-if="policyName === 'identicalFiles'">
+        <div ng-repeat="offender in rule.offendersObj.list track by $index">
+            <h4>A file of {{offender.weight | bytes}} is loaded {{offender.urls.length}} times:</h4>
+            <div class="offendersTable">
+                <div ng-repeat="url in offender.urls">
+                    <div><url-link url="url" max-length="100"></url-link></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div ng-if="policyName === 'smallRequests'">
         <div ng-repeat="(type, requests) in rule.offendersObj.list.byType">
             <h3><ng-pluralize count="requests.length" when="{'0': 'small ' + type + ' file', 'one': '1 small ' + type + ' file', 'other': '{} small ' + type + ' files'}"></ng-pluralize></h3>
