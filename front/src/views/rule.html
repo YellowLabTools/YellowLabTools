@@ -141,7 +141,7 @@
                         <url-link url="offender" max-length="100"></url-link>
                     </div>
 
-                    <div ng-if="policyName === 'notFound' || policyName === 'closedConnections' || policyName === 'multipleRequests' || policyName === 'cachingDisabled' || policyName === 'cachingNotSpecified'">
+                    <div ng-if="policyName === 'notFound' || policyName === 'emptyRequests' || policyName === 'closedConnections' || policyName === 'multipleRequests' || policyName === 'cachingDisabled' || policyName === 'cachingNotSpecified'">
                         <url-link url="offender" max-length="100"></url-link>
                     </div>
 
@@ -158,7 +158,6 @@
                     <div ng-if="policyName === 'globalVariables' || policyName === 'jQueryVersionsLoaded' || policyName === 'synchronousXHR'">
                         {{offender}}
                     </div>
-
                 </div>
             </div>
         </div>
