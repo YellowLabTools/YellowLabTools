@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var imageOptimizer = require('../../lib/tools/weightChecker/imageOptimizer');
+var imageOptimizer = require('../../lib/tools/redownload/imageOptimizer');
 var fs = require('fs');
 var path = require('path');
 
