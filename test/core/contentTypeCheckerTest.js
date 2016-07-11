@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var contentTypeChecker = require('../../lib/tools/weightChecker/contentTypeChecker');
+var contentTypeChecker = require('../../lib/tools/redownload/contentTypeChecker');
 var fs = require('fs');
 var path = require('path');
 

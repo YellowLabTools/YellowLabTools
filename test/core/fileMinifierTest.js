@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var fileMinifier = require('../../lib/tools/weightChecker/fileMinifier');
+var fileMinifier = require('../../lib/tools/redownload/fileMinifier');
 var fs = require('fs');
 var path = require('path');
 

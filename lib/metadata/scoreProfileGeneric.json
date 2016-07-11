@@ -16,6 +16,7 @@
                 "domains": 3,
                 "notFound": 3,
                 "multipleRequests": 2,
+                "emptyRequests": 3,
                 "smallRequests": 1,
                 "lazyLoadableImagesBelowTheFold": 2,
                 "hiddenImages": 1
