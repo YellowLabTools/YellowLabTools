@@ -15,7 +15,7 @@
                 "totalRequests": 5,
                 "domains": 3,
                 "notFound": 3,
-                "multipleRequests": 2,
+                "identicalFiles": 2,
                 "emptyRequests": 3,
                 "smallRequests": 1,
                 "lazyLoadableImagesBelowTheFold": 2,
