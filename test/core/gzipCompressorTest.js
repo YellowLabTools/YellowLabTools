@@ -1,6 +1,6 @@
 var should = require('chai').should();
-var gzipCompressor = require('../../lib/tools/weightChecker/gzipCompressor');
-var fileMinifier = require('../../lib/tools/weightChecker/fileMinifier');
+var gzipCompressor = require('../../lib/tools/redownload/gzipCompressor');
+var fileMinifier = require('../../lib/tools/redownload/fileMinifier');
 var fs = require('fs');
 var path = require('path');
 

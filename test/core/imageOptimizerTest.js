@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var imageOptimizer = require('../../lib/tools/weightChecker/imageOptimizer');
+var imageOptimizer = require('../../lib/tools/redownload/imageOptimizer');
 var fs = require('fs');
 var path = require('path');
 
@@ -11,7 +11,7 @@ describe('imageOptimizer', function() {
         var fileSize = fileContent.length;
 
         imageOptimizer.compressJpegLosslessly(fileContent).then(function(newFile) {
-            var newFileSize = newFile.contents.length;
+            var newFileSize = newFile.length;
             newFileSize.should.be.below(fileSize);
             done();
         }).fail(function(err) {
@@ -25,7 +25,7 @@ describe('imageOptimizer', function() {
         var fileSize = fileContent.length;
 
         imageOptimizer.compressJpegLossly(fileContent).then(function(newFile) {
-            var newFileSize = newFile.contents.length;
+            var newFileSize = newFile.length;
             newFileSize.should.be.below(fileSize);
             done();
         }).fail(function(err) {
@@ -82,7 +82,7 @@ describe('imageOptimizer', function() {
         var fileSize = fileContent.length;
 
         imageOptimizer.compressPngLosslessly(fileContent).then(function(newFile) {
-            var newFileSize = newFile.contents.length;
+            var newFileSize = newFile.length;
             newFileSize.should.be.below(fileSize);
             done();
         }).fail(function(err) {
@@ -96,7 +96,7 @@ describe('imageOptimizer', function() {
         var fileSize = fileContent.length;
 
         imageOptimizer.compressPngLosslessly(fileContent).then(function(newFile) {
-            var newFileSize = newFile.contents.length;
+            var newFileSize = newFile.length;
             newFileSize.should.equal(fileSize);
             done();
         }).fail(function(err) {
@@ -110,7 +110,7 @@ describe('imageOptimizer', function() {
         var fileSize = fileContent.length;
 
         imageOptimizer.compressPngLosslessly(fileContent).then(function(newFile) {
-            var newFileSize = newFile.contents.length;
+            var newFileSize = newFile.length;
             newFileSize.should.equal(fileSize);
             done();
         }).fail(function(err) {
@@ -166,7 +166,7 @@ describe('imageOptimizer', function() {
         var fileSize = fileContent.length;
 
         imageOptimizer.compressSvgLosslessly(fileContent).then(function(newFile) {
-            var newFileSize = newFile.contents.length;
+            var newFileSize = newFile.length;
             newFileSize.should.be.below(fileSize);
             done();
         }).fail(function(err) {

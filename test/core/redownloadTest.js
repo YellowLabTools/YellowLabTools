@@ -1,9 +1,9 @@
 var should = require('chai').should();
-var weightChecker = require('../../lib/tools/weightChecker/weightChecker');
+var redownload = require('../../lib/tools/redownload/redownload');
 var fs = require('fs');
 var path = require('path');
 
-describe('weightChecker', function() {
+describe('redownload', function() {
     
     it('should download a list of files', function(done) {
         this.timeout(10000);
@@ -121,49 +121,49 @@ describe('weightChecker', function() {
             }
         };
 
-        weightChecker.recheckAllFiles(data)
+        redownload.recheckAllFiles(data)
 
         .then(function(data) {
-            data.toolsResults.should.have.a.property('weightChecker');
-            data.toolsResults.weightChecker.should.have.a.property('metrics');
-            data.toolsResults.weightChecker.should.have.a.property('offenders');
+            data.toolsResults.should.have.a.property('redownload');
+            data.toolsResults.redownload.should.have.a.property('metrics');
+            data.toolsResults.redownload.should.have.a.property('offenders');
 
-            data.toolsResults.weightChecker.offenders.should.have.a.property('totalWeight');
-            data.toolsResults.weightChecker.offenders.totalWeight.totalWeight.should.be.above(0);
-            data.toolsResults.weightChecker.offenders.totalWeight.byType.html.requests.length.should.equal(1);
-            data.toolsResults.weightChecker.offenders.totalWeight.byType.js.requests.length.should.equal(2);
-            data.toolsResults.weightChecker.offenders.totalWeight.byType.css.requests.length.should.equal(1);
-            data.toolsResults.weightChecker.offenders.totalWeight.byType.image.requests.length.should.equal(2);
-            data.toolsResults.weightChecker.offenders.totalWeight.byType.other.requests.length.should.equal(1);
+            data.toolsResults.redownload.offenders.should.have.a.property('totalWeight');
+            data.toolsResults.redownload.offenders.totalWeight.totalWeight.should.be.above(0);
+            data.toolsResults.redownload.offenders.totalWeight.byType.html.requests.length.should.equal(1);
+            data.toolsResults.redownload.offenders.totalWeight.byType.js.requests.length.should.equal(2);
+            data.toolsResults.redownload.offenders.totalWeight.byType.css.requests.length.should.equal(1);
+            data.toolsResults.redownload.offenders.totalWeight.byType.image.requests.length.should.equal(2);
+            data.toolsResults.redownload.offenders.totalWeight.byType.other.requests.length.should.equal(1);
 
-            data.toolsResults.weightChecker.offenders.should.have.a.property('imageOptimization');
-            data.toolsResults.weightChecker.offenders.imageOptimization.totalGain.should.be.above(0);
-            data.toolsResults.weightChecker.offenders.imageOptimization.images.length.should.equal(2);
+            data.toolsResults.redownload.offenders.should.have.a.property('imageOptimization');
+            data.toolsResults.redownload.offenders.imageOptimization.totalGain.should.be.above(0);
+            data.toolsResults.redownload.offenders.imageOptimization.images.length.should.equal(2);
 
-            data.toolsResults.weightChecker.offenders.should.have.a.property('gzipCompression');
-            data.toolsResults.weightChecker.offenders.gzipCompression.totalGain.should.be.above(0);
-            data.toolsResults.weightChecker.offenders.gzipCompression.files.length.should.equal(5);
+            data.toolsResults.redownload.offenders.should.have.a.property('gzipCompression');
+            data.toolsResults.redownload.offenders.gzipCompression.totalGain.should.be.above(0);
+            data.toolsResults.redownload.offenders.gzipCompression.files.length.should.equal(5);
 
-            data.toolsResults.weightChecker.offenders.should.have.a.property('fileMinification');
-            data.toolsResults.weightChecker.offenders.fileMinification.totalGain.should.be.above(0);
-            data.toolsResults.weightChecker.offenders.fileMinification.files.length.should.equal(2);
+            data.toolsResults.redownload.offenders.should.have.a.property('fileMinification');
+            data.toolsResults.redownload.offenders.fileMinification.totalGain.should.be.above(0);
+            data.toolsResults.redownload.offenders.fileMinification.files.length.should.equal(2);
 
-            data.toolsResults.weightChecker.metrics.should.have.a.property('totalRequests').that.equals(7);
-            data.toolsResults.weightChecker.offenders.should.have.a.property('totalRequests');
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.html.length.should.equal(1);
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.js.length.should.equal(2);
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.css.length.should.equal(1);
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.image.length.should.equal(2);
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.json.length.should.equal(0);
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.webfont.length.should.equal(0);
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.video.length.should.equal(0);
-            data.toolsResults.weightChecker.offenders.totalRequests.byType.other.length.should.equal(1);
+            data.toolsResults.redownload.metrics.should.have.a.property('totalRequests').that.equals(7);
+            data.toolsResults.redownload.offenders.should.have.a.property('totalRequests');
+            data.toolsResults.redownload.offenders.totalRequests.byType.html.length.should.equal(1);
+            data.toolsResults.redownload.offenders.totalRequests.byType.js.length.should.equal(2);
+            data.toolsResults.redownload.offenders.totalRequests.byType.css.length.should.equal(1);
+            data.toolsResults.redownload.offenders.totalRequests.byType.image.length.should.equal(2);
+            data.toolsResults.redownload.offenders.totalRequests.byType.json.length.should.equal(0);
+            data.toolsResults.redownload.offenders.totalRequests.byType.webfont.length.should.equal(0);
+            data.toolsResults.redownload.offenders.totalRequests.byType.video.length.should.equal(0);
+            data.toolsResults.redownload.offenders.totalRequests.byType.other.length.should.equal(1);
 
-            data.toolsResults.weightChecker.metrics.should.have.a.property('smallRequests').that.equals(0);
-            data.toolsResults.weightChecker.offenders.should.have.a.property('smallRequests');
-            data.toolsResults.weightChecker.offenders.smallRequests.byType.js.length.should.equal(0);
-            data.toolsResults.weightChecker.offenders.smallRequests.byType.css.length.should.equal(0);
-            data.toolsResults.weightChecker.offenders.smallRequests.byType.image.length.should.equal(0);
+            data.toolsResults.redownload.metrics.should.have.a.property('smallRequests').that.equals(0);
+            data.toolsResults.redownload.offenders.should.have.a.property('smallRequests');
+            data.toolsResults.redownload.offenders.smallRequests.byType.js.length.should.equal(0);
+            data.toolsResults.redownload.offenders.smallRequests.byType.css.length.should.equal(0);
+            data.toolsResults.redownload.offenders.smallRequests.byType.image.length.should.equal(0);
 
             done();
         })
@@ -187,7 +187,7 @@ describe('weightChecker', function() {
             type: 'js'
         };
 
-        weightChecker.redownloadEntry(entry)
+        redownload.redownloadEntry(entry)
 
         .then(function(newEntry) {
 
@@ -221,7 +221,7 @@ describe('weightChecker', function() {
             contentType: 'image/png'
         };
 
-        weightChecker.redownloadEntry(entry)
+        redownload.redownloadEntry(entry)
 
         .then(function(newEntry) {
 
@@ -258,7 +258,7 @@ describe('weightChecker', function() {
             contentLength: 999
         };
 
-        weightChecker.redownloadEntry(entry)
+        redownload.redownloadEntry(entry)
 
         .then(function(newEntry) {
             newEntry.weightCheck.should.have.a.property('message').that.equals('error while downloading: 404');
@@ -285,7 +285,7 @@ describe('weightChecker', function() {
             contentLength: 999
         };
 
-        weightChecker.redownloadEntry(entry)
+        redownload.redownloadEntry(entry)
 
         .then(function(newEntry) {
             newEntry.should.not.have.a.property('weightCheck');
@@ -298,7 +298,7 @@ describe('weightChecker', function() {
     });
 
     it('should listRequestWeight', function() {
-        var totalWeightObj = weightChecker.listRequestWeight([{
+        var totalWeightObj = redownload.listRequestWeight([{
             method: 'GET',
             url: 'http://localhost:8388/jquery1.8.3.js',
             requestHeaders: {
@@ -328,7 +328,7 @@ describe('weightChecker', function() {
     });
 
     it('should listRequestWeight even if download failed', function() {
-        var totalWeightObj = weightChecker.listRequestWeight([{
+        var totalWeightObj = redownload.listRequestWeight([{
             method: 'GET',
             url: 'http://localhost:8388/jquery1.8.3.js',
             requestHeaders: {
