@@ -78,7 +78,7 @@ If your project is not accessible from outside, or if you want to fork and impro
 ## Author
 Gaël Métais. I'm a webperf freelance. Follow me on Twitter [@gaelmetais](https://twitter.com/gaelmetais), I tweet about Web Performances, Front-end and new versions of YellowLabTools!
 
-If you understand French, you can visit [my website](http://www.gaelmetais.com) (will be soon in English too).
+I can also help your company about Web Performances, visit [my website](http://www.gaelmetais.com).
 
 
 ## Contributors
