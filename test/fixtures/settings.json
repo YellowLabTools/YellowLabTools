@@ -3,7 +3,7 @@
     "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
     "screenshotWidth": 400,
-    
+    "baseUrl": "/",    
     "authorizedKeys": {
         "1234567890": "contact@gaelmetais.com"
     },
