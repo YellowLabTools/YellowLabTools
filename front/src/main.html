@@ -2,21 +2,21 @@
 <head>
 	<meta charset="utf-8">
     <title>Yellow Lab Tools</title>
-    <base href="/">
-    <link rel="icon" type="image/png" href="/img/favicon.png">
-    <meta property="og:image" content="/img/logo-large.png" />
+    <base href="<%= baseUrl %>">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <meta property="og:image" content="img/logo-large.png" />
     <meta name="description" content="Free online web performance tool. Audit your webpage for performance and front-end quality issues. And it's open-source!" />
 
-    <!-- build:css /css/styles.css-->
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
-    <link rel="stylesheet" type="text/css" href="/css/queue.css">
-    <link rel="stylesheet" type="text/css" href="/css/rule.css">
-    <link rel="stylesheet" type="text/css" href="/css/screenshot.css">
-    <link rel="stylesheet" type="text/css" href="/css/timeline.css">
-    <link rel="stylesheet" type="text/css" href="/css/about.css">
-    <link rel="stylesheet" type="text/css" href="/node_modules/angular-chart.js/dist/angular-chart.css">
+    <!-- build:css css/styles.css-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="css/queue.css">
+    <link rel="stylesheet" type="text/css" href="css/rule.css">
+    <link rel="stylesheet" type="text/css" href="css/screenshot.css">
+    <link rel="stylesheet" type="text/css" href="css/timeline.css">
+    <link rel="stylesheet" type="text/css" href="css/about.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/angular-chart.js/dist/angular-chart.css">
     <!-- endbuild -->
 
     <link rel="preconnect" href="//www.google-analytics.com">
@@ -33,34 +33,34 @@
     <div id="body" ng-view autoscroll="true"></div>
     <div class="footer">
         <span class="version">@@version</span>
-        <br><a href="/about">More about Yellow Lab Tools</a><br>
+        <br><a href="<%= baseUrl %>about">More about Yellow Lab Tools</a><br>
         <div class="github"><iframe id="ghbtn" frameborder="0" scrolling="0" width="145px" height="30px"></iframe></div>
     </div>
 
-    <!-- build:js /js/all.js -->
-    <script src="/node_modules/angular/angular.min.js"></script>
-    <script src="/node_modules/chart.js/Chart.min.js"></script>
-    <script src="/node_modules/angular-route/angular-route.min.js"></script>
-    <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
-    <script src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="/node_modules/angular-animate/angular-animate.min.js"></script>
-    <script src="/node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
-    <script src="/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/controllers/indexCtrl.js"></script>
-    <script src="/js/controllers/dashboardCtrl.js"></script>
-    <script src="/js/controllers/queueCtrl.js"></script>
-    <script src="/js/controllers/ruleCtrl.js"></script>
-    <script src="/js/controllers/screenshotCtrl.js"></script>
-    <script src="/js/controllers/timelineCtrl.js"></script>
-    <script src="/js/models/resultsFactory.js"></script>
-    <script src="/js/models/runsFactory.js"></script>
-    <script src="/js/services/apiService.js"></script>
-    <script src="/js/services/menuService.js"></script>
-    <script src="/js/services/settingsService.js"></script>
+    <!-- build:js js/all.js -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/chart.js/Chart.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/indexCtrl.js"></script>
+    <script src="js/controllers/dashboardCtrl.js"></script>
+    <script src="js/controllers/queueCtrl.js"></script>
+    <script src="js/controllers/ruleCtrl.js"></script>
+    <script src="js/controllers/screenshotCtrl.js"></script>
+    <script src="js/controllers/timelineCtrl.js"></script>
+    <script src="js/models/resultsFactory.js"></script>
+    <script src="js/models/runsFactory.js"></script>
+    <script src="js/services/apiService.js"></script>
+    <script src="js/services/menuService.js"></script>
+    <script src="js/services/settingsService.js"></script>
 
-    <script src="/js/directives/gradeDirective.js"></script>
-    <script src="/js/directives/offendersDirectives.js"></script>
+    <script src="js/directives/gradeDirective.js"></script>
+    <script src="js/directives/offendersDirectives.js"></script>
     <!-- endbuild -->
 
     <script>

@@ -37,6 +37,7 @@
     "css-mq-parser": "0.0.3",
     "debug": "2.2.0",
     "easyxml": "2.0.1",
+    "ejs": "^2.5.1",
     "express": "4.14.0",
     "imagemin": "5.2.2",
     "imagemin-jpegoptim": "5.0.0",

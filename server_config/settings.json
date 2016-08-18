@@ -3,7 +3,7 @@
     "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
     "screenshotWidth": 400,
-
+    "baseUrl": "/",
     "authorizedKeys": {
         
     },

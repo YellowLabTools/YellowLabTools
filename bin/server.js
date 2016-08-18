@@ -20,6 +20,11 @@ app.use(apiLimitsMiddleware);
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 
+// EJS HTML engine
+app.engine('.html', require('ejs').__express);
+app.set('view engine', 'ejs');
+
+
 // Initialize the controllers
 var apiController           = require('../lib/server/controllers/apiController')(app);
 var frontController         = require('../lib/server/controllers/frontController')(app);
@@ -28,6 +33,9 @@ var frontController         = require('../lib/server/controllers/frontController
 // Let's start the server!
 if (!process.env.GRUNTED) {
     var settings = require('../server_config/settings.json');
+
+    app.locals.baseUrl = settings.baseUrl;
+
     server.listen(settings.serverPort, function() {
         console.log('Listening on port %d', server.address().port);
 
