@@ -158,6 +158,11 @@
                     <div ng-if="policyName === 'globalVariables' || policyName === 'jQueryVersionsLoaded' || policyName === 'synchronousXHR'">
                         {{offender}}
                     </div>
+
+                    <div ng-if="policyName === 'fontsCount' || policyName === 'heavyFonts'">
+                        <url-link url="offender.url" max-length="60"></url-link>
+                        ({{offender.size | bytes}})
+                    </div>
                 </div>
             </div>
         </div>

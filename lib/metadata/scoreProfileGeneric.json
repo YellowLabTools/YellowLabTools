@@ -93,6 +93,13 @@
                 "cssRedundantChildNodesSelectors": 1
             }
         },
+        "fonts": {
+            "label": "Web fonts",
+            "policies": {
+                "fontsCount": 1,
+                "heavyFonts": 1
+            }
+        },
         "serverConfig": {
             "label": "Server config",
             "policies": {
@@ -115,6 +122,7 @@
         "cssSyntaxError": 1,
         "cssComplexity": 1,
         "badCSS": 1,
+        "fonts": 1,
         "serverConfig": 1
     }
 }
