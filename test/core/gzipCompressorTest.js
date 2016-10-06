@@ -23,7 +23,7 @@ describe('gzipCompressor', function() {
             type: 'js',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -64,7 +64,7 @@ describe('gzipCompressor', function() {
             type: 'js',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 bodyAfterOptimization: minifiedContent.toString('utf8'),
                 totalWeight: fileSize + 200,
                 headersSize: 200,
@@ -108,7 +108,7 @@ describe('gzipCompressor', function() {
             type: 'js',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 bodyAfterOptimization: minifiedContent.toString('utf8'),
                 totalWeight: gzipedSize + 200,
                 headersSize: 200,
@@ -150,7 +150,7 @@ describe('gzipCompressor', function() {
             type: 'js',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: gzipedSize + 200,
                 headersSize: 200,
                 bodySize: gzipedSize,
@@ -188,7 +188,7 @@ describe('gzipCompressor', function() {
             type: 'css',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -224,7 +224,7 @@ describe('gzipCompressor', function() {
             type: 'html',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -261,7 +261,7 @@ describe('gzipCompressor', function() {
             type: 'image',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -297,7 +297,7 @@ describe('gzipCompressor', function() {
             type: 'xml',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -333,7 +333,7 @@ describe('gzipCompressor', function() {
             type: 'json',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -370,7 +370,7 @@ describe('gzipCompressor', function() {
             type: 'webfont',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -407,7 +407,7 @@ describe('gzipCompressor', function() {
             type: 'favicon',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -444,7 +444,7 @@ describe('gzipCompressor', function() {
             contentType: 'image/jpeg',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -482,7 +482,7 @@ describe('gzipCompressor', function() {
             contentType: 'image/png',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -519,7 +519,7 @@ describe('gzipCompressor', function() {
             contentType: 'image/gif',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -556,7 +556,7 @@ describe('gzipCompressor', function() {
             contentType: 'image/webp',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
