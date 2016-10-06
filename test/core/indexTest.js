@@ -109,6 +109,21 @@ describe('index.js', function() {
             });
     });
 
+    it('should succeed on try-catch.html', function(done) {
+        this.timeout(15000);
+
+        var url = 'http://localhost:8388/try-catch.html';
+
+        ylt(url)
+            .then(function(data) {
+                data.toolsResults.phantomas.metrics.should.have.a.property('jsErrors').that.equals(0);
+                done();
+            }).fail(function(err) {
+                console.log.restore();
+                done(err);
+            });
+    });
+
     it('should take a screenshot', function(done) {
         this.timeout(15000);
 
