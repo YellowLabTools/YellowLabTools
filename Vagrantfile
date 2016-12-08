@@ -17,6 +17,8 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--cpus", 2]
   end
 
+  config.vm.synced_folder "./", "/space/YellowLabTools"
+
   config.vm.provision :shell, :path => "server_config/server_install.sh"
 
 end
