@@ -195,7 +195,7 @@ describe('redownload', function() {
             newEntry.weightCheck.uncompressedSize.should.equal(newEntry.weightCheck.bodySize);
             newEntry.weightCheck.isCompressed.should.equal(false);
             newEntry.weightCheck.headersSize.should.be.above(200).and.below(400);
-            newEntry.weightCheck.body.toString().should.have.string('1.8.3');
+            newEntry.weightCheck.bodyBuffer.toString().should.have.string('1.8.3');
 
             done();
         })
@@ -226,12 +226,11 @@ describe('redownload', function() {
         .then(function(newEntry) {
 
             newEntry.weightCheck.bodySize.should.equal(4193);
-            newEntry.weightCheck.body.should.equal(fileContent.toString('binary'));
+            newEntry.weightCheck.bodyBuffer.should.deep.equal(fileContent);
 
             // Opening the image in lwip to check if the format is good
             var lwip = require('lwip');
-            var buffer = new Buffer(newEntry.weightCheck.body, 'binary');
-            lwip.open(buffer, 'png', function(err, image) {
+            lwip.open(newEntry.weightCheck.bodyBuffer, 'png', function(err, image) {
                 image.width().should.equal(620);
                 image.height().should.equal(104);
                 done(err);
@@ -312,7 +311,7 @@ describe('redownload', function() {
             type: 'html',
             contentLength: 999,
             weightCheck: {
-                body: 'blabla',
+                bodyBuffer: 'blabla',
                 headersSize: 200,
                 bodySize: 500,
                 isCompressed: false,

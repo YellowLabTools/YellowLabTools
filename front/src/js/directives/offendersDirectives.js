@@ -918,4 +918,10 @@
         };
     });
 
+    offendersDirectives.filter('addSpaces', function() {
+        return function(str) {
+            return str.split('').join(' ');
+        };
+    });
+
 })();

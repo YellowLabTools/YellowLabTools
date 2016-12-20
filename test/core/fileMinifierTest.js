@@ -37,7 +37,7 @@ describe('fileMinifier', function() {
             type: 'js',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -179,7 +179,7 @@ describe('fileMinifier', function() {
             type: 'css',
             contentLength: 999,
             weightCheck: {
-                body: fileContent.toString('utf8'),
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
