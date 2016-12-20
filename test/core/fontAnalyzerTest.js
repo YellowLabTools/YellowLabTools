@@ -6,6 +6,8 @@ var path = require('path');
 describe('fontAnalyzer', function() {
     
     it('should extract metrics from a font', function(done) {
+        this.timeout(10000);
+
         var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/SourceSansPro/SourceSansPro-Regular.woff'));
         var fileSize = fileContent.length;
 
