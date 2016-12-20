@@ -3,7 +3,7 @@
 # APT-GET
 sudo apt-get update
 sudo apt-get install lsb-release libfontconfig1 libfreetype6 libjpeg-dev -y --force-yes > /dev/null 2>&1
-sudo apt-get install curl git python-software-properties build-essential make g++ -y --force-yes > /dev/null 2>&1
+sudo apt-get install curl git software-properties-common build-essential make g++ -y --force-yes > /dev/null 2>&1
 
 # Installation of NodeJS
 curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
