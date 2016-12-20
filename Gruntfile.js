@@ -339,7 +339,6 @@ module.exports = function(grunt) {
         'copy:coverage',
         'express:test',
         'mochaTest:test',
-        'mochaTest:coverage',
         'clean:tmp'
     ]);
 
