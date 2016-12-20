@@ -159,8 +159,8 @@
                         {{offender}}
                     </div>
 
-                    <div ng-if="policyName === 'fontsCount' || policyName === 'heavyFonts'">
-                        <url-link url="offender.url" max-length="60"></url-link>
+                    <div ng-if="policyName === 'fontsCount'">
+                        <url-link url="offender.url" max-length="70"></url-link>
                         ({{offender.size | bytes}})
                     </div>
                 </div>
@@ -255,7 +255,7 @@
             <div class="offendersTable">
                 <div ng-repeat="request in rule.offendersObj.list.byType[type].requests | orderBy:'-weight'" ng-if="request.weight > 0">
                     <div><url-link url="request.url" max-length="60"></url-link></div>
-                    <div ng-class="{hugeFile: request.weight > 102400}">{{request.weight | bytes}}</div>
+                    <div ng-class="{offenderProblem: request.weight > 102400}">{{request.weight | bytes}}</div>
                 </div>
             </div>
         </div>
@@ -405,6 +405,57 @@
         </div>
         <div ng-if="rule.value === 0">
         No breakpoint
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'heavyFonts'">
+        <div ng-repeat="font in rule.offendersObj.fonts | orderBy:'-weight' track by $index">
+            <h3><url-link url="font.url" max-length="80"></url-link></h3>
+            <div class="offendersTable">
+                <div>
+                    <div>Weight</div>
+                    <div ng-if="font.weight <= 40960">{{font.weight | bytes}}</div>
+                    <div ng-if="font.weight > 40960" class="offenderProblem">{{font.weight | bytes}}</div>
+                </div>
+                <div>
+                    <div>Number of glyphs</div>
+                    <div ng-if="font.numGlyphs <= 500">{{font.numGlyphs}}</div>
+                    <div ng-if="font.numGlyphs > 500" class="offenderProblem">{{font.numGlyphs}} (better &lt; 500)</div>
+                </div>
+                <div>
+                    <div>Average glyph complexity</div>
+                    <div ng-if="font.averageGlyphComplexity <= 35">{{font.averageGlyphComplexity}}</div>
+                    <div ng-if="font.averageGlyphComplexity > 35" class="offenderProblem">{{font.averageGlyphComplexity}} (better &lt; 35)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'unusedUnicodeRanges'">
+        <div ng-repeat="font in rule.offendersObj.fonts | orderBy:'-compressedWeigth' track by $index">
+            <h3><url-link url="font.url" max-length="60"></url-link> ({{font.weight | bytes}})</h3>
+            <div ng-if="font.isIconFont" class="offendersTable">
+                <div>
+                    <div>
+                        This font seems to be an icon font
+                        <span ng-if="font.numGlyphsInCommonWithPageContent / font.glyphs <= 0.05" class="offenderProblem">but only {{font.numGlyphsInCommonWithPageContent}} of its {{font.glyphs}} glyphs <ng-pluralize count="font.numGlyphsInCommonWithPageContent" when="{'one': 'is', 'other': 'are'}"></ng-pluralize> possibly used!</span>
+                        <span ng-if="font.numGlyphsInCommonWithPageContent / font.glyphs > 0.05">and {{font.numGlyphsInCommonWithPageContent}} of its {{font.glyphs}} glyphs <ng-pluralize count="font.numGlyphsInCommonWithPageContent" when="{'one': 'is', 'other': 'are'}"></ng-pluralize> possibly used.</span>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="!font.isIconFont" class="offendersTable">
+                <div ng-repeat="range in font.unicodeRanges track by $index">
+                    <div><b>{{range.name}}</b></div>
+                    <div ng-if="!range.underused">{{range.numGlyphsInCommonWithPageContent}} of its {{range.charset.length}} glyphs <ng-pluralize count="range.numGlyphsInCommonWithPageContent" when="{'one': 'is', 'other': 'are'}"></ng-pluralize> possibly used</div>
+                    <div ng-if="range.underused" class="offenderProblem">{{range.numGlyphsInCommonWithPageContent}} of its {{range.charset.length}} glyphs are used</div>
+                    <div>
+                        <div class="offenderButton opens">
+                            glyphes list
+                            <div>{{range.charset | addSpaces}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
