@@ -15,7 +15,8 @@ var cli = meow({
         'Options:',
         '  --device             Use "phone" or "tablet" to simulate a mobile device (by user-agent and viewport size).',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
-        '  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
+        //'  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
+        '  --proxy              Sets an HTTP proxy to pass through. Syntax is "host:port".',
         '  --cookie             Adds a cookie on the main domain.',
         '  --auth-user          Basic HTTP authentication username.',
         '  --auth-pass          Basic HTTP authentication password.',
@@ -55,6 +56,9 @@ options.device = cli.flags.device || 'desktop';
 
 // Wait for CSS selector
 options.waitForSelector = cli.flags.waitForSelector || null;
+
+// Proxy
+options.proxy = cli.flags.proxy || null;
 
 // Cookie
 options.cookie = cli.flags.cookie || null;

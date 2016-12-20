@@ -11,6 +11,7 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
                 screenshot: true,
                 device: settings.device,
                 waitForSelector: settings.waitForSelector,
+                proxy: settings.proxy,
                 cookie: settings.cookie,
                 authUser: settings.authUser,
                 authPass: settings.authPass,
