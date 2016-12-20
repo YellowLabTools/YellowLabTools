@@ -61,7 +61,6 @@
             "policies": {
                 "jQueryVersion": 2,
                 "jQueryVersionsLoaded": 2,
-                "jQueryFunctionsUsed": 1,
                 "jQueryCallsOnEmptyObject": 1,
                 "jQueryNotDelegatedEvents": 1
             }
