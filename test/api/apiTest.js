@@ -50,7 +50,8 @@ describe('api', function() {
             method: 'POST',
             url: serverUrl + '/api/runs',
             body: {
-                url: ''
+                url: '',
+                waitForResponse: true
             },
             json: true,
             headers: {
