@@ -15,11 +15,13 @@
             <span ng-if="!settings.showAdvanced">Advanced settings &nbsp;✚</span>
             <span ng-if="settings.showAdvanced">Hide advanced settings &nbsp;✖</span>
         </a> ]
-        <span class="currentSettings" ng-if="!settings.showAdvanced && (settings.waitForSelector || settings.cookie || settings.authUser || settings.authPass)">
+        <span class="currentSettings" ng-if="!settings.showAdvanced && (settings.waitForSelector || settings.cookie || settings.authUser || settings.authPass || settings.proxy || settings.domains)">
             Currently set:
             <span ng-if="settings.waitForSelector">wait for selector</span>
             <span ng-if="settings.cookie">cookie</span>
             <span ng-if="settings.authUser || settings.authPass">authentication</span>
+            <span ng-if="settings.proxy">proxy</span>
+            <span ng-if="settings.domains">domain blocking</span>
         </span>
         <div class="advanced" ng-show="settings.showAdvanced">
             <!--<div>
