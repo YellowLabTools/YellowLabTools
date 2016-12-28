@@ -85,6 +85,10 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
             switch(cli.flags.reporter) {
                 case 'xml':
                     var serializer = new EasyXml();
+
+                    // Remove some heavy parts of the results object
+                    delete data.javascriptExecutionTree;
+
                     console.log(serializer.render(data));
                     break;
                 default:
