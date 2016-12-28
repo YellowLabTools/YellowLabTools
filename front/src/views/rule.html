@@ -167,12 +167,12 @@
             </div>
         </div>
 
-        <div ng-repeat="(file, fileDetails) in rule.offendersObj.byFile track by $index">
+        <div ng-repeat="fileDetails in rule.offendersObj.byFile track by $index">
             <h3>
                 <ng-pluralize count="fileDetails.count" when="{'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize>
                 in
-                <url-link ng-if="file !== 'Inline CSS'" url="file" max-length="80"></url-link>
-                <span ng-if="file === 'Inline CSS'">inline CSS</span>
+                <url-link ng-if="fileDetails.url !== 'Inline CSS'" url="fileDetails.url" max-length="80"></url-link>
+                <span ng-if="fileDetails.url === 'Inline CSS'">inline CSS</span>
             </h3>
 
             <div class="offendersTable">

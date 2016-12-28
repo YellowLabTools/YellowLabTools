@@ -84,8 +84,27 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
             debug('Success');
             switch(cli.flags.reporter) {
                 case 'xml':
-                    var serializer = new EasyXml();
-                    console.log(serializer.render(data));
+                    var serializer = new EasyXml({
+                        manifest: true
+                    });
+
+                    // Remove some heavy parts of the results object
+                    delete data.toolsResults;
+                    delete data.javascriptExecutionTree;
+
+                    var xmlOutput = serializer.render(data);
+
+                    // Remove special chars from XML tags: # [ ]
+                    xmlOutput = xmlOutput.replace(/<([^>]*)#([^>]*)>/g, '<$1>');
+                    xmlOutput = xmlOutput.replace(/<([^>]*)\[([^>]*)>/g, '<$1>');
+                    xmlOutput = xmlOutput.replace(/<([^>]*)\]([^>]*)>/g, '<$1>');
+
+                    // Remove special chars from text content: \n \0
+                    xmlOutput = xmlOutput.replace(/(<[a-zA-Z]*>[^<]*)\n([^<]*<\/[a-zA-Z]*>)/g, '$1$2');
+                    xmlOutput = xmlOutput.replace(/\0/g, '');
+                    xmlOutput = xmlOutput.replace(/\uFFFF/g, '');
+
+                    console.log(xmlOutput);
                     break;
                 default:
                     console.log(JSON.stringify(data, null, 2));
