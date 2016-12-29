@@ -660,7 +660,7 @@ describe('api', function() {
 
         request({
             method: 'GET',
-            url: serverUrl + screenshotUrl
+            url: serverUrl + '/' + screenshotUrl
         }, function(error, response, body) {
             if (!error && response.statusCode === 200) {
                 response.headers['content-type'].should.equal('image/jpeg');
