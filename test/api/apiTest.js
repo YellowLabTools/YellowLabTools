@@ -187,7 +187,7 @@ describe('api', function() {
                 body.should.not.have.a.property('screenshotBuffer');
                 // Check if the screenshot url is here
                 body.should.have.a.property('screenshotUrl');
-                body.screenshotUrl.should.equal('/api/results/' + body.runId + '/screenshot.jpg');
+                body.screenshotUrl.should.equal('api/results/' + body.runId + '/screenshot.jpg');
 
                 screenshotUrl = body.screenshotUrl;
 
