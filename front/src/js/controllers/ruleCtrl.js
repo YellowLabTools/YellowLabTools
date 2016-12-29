@@ -45,7 +45,23 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
             });
 
             $scope.weightOptions = {
-                tooltipTemplate: '<%=label%>: <%=value%> KB'
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var label = data.labels[tooltipItem.index];
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            return label + ': ' + value + ' KB';
+                        }
+                    }
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 12,
+                        fontSize: 14
+                    }
+                }
             };
         }
 
@@ -87,14 +103,27 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
             $scope.breakpointsSeries = ['Number of CSS rules per breakpoint'];
             $scope.breakpointsColours = ['#9c4274'];
             $scope.breakpointsOptions = {
-                scaleShowGridLines: false,
-                barShowStroke: false,
-                showTooltips: false,
-                pointDot: false,
-                responsive: true,
-                maintainAspectRatio: true,
-                strokeColor: 'rgba(20, 200, 20, 1)',
-                scaleFontSize: 9
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display:false
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display:false
+                        }
+                    }]
+                },
+                tooltips: {
+                    enabled: false
+                },
+
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                }
             };
         }
     }
