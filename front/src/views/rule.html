@@ -374,22 +374,22 @@
 
     <div ng-if="policyName === 'DOMaccesses'">
         <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="/result/{{runId}}/timeline">JS timeline</a>
+        Please open the <a href="result/{{runId}}/timeline">JS timeline</a>
     </div>
 
     <div ng-if="policyName === 'queriesWithoutResults'">
         <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="/result/{{runId}}/timeline#filter=queryWithoutResults">JS timeline, filtered by "Queries without results"</a>
+        Please open the <a href="result/{{runId}}/timeline#filter=queryWithoutResults">JS timeline, filtered by "Queries without results"</a>
     </div>
 
     <div ng-if="policyName === 'jQueryCallsOnEmptyObject'">
         <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="/result/{{runId}}/timeline#filter=jQueryCallOnEmptyObject">JS timeline, filtered by "jQuery calls on empty object"</a>
+        Please open the <a href="result/{{runId}}/timeline#filter=jQueryCallOnEmptyObject">JS timeline, filtered by "jQuery calls on empty object"</a>
     </div>
 
     <div ng-if="policyName === 'jQueryNotDelegatedEvents'">
         <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="/result/{{runId}}/timeline#filter=eventNotDelegated">JS timeline, filtered by "Events not delegated"</a>
+        Please open the <a href="result/{{runId}}/timeline#filter=eventNotDelegated">JS timeline, filtered by "Events not delegated"</a>
     </div>
 
     <div ng-if="policyName === 'cssBreakpoints'">
