@@ -243,7 +243,11 @@ module.exports = function(grunt) {
             build: {
                 options: {
                     base: '.tmp',
-                    method: 'append'
+                    method: 'append',
+                    unescape: {
+                        '&lt;': '<',
+                        '&gt;': '>'
+                    }
                 },
                 files: {
                     './front/build/main.html': ['.tmp/views/*.html']
