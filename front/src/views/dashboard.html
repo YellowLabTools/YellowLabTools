@@ -3,7 +3,7 @@
     
     <div ng-if="result.blockedRequests">
         <b><ng-pluralize count="result.blockedRequests.length" when="{'0': 'No blocked request', 'one': '1 blocked request', 'other': '{} blocked requests'}"></ng-pluralize>:</b>
-        <div ng-repeat="request in result.blockedRequests">
+        <div ng-repeat="request in result.blockedRequests track by $index">
             {{request}}
         </div>
     </div>
