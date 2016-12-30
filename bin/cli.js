@@ -15,10 +15,14 @@ var cli = meow({
         'Options:',
         '  --device             Use "phone" or "tablet" to simulate a mobile device (by user-agent and viewport size).',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
-        '  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
+        //'  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
+        '  --proxy              Sets an HTTP proxy to pass through. Syntax is "host:port".',
         '  --cookie             Adds a cookie on the main domain.',
         '  --auth-user          Basic HTTP authentication username.',
         '  --auth-pass          Basic HTTP authentication password.',
+        '  --block-domain       Disallow requests to given (comma-separated) domains - aka blacklist.',
+        '  --allow-domain       Only allow requests to given (comma-separated) domains - aka whitelist.',
+        '  --no-externals       Block all domains except the main one.',
         '  --reporter           The output format: "json" or "xml". Default is "json".',
         ''
     ].join('\n'),
@@ -56,12 +60,20 @@ options.device = cli.flags.device || 'desktop';
 // Wait for CSS selector
 options.waitForSelector = cli.flags.waitForSelector || null;
 
+// Proxy
+options.proxy = cli.flags.proxy || null;
+
 // Cookie
 options.cookie = cli.flags.cookie || null;
 
 // HTTP basic auth
 options.authUser = cli.flags.authUser || null;
 options.authPass = cli.flags.authPass || null;
+
+// Domain blocking
+options.blockDomain =  cli.flags.blockDomain || null;
+options.allowDomain =  cli.flags.allowDomain || null;
+options.noExternals =  cli.flags.noExternals || null;
 
 // Output format
 if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !== 'xml') {
@@ -80,8 +92,27 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
             debug('Success');
             switch(cli.flags.reporter) {
                 case 'xml':
-                    var serializer = new EasyXml();
-                    console.log(serializer.render(data));
+                    var serializer = new EasyXml({
+                        manifest: true
+                    });
+
+                    // Remove some heavy parts of the results object
+                    delete data.toolsResults;
+                    delete data.javascriptExecutionTree;
+
+                    var xmlOutput = serializer.render(data);
+
+                    // Remove special chars from XML tags: # [ ]
+                    xmlOutput = xmlOutput.replace(/<([^>]*)#([^>]*)>/g, '<$1>');
+                    xmlOutput = xmlOutput.replace(/<([^>]*)\[([^>]*)>/g, '<$1>');
+                    xmlOutput = xmlOutput.replace(/<([^>]*)\]([^>]*)>/g, '<$1>');
+
+                    // Remove special chars from text content: \n \0
+                    xmlOutput = xmlOutput.replace(/(<[a-zA-Z]*>[^<]*)\n([^<]*<\/[a-zA-Z]*>)/g, '$1$2');
+                    xmlOutput = xmlOutput.replace(/\0/g, '');
+                    xmlOutput = xmlOutput.replace(/\uFFFF/g, '');
+
+                    console.log(xmlOutput);
                     break;
                 default:
                     console.log(JSON.stringify(data, null, 2));

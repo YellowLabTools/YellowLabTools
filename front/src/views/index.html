@@ -15,11 +15,13 @@
             <span ng-if="!settings.showAdvanced">Advanced settings &nbsp;✚</span>
             <span ng-if="settings.showAdvanced">Hide advanced settings &nbsp;✖</span>
         </a> ]
-        <span class="currentSettings" ng-if="!settings.showAdvanced && (settings.waitForSelector || settings.cookie || settings.authUser || settings.authPass)">
+        <span class="currentSettings" ng-if="!settings.showAdvanced && (settings.waitForSelector || settings.cookie || settings.authUser || settings.authPass || settings.proxy || settings.domains)">
             Currently set:
             <span ng-if="settings.waitForSelector">wait for selector</span>
             <span ng-if="settings.cookie">cookie</span>
             <span ng-if="settings.authUser || settings.authPass">authentication</span>
+            <span ng-if="settings.proxy">proxy</span>
+            <span ng-if="settings.domains">domain blocking</span>
         </span>
         <div class="advanced" ng-show="settings.showAdvanced">
             <!--<div>
@@ -37,7 +39,7 @@
                     Cookie
                     <span class="settingsTooltip">
                         <span class="icon-question"></span>
-                        <div><b>Cookie</b><br><br>Adds a cookie on the main domain.<br><br>Example: "bar=foo;domain=url"</div>
+                        <div><b>Cookie</b><br><br>Adds cookies, separated by a pipe character.<br><br>Example: "bar1=foo1;domain=.domain1.com|bar2=foo2;domain=www.domain2.com"</div>
                     </span>
                 </div>
                 <div><input type="text" name="cookie" ng-model="settings.cookie" /></div>
@@ -60,6 +62,16 @@
                         <div><input type="password" class="authField" name="authPass" ng-model="settings.authPass" /></div>
                     </div>
                 </div>
+            </div>
+            <div>
+                <div class="label">
+                    HTTP proxy
+                    <span class="settingsTooltip">
+                        <span class="icon-question"></span>
+                        <div><b>HTTP proxy</b><br><br>Insert here your proxy settings with the format "host:port".<br><br>Example: "192.168.10.0:3333"</div>
+                    </span>
+                </div>
+                <div><input type="text" name="proxy" ng-model="settings.proxy" /></div>
             </div>
             <div>
                 <div class="label">

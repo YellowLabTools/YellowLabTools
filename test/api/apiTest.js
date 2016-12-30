@@ -50,7 +50,8 @@ describe('api', function() {
             method: 'POST',
             url: serverUrl + '/api/runs',
             body: {
-                url: ''
+                url: '',
+                waitForResponse: true
             },
             json: true,
             headers: {
@@ -186,7 +187,7 @@ describe('api', function() {
                 body.should.not.have.a.property('screenshotBuffer');
                 // Check if the screenshot url is here
                 body.should.have.a.property('screenshotUrl');
-                body.screenshotUrl.should.equal('/api/results/' + body.runId + '/screenshot.jpg');
+                body.screenshotUrl.should.equal('api/results/' + body.runId + '/screenshot.jpg');
 
                 screenshotUrl = body.screenshotUrl;
 
@@ -659,7 +660,7 @@ describe('api', function() {
 
         request({
             method: 'GET',
-            url: serverUrl + screenshotUrl
+            url: serverUrl + '/' + screenshotUrl
         }, function(error, response, body) {
             if (!error && response.statusCode === 200) {
                 response.headers['content-type'].should.equal('image/jpeg');

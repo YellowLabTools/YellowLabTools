@@ -52,7 +52,7 @@ describe('imageOptimizer', function() {
             contentType: 'image/jpeg',
             contentLength: 999,
             weightCheck: {
-                body: fileContent,
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -137,7 +137,7 @@ describe('imageOptimizer', function() {
             contentType: 'image/png',
             contentLength: 999,
             weightCheck: {
-                body: fileContent,
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -194,7 +194,7 @@ describe('imageOptimizer', function() {
             contentType: 'image/svg+xml',
             contentLength: 999,
             weightCheck: {
-                body: fileContent,
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -242,7 +242,7 @@ describe('imageOptimizer', function() {
             contentType: 'image/jpeg',
             contentLength: 999,
             weightCheck: {
-                body: fileContent,
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,
@@ -285,7 +285,7 @@ describe('imageOptimizer', function() {
             contentType: 'image/png',
             contentLength: 999,
             weightCheck: {
-                body: fileContent,
+                bodyBuffer: fileContent,
                 totalWeight: fileSize + 200,
                 headersSize: 200,
                 bodySize: fileSize,

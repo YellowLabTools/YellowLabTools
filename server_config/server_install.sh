@@ -3,10 +3,10 @@
 # APT-GET
 sudo apt-get update
 sudo apt-get install lsb-release libfontconfig1 libfreetype6 libjpeg-dev -y --force-yes > /dev/null 2>&1
-sudo apt-get install curl git python-software-properties build-essential make g++ -y --force-yes > /dev/null 2>&1
+sudo apt-get install curl git software-properties-common build-essential make g++ -y --force-yes > /dev/null 2>&1
 
 # Installation of NodeJS
-curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs > /dev/null 2>&1
 source ~/.profile
 
@@ -15,11 +15,8 @@ npm install forever grunt-cli -g
 source ~/.profile
 
 # Installation of YellowLabTools
-sudo mkdir /space
-sudo chown $USER /space
-cd /space
-git clone https://github.com/gmetais/YellowLabTools.git --branch master
-cd YellowLabTools
+sudo chown -R $USER /space
+cd /space/YellowLabTools
 npm install || exit 1
 
 # Front-end compilation

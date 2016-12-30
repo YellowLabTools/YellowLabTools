@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/precise64"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.network :private_network, ip: "10.10.10.10"
   config.ssh.forward_agent = true
@@ -16,6 +16,8 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--memory", 1024]
     vb.customize ["modifyvm", :id, "--cpus", 2]
   end
+
+  config.vm.synced_folder "./", "/space/YellowLabTools"
 
   config.vm.provision :shell, :path => "server_config/server_install.sh"
 

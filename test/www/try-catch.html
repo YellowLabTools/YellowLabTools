@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Testing getElementById with a try catch statement</title>
+    </head>
+    <body>
+        <div id="foo">Some text</div>
+        <script>
+            try {
+                document.getElementById(undefined);
+                document.getElementsByClassName(undefined);
+                document.getElementsByTagName(undefined);
+                
+            } catch(err) {
+                console.log('Error found: ' + err);
+                throw new Error("I detect an error!");
+            }
+
+            document.getElementById('foo');
+        </script>
+    </body>
+</html>

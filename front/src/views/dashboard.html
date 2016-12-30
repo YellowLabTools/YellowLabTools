@@ -3,7 +3,7 @@
     
     <div ng-if="result.blockedRequests">
         <b><ng-pluralize count="result.blockedRequests.length" when="{'0': 'No blocked request', 'one': '1 blocked request', 'other': '{} blocked requests'}"></ng-pluralize>:</b>
-        <div ng-repeat="request in result.blockedRequests">
+        <div ng-repeat="request in result.blockedRequests track by $index">
             {{request}}
         </div>
     </div>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div>
-            <a href="/result/{{result.runId}}/screenshot">
+            <a href="result/{{result.runId}}/screenshot">
                 <div class="screenshotWrapper" ng-class="result.params.options.device || 'desktop'">
                     <div>
                         <img ng-if="result.screenshotUrl" class="screenshotImage" ng-src="{{result.screenshotUrl}}"/>
@@ -36,7 +36,7 @@
             <div class="criteria">
                 <div class="table" title="Click to see details">
                     <a ng-repeat="ruleName in category.rules" ng-if="result.rules[ruleName]" ng-init="rule = result.rules[ruleName]"
-                         ng-class="{'warning': rule.abnormal}" href="/result/{{runId}}/rule/{{ruleName}}">
+                         ng-class="{'warning': rule.abnormal}" href="result/{{runId}}/rule/{{ruleName}}">
                         <div class="grade">
                             <grade score="rule.score"></grade>
                         </div>
