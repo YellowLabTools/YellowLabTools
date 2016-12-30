@@ -15,11 +15,8 @@ npm install forever grunt-cli -g
 source ~/.profile
 
 # Installation of YellowLabTools
-sudo mkdir /space
-sudo chown $USER /space
-cd /space
-git clone https://github.com/gmetais/YellowLabTools.git --branch master
-cd YellowLabTools
+sudo chown -R $USER /space
+cd /space/YellowLabTools
 npm install || exit 1
 
 # Front-end compilation
