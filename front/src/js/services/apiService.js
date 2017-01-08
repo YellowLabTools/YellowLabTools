@@ -37,6 +37,8 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
             }, function(response) {
                 if (response.status === 429) {
                     alert('Too many requests, you reached the max number of requests allowed in 24h');
+                } else if (response.status === 403) {
+                    alert('This particular query was blocked due to spamming. If you think it\'s an error, please open an issue on GitHub.');
                 } else {
                     alert('An error occured...');
                 }
