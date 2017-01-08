@@ -8,5 +8,8 @@
         "1234567890": "contact@gaelmetais.com"
     },
     "maxAnonymousRunsPerDay": 10,
-    "maxAnonymousCallsPerDay": 1000
+    "maxAnonymousCallsPerDay": 1000,
+    "blockedUrls": [
+        "http://www.test.com"
+    ]
 }
