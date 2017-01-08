@@ -687,4 +687,29 @@ describe('api', function() {
         });
     });
 
+    it('should refuse a query on a blocked Url', function(done) {
+        this.timeout(5000);
+
+        request({
+            method: 'POST',
+            url: serverUrl + '/api/runs',
+            body: {
+                url: 'http://www.test.com/something.html',
+                waitForResponse: false
+            },
+            json: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }, function(error, response, body) {
+            console.log(error);
+            console.log(response);
+            if (!error && response.statusCode === 403) {
+                done();
+            } else {
+                done(error || response.statusCode);
+            }
+        });
+    });
+
 });
