@@ -699,11 +699,10 @@ describe('api', function() {
             },
             json: true,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-Api-Key': Object.keys(config.authorizedKeys)[0]
             }
         }, function(error, response, body) {
-            console.log(error);
-            console.log(response);
             if (!error && response.statusCode === 403) {
                 done();
             } else {
