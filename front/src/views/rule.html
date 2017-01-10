@@ -455,6 +455,11 @@
                         </div>
                     </div>
                 </div>
+                <div ng-if="font.ligaturesOrHiddenChars > 0">
+                    <div><b>Ligatures or hidden chars</b></div>
+                    <div ng-class="{offenderProblem: (font.ligaturesOrHiddenChars > 25)}">{{font.ligaturesOrHiddenChars}} glyphs</div>
+                    <div></div>
+                </div>
             </div>
         </div>
     </div>
