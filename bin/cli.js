@@ -111,6 +111,7 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
                     xmlOutput = xmlOutput.replace(/(<[a-zA-Z]*>[^<]*)\n([^<]*<\/[a-zA-Z]*>)/g, '$1$2');
                     xmlOutput = xmlOutput.replace(/\0/g, '');
                     xmlOutput = xmlOutput.replace(/\uFFFF/g, '');
+                    xmlOutput = xmlOutput.replace(/\u0002/g, '');
 
                     console.log(xmlOutput);
                     break;
