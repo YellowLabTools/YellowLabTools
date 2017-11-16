@@ -751,7 +751,7 @@
         }
 
         function onDetailsClick(row) {
-            // Close if it's alreay open
+            // Close if it's already open
             if (row.classList.contains('showDetails')) {
                 closeDetails(row);
                 return;
