@@ -228,14 +228,14 @@ describe('redownload', function() {
             newEntry.weightCheck.bodySize.should.equal(4193);
             newEntry.weightCheck.bodyBuffer.should.deep.equal(fileContent);
 
-            // Opening the image in lwip to check if the format is good
-            var lwip = require('lwip');
-            lwip.open(newEntry.weightCheck.bodyBuffer, 'png', function(err, image) {
-                image.width().should.equal(620);
-                image.height().should.equal(104);
+            // Opening the image in jimp to check if the format is good
+            var Jimp = require('jimp');
+            Jimp.read(newEntry.weightCheck.bodyBuffer, function(err, image) {
+                image.bitmap.width.should.equal(620);
+                image.bitmap.height.should.equal(104);
                 done(err);
             });
-            
+
         })
 
         .fail(function(err) {
