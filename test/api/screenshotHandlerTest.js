@@ -7,17 +7,17 @@ var path = require('path');
 describe('screenshotHandler', function() {
 
     var imagePath = path.join(__dirname, '../fixtures/logo-large.png');
-    var screenshot, lwipImage;
+    var screenshot, jimpImage;
 
-    
-    it('should open an image and return an lwip object', function(done) {
+
+    it('should open an image and return an jimp object', function(done) {
         ScreenshotHandler.openImage(imagePath)
             .then(function(image) {
-                lwipImage = image;
+                jimpImage = image;
 
-                lwipImage.should.be.an('object');
-                lwipImage.width().should.equal(620);
-                lwipImage.height().should.equal(104);
+                jimpImage.should.be.an('object');
+                jimpImage.bitmap.width.should.equal(620);
+                jimpImage.bitmap.height.should.equal(104);
 
                 done();
             })
@@ -26,14 +26,14 @@ describe('screenshotHandler', function() {
             });
     });
 
-    
-    it('should resize an lwip image', function(done) {
-        ScreenshotHandler.resizeImage(lwipImage, 310)
+
+    it('should resize an jimp image', function(done) {
+        ScreenshotHandler.resizeImage(jimpImage, 310)
             .then(function(image) {
-                lwipImage = image;
+                jimpImage = image;
 
-                lwipImage.width().should.equal(310);
-                lwipImage.height().should.equal(52);
+                jimpImage.bitmap.width.should.equal(310);
+                jimpImage.bitmap.height.should.equal(52);
 
                 done();
             })
@@ -43,8 +43,8 @@ describe('screenshotHandler', function() {
     });
 
 
-    it('should transform a lwip image into a buffer', function(done) {
-        ScreenshotHandler.toBuffer(lwipImage)
+    it('should transform a jimp image into a buffer', function(done) {
+        ScreenshotHandler.toBuffer(jimpImage)
             .then(function(buffer) {
                 buffer.should.be.an.instanceof(Buffer);
                 done();
