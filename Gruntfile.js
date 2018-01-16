@@ -143,7 +143,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['test/core/fontAnalyzerTest.js']
+                src: ['test/core/contentTypeCheckerTest.js']
             },
             coverage: {
                 options: {
