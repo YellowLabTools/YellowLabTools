@@ -117,10 +117,6 @@
                         <file-and-line-button file="offender.file" line="offender.line" column="offender.column"></file-and-line-button>
                     </div>
 
-                    <div ng-if="policyName === 'cssDuplicatedSelectors'">
-                        {{offender.rule}} (<b>x{{offender.occurrences}}</b>)
-                    </div>
-
                     <div ng-if="policyName === 'cssOldPropertyPrefixes'">
                         <b>{{offender.property}} {{offender.message}}</b>
                         <div ng-if="offender.rules.length" ng-click="offender.showMore = !offender.showMore" class="offenderButton">
@@ -186,6 +182,10 @@
                     <div ng-if="policyName === 'cssMobileFirst'">
                         <b>{{offender.query}}</b> for <ng-pluralize count="offender.rules" when="{'one':'1 rule','other':'{} rules'}"></ng-pluralize>
                         <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
+                    </div>
+
+                    <div ng-if="policyName === 'cssDuplicatedSelectors'">
+                        {{offender.rule}} (<b>x{{offender.occurrences}}</b>)
                     </div>
 
                     <div ng-if="policyName === 'cssDuplicatedProperties'">
@@ -454,6 +454,11 @@
                             <div>{{range.charset | addSpaces}}</div>
                         </div>
                     </div>
+                </div>
+                <div ng-if="font.ligaturesOrHiddenChars > 0">
+                    <div><b>Ligatures or hidden chars</b></div>
+                    <div ng-class="{offenderProblem: (font.ligaturesOrHiddenChars > 25)}">{{font.ligaturesOrHiddenChars}} glyphs</div>
+                    <div></div>
                 </div>
             </div>
         </div>
