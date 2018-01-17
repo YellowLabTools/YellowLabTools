@@ -924,4 +924,15 @@
         };
     });
 
+    // Proxify an HTTP image to HTTPS if hosted on HTTPS
+    // Uses a great free open-source external service: https://images.weserv.nl
+    offendersDirectives.filter('https', function() {
+        return function(url) {
+            if (url && url.indexOf('http://') === 0 && window.location.protocol === 'https:') {
+                return 'https://images.weserv.nl/?url=' + encodeURIComponent(url.substr(7));
+            }
+            return url;
+        };
+    });
+
 })();
