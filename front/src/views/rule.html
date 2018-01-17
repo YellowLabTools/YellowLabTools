@@ -133,7 +133,7 @@
                     </div>
 
                     <div ng-if="policyName === 'lazyLoadableImagesBelowTheFold' || policyName === 'hiddenImages'">
-                        <img ng-src="{{offender}}" class="smallPreview checker"></img>
+                        <img ng-src="{{offender | https}}" class="smallPreview checker"></img>
                         <url-link url="offender" max-length="100"></url-link>
                     </div>
 
@@ -267,7 +267,7 @@
             <div ng-repeat="image in rule.offendersObj.list.images | orderBy:'-gain'">
                 <div>
                     Current file: <url-link url="image.url" max-length="50"></url-link>
-                    <div><a href="{{image.url}}" target="_blank"><img ng-src="{{image.url}}" class="checker" /></a></div>
+                    <div><a href="{{image.url}}" target="_blank"><img ng-src="{{image.url | https}}" class="checker" /></a></div>
                 </div>
                 <div>
                     <p ng-if="!image.afterCompression">Current weight: {{image.original | bytes}}</p>
@@ -364,7 +364,7 @@
                     <div>Weight (bytes)</div>
                 </div>
                 <div ng-repeat="request in requests track by $index">
-                    <div ng-if="type == 'image'"><img ng-src="{{request.url}}" class="smallPreview checker" /></div>
+                    <div ng-if="type == 'image'"><img ng-src="{{request.url | https}}" class="smallPreview checker" /></div>
                     <div><url-link url="request.url" max-length="100"></url-link></div>
                     <div>{{request.size}}</div>
                 </div>
