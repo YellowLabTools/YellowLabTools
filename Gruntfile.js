@@ -103,7 +103,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['test/core/contentTypeCheckerTest.js']
+                src: ['test/api/apiTest.js']
             }
         },
         env: {
@@ -217,6 +217,10 @@ module.exports = function(grunt) {
         }
     });
 
+    // Custom task that sets a variable for tests
+    grunt.registerTask('test-settings', function() {
+        process.env.IS_TEST = true;
+    });
 
     grunt.registerTask('icons', [
         'webfont:icons',
@@ -257,6 +261,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('test', [
+        'test-settings',
         'build',
         'express:testSuite',
         'express:test',
@@ -265,6 +270,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('test-current-work', [
+        'test-settings',
         'jshint',
         'express:testSuite',
         'express:test-current-work',
