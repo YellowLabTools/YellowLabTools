@@ -11,7 +11,7 @@ Analyzes a webpage and detects **performance** or **front-end code quality** iss
     <tr>
         <td width="70%">
             The <b>online tool</b> (recommended): 
-            <a href="http://yellowlab.tools" target="_blank">http://yellowlab.tools</a>
+            <a href="https://yellowlab.tools" target="_blank">https://yellowlab.tools</a>
         </td>
         <td width="30%">
             <img src="./doc/img/YLT-animated.gif"></img>

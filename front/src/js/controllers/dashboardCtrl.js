@@ -41,11 +41,11 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
     };
 
     $scope.shareOnTwitter = function(message) {
-        openSocialPopup('https://twitter.com/intent/tweet?text=' + encodeURIComponent(message + 'http://yellowlab.tools'));
+        openSocialPopup('https://twitter.com/intent/tweet?text=' + encodeURIComponent(message + 'https://yellowlab.tools'));
     };
 
     $scope.shareOnLinkedin = function(message) {
-        openSocialPopup('https://www.linkedin.com/shareArticle?mini=true&url=http://yellowlab.tools&title=' + encodeURIComponent(message) + '&summary=' + encodeURIComponent('YellowLabTools is a free online tool that analyzes performance and front-end quality of a webpage.'));
+        openSocialPopup('https://www.linkedin.com/shareArticle?mini=true&url=https://yellowlab.tools&title=' + encodeURIComponent(message) + '&summary=' + encodeURIComponent('YellowLabTools is a free online tool that analyzes performance and front-end quality of a webpage.'));
     };
 
     function openSocialPopup(url) {
