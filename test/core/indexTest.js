@@ -66,9 +66,9 @@ describe('index.js', function() {
                         "tool": "phantomas",
                         "label": "DOM max depth",
                         "message": "<p>A deep DOM makes the CSS matching with DOM elements difficult.</p><p>It also slows down JavaScript modifications to the DOM because changing the dimensions of an element makes the browser re-calculate the dimensions of it's parents. Same thing for JavaScript events, that bubble up to the document root.</p>",
-                        "isOkThreshold": 10,
-                        "isBadThreshold": 20,
-                        "isAbnormalThreshold": 28,
+                        "isOkThreshold": 12,
+                        "isBadThreshold": 22,
+                        "isAbnormalThreshold": 30,
                         "hasOffenders": true
                     },
                     "value": 1,
