@@ -35,7 +35,9 @@ yltApp.run(['$rootScope', '$location', function($rootScope, $location) {
 
     // Google Analytics
     $rootScope.$on('$routeChangeSuccess', function(){
-        ga('send', 'pageview', {'page': $location.path()});
+        if (ga) {
+            ga('send', 'pageview', {'page': $location.path()});
+        }
     });
 
     // GitHub star button (asynchronously loaded iframe)
