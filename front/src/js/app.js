@@ -35,7 +35,7 @@ yltApp.run(['$rootScope', '$location', function($rootScope, $location) {
 
     // Google Analytics
     $rootScope.$on('$routeChangeSuccess', function(){
-        if (ga) {
+        if (typeof ga !== "undefined") {
             ga('send', 'pageview', {'page': $location.path()});
         }
     });
