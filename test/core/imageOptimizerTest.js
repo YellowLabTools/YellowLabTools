@@ -161,6 +161,8 @@ describe('imageOptimizer', function() {
     });
 
     it('should optimize an SVG image losslessly', function(done) {
+        this.timeout(5000);
+        
         var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/svg-image.svg'));
 
         var fileSize = fileContent.length;
