@@ -177,3 +177,6 @@ input[type=submit].clicked {
   top: 0.2em;
   box-shadow: none;
 }
+.homeSponsor {
+  margin-top: 3em;
+}

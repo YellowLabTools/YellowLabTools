@@ -55,9 +55,10 @@
         </div>
     </div>
 
-    <div ng-if="!error && !fromSocialShare" class="apiTip">
-        <b>Did you know?</b> You can <b>bookmark</b> this result page URL or <b>share it</b>, Yellow Lab Tools keeps test results for years!
-    </div>
+    <%if (sponsoring.dashboard) { %>
+        <div ng-if="!error && !fromSocialShare" class="sponsor"><%- sponsoring.dashboard %></div>
+    <% } %>
+    
 
     <div class="tweet" ng-if="!error && !fromSocialShare">
         <form ng-submit="sendTweet()">

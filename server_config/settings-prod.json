@@ -9,5 +9,11 @@
     },
     "maxAnonymousRunsPerDay": 99999999,
     "maxAnonymousCallsPerDay": 99999999,
-    "blockedUrls": []
+    "blockedUrls": [],
+
+    "sponsoring" : {
+        "home": "(this is a private instance)",
+        "dashboard": null,
+        "about": "(this is a private instance)"
+    }
 }
