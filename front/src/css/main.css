@@ -295,6 +295,9 @@ a.linkButton {
 .footer .github {
   margin: 1em 0 0 0.5em;
 }
+.footer .sponsor {
+  font-size: 0.9em;
+}
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   vertical-align: baseline;
