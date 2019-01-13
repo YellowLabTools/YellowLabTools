@@ -1,11 +1,11 @@
 var should = require('chai').should();
-var imageWidthChecker = require('../../lib/tools/redownload/imageWidthChecker');
+var imageDimensions = require('../../lib/tools/redownload/imageDimensions');
 var fs = require('fs');
 var path = require('path');
 
-describe('imageWidthChecker', function() {
+describe('imageDimensions', function() {
     
-    it('should check a png width for mobile', function(done) {
+    it('should detect png image dimensions', function(done) {
         var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/png-image.png'));
 
         var entry = {
@@ -32,11 +32,10 @@ describe('imageWidthChecker', function() {
             }
         };
 
-        imageWidthChecker.checkWidth(entry, true)
+        imageDimensions.getDimensions(entry)
 
         .then(function(newEntry) {
             newEntry.should.have.a.property('imageDimensions');
-            newEntry.imageDimensions.should.have.a.property('isTooLarge').that.equals(false);
             newEntry.imageDimensions.should.have.a.property('width').that.equals(664);
             newEntry.imageDimensions.should.have.a.property('height').that.equals(314);
             done();
@@ -47,7 +46,7 @@ describe('imageWidthChecker', function() {
         });
     });
 
-    it('should check a jpg width for desktop', function(done) {
+    it('should detect a jpg image dimensions', function(done) {
         var fileContent = fs.readFileSync(path.resolve(__dirname, '../www/jpeg-image.jpg'));
 
         var entry = {
@@ -74,11 +73,10 @@ describe('imageWidthChecker', function() {
             }
         };
 
-        imageWidthChecker.checkWidth(entry, false)
+        imageDimensions.getDimensions(entry)
 
         .then(function(newEntry) {
             newEntry.should.have.a.property('imageDimensions');
-            newEntry.imageDimensions.should.have.a.property('isTooLarge').that.equals(false);
             newEntry.imageDimensions.should.have.a.property('width').that.equals(285);
             newEntry.imageDimensions.should.have.a.property('height').that.equals(427);
             done();
