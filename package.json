@@ -40,6 +40,7 @@
     "ejs": "2.5.7",
     "express": "4.16.2",
     "fontkit": "1.7.7",
+    "image-size": "0.7.1",
     "imagemin": "5.3.1",
     "imagemin-jpegoptim": "5.2.0",
     "imagemin-jpegtran": "5.0.2",
