@@ -109,6 +109,11 @@ describe('redownload', function() {
         ];
 
         var data = {
+            params: {
+                options: {
+                    device: 'phone'
+                }
+            },
             toolsResults: {
                 phantomas: {
                     metrics: {
@@ -139,6 +144,9 @@ describe('redownload', function() {
             data.toolsResults.redownload.offenders.should.have.a.property('imageOptimization');
             data.toolsResults.redownload.offenders.imageOptimization.totalGain.should.be.above(0);
             data.toolsResults.redownload.offenders.imageOptimization.images.length.should.equal(2);
+
+            data.toolsResults.redownload.offenders.should.have.a.property('imagesTooLarge');
+            data.toolsResults.redownload.offenders.imagesTooLarge.length.should.equal(0);
 
             data.toolsResults.redownload.offenders.should.have.a.property('gzipCompression');
             data.toolsResults.redownload.offenders.gzipCompression.totalGain.should.be.above(0);
