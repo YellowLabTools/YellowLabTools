@@ -137,6 +137,12 @@
                         <url-link url="offender" max-length="100"></url-link>
                     </div>
 
+                    <div ng-if="policyName === 'imagesTooLarge'">
+                        <img ng-src="{{offender.url | https}}" class="smallPreview checker"></img>
+                        <div>{{offender.width}}x{{offender.height}}</div>
+                        <url-link url="offender.url" max-length="100"></url-link>
+                    </div>
+
                     <div ng-if="policyName === 'notFound' || policyName === 'emptyRequests' || policyName === 'closedConnections' || policyName === 'multipleRequests' || policyName === 'cachingDisabled' || policyName === 'cachingNotSpecified'">
                         <url-link url="offender" max-length="100"></url-link>
                     </div>
