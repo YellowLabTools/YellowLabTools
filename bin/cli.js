@@ -26,7 +26,7 @@ var cli = meow({
         '  --reporter           The output format: "json" or "xml". Default is "json".',
         ''
     ].join('\n'),
-    pkg: '../package.json'
+    pkg: require('../package.json')
 });
 
 
