@@ -6,7 +6,7 @@ sudo apt-get install lsb-release libfontconfig1 libfreetype6 libjpeg-dev -y --fo
 sudo apt-get install curl git software-properties-common build-essential make g++ -y --force-yes > /dev/null 2>&1
 
 # Installation of NodeJS
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs > /dev/null 2>&1
 source ~/.profile
 
