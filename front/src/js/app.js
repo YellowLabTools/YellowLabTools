@@ -7,7 +7,6 @@ var yltApp = angular.module('YellowLabTools', [
     'queueCtrl',
     'ruleCtrl',
     'screenshotCtrl',
-    'timelineCtrl',
     'runsFactory',
     'resultsFactory',
     'apiService',
@@ -63,10 +62,6 @@ yltApp.config(['$routeProvider', '$locationProvider',
             when('/result/:runId', {
                 templateUrl: 'views/dashboard.html',
                 controller: 'DashboardCtrl'
-            }).
-            when('/result/:runId/timeline', {
-                templateUrl: 'views/timeline.html',
-                controller: 'TimelineCtrl'
             }).
             when('/result/:runId/screenshot', {
                 templateUrl: 'views/screenshot.html',

@@ -32,21 +32,6 @@
                 "DOMidDuplicated": 1
             }
         },
-        "domManipulations": {
-            "label": "DOM manipulations",
-            "policies": {
-                "DOMaccesses": 3,
-                "queriesWithoutResults": 1,
-                "DOMqueriesAvoidable": 1
-            }
-        },
-        "scroll": {
-            "label": "Scroll bottlenecks",
-            "policies": {
-                "eventsScrollBound": 1,
-                "DOMaccessesOnScroll": 4
-            }
-        },
         "badJavascript": {
             "label": "Bad JavaScript",
             "policies": {
@@ -116,8 +101,6 @@
         "pageWeight": 3,
         "requests": 3,
         "domComplexity": 2,
-        "domManipulations": 2,
-        "scroll": 1,
         "badJavascript": 2,
         "jQuery": 1,
         "cssSyntaxError": 1,

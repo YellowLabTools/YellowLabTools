@@ -229,19 +229,6 @@
                 <dom-tree tree="rule.offendersObj.tree"></dom-tree>
             </div>
 
-            <div ng-if="policyName === 'DOMaccessesOnScroll' && rule.offendersObj.children.length > 0">
-                <p>The table below shows the interactions between the JavaScript and the DOM on a scroll event.</p>
-                <div class="table" ng-class="{warningsFilterOn: warningsFilterOn}">
-                    <div class="headers">
-                        <div><!-- index --></div>
-                        <div>Type</div>
-                        <div>Params</div>
-                        <div><!-- details --></div>
-                    </div>
-                    <profiler-line ng-repeat="node in rule.offendersObj.children" data-index="$index" node="node"></profiler-line>
-                </div>
-            </div>
-
             <div ng-if="policyName === 'cssColors' && rule.offendersObj.count > 0">
                 <p>This is the colors palette, sized by total occurrences:</p>
                 <div class="colorPalette checker">
@@ -376,26 +363,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div ng-if="policyName === 'DOMaccesses'">
-        <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="result/{{runId}}/timeline">JS timeline</a>
-    </div>
-
-    <div ng-if="policyName === 'queriesWithoutResults'">
-        <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="result/{{runId}}/timeline#filter=queryWithoutResults">JS timeline, filtered by "Queries without results"</a>
-    </div>
-
-    <div ng-if="policyName === 'jQueryCallsOnEmptyObject'">
-        <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="result/{{runId}}/timeline#filter=jQueryCallOnEmptyObject">JS timeline, filtered by "jQuery calls on empty object"</a>
-    </div>
-
-    <div ng-if="policyName === 'jQueryNotDelegatedEvents'">
-        <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="result/{{runId}}/timeline#filter=eventNotDelegated">JS timeline, filtered by "Events not delegated"</a>
     </div>
 
     <div ng-if="policyName === 'cssBreakpoints'">
