@@ -66,7 +66,7 @@
     "q": "1.5.1",
     "request": "2.88.0",
     "rimraf": "2.6.3",
-    "temporary": "1.0.0",
+    "temporary": "0.0.8",
     "uglify-js": "3.4.9"
   },
   "devDependencies": {
