@@ -71,7 +71,10 @@ module.exports = function(grunt) {
                 'test/core/*.js',
                 'test/fixtures/*.js',
                 'front/src/js/**/*.js'
-            ]
+            ],
+            options: {
+                esversion: 6
+            }
         },
         clean: {
             tmp: {
@@ -103,7 +106,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['test/api/apiTest.js']
+                src: ['test/core/mediaQueriesCheckerTest.js']
             }
         },
         env: {

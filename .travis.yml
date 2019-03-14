@@ -2,7 +2,6 @@ language: node_js
 sudo: false
 node_js:
   - "8.9"
-  - "6.2"
 env:
   - CXX=g++-4.8
 addons:

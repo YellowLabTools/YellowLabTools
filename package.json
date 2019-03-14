@@ -16,7 +16,7 @@
     "yellowlabtools": "./bin/cli.js"
   },
   "engines": {
-    "node": ">= 6.0"
+    "node": ">= 8.0"
   },
   "main": "./lib/index.js",
   "dependencies": {
@@ -54,6 +54,7 @@
     "is-png": "1.1.0",
     "is-svg": "3.0.0",
     "is-ttf": "0.2.2",
+    "is-webp": "1.0.1",
     "is-woff": "1.0.3",
     "is-woff2": "1.0.0",
     "jimp": "0.6.0",
@@ -61,7 +62,7 @@
     "meow": "5.0.0",
     "minimize": "2.2.0",
     "parse-color": "1.0.0",
-    "phantomas": "1.19.0",
+    "phantomas": "git://github.com/macbre/phantomas.git#phantomas-v2",
     "ps-node": "0.1.6",
     "q": "1.5.1",
     "request": "2.88.0",

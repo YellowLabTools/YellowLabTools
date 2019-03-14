@@ -10,101 +10,42 @@ describe('redownload', function() {
 
         var requestsList = [
             {
-                method: 'GET',
                 url: 'http://localhost:8388/simple-page.html',
-                requestHeaders: {
-                    'User-Agent': 'something',
-                   Referer: 'http://www.google.fr/',
-                   Accept: '*/*'
-                },
-                status: 200,
-                isHTML: true,
-                type: 'html'
+                type: 'html',
+                size: 30000
             },
             {
-                method: 'GET',
                 url: 'http://localhost:8388/jquery1.8.3.js',
-                requestHeaders: {
-                    'User-Agent': 'something',
-                   Referer: 'http://www.google.fr/',
-                   Accept: '*/*'
-                },
-                status: 200,
-                isJS: true,
-                type: 'js'
+                type: 'js',
+                size: 30000
             },
             {
-                method: 'GET',
                 url: 'http://localhost:8388/jpeg-image.jpg',
-                requestHeaders: {
-                    'User-Agent': 'something',
-                   Referer: 'http://www.google.fr/',
-                   Accept: '*/*'
-                },
-                status: 200,
-                isImage: true,
                 type: 'image',
-                contentType: 'image/jpeg'
+                size: 30000
             },
             {
-                method: 'GET',
                 url: 'http://localhost:8388/svg-image.svg',
-                requestHeaders: {
-                    'User-Agent': 'something',
-                   Referer: 'http://www.google.fr/',
-                   Accept: '*/*'
-                },
-                status: 200,
-                isImage: true,
-                isSVG: true,
                 type: 'image',
-                contentType: 'image/svg+xml'
+                size: 30000
             },
             {
-                method: 'GET',
                 url: 'http://localhost:8388/unminified-script.js',
-                requestHeaders: {
-                    'User-Agent': 'something',
-                   Referer: 'http://www.google.fr/',
-                   Accept: '*/*'
-                },
-                status: 200,
-                isJS: true,
-                type: 'js'
+                type: 'js',
+                size: 30000
             },
             {
-                method: 'GET',
                 url: 'http://localhost:8388/unminified-stylesheet.css',
-                requestHeaders: {
-                    'User-Agent': 'something',
-                   Referer: 'http://www.google.fr/',
-                   Accept: '*/*'
-                },
-                status: 200,
-                isCSS: true,
-                type: 'css'
+                type: 'css',
+                size: 30000
             },
             {
-                method: 'GET',
                 url: 'http://localhost:8388/xml.xml',
-                requestHeaders: {
-                    'User-Agent': 'something',
-                   Referer: 'http://www.google.fr/',
-                   Accept: '*/*'
-                },
-                status: 200,
-                isXML: true,
-                type: 'xml'
+                type: 'xml',
+                size: 30000
             },
             {
-                method: 'GET',
-                url: 'about:blank',
-                requestHeaders: {
-                    'User-Agent': 'something',
-                   Referer: 'http://www.google.fr/',
-                   Accept: '*/*'
-                },
-                status: 200
+                url: 'about:blank'
             }
         ];
 
@@ -117,10 +58,10 @@ describe('redownload', function() {
             toolsResults: {
                 phantomas: {
                     metrics: {
-                        requestsList: true
+                        requests: 8
                     },
                     offenders: {
-                        requestsList: JSON.stringify(requestsList)
+                        requests: requestsList
                     }
                 }
             }

@@ -26,7 +26,6 @@ describe('phantomasWrapper', function() {
             data.should.have.a.property('url').that.equals(url);
             data.should.have.a.property('metrics').that.is.an('object').not.empty;
             data.should.have.a.property('offenders').that.is.an('object').not.empty;
-            data.offenders.should.have.a.property('javascriptExecutionTree').that.is.a('array').not.empty;
 
             done();
         }).fail(function(err) {
@@ -34,7 +33,7 @@ describe('phantomasWrapper', function() {
         });
     });
 
-    it('should fail with error 254', function(done) {
+    it('should fail when page cannot be fetched', function(done) {
         var url = 'http://localhost:8389/not-existing.html';
 
         this.timeout(15000);
@@ -52,8 +51,8 @@ describe('phantomasWrapper', function() {
 
         }).fail(function(err) {
             try {
+                console.log(err);
                 should.exist(err);
-                err.should.equal(254);
 
                 done();
             } catch(error) {
