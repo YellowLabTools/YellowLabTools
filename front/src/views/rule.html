@@ -273,7 +273,7 @@
             <div ng-repeat="image in rule.offendersObj.list.images | orderBy:'-gain'">
                 <div>
                     Current file: <url-link url="image.url" max-length="50"></url-link>
-                    <div><a href="{{image.url}}" target="_blank"><img ng-src="{{image.url | https}}" class="checker" /></a></div>
+                    <div><a href="{{image.url}}" target="_blank" rel="noopener noreferrer"><img ng-src="{{image.url | https}}" class="checker" /></a></div>
                 </div>
                 <div>
                     <p ng-if="!image.afterCompression">Current weight: {{image.original | bytes}}</p>
