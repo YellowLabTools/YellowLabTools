@@ -97,7 +97,8 @@
     "sinon-chai": "~2.14.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "build": "grunt build"
   },
   "keywords": [
     "performance",
