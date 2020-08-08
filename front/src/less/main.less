@@ -1,5 +1,3 @@
-@import "icons.less";
-
 html {
     margin: 100px 50px;
 }
@@ -41,21 +39,42 @@ h1 span {
     border-radius: 0.5em;
     cursor: pointer;
     text-decoration: none;
+
+    svg {
+        fill: #fff;
+    }
+
     &.back, &.restart {
         color: #413;
         border-color: #413;
+
+        svg {
+            fill: #413;
+        }
     }
 }
 .resultsMenu .menuItem div {
     padding-top: 0.5em;
     font-size: 3em;
 }
+.resultsMenu svg {
+    display: block;
+    margin: 1.2em auto 0.2em;
+}
 .resultsMenu .active, .resultsMenu .menuItem.active:hover {
     color: #ffa319;
     border-color: #ffa319;
+
+    svg {
+        fill: #ffa319;
+    }
 }
 .resultsMenu .menuItem:hover {
     color: #ffa319;
+
+    svg {
+        fill: #ffa319;
+    }
 }
 .resultsMenu span {
     position: relative;
@@ -238,6 +257,27 @@ a.linkButton {
     }
 }
 
+.table {
+    display: table;
+    width: 100%;
+    border-spacing: 0.25em;
+}
+.table > div,
+.table > a {
+    display: table-row;
+}
+.table > .headers > div {
+    font-weight: bold;
+    padding: 0.5em 1em;
+}
+.table > div > div,
+.table > a > div {
+    padding: 0.1em 1em;
+    background: #f2f2f2;
+    display: table-cell;
+    text-align: left;
+}
+
 .footer {
     padding: 3em;
     color: #413;
@@ -253,8 +293,4 @@ a.linkButton {
     .sponsor {
         font-size: 0.9em;
     }
-}
-
-[class^="icon-"]:before, [class*=" icon-"]:before {
-    vertical-align: baseline;
 }

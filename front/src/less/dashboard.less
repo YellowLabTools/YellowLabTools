@@ -117,8 +117,8 @@
         cursor: pointer;
         &.info {
             background: #FFF;
-            .icon-question {
-                color: #EBD8E2;
+            svg {
+                fill: #EBD8E2;
             }
         }
     }
@@ -139,8 +139,12 @@
     text-align: center;
     vertical-align: middle;
 }
-.summary .notations .warning .label, .summary .notations .warning .result, .summary .notations .icon-warning {
+.summary .notations .warning .label, .summary .notations .warning .result {
     color: #FF1919;
+}
+.summary .notations .icon-warning svg {
+    fill: #FF1919;
+    margin: -2px 0;
 }
 .summary .notations .criteria .info {
     width: 2%;
@@ -150,8 +154,8 @@
     padding-left: 0.1em;
     padding-right: 0.1em;
 }
-.summary .notations .criteria .icon-question {
-    color: transparent;
+.summary .notations .criteria .info svg {
+    fill: transparent;
 }
 
 .summary .fromShare {

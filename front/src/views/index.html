@@ -7,9 +7,9 @@
     <div class="settings">
         <div class="device">
             <div>Choose the simulated device:</div>
-            <a href="" class="item" ng-class="{active: settings.device == 'desktop'}" ng-click="settings.device = 'desktop'"><div class="icon-screen"></div>Desktop</a>
-            <a href="" class="item" ng-class="{active: settings.device == 'tablet'}" ng-click="settings.device = 'tablet'"><div class="icon-tablet"></div>Tablet</a>
-            <a href="" class="item" ng-class="{active: settings.device == 'phone'}" ng-click="settings.device = 'phone'"><div class="icon-mobile"></div>Phone</a>
+            <a href="" class="item" ng-class="{active: settings.device == 'desktop'}" ng-click="settings.device = 'desktop'"><svg width="38" height="38" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M512 416V32H0v384h224v32h-96v32h256v-32h-96v-32h224zM64 96h384v256H64V96z"/></svg>Desktop</a>
+            <a href="" class="item" ng-class="{active: settings.device == 'tablet'}" ng-click="settings.device = 'tablet'"><svg width="38" height="38" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M400 0H80C54 0 32 22 32 48v416c0 26 22 48 48 48h320c26 0 48-22 48-48V48c0-26-22-48-48-48zM240 496a16 16 0 110-32 16 16 0 010 32zm144-48H96V64h288v384z"/></svg>Tablet</a>
+            <a href="" class="item" ng-class="{active: settings.device == 'phone'}" ng-click="settings.device = 'phone'"><svg width="38" height="38" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M368 0H144c-26 0-48 22-48 48v416c0 26 22 48 48 48h224c26 0 48-22 48-48V48c0-26-22-48-48-48zM192 24h128v16H192V24zm64 456a32 32 0 110-64 32 32 0 010 64zm128-96H128V64h256v320z"/></svg>Phone</a>
         </div>
         [ <a href="" class="showAdvanced" ng-click="settings.showAdvanced = !settings.showAdvanced">
             <span ng-if="!settings.showAdvanced">Advanced settings &nbsp;✚</span>

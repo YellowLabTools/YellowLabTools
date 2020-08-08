@@ -55,17 +55,23 @@
   text-decoration: none;
   font-size: 0.8em;
 }
+.device .item > svg {
+  margin: 0.6em 0 0.3em;
+  fill: #fff;
+}
 .device .item.active {
   color: #ffa319;
   border: 2px solid #ffa319;
   padding: 0;
 }
+.device .item.active > svg {
+  fill: #ffa319;
+}
 .device .item:hover {
   color: #ffa319;
 }
-.device .item > div {
-  margin: 0.2em 0 0.1em;
-  font-size: 3em;
+.device .item:hover > svg {
+  fill: #ffa319;
 }
 .settingsTooltip {
   position: relative;
