@@ -39,6 +39,11 @@
                 </div>
                 <div ng-if="!offender.parseError">
 
+                    <div ng-if="policyName === 'iframesCount'">
+                        <span ng-if="offender.url">{{offender.url}}</span>
+                        <span ng-if="!offender.url">an iframe without URL</span>
+                    </div>
+
                     <div ng-if="policyName === 'DOMidDuplicated'">
                         <b>{{offender.id}}</b>: {{offender.occurrences}} occurrences
                     </div>
@@ -97,9 +102,9 @@
                     </div>
 
                     <div ng-if="policyName === 'cssRules'">
-                        <span ng-if="offender.file === 'inline CSS'">inline CSS</span>
-                        <span ng-if="offender.file !== 'inline CSS'"><url-link url="offender.file" max-length="80"></url-link></span>
-                        : <ng-pluralize count="offender.rules" when="{'0': '0 rule', 'one':'1 rule','other':'{} rules'}"></ng-pluralize>
+                        <span ng-if="offender.url === '[inline CSS]'">inline CSS</span>
+                        <span ng-if="offender.url !== '[inline CSS]'"><url-link url="offender.url" max-length="80"></url-link></span>
+                        : <ng-pluralize count="offender.value" when="{'0': '0 rule', 'one':'1 rule','other':'{} rules'}"></ng-pluralize>
                     </div>
 
                     <div ng-if="policyName === 'similarColors'">
@@ -132,7 +137,12 @@
                         </div>
                     </div>
 
-                    <div ng-if="policyName === 'lazyLoadableImagesBelowTheFold' || policyName === 'hiddenImages'">
+                    <div ng-if="policyName === 'lazyLoadableImagesBelowTheFold'">
+                        <img ng-src="{{offender.url | https}}" class="smallPreview checker"></img>
+                        <url-link url="offender.url" max-length="70"></url-link> (offset: {{offender.offset | roundNbr}}px)
+                    </div>
+
+                    <div ng-if="policyName === 'hiddenImages'">
                         <img ng-src="{{offender | https}}" class="smallPreview checker"></img>
                         <url-link url="offender" max-length="100"></url-link>
                     </div>
@@ -148,7 +158,7 @@
                     </div>
 
                     <div ng-if="policyName === 'cachingTooShort'">
-                        <url-link url="offender.file" max-length="100"></url-link>
+                        <url-link url="offender.url" max-length="100"></url-link>
                         cached for <b>{{offender.ttlWithUnit}} {{offender.unit}}</b>
                     </div>
 
@@ -345,7 +355,7 @@
     </div>
 
     <div ng-if="policyName === 'smallRequests'">
-        <div ng-repeat="(type, requests) in rule.offendersObj.list.byType">
+        <div ng-repeat="(type, requests) in rule.offendersObj.list.byType" ng-if="requests.length > 0">
             <h3><ng-pluralize count="requests.length" when="{'0': 'small ' + type + ' file', 'one': '1 small ' + type + ' file', 'other': '{} small ' + type + ' files'}"></ng-pluralize></h3>
             <p ng-if="type == 'css' && requests.length > 0">Try to inline these styles in the head of the HTML or to merge them with other files.</p>
             <p ng-if="type == 'js' && requests.length > 0">Try to inline these scripts in the HTML or merge them with other files.</p>
@@ -366,9 +376,7 @@
     </div>
 
     <div ng-if="policyName === 'cssBreakpoints'">
-        <div ng-if="rule.value > 0" class="cssBreakpointsGraph">
-            <h3>Breakpoints distribution graph</h3>
-            <canvas class="chart chart-line" chart-data="breakpointsData" chart-labels="breakpointsLabels" chart-options="breakpointsOptions" chart-colors="breakpointsColours" chart-series="breakpointsSeries" width="600" height="250"></canvas>
+        <div ng-if="rule.value > 0">
             <h3>Breakpoints list</h3>
             <div class="offendersTable">
                 <div ng-repeat="offender in rule.offendersObj | orderBy:'pixels'">

@@ -64,68 +64,6 @@ ruleCtrl.controller('RuleCtrl', ['$scope', '$rootScope', '$routeParams', '$locat
                 }
             };
         }
-
-        // Init "Breakpoints" chart
-        if ($scope.policyName === 'cssBreakpoints' && $scope.rule.value > 0) {
-
-            // Seek for the biggest breakpoint
-            var max = 0;
-            $scope.rule.offendersObj.forEach(function(offender) {
-                if (offender.pixels > max) {
-                    max = offender.pixels;
-                }
-            });
-            max = Math.max(max + 100, 1400);
-
-            // We group offenders 10px by 10px
-            var GROUP_SIZE = 20;
-
-            // Generate an empty array of values
-            $scope.breakpointsLabels = [];
-            $scope.breakpointsData = [[]];
-            for (var i = 0; i <= max / GROUP_SIZE; i++) {
-                $scope.breakpointsLabels[i] = '';
-                $scope.breakpointsData[0][i] = 0;
-            }
-
-            // Fill it with results
-            $scope.rule.offendersObj.forEach(function(offender) {
-                var group = Math.floor((offender.pixels + 1) / GROUP_SIZE);
-
-                if ($scope.breakpointsLabels[group] !== '') {
-                    $scope.breakpointsLabels[group] += '/';
-                }
-                $scope.breakpointsLabels[group] += offender.breakpoint;
-
-                $scope.breakpointsData[0][group] += offender.count;
-            });
-
-            $scope.breakpointsSeries = ['Number of CSS rules per breakpoint'];
-            $scope.breakpointsColours = ['#9c4274'];
-            $scope.breakpointsOptions = {
-                scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display:false
-                        }
-                    }],
-                    yAxes: [{
-                        gridLines: {
-                            display:false
-                        }
-                    }]
-                },
-                tooltips: {
-                    enabled: false
-                },
-
-                elements: {
-                    point: {
-                        radius: 0
-                    }
-                }
-            };
-        }
     }
 
     $scope.backToDashboard = function() {

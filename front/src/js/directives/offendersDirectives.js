@@ -291,4 +291,10 @@
         };
     });
 
+    offendersDirectives.filter('roundNbr', function() {
+        return function(nbr) {
+            return Math.round(nbr);
+        };
+    });
+
 })();
