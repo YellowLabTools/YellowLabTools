@@ -82,8 +82,7 @@
             "label": "Web fonts",
             "policies": {
                 "fontsCount": 1,
-                "heavyFonts": 1,
-                "unusedUnicodeRanges": 1
+                "heavyFonts": 1
             }
         },
         "serverConfig": {

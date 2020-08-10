@@ -45,7 +45,7 @@
                     </div>
 
                     <div ng-if="policyName === 'DOMidDuplicated'">
-                        <b>{{offender.id}}</b>: {{offender.occurrences}} occurrences
+                        <b>{{offender.id}}</b>: {{offender.count}} occurrences
                     </div>
 
                     <div ng-if="policyName === 'DOMqueriesAvoidable'">
@@ -123,7 +123,7 @@
                     </div>
 
                     <div ng-if="policyName === 'cssOldPropertyPrefixes'">
-                        <b>{{offender.property}} {{offender.message}}</b>
+                        <b>{{offender.property}}</b> {{offender.message}}
                         <div ng-if="offender.rules.length" ng-click="offender.showMore = !offender.showMore" class="offenderButton">
                             <span ng-if="!offender.showMore">show</span>
                             <span ng-if="offender.showMore">hide</span>
@@ -183,8 +183,8 @@
             <h3>
                 <ng-pluralize count="fileDetails.count" when="{'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize>
                 in
-                <url-link ng-if="fileDetails.url !== 'Inline CSS'" url="fileDetails.url" max-length="80"></url-link>
-                <span ng-if="fileDetails.url === 'Inline CSS'">inline CSS</span>
+                <url-link ng-if="fileDetails.url !== 'Inline CSS' && fileDetails.url !== '[inline CSS]'" url="fileDetails.url" max-length="80"></url-link>
+                <span ng-if="fileDetails.url === 'Inline CSS' || fileDetails.url === '[inline CSS]'">inline CSS</span>
             </h3>
 
             <div class="offendersTable">
