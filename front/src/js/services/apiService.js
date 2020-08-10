@@ -21,9 +21,9 @@ apiService.factory('API', ['$location', 'Runs', 'Results', function($location, R
             };
 
             
-            if (settings.domainsBlackOrWhite === 'black') {
+            if (settings.domainsBlockOrAllow === 'block') {
                 runObject.blockDomain = this.parseDomains(settings.domains);
-            } else if (settings.domainsBlackOrWhite === 'white') {
+            } else if (settings.domainsBlockOrAllow === 'allow') {
                 var allowedDomains = this.parseDomains(settings.domains);
                 if (allowedDomains.length > 0) {
                     runObject.allowDomain = allowedDomains;

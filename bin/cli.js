@@ -20,8 +20,8 @@ var cli = meow({
         '  --cookie             Adds a cookie on the main domain.',
         '  --auth-user          Basic HTTP authentication username.',
         '  --auth-pass          Basic HTTP authentication password.',
-        '  --block-domain       Disallow requests to given (comma-separated) domains - aka blacklist.',
-        '  --allow-domain       Only allow requests to given (comma-separated) domains - aka whitelist.',
+        '  --block-domain       Disallow requests to given (comma-separated) domains.',
+        '  --allow-domain       Only allow requests to given (comma-separated) domains.',
         '  --no-externals       Block all domains except the main one.',
         '  --reporter           The output format: "json" or "xml". Default is "json".',
         ''
