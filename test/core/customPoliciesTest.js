@@ -46,8 +46,13 @@ describe('customPolicies', function() {
                     },
                     "offenders": {
                         "DOMidDuplicated": [
-                            "colorswitch-30883-30865: 4 occurrences",
-                            "foo: 1 occurrences"
+                            {
+                                "id": "colorswitch-30883-30865",
+                                "occurrences": 4
+                            }, {
+                                "id": "foo",
+                                "occurrences": 1
+                            }
                         ]
                     }
                 }
@@ -267,8 +272,29 @@ describe('customPolicies', function() {
                     },
                     "offenders": {
                         "cssParsingErrors": [
-                            "<http://www.sudexpress.com/skin/frontend/sudexpress/default/css/styles.css> (Error: CSS parsing failed: missing '}' @ 4:1)",
-                            "<http://www.sudexpress.com/skin/frontend/sudexpress/default/css/reset.css> (Empty CSS was provided)"
+                            {
+                                "url": "http://www.sudexpress.com/skin/frontend/sudexpress/default/css/styles.css",
+                                "value": {
+                                    "message": "Error: CSS parsing failed: missing '}'",
+                                    "position": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 1
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 72
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "url": "http://www.sudexpress.com/skin/frontend/sudexpress/default/css/reset.css",
+                                "value": {
+                                    "message": "Empty CSS was provided"
+                                }
+                            },
+                            "http://www.sudexpress.com/skin/frontend/sudexpress/default/css/another.css"
                         ]
                     }
                 }
@@ -277,7 +303,7 @@ describe('customPolicies', function() {
 
         results.should.have.a.property('cssParsingErrors');
         results.cssParsingErrors.should.have.a.property('offendersObj').that.deep.equals({
-            "count": 2,
+            "count": 3,
             "list": [
                 {
                     "error": "Error: CSS parsing failed: missing '}'",
@@ -288,6 +314,12 @@ describe('customPolicies', function() {
                 {
                     "error": "Empty CSS was provided",
                     "file": "http://www.sudexpress.com/skin/frontend/sudexpress/default/css/reset.css",
+                    "line": null,
+                    "column": null
+                },
+                {
+                    "error": "Unknown parsing error. The entire file was ignored. As a result, the other CSS metrics and scores are miscalculated.",
+                    "file": "http://www.sudexpress.com/skin/frontend/sudexpress/default/css/another.css",
                     "line": null,
                     "column": null
                 }

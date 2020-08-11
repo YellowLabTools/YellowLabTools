@@ -4,10 +4,10 @@ var colorDiff = require('../../lib/tools/colorDiff');
 describe('colorDiff', function() {
     
     it('should parse offenders correctly', function() {
-        colorDiff.parseOffender('#000 (1 times)').should.equal('#000');
-        colorDiff.parseOffender('#5bc0de (2 times)').should.equal('#5bc0de');
-        colorDiff.parseOffender('rgba(0,0,0,0.075) (100 times)').should.equal('rgba(0,0,0,0.075)');
-        colorDiff.parseOffender('rgb(91,192,222) (1000 times)').should.equal('rgb(91,192,222)');
+        colorDiff.parseOffender({url:'file.css', value: {message: '#000 (1 times)'}}).should.equal('#000');
+        colorDiff.parseOffender({url:'file.css', value: {message: '#5bc0de (2 times)'}}).should.equal('#5bc0de');
+        colorDiff.parseOffender({url:'file.css', value: {message: 'rgba(0,0,0,0.075) (100 times)'}}).should.equal('rgba(0,0,0,0.075)');
+        colorDiff.parseOffender({url:'file.css', value: {message: 'rgb(91,192,222) (1000 times)'}}).should.equal('rgb(91,192,222)');
     });
 
     it('should parse colors correctly', function() {
@@ -45,13 +45,13 @@ describe('colorDiff', function() {
 
     it('should compare all colors to each other', function() {
         var colors = [
-            '#000 (1 times)',
-            '#5bc0de (2 times)',
-            'rgba(0,0,0,0.075) (100 times)',
-            'rgb(91,192,222) (1000 times)',
-            'rgba(0,0,2,1) (1 times)',
-            'rgba(99,99,99,1) (1 times)',
-            'rgba(100,100,100,1) (1 times)'
+            {url:'file.css', value: {message: '#000 (1 times)'}},
+            {url:'file.css', value: {message: '#5bc0de (2 times)'}},
+            {url:'file.css', value: {message: 'rgba(0,0,0,0.075) (100 times)'}},
+            {url:'file.css', value: {message: 'rgb(91,192,222) (1000 times)'}},
+            {url:'file.css', value: {message: 'rgba(0,0,2,1) (1 times)'}},
+            {url:'file.css', value: {message: 'rgba(99,99,99,1) (1 times)'}},
+            {url:'file.css', value: {message: 'rgba(100,100,100,1) (1 times)'}}
         ];
 
         var data = {
