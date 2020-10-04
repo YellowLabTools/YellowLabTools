@@ -13,7 +13,7 @@ var cli = meow({
         '  yellowlabtools <url> <options>',
         '',
         'Options:',
-        '  --device             Use "phone" or "tablet" to simulate a mobile device (by user-agent and viewport size).',
+        '  --device             Simulates a device. Choose between phone (default), tablet, desktop and desktop-hd.',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
         //'  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
         '  --proxy              Sets an HTTP proxy to pass through. Syntax is "host:port".',
@@ -55,7 +55,7 @@ if (screenshot) {
 }
 
 // Device simulation
-options.device = cli.flags.device || 'desktop';
+options.device = cli.flags.device || 'mobile';
 
 // Wait for CSS selector
 options.waitForSelector = cli.flags.waitForSelector || null;

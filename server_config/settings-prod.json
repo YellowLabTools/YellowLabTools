@@ -3,9 +3,10 @@
     "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
     "screenshotWidth": {
-        "desktop": 600,
+        "phone": 360,
         "tablet": 420,
-        "phone": 360
+        "desktop": 600,
+        "desktop-hd": 600
     },
     "baseUrl": "/",
     "authorizedKeys": {

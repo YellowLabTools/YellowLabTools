@@ -155,13 +155,15 @@ a.linkButton {
 .screenshotWrapper .screenshotError {
   color: #fff;
 }
-.screenshotWrapper.desktop {
+.screenshotWrapper.desktop,
+.screenshotWrapper.desktop-hd {
   border: 0.2em solid #AAA;
   padding: 0.5em;
   border-top-left-radius: 0.4em;
   border-top-right-radius: 0.4em;
 }
-.screenshotWrapper.desktop:before {
+.screenshotWrapper.desktop:before,
+.screenshotWrapper.desktop-hd:before {
   position: absolute;
   width: 15em;
   height: 0.6em;
@@ -172,7 +174,8 @@ a.linkButton {
   border-bottom-right-radius: 0.2em;
   content: " ";
 }
-.screenshotWrapper.desktop:after {
+.screenshotWrapper.desktop:after,
+.screenshotWrapper.desktop-hd:after {
   position: absolute;
   width: 0.4em;
   height: 0.2em;
@@ -181,7 +184,8 @@ a.linkButton {
   background: lime;
   content: " ";
 }
-.screenshotWrapper.desktop > div {
+.screenshotWrapper.desktop > div,
+.screenshotWrapper.desktop-hd > div {
   width: 12em;
   height: 6.75em;
 }
