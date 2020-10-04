@@ -5,7 +5,7 @@ html {
 body {
     margin: 0 auto;
     max-width: 1280px;
-    background: #9c4274;
+    background: #212240;
     color: #fff;
     font-size: 16px;
     text-align: center;
@@ -19,11 +19,8 @@ input[type=submit] {
     cursor: pointer;
 }
 
-h1 span {
-    display: inline-block;
-    height: 1em;
-    width: 1em;
-    color: #ffa319;
+h1 {
+    font-weight: 200;
 }
 
 .resultsMenu {
@@ -35,7 +32,7 @@ h1 span {
     width: 8em;
     height: 7em;
     color: #fff;
-    border: 3px solid #fff;
+    border: 2px solid #fff;
     border-radius: 0.5em;
     cursor: pointer;
     text-decoration: none;
@@ -45,12 +42,8 @@ h1 span {
     }
 
     &.back, &.restart {
-        color: #413;
-        border-color: #413;
-
-        svg {
-            fill: #413;
-        }
+        color: #fff;
+        border-color: #fff;
     }
 }
 .resultsMenu .menuItem div {
@@ -280,7 +273,7 @@ a.linkButton {
 
 .footer {
     padding: 3em;
-    color: #413;
+    color: #fff;
     a {
         color: inherit;
     }
@@ -293,4 +286,8 @@ a.linkButton {
     .sponsor {
         font-size: 0.9em;
     }
+}
+
+.homeSponsor {
+    color: #ffa319;
 }

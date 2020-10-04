@@ -114,14 +114,14 @@
   color: inherit;
 }
 .summary .notations .criteria .table > a:hover > div {
-  background: #EBD8E2;
+  background: #d8ebe0;
   cursor: pointer;
 }
 .summary .notations .criteria .table > a:hover > div.info {
   background: #FFF;
 }
 .summary .notations .criteria .table > a:hover > div.info svg {
-  fill: #EBD8E2;
+  fill: #d8ebe0;
 }
 .summary .notations .criteria .grade {
   width: 10%;
