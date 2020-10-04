@@ -76,8 +76,7 @@
 .settingsTooltip {
   position: relative;
 }
-.settingsTooltip span {
-  font-size: 0.8em;
+.settingsTooltip svg {
   vertical-align: text-top;
 }
 .settingsTooltip div {
