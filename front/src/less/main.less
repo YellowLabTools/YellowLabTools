@@ -1,5 +1,8 @@
 html {
-    margin: 100px 50px;
+    margin: 35px 5px;
+    @media (min-width: 640px) {
+        margin: 100px 50px;
+    }
 }
 
 body {
@@ -27,15 +30,21 @@ h1 {
     margin-top: 2em;
 }
 .resultsMenu .menuItem {
+    font-size: 0.8em;
     display: inline-block;
-    margin: 1em;
-    width: 8em;
+    width: 7em;
     height: 7em;
     color: #fff;
-    border: 2px solid #fff;
-    border-radius: 0.5em;
     cursor: pointer;
     text-decoration: none;
+
+    @media (min-width: 640px) {
+        font-size: 1em;
+        margin: 1em;
+        width: 8em;
+        border: 2px solid #fff;
+        border-radius: 0.5em;
+    }
 
     svg {
         fill: #fff;

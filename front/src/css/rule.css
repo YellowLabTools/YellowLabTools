@@ -2,7 +2,6 @@
   text-align: center;
 }
 .rule .ruleTable {
-  display: table;
   border-spacing: 1em;
   width: 90%;
   margin: 2em auto;
@@ -10,16 +9,20 @@
   border: 1px dashed #666;
   border-radius: 0.5em;
 }
-.rule .ruleTable > div {
-  display: table-cell;
-  vertical-align: middle;
-}
-.rule .ruleTable .left {
-  width: 33%;
-  font-weight: bold;
-}
-.rule .ruleTable .right {
-  width: 67%;
+@media (min-width: 820px) {
+  .rule .ruleTable {
+    display: table;
+  }
+  .rule .ruleTable > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .rule .ruleTable .left {
+    width: 33%;
+  }
+  .rule .ruleTable .right {
+    width: 67%;
+  }
 }
 .rule .score {
   font-size: 2.5em;
@@ -27,7 +30,7 @@
   height: 2em;
   width: 2em;
   border-radius: 0.5em;
-  margin: 0 auto 0.5em;
+  margin: 0 auto 0.25em;
 }
 .rule h3 {
   margin-bottom: 0em;
@@ -67,7 +70,13 @@
   border-spacing: 0 0.25em;
   margin: 0 auto;
   min-width: 10%;
-  max-width: 90%;
+  font-size: 0.875em;
+}
+@media (min-width: 820px) {
+  .rule .offendersTable {
+    max-width: 90%;
+    font-size: 1em;
+  }
 }
 .rule .offendersTable > div {
   display: table-row;
@@ -75,7 +84,7 @@
 .rule .offendersTable > div > div {
   display: table-cell;
   background: #f2f2f2;
-  padding: 0 1em;
+  padding: 0 0.25em;
   word-wrap: break-word;
   word-break: break-all;
 }
