@@ -62,7 +62,7 @@
     "meow": "5.0.0",
     "minimize": "2.2.0",
     "parse-color": "1.0.0",
-    "phantomas": "git://github.com/macbre/phantomas.git#phantomas-v2",
+    "phantomas": "git://github.com/macbre/phantomas.git#devel",
     "ps-node": "0.1.6",
     "q": "1.5.1",
     "request": "2.88.0",
