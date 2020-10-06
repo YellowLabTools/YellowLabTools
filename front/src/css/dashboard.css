@@ -82,11 +82,11 @@
   }
 }
 .summary .notations .category {
-  font-weight: bold;
+  font-size: 1.2em;
   width: 50%;
   float: left;
   text-align: left;
-  margin: 1em 0.25em;
+  margin: 0.5em 0.25em;
 }
 @media (min-width: 820px) {
   .summary .notations .category {
