@@ -93,6 +93,13 @@
         };
     });
 
+    offendersDirectives.filter('lastDOMNode', function() {
+        return function(str) {
+            var splited = str.split(' > ');
+            return splited[splited.length - 1];
+        };
+    });
+
     function getBacktraceHTML(backtrace) {
         var html = '';
         var parsedBacktrace = parseBacktrace(backtrace);

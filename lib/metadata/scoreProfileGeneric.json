@@ -32,8 +32,15 @@
                 "DOMidDuplicated": 1
             }
         },
+        "javascriptComplexity": {
+            "label": "JS complexity",
+            "policies": {
+                "DOMaccesses": 4,
+                "eventsScrollBound": 1
+            }
+        },
         "badJavascript": {
-            "label": "Bad JavaScript",
+            "label": "Bad JS",
             "policies": {
                 "jsErrors": 1,
                 "documentWriteCalls": 2,
@@ -100,6 +107,7 @@
         "pageWeight": 3,
         "requests": 3,
         "domComplexity": 2,
+        "javascriptComplexity": 2,
         "badJavascript": 2,
         "jQuery": 1,
         "cssSyntaxError": 1,

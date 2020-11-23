@@ -30,7 +30,7 @@
         <p>This rule reached the abnormality threshold, which means there is a real problem you should care about.</p>
     </div>
     <div class="offenders" ng-if="rule.policy.hasOffenders">
-        <h3 ng-if="rule.offendersObj.count >= 0"><ng-pluralize count="rule.offendersObj.count" when="{'0': 'No offenders', 'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize></h3>
+        <h3 ng-if="rule.offendersObj.count >= 0"><ng-pluralize count="rule.offendersObj.count" when="{'0': 'No offender', 'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize></h3>
 
         <div ng-if="rule.offendersObj.list" class="offendersTable">
             <div ng-repeat="offender in rule.offendersObj.list track by $index">
@@ -259,6 +259,36 @@
                 <div ng-repeat="request in rule.offendersObj.list.byType[type].requests | orderBy:'-weight'" ng-if="request.weight > 0">
                     <div><url-link url="request.url" max-length="60"></url-link></div>
                     <div ng-class="{offenderProblem: request.weight > 102400}">{{request.weight | bytes}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="policyName === 'DOMaccesses'">
+        <div ng-repeat="(type, list) in rule.offendersObj.list.byType">
+            <h3>
+                <ng-pluralize count="list.length" when="{'0': 'No offender', 'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize> from
+                <span ng-if="type === 'DOMqueriesById'">getElementById()</span>
+                <span ng-if="type === 'DOMqueriesByTagName'">getElementsByTagName()</span>
+                <span ng-if="type === 'DOMqueriesByClassName'">getElementsByClassName()</span>
+                <span ng-if="type === 'DOMqueriesByQuerySelectorAll'">querySelector() or querySelectorAll()</span>
+                <span ng-if="type === 'DOMinserts'">appendChild() or insertBefore()</span>
+                <span ng-if="type === 'DOMmutationsInserts'">added nodes</span>
+                <span ng-if="type === 'DOMmutationsRemoves'">removed nodes</span>
+                <span ng-if="type === 'DOMmutationsAttributes'">attribute changes</span>
+                <span ng-if="type === 'eventsBound'">addEventListener()</span>
+            </h3>
+            <div class="offendersTable">
+                <div ng-repeat="access in list">
+                    <div ng-if="type === 'DOMqueriesById'">#{{access.id}}</div>
+                    <div ng-if="type === 'DOMqueriesByTagName'">{{access.tag}} <b>on</b> <span title="{{access.node}}">{{access.node | lastDOMNode}}</span></div>
+                    <div ng-if="type === 'DOMqueriesByClassName'">.{{access.class}} <b>on</b> <span title="{{access.node}}">{{access.node | lastDOMNode}}</span></div>
+                    <div ng-if="type === 'DOMqueriesByQuerySelectorAll'">{{access.selector}} <b>on</b> <span title="{{access.node}}">{{access.node | lastDOMNode}}</span></div>
+                    <div ng-if="type === 'DOMinserts'"><span title="{{access.append}}">{{access.append | lastDOMNode}}</span> <b>added to</b> <span title="{{access.node}}">{{access.node | lastDOMNode}}</span></div>
+                    <div ng-if="type === 'DOMmutationsInserts'">{{access.node}} <b>added to</b> {{access.target}}</div>
+                    <div ng-if="type === 'DOMmutationsRemoves'">{{access.node}} <b>removed from</b> {{access.target}}</div>
+                    <div ng-if="type === 'DOMmutationsAttributes'">{{access.attribute}} <b>changed on</b> {{access.node}}</div>
+                    <div ng-if="type === 'eventsBound'">{{access.eventType}} <b>on</b> <span title="{{access.path}}">{{access.path | lastDOMNode}}</span></div>
                 </div>
             </div>
         </div>
