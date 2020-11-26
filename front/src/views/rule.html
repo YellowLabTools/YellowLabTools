@@ -175,6 +175,14 @@
                         <url-link url="offender.url" max-length="70"></url-link>
                         ({{offender.size | bytes}})
                     </div>
+
+                    <div ng-if="policyName === 'httpVersion'">
+                        <b>{{offender.domain}}</b> receives <span ng-class="offender.requests > 4 ? 'offenderProblem' : ''"><b><ng-pluralize count="offender.requests" when="{'one':'1 request','other':'{} requests'}"></ng-pluralize></b></span> over {{offender.httpVersion}}
+                    </div>
+
+                    <div ng-if="policyName === 'oldTlsProtocol'">
+                        <b>{{offender.domain}}</b> uses {{offender.tlsVersion}} <span ng-if="offender.beforeDomReady === true" class="offenderProblem">and seems to be on the critical path</span>
+                    </div>
                 </div>
             </div>
         </div>

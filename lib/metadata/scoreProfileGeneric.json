@@ -53,9 +53,7 @@
             "label": "jQuery",
             "policies": {
                 "jQueryVersion": 2,
-                "jQueryVersionsLoaded": 2,
-                "jQueryCallsOnEmptyObject": 1,
-                "jQueryNotDelegatedEvents": 1
+                "jQueryVersionsLoaded": 2
             }
         },
         "cssComplexity": {
@@ -95,7 +93,8 @@
         "serverConfig": {
             "label": "Server config",
             "policies": {
-                "http2": 2,
+                "oldHttpProtocol": 2,
+                "oldTlsProtocol": 2,
                 "closedConnections": 2,
                 "cachingNotSpecified": 1,
                 "cachingDisabled": 1,
@@ -110,7 +109,6 @@
         "javascriptComplexity": 2,
         "badJavascript": 2,
         "jQuery": 1,
-        "cssSyntaxError": 1,
         "cssComplexity": 1,
         "badCSS": 1,
         "fonts": 1,
