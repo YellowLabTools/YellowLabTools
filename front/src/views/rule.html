@@ -311,12 +311,14 @@
                     <div><a href="{{image.url}}" target="_blank"><img ng-src="{{image.url | https}}" class="checker" /></a></div>
                 </div>
                 <div>
-                    <p ng-if="!image.afterGzipCompression">Current weight: {{image.original | bytes}}</p>
-                    <p ng-if="image.afterGzipCompression">Current weight: {{image.original | bytes}} ({{image.afterGzipCompression | bytes}} gzipped)</p>
-                    <p ng-if="image.lossless && image.afterOptimizationAndGzipCompression">With a lossless optimization:<br/>{{image.afterOptimizationAndGzipCompression | bytes}} gzipped (<b>-{{image.gain | bytes}}</b> gzipped)</p>
-                    <p ng-if="image.lossless && !image.afterOptimizationAndGzipCompression">With a lossless optimization:<br/>{{image.lossless | bytes}} <span ng-if="!image.lossy">(<b>-{{image.gain | bytes}}</b>)</span></p>
-                    <p ng-if="image.lossy && image.afterOptimizationAndGzipCompression">With a lossy optimization:<br/>{{image.afterOptimizationAndGzipCompression | bytes}} gzipped (<b>-{{image.gain | bytes}} gzipped</b>)</p>
-                    <p ng-if="image.lossy && !image.afterOptimizationAndGzipCompression">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.gain | bytes}}</b>)</p>
+                    <p ng-if="!image.isCompressible || image.isCompressed">Current weight: {{image.originalWeigth | bytes}}</p>
+                    <p ng-if="image.isCompressible && !image.isCompressed">Current weight: {{image.originalWeigth | bytes}} ({{image.originalCompressedWeight | bytes}} compressed)</p>
+
+                    <p ng-if="image.lossless && image.isCompressible">With a lossless optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} compressed (<b>-{{image.gain | bytes}}</b> compressed)</p>
+                    <p ng-if="image.lossless && !image.isCompressible">With a lossless optimization:<br/>{{image.lossless | bytes}} <span ng-if="!image.lossy">(<b>-{{image.gain | bytes}}</b>)</span></p>
+
+                    <p ng-if="image.lossy && image.isCompressible">With a lossy optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} compressed (<b>-{{image.gain | bytes}} compressed</b>)</p>
+                    <p ng-if="image.lossy && !image.isCompressible">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.gain | bytes}}</b>)</p>
                 </div>
             </div>
         </div>
@@ -359,12 +361,12 @@
             </div>
             <div ng-repeat="file in rule.offendersObj.list.files | orderBy:'-gain'">
                 <div>
-                    <url-link url="file.url" max-length="70"></url-link>
+                    <url-link url="file.url" max-length="60"></url-link>
                 </div>
-                <div ng-if="!file.afterGzipCompression">{{file.original | bytes}} (gzipped)</div>
-                <div ng-if="file.afterGzipCompression">{{file.original | bytes}} ({{file.afterGzipCompression | bytes}} gzipped)</div>
-                <div ng-if="!file.afterGzipCompression">{{file.afterOptimizationAndGzipCompression | bytes}} (gzipped)</div>
-                <div ng-if="file.afterGzipCompression">{{file.optimized | bytes}} ({{file.afterOptimizationAndGzipCompression | bytes}} gzipped)</div>
+                <div ng-if="file.isCompressed">{{file.originalWeigth | bytes}} (compressed)</div>
+                <div ng-if="!file.isCompressed">{{file.originalWeigth | bytes}} ({{file.originalCompressedWeight | bytes}} compressed)</div>
+                <div ng-if="file.isCompressed">{{file.afterOptimizationAndCompression | bytes}} (compressed)</div>
+                <div ng-if="!file.isCompressed">{{file.optimized | bytes}} ({{file.afterOptimizationAndCompression | bytes}} compressed)</div>
                 <div><b>-{{file.gain | bytes}}</b></div>
             </div>
         </div>
