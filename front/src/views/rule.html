@@ -176,7 +176,7 @@
                         ({{offender.size | bytes}})
                     </div>
 
-                    <div ng-if="policyName === 'httpVersion'">
+                    <div ng-if="policyName === 'oldHttpProtocol'">
                         <b>{{offender.domain}}</b> receives <span ng-class="offender.requests > 4 ? 'offenderProblem' : ''"><b><ng-pluralize count="offender.requests" when="{'one':'1 request','other':'{} requests'}"></ng-pluralize></b></span> over {{offender.httpVersion}}
                     </div>
 
@@ -507,18 +507,6 @@
                 <div>{{file.originalSize | bytes}}</div>
                 <div>{{file.woff2Size | bytes}}</div>
                 <div><b>-{{file.gain | bytes}}</b></div>
-            </div>
-        </div>
-    </div>
-
-    <div ng-if="policyName === 'http2'">
-        <h3>Protocols advertised by the server</h3>
-        <div class="offendersTable">
-            <div ng-repeat="protocol in rule.offendersObj.list">
-                <div>{{protocol}}</div>
-            </div>
-            <div ng-if="!rule.offendersObj || rule.offendersObj.count == 0">
-                <div>none</div>
             </div>
         </div>
     </div>
