@@ -13,7 +13,7 @@
         "requests": {
             "label": "Requests",
             "policies": {
-                "totalRequests": 5,
+                "totalRequests": 2,
                 "domains": 3,
                 "notFound": 3,
                 "identicalFiles": 2,
@@ -35,7 +35,8 @@
         "javascriptComplexity": {
             "label": "JS complexity",
             "policies": {
-                "DOMaccesses": 4,
+                "scriptDuration": 4,
+                "DOMaccesses": 3,
                 "eventsScrollBound": 1
             }
         },
@@ -105,7 +106,7 @@
     },
     "globalScore": {
         "pageWeight": 3,
-        "requests": 3,
+        "requests": 2,
         "domComplexity": 2,
         "javascriptComplexity": 2,
         "badJavascript": 2,

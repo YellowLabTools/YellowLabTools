@@ -43,7 +43,7 @@
                         <div class="label">{{rule.policy.label}}</div>
                         <div class="result">
                             <span ng-if="rule.policy.unit == 'bytes'">{{rule.value | bytes}}</span>
-                            <span ng-if="rule.policy.unit != 'bytes'">{{rule.value}}</span>
+                            <span ng-if="rule.policy.unit != 'bytes'">{{rule.value}} <span ng-if="rule.policy.unit"> {{rule.policy.unit}}</span></span>
                             <span ng-if="rule.abnormal" class="icon-warning"><svg width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 79L84 448h344L256 79zm0-79c11 0 22 7 30 22l219 436c17 30 2 54-32 54H39c-34 0-49-24-32-54L226 22c8-15 19-22 30-22zm0 192c18 0 32 14 32 32l-10 96h-44l-10-96c0-18 14-32 32-32z"/><circle cx="256" cy="384" r="31" stroke="#000"/></svg></span>
                             <span ng-if="rule.abnormalityScore <= -100" class="icon-warning"><svg width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 79L84 448h344L256 79zm0-79c11 0 22 7 30 22l219 436c17 30 2 54-32 54H39c-34 0-49-24-32-54L226 22c8-15 19-22 30-22zm0 192c18 0 32 14 32 32l-10 96h-44l-10-96c0-18 14-32 32-32z"/><circle cx="256" cy="384" r="31" stroke="#000"/></svg></span>
                             <span ng-if="rule.abnormalityScore <= -300" class="icon-warning"><svg width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 79L84 448h344L256 79zm0-79c11 0 22 7 30 22l219 436c17 30 2 54-32 54H39c-34 0-49-24-32-54L226 22c8-15 19-22 30-22zm0 192c18 0 32 14 32 32l-10 96h-44l-10-96c0-18 14-32 32-32z"/><circle cx="256" cy="384" r="31" stroke="#000"/></svg></span>
