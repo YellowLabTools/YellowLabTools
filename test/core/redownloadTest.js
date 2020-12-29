@@ -108,12 +108,6 @@ describe('redownload', function() {
             data.toolsResults.redownload.offenders.totalRequests.byType.video.length.should.equal(0);
             data.toolsResults.redownload.offenders.totalRequests.byType.other.length.should.equal(1);
 
-            data.toolsResults.redownload.metrics.should.have.a.property('smallRequests').that.equals(0);
-            data.toolsResults.redownload.offenders.should.have.a.property('smallRequests');
-            data.toolsResults.redownload.offenders.smallRequests.byType.js.length.should.equal(0);
-            data.toolsResults.redownload.offenders.smallRequests.byType.css.length.should.equal(0);
-            data.toolsResults.redownload.offenders.smallRequests.byType.image.length.should.equal(0);
-
             done();
         })
 

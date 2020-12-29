@@ -18,7 +18,6 @@
                 "notFound": 3,
                 "identicalFiles": 2,
                 "emptyRequests": 3,
-                "smallRequests": 0.5,
                 "lazyLoadableImagesBelowTheFold": 2,
                 "hiddenImages": 1
             }

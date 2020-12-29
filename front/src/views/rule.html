@@ -409,27 +409,6 @@
         </div>
     </div>
 
-    <div ng-if="policyName === 'smallRequests'">
-        <div ng-repeat="(type, requests) in rule.offendersObj.list.byType" ng-if="requests.length > 0">
-            <h3><ng-pluralize count="requests.length" when="{'0': 'small ' + type + ' file', 'one': '1 small ' + type + ' file', 'other': '{} small ' + type + ' files'}"></ng-pluralize></h3>
-            <p ng-if="type == 'css' && requests.length > 0">Try to inline these styles in the head of the HTML or to merge them with other files.</p>
-            <p ng-if="type == 'js' && requests.length > 0">Try to inline these scripts in the HTML or merge them with other files.</p>
-            <p ng-if="type == 'image' && requests.length > 0">Try to inline these images (with base64 encoding for most image types except SVG that don't need base64 encoding). You can also create sprites.</p>
-            <div class="table">
-                <div class="headers">
-                    <div ng-if="type == 'image'">Preview</div>
-                    <div>File</div>
-                    <div>Weight (bytes)</div>
-                </div>
-                <div ng-repeat="request in requests track by $index">
-                    <div ng-if="type == 'image'"><img ng-src="{{request.url | https}}" class="smallPreview checker" /></div>
-                    <div><url-link url="request.url" max-length="100"></url-link></div>
-                    <div>{{request.size}}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div ng-if="policyName === 'cssBreakpoints'">
         <div ng-if="rule.value > 0">
             <h3>Breakpoints list</h3>
