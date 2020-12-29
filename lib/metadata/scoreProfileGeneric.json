@@ -7,7 +7,7 @@
                 "imageOptimization": 2,
                 "imagesTooLarge": 1,
                 "compression": 2,
-                "fileMinification": 1
+                "fileMinification": 2
             }
         },
         "requests": {
@@ -18,7 +18,7 @@
                 "notFound": 3,
                 "identicalFiles": 2,
                 "emptyRequests": 3,
-                "smallRequests": 1,
+                "smallRequests": 0.5,
                 "lazyLoadableImagesBelowTheFold": 2,
                 "hiddenImages": 1
             }
@@ -36,7 +36,7 @@
             "label": "JS complexity",
             "policies": {
                 "scriptDuration": 4,
-                "DOMaccesses": 3,
+                "DOMaccesses": 2,
                 "eventsScrollBound": 1
             }
         },
@@ -46,7 +46,6 @@
                 "jsErrors": 1,
                 "documentWriteCalls": 2,
                 "synchronousXHR": 5,
-                "consoleMessages": 0.5,
                 "globalVariables": 0.5
             }
         },
@@ -71,13 +70,13 @@
         "badCSS": {
             "label": "Bad CSS",
             "policies": {
-                "cssParsingErrors": 4,
-                "cssImports": 3,
+                "cssParsingErrors": 3,
+                "cssImports": 4,
                 "cssDuplicatedSelectors": 2,
                 "cssDuplicatedProperties": 1,
                 "cssEmptyRules": 2,
                 "cssExpressions": 1,
-                "cssImportants": 3,
+                "cssImportants": 2,
                 "cssOldIEFixes": 1,
                 "cssOldPropertyPrefixes": 1,
                 "cssRedundantBodySelectors": 1,
@@ -110,8 +109,8 @@
         "domComplexity": 2,
         "javascriptComplexity": 2,
         "badJavascript": 2,
-        "jQuery": 1,
-        "cssComplexity": 1,
+        "jQuery": 0.5,
+        "cssComplexity": 0.5,
         "badCSS": 1,
         "fonts": 1,
         "serverConfig": 1
