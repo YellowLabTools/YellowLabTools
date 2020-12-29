@@ -177,7 +177,7 @@
                     </div>
 
                     <div ng-if="policyName === 'oldHttpProtocol'">
-                        <b>{{offender.domain}}</b> receives <span ng-class="offender.requests > 4 ? 'offenderProblem' : ''"><b><ng-pluralize count="offender.requests" when="{'one':'1 request','other':'{} requests'}"></ng-pluralize></b></span> over {{offender.httpVersion}}
+                        <b>{{offender.domain}}</b> sends <span ng-class="offender.requests > 4 ? 'offenderProblem' : ''"><b><ng-pluralize count="offender.requests" when="{'one':'1 request','other':'{} requests'}"></ng-pluralize></b></span> over {{offender.httpVersion}}
                     </div>
 
                     <div ng-if="policyName === 'oldTlsProtocol'">
