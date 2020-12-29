@@ -20,7 +20,16 @@
                 <span ng-if="rule.policy.unit != 'bytes'">{{rule.policy.isOkThreshold}}<span ng-if="rule.policy.unit"> {{rule.policy.unit}}</span></span>
                 <span ng-if="rule.policy.isOkThreshold > 0 && rule.policy.isOkThreshold < rule.policy.isBadThreshold">or less</span>
                 <span ng-if="rule.policy.isOkThreshold > rule.policy.isBadThreshold">or more</span>
-                to get the 100/100 score.
+                to get the 100/100 score on this issue.
+            </div>
+            <div class="okThreshold" ng-if="rule.globalScoreIfFixed > result.scoreProfiles.generic.globalScore && rule.globalScoreIfFixed > 0">
+                Your new global would increase by {{rule.globalScoreIfFixed - result.scoreProfiles.generic.globalScore}} points ({{rule.globalScoreIfFixed}}/100).
+            </div>
+            <div class="okThreshold" ng-if="rule.globalScoreIfFixed > result.scoreProfiles.generic.globalScore && rule.globalScoreIfFixed <= 0">
+                Your new global score would increase, but still not enough to reach 0/100. That's embarassing...
+            </div>
+            <div class="okThreshold" ng-if="rule.globalScoreIfFixed == result.scoreProfiles.generic.globalScore && rule.score < 100">
+                Your new global score would slightly increase, but not enough to gain a single point.
             </div>
             <div ng-bind-html="rule.policy.message" class="message"></div>
         </div>
