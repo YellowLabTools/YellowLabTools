@@ -15,7 +15,7 @@
             "policies": {
                 "totalRequests": 2,
                 "domains": 3,
-                "notFound": 3,
+                "notFound": 2,
                 "identicalFiles": 2,
                 "emptyRequests": 3,
                 "lazyLoadableImagesBelowTheFold": 2,
