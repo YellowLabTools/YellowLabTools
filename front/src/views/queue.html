@@ -17,7 +17,16 @@
     </div>
     <div ng-if="status.statusCode == 'running'">
         <div class="status">Test is running...</div>
-        <p class="statusSubMessage">(auto-refresh activated)</p>
+        <div class="progress">
+            <div class="progressBarEmpty">
+                <div class="progressBarFilled" ng-style="{'width': (progress.estimatedProgress*100) + '%'}"></div>
+            </div>
+        </div>
+        <p class="statusSubMessage" ng-if="!progress">(Phantomas launched)</p>
+        <p class="statusSubMessage" ng-if="progress.milestone == 'domReady'">(DOM Ready fired)</p>
+        <p class="statusSubMessage" ng-if="progress.milestone == 'domComplete'">(page loaded, waiting for late requests)</p>
+        <p class="statusSubMessage" ng-if="progress.milestone == 'phantomas'">(now simulating compression, optimization and minification)</p>
+        <p class="statusSubMessage" ng-if="progress.milestone == 'redownload'">(calculating score and retreaving screenshot)</p>
     </div>
     <div ng-if="status.statusCode == 'complete'">
         <div class="status">Test complete</div>
