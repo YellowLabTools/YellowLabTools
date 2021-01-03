@@ -6,7 +6,7 @@ settingsService.factory('Settings', ['localStorageService', function(localStorag
 
         getMergedSettings: function() {
             var defaultSettings = {
-                device: 'mobile',
+                device: 'phone',
                 showAdvanced: false
             };
             

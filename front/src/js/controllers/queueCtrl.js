@@ -69,7 +69,7 @@ queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs'
                 faviconCanvasContext.fillStyle = '#212240';
                 
                 if (!!faviconCanvasContext) {
-                    faviconInterval = window.setInterval(faviconTick, 1000);
+                    faviconInterval = window.setInterval(faviconTick, 300);
                 }
             };
             faviconImage.src = faviconUrl;
@@ -81,7 +81,7 @@ queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs'
         faviconCanvasContext.save();
         faviconCanvasContext.fillRect(0, 0, 32, 32);
         faviconCanvasContext.translate(16, 16);
-        faviconCanvasContext.rotate(45 * faviconCounter * Math.PI / 180);
+        faviconCanvasContext.rotate(22.5 * faviconCounter * Math.PI / 180);
         faviconCanvasContext.translate(-16, -16);
         faviconCanvasContext.drawImage(faviconImage, 0, 0, 32, 32);
         faviconCanvasContext.restore();
@@ -90,6 +90,7 @@ queueCtrl.controller('QueueCtrl', ['$scope', '$routeParams', '$location', 'Runs'
 
     function stopFavicon(isSuccess) {
         window.clearInterval(faviconInterval);
+        faviconInterval = null;
         favicon.href = isSuccess ? faviconSuccessUrl : faviconFailUrl;
     }
     
