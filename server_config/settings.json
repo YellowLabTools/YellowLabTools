@@ -1,6 +1,5 @@
 {
     "serverPort": 8383,
-    "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
     "screenshotWidth": {
         "phone": 360,
