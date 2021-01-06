@@ -19,7 +19,7 @@ Analyzes a webpage and detects **performance** or **front-end code quality** iss
     </tr>
     <tr>
         <td width="70%">
-            The <b>CLI</b> (Command Line Interface) - <a href="https://github.com/gmetais/YellowLabTools/wiki/Command-Line-Interface" target="_blank">Doc here</a>
+            The <b>CLI</b> (Command Line Interface) - <a href="https://github.com/YellowLabTools/YellowLabTools/wiki/Command-Line-Interface" target="_blank">Doc here</a>
         </td>
         <td width="30%">
             <img src="./doc/img/YLT-cli-animated.gif"></img>
@@ -36,7 +36,7 @@ Analyzes a webpage and detects **performance** or **front-end code quality** iss
     </tr>
     <tr>
         <td width="70%">
-            The <b>NodeJS</b> package - <a href="https://github.com/gmetais/YellowLabTools/wiki/NodeJS-module" target="_blank">Doc here</a>
+            The <b>NodeJS</b> package - <a href="https://github.com/YellowLabTools/YellowLabTools/wiki/NodeJS-module" target="_blank">Doc here</a>
         </td>
         <td width="30%">
             <img src="./doc/img/npm-logo.png"></img>
@@ -44,7 +44,7 @@ Analyzes a webpage and detects **performance** or **front-end code quality** iss
     </tr>
     <tr>
         <td width="70%">
-            The <b>public API</b> - <a href="https://github.com/gmetais/YellowLabTools/wiki/Public-API" target="_blank">Doc here</a>
+            The <b>public API</b> - <a href="https://github.com/YellowLabTools/YellowLabTools/wiki/Public-API" target="_blank">Doc here</a>
             <br>
             Allows you to launch runs from any language
         </td>
@@ -72,7 +72,7 @@ You can use [ngrok](https://ngrok.com/), a tool that creates a secure tunnel bet
 
 ## Install your own private instance
 
-If your project is not accessible from outside, or if you want to fork and improve the tool, you can build your own instance. The documentation is [here](https://github.com/gmetais/YellowLabTools/wiki/Install-your-private-server).
+If your project is not accessible from outside, or if you want to fork and improve the tool, you can build your own instance. The documentation is [here](https://github.com/YellowLabTools/YellowLabTools/wiki/Install-your-private-server).
 
 
 ## Author

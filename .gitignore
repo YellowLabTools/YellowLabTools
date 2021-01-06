@@ -5,4 +5,5 @@ package-lock.json
 results/*
 coverage
 front/build
+package-lock.json
 har.json

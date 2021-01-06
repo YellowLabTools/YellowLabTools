@@ -1,6 +1,6 @@
 {
   "name": "yellowlabtools",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0-beta",
   "description": "Online tool to audit a webpage for performance and front-end quality issues",
   "license": "GPL-2.0",
   "author": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gmetais/YellowLabTools.git"
+    "url": "git://github.com/YellowLabTools/YellowLabTools.git"
   },
   "bin": {
     "yellowlabtools": "./bin/cli.js"
@@ -97,7 +97,8 @@
     "sinon-chai": "~3.3.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "build": "grunt build"
   },
   "keywords": [
     "performance",
