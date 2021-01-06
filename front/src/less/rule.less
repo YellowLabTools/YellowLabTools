@@ -3,23 +3,27 @@
 }
 
 .rule .ruleTable {
-    display: table;
     border-spacing: 1em;
     width: 90%;
     margin: 2em auto;
     background: #f2f2f2;
     border: 1px dashed #666;
     border-radius: 0.5em;
-    > div {
-        display: table-cell;
-        vertical-align: middle;
-    }
-    .left {
-        width: 33%;
-        font-weight: bold;
-    }
-    .right {
-        width: 67%;
+
+    @media (min-width: 820px) {
+        display: table;
+
+        > div {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .left {
+            width: 33%;
+        }
+        .right {
+            width: 67%;
+        }
     }
 }
 
@@ -29,7 +33,7 @@
     height: 2em;
     width: 2em;
     border-radius: 0.5em;
-    margin: 0 auto 0.5em;
+    margin: 0 auto 0.25em;
 }
 
 .rule h3 {
@@ -75,17 +79,23 @@
     border-spacing: 0 0.25em;
     margin: 0 auto;
     min-width: 10%;
-    max-width: 90%;
+    font-size: 0.875em;
+
+    @media (min-width: 820px) {
+        max-width: 90%;
+        font-size: 1em;
+    }
+
     > div {
         display: table-row;
         > div {
             display: table-cell;
             background: #f2f2f2;
-            padding: 0 1em;
+            padding: 0 0.25em;
             word-wrap: break-word;
             word-break: break-all;
             &:hover {
-                background: #EBD8E2;
+                background: #d8ebe0;
             }
         }
     }

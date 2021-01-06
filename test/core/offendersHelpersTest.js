@@ -307,52 +307,6 @@ describe('offendersHelpers', function() {
 
     });
 
-
-    describe('cssOffenderPattern', function() {
-
-        it('should transform a css offender into an object', function() {
-            var result = offendersHelpers.cssOffenderPattern('.pagination .plus ul li <http://www.pouet.com/css/main.css> @ 30:31862');
-
-            result.should.deep.equal({
-                css: '.pagination .plus ul li',
-                file: 'http://www.pouet.com/css/main.css',
-                line: 30,
-                column: 31862
-            });
-        });
-
-        it('should work with an inline css', function() {
-            var result = offendersHelpers.cssOffenderPattern('.pagination .plus ul li [inline CSS] @ 1:32');
-
-            result.should.deep.equal({
-                css: '.pagination .plus ul li',
-                file: null,
-                line: 1,
-                column: 32
-            });
-        });
-
-        it('should handle the case where line and char are not here', function() {
-            var result = offendersHelpers.cssOffenderPattern('.pagination .plus ul li');
-
-            result.should.deep.equal({
-                offender: '.pagination .plus ul li'
-            });
-        });
-
-        it('should handle line breaks inside the string', function() {
-            var result = offendersHelpers.cssOffenderPattern('.card-mask-wrap { -moz-transform: translate3d(0, \n-288px\n, 0) } // was required by firefox 15 and earlier [inline CSS] @ 29:3');
-
-            result.should.deep.equal({
-                css: '.card-mask-wrap { -moz-transform: translate3d(0, -288px, 0) } // was required by firefox 15 and earlier',
-                file: null,
-                line: 29,
-                column: 3
-            });
-        }); 
-
-    });
-
     describe('fileWithSizePattern', function() {
 
         it('should return an object', function() {

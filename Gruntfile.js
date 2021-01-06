@@ -11,21 +11,6 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         settings: grunt.file.readJSON('./server_config/settings.json'),
         
-        webfont: {
-            icons: {
-                src: 'front/src/fonts/svg-icons/*.svg',
-                dest: 'tmp',
-                destCss: 'front/src/less',
-                options: {
-                    engine: 'node',
-                    types: 'woff',
-                    stylesheet: 'less',
-                    embed: true,
-                    htmlDemo: false,
-                    syntax: 'bootstrap'
-                }
-            }
-        },
         less: {
             all: {
                 files: [
@@ -71,7 +56,10 @@ module.exports = function(grunt) {
                 'test/core/*.js',
                 'test/fixtures/*.js',
                 'front/src/js/**/*.js'
-            ]
+            ],
+            options: {
+                esversion: 6
+            }
         },
         clean: {
             tmp: {
@@ -103,7 +91,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['test/api/apiTest.js']
+                src: ['test/core/mediaQueriesCheckerTest.js']
             }
         },
         env: {
@@ -221,12 +209,6 @@ module.exports = function(grunt) {
     grunt.registerTask('test-settings', function() {
         process.env.IS_TEST = true;
     });
-
-    grunt.registerTask('icons', [
-        'webfont:icons',
-        'less',
-        'clean:tmp'
-    ]);
 
     grunt.registerTask('build', [
         'jshint',

@@ -1,13 +1,14 @@
-@import "icons.less";
-
 html {
-    margin: 100px 50px;
+    margin: 35px 5px;
+    @media (min-width: 640px) {
+        margin: 100px 50px;
+    }
 }
 
 body {
     margin: 0 auto;
     max-width: 1280px;
-    background: #9c4274;
+    background: #212240;
     color: #fff;
     font-size: 16px;
     text-align: center;
@@ -21,41 +22,61 @@ input[type=submit] {
     cursor: pointer;
 }
 
-h1 span {
-    display: inline-block;
-    height: 1em;
-    width: 1em;
-    color: #ffa319;
+h1 {
+    font-weight: 200;
 }
 
 .resultsMenu {
     margin-top: 2em;
 }
 .resultsMenu .menuItem {
+    font-size: 0.8em;
     display: inline-block;
-    margin: 1em;
-    width: 8em;
+    width: 7em;
     height: 7em;
     color: #fff;
-    border: 3px solid #fff;
-    border-radius: 0.5em;
     cursor: pointer;
     text-decoration: none;
+
+    @media (min-width: 640px) {
+        font-size: 1em;
+        margin: 1em;
+        width: 8em;
+        border: 2px solid #fff;
+        border-radius: 0.5em;
+    }
+
+    svg {
+        fill: #fff;
+    }
+
     &.back, &.restart {
-        color: #413;
-        border-color: #413;
+        color: #fff;
+        border-color: #fff;
     }
 }
 .resultsMenu .menuItem div {
     padding-top: 0.5em;
     font-size: 3em;
 }
+.resultsMenu svg {
+    display: block;
+    margin: 1.2em auto 0.2em;
+}
 .resultsMenu .active, .resultsMenu .menuItem.active:hover {
     color: #ffa319;
     border-color: #ffa319;
+
+    svg {
+        fill: #ffa319;
+    }
 }
 .resultsMenu .menuItem:hover {
     color: #ffa319;
+
+    svg {
+        fill: #ffa319;
+    }
 }
 .resultsMenu span {
     position: relative;
@@ -149,7 +170,7 @@ a.linkButton {
     }
 }
 
-.screenshotWrapper.desktop {
+.screenshotWrapper.desktop, .screenshotWrapper.desktop-hd {
     border: 0.2em solid #AAA;
     padding: 0.5em;
     border-top-left-radius: 0.4em;
@@ -238,9 +259,30 @@ a.linkButton {
     }
 }
 
+.table {
+    display: table;
+    width: 100%;
+    border-spacing: 0.25em;
+}
+.table > div,
+.table > a {
+    display: table-row;
+}
+.table > .headers > div {
+    font-weight: bold;
+    padding: 0.5em 1em;
+}
+.table > div > div,
+.table > a > div {
+    padding: 0.1em 1em;
+    background: #f2f2f2;
+    display: table-cell;
+    text-align: left;
+}
+
 .footer {
     padding: 3em;
-    color: #413;
+    color: #fff;
     a {
         color: inherit;
     }
@@ -255,6 +297,6 @@ a.linkButton {
     }
 }
 
-[class^="icon-"]:before, [class*=" icon-"]:before {
-    vertical-align: baseline;
+.homeSponsor {
+    color: #ffa319;
 }

@@ -171,9 +171,6 @@ describe('api', function() {
                 body.should.have.a.property('rules').that.is.an('object');
                 body.should.have.a.property('toolsResults').that.is.an('object');
 
-                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
-                body.javascriptExecutionTree.should.not.deep.equal({});
-
                 // Check if settings are correctly sent and retrieved
                 body.params.options.should.have.a.property('device').that.equals('tablet');
                 //body.params.options.should.have.a.property('waitForSelector').that.equals('*');
@@ -410,10 +407,6 @@ describe('api', function() {
                 body.should.have.a.property('toolsResults').that.is.an('object');
                 body.toolsResults.should.have.a.property('phantomas').that.is.an('object');
 
-                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
-                body.javascriptExecutionTree.should.have.a.property('data').that.is.an('object');
-                body.javascriptExecutionTree.data.should.have.a.property('type').that.equals('main');
-
                 done();
 
             } else {
@@ -507,28 +500,6 @@ describe('api', function() {
     });
 
 
-    it('should return the javascript execution tree', function(done) {
-        this.timeout(5000);
-
-        request({
-            method: 'GET',
-            url: serverUrl + '/api/results/' + asyncRunId + '/javascriptExecutionTree',
-            json: true,
-        }, function(error, response, body) {
-            if (!error && response.statusCode === 200) {
-                
-                body.should.have.a.property('data').that.is.an('object');
-                body.data.should.have.a.property('type').that.equals('main');
-                
-                done();
-
-            } else {
-                done(error || response.statusCode);
-            }
-        });
-    });
-
-
     it('should return the phantomas results', function(done) {
         this.timeout(5000);
 
@@ -565,7 +536,6 @@ describe('api', function() {
                 body.should.have.a.property('params').that.is.an('object');
                 body.should.have.a.property('scoreProfiles').that.is.an('object');
                 body.should.have.a.property('rules').that.is.an('object');
-                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
                 
                 body.should.not.have.a.property('toolsResults').that.is.an('object');
 
@@ -591,7 +561,6 @@ describe('api', function() {
                 body.should.have.a.property('runId').that.equals(asyncRunId);
                 body.should.have.a.property('scoreProfiles').that.is.an('object');
                 body.should.have.a.property('rules').that.is.an('object');
-                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
                 
                 body.should.not.have.a.property('params').that.is.an('object');
                 body.should.not.have.a.property('toolsResults').that.is.an('object');
@@ -617,7 +586,6 @@ describe('api', function() {
                 body.should.have.a.property('runId').that.equals(asyncRunId);
                 body.should.have.a.property('scoreProfiles').that.is.an('object');
                 body.should.have.a.property('rules').that.is.an('object');
-                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
                 body.should.have.a.property('params').that.is.an('object');
                 body.should.have.a.property('toolsResults').that.is.an('object');
 
@@ -642,7 +610,6 @@ describe('api', function() {
                 body.should.have.a.property('runId').that.equals(asyncRunId);
                 body.should.have.a.property('scoreProfiles').that.is.an('object');
                 body.should.have.a.property('rules').that.is.an('object');
-                body.should.have.a.property('javascriptExecutionTree').that.is.an('object');
                 body.should.have.a.property('params').that.is.an('object');
                 body.should.have.a.property('toolsResults').that.is.an('object');
 

@@ -22,9 +22,6 @@ menuService.factory('Menu', ['$location', function($location) {
                 case 'dashboard':
                     $location.path('/result/' + currentRunId);
                     break;
-                case 'timeline':
-                    $location.path('/result/' + currentRunId + '/timeline');
-                    break;
                 default:
                     console.err('Undefined Menu.changePage() destination');
             }

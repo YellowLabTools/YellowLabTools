@@ -2,7 +2,7 @@
 <div class="screenshot board">
     <h2>Screenshot</h2>
 
-    <div class="screenshotWrapper" ng-class="result.params.options.device || 'desktop'">
+    <div class="screenshotWrapper" ng-class="result.params.options.device || 'phone'">
         <div>
             <img ng-if="result.screenshotUrl" class="screenshotImage" ng-src="{{result.screenshotUrl}}"/>
             <span ng-if="!result.screenshotUrl" class="screenshotError">Screenshot not available</span>

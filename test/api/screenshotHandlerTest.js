@@ -3,6 +3,7 @@ var ScreenshotHandler = require('../../lib/screenshotHandler');
 
 var fs = require('fs');
 var path = require('path');
+var rimraf = require('rimraf');
 
 describe('screenshotHandler', function() {
 
@@ -55,10 +56,14 @@ describe('screenshotHandler', function() {
     });
 
 
-    it('should optimize an image and return a buffered version', function(done) {
-        ScreenshotHandler.optimize(imagePath, 200)
+    it('should create the tmp folder if it doesn\'t exist', function(done) {
+        // Delete tmp folder if it exists
+        rimraf.sync("/some/directory");
+        
+        // The function we want to test
+        ScreenshotHandler.createTmpScreenshotFolder()
             .then(function(buffer) {
-                buffer.should.be.an.instanceof(Buffer);
+                fs.existsSync(path.join(__dirname, '../../tmp')).should.equal(true);
                 done();
             })
             .fail(function(err) {
@@ -66,63 +71,8 @@ describe('screenshotHandler', function() {
             });
     });
 
-
-    it('should provide a temporary file object', function() {
-        screenshot = ScreenshotHandler.getScreenshotTempFile();
-
-        screenshot.should.have.a.property('getTmpFolder').that.is.a('function');
-        screenshot.should.have.a.property('getTmpFilePath').that.is.a('function');
-        screenshot.should.have.a.property('toThumbnail').that.is.a('function');
-        screenshot.should.have.a.property('deleteTmpFile').that.is.a('function');
+    it('should return the tmp folder path', function() {
+        ScreenshotHandler.getTmpFileRelativePath().should.equal('tmp/temp-screenshot.png');
     });
 
-
-    it('should have created the temporary folder', function() {
-        var folder = screenshot.getTmpFolder();
-        fs.existsSync(folder.path).should.equal(true);
-    });
-
-
-    it('should respond a temporary file', function() {
-        var file = screenshot.getTmpFilePath();
-        file.should.have.string('/screenshot.png');
-    });
-
-
-    it('should delete the temp folder when there is no file', function(done) {
-        var tmpFolderPath = screenshot;
-
-        screenshot.deleteTmpFile()
-            .delay(1000)
-            .then(function() {
-                fs.existsSync(screenshot.getTmpFolder().path).should.equal(false);
-                done();
-            })
-            .fail(function(err) {
-                done(err);
-            });
-    });
-
-    it('should delete the temp folder with the screenshot inside', function(done) {
-        screenshot = ScreenshotHandler.getScreenshotTempFile();
-        var tmpFolderPath = screenshot.getTmpFolder().path;
-        var tmpImagePath = path.join(tmpFolderPath, 'screenshot.png');
-
-        // Copy image
-        var testImage = fs.readFileSync(imagePath);
-        fs.writeFileSync(tmpImagePath, testImage);
-
-        fs.existsSync(tmpImagePath).should.equal(true);
-
-        screenshot.deleteTmpFile()
-            .delay(1000)
-            .then(function() {
-                fs.existsSync(tmpImagePath).should.equal(false);
-                fs.existsSync(tmpFolderPath).should.equal(false);
-                done();
-            })
-            .fail(function(err) {
-                done(err);
-            });
-    });
 });

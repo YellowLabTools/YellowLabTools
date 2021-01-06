@@ -87,17 +87,6 @@ describe('index.js', function() {
                     }
                 });
 
-                // Test javascriptExecutionTree
-                data.toolsResults.phantomas.metrics.should.not.have.a.property('javascriptExecutionTree');
-                data.toolsResults.phantomas.offenders.should.not.have.a.property('javascriptExecutionTree');
-                data.should.have.a.property('javascriptExecutionTree').that.is.an('object');
-                data.javascriptExecutionTree.should.have.a.property('data');
-                data.javascriptExecutionTree.data.should.have.a.property('type').that.equals('main');
-                data.javascriptExecutionTree.data.should.have.a.property('domInteractive').that.is.a('number');
-                data.javascriptExecutionTree.data.should.have.a.property('domContentLoaded').that.is.a('number');
-                data.javascriptExecutionTree.data.should.have.a.property('domContentLoadedEnd').that.is.a('number');
-                data.javascriptExecutionTree.data.should.have.a.property('domComplete').that.is.a('number');
-
                 /*jshint expr: true*/
                 console.log.should.not.have.been.called;
 

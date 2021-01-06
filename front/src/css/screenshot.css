@@ -2,6 +2,16 @@
   text-align: center;
 }
 .screenshot .screenshotWrapper {
-  font-size: 2.08333333333333em;
+  font-size: 1.2em;
   margin-bottom: 0.5em;
+}
+@media (min-width: 420px) {
+  .screenshot .screenshotWrapper {
+    font-size: 1.6em;
+  }
+}
+@media (min-width: 640px) {
+  .screenshot .screenshotWrapper {
+    font-size: 2.08333333em;
+  }
 }

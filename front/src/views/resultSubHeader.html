@@ -1,8 +1,7 @@
 <div>Tested url: &nbsp; <a href="{{result.params.url}}" target="_blank" class="testedUrl">{{result.params.url}}</a></div>
 
 <div class="resultsMenu">
-    <a class="menuItem back" href="<%= baseUrl %>"><div class="icon-arrow-left3"></div><span>New test<span></a>
-    <a class="menuItem restart" href="" ng-click="testAgain()"><div class="icon-loop"></div><span>Test again<span></a>
-    <div class="menuItem" ng-class="{active: Menu.getCurrentPage() == 'dashboard'}" ng-click="Menu.changePage('dashboard')"><div class="icon-list"></div><span>Dashboard</span></div>
-    <div class="menuItem" ng-class="{active: Menu.getCurrentPage() == 'timeline'}" ng-click="Menu.changePage('timeline')"><div class="icon-bars"></div><span>JS Timeline</span></div>
+    <a class="menuItem back" href="<%= baseUrl %>"><svg width="48" height="48" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 0a256 256 0 110 512 256 256 0 010-512zm0 464a208 208 0 100-416 208 208 0 000 416zM105 233l128-128a32 32 0 1146 46l-74 73h179a32 32 0 010 64H205l74 73a32 32 0 01-46 46L105 279a32 32 0 010-46z"/></svg><span>New test<span></a>
+    <a class="menuItem restart" href="" ng-click="testAgain()"><svg width="48" height="48" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M437 75a255 255 0 00-421 91l60 23a192 192 0 01316-69l-72 72h192V0l-75 75zM256 448c-53 0-101-21-136-56l72-72H0v192l75-75a255 255 0 00421-91l-60-23c-27 73-98 125-180 125z"/></svg><span>Test again<span></a>
+    <div class="menuItem" ng-class="{active: Menu.getCurrentPage() == 'dashboard'}" ng-click="Menu.changePage('dashboard')"><svg width="48" height="48" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h128v128H0zm192 32h320v64H192zM0 192h128v128H0zm192 32h320v64H192zM0 384h128v128H0zm192 32h320v64H192z"/></svg><span>Dashboard</span></div>
 </div>

@@ -1,8 +1,12 @@
 {
     "serverPort": 8383,
-    "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
-    "screenshotWidth": 400,
+    "screenshotWidth": {
+        "phone": 360,
+        "tablet": 420,
+        "desktop": 600,
+        "desktop-hd": 600
+    },
     "baseUrl": "/",
     "authorizedKeys": {
         

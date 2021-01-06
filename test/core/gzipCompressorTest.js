@@ -36,8 +36,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -79,9 +79,9 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.have.a.property('afterOptimizationAndCompression').that.is.not.undefined;
-            newEntry.weightCheck.should.have.a.property('afterOptimizationAndCompression').that.is.below(newEntry.weightCheck.afterCompression);
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.have.a.property('afterOptimizationAndGzipCompression').that.is.not.undefined;
+            newEntry.weightCheck.should.have.a.property('afterOptimizationAndGzipCompression').that.is.below(newEntry.weightCheck.afterGzipCompression);
 
             done();
         })
@@ -123,9 +123,9 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterOptimizationAndCompression').that.is.not.undefined;
-            newEntry.weightCheck.should.have.a.property('afterOptimizationAndCompression').that.is.below(gzipedSize);
-            newEntry.weightCheck.should.have.a.property('afterOptimizationAndCompression').that.is.below(minifiedSize);
+            newEntry.weightCheck.should.have.a.property('afterOptimizationAndGzipCompression').that.is.not.undefined;
+            newEntry.weightCheck.should.have.a.property('afterOptimizationAndGzipCompression').that.is.below(gzipedSize);
+            newEntry.weightCheck.should.have.a.property('afterOptimizationAndGzipCompression').that.is.below(minifiedSize);
 
             done();
         })
@@ -165,8 +165,8 @@ describe('gzipCompressor', function() {
         .then(function(newEntry) {
             newEntry.weightCheck.should.not.have.a.property('minified');
             newEntry.weightCheck.should.not.have.a.property('bodyAfterOptimization');
-            newEntry.weightCheck.should.not.have.a.property('afterCompression');
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterGzipCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -201,8 +201,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -237,8 +237,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -274,8 +274,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -310,8 +310,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -346,8 +346,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -383,8 +383,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -420,8 +420,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.have.a.property('afterCompression').that.is.below(fileSize);
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.have.a.property('afterGzipCompression').that.is.below(fileSize);
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -457,8 +457,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.not.have.a.property('afterCompression');
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterGzipCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -495,8 +495,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.not.have.a.property('afterCompression');
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterGzipCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -532,8 +532,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.not.have.a.property('afterCompression');
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterGzipCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })
@@ -569,8 +569,8 @@ describe('gzipCompressor', function() {
         gzipCompressor.compressFile(entry)
 
         .then(function(newEntry) {
-            newEntry.weightCheck.should.not.have.a.property('afterCompression');
-            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterGzipCompression');
+            newEntry.weightCheck.should.not.have.a.property('afterOptimizationAndGzipCompression');
 
             done();
         })

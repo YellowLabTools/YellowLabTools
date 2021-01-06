@@ -1,14 +1,18 @@
 {
     "serverPort": 80,
-    "phantomasEngine": "webkit",
     "googleAnalyticsId": "",
-    "screenshotWidth": 400,
+    "screenshotWidth": {
+        "phone": 360,
+        "tablet": 420,
+        "desktop": 600,
+        "desktop-hd": 600
+    },
     "baseUrl": "/",
     "authorizedKeys": {
         
     },
-    "maxAnonymousRunsPerDay": 99999999,
-    "maxAnonymousCallsPerDay": 99999999,
+    "maxAnonymousRunsPerDay": 1000,
+    "maxAnonymousCallsPerDay": 100000,
     "blockedUrls": [],
 
     "sponsoring" : {

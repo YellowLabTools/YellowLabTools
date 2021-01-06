@@ -12,15 +12,27 @@
             <h3>
                 Value:
                 <span ng-if="rule.policy.unit == 'bytes'">{{rule.value | bytes}}</span>
-                <span ng-if="rule.policy.unit != 'bytes'">{{rule.value}}</span>
+                <span ng-if="rule.policy.unit != 'bytes'">{{rule.value}}<span ng-if="rule.policy.unit"> {{rule.policy.unit}}</span></span>
             </h3>
             <div class="okThreshold" ng-if="rule.score < 100 && rule.policy.isOkThreshold !== undefined">
                 Have
                 <span ng-if="rule.policy.unit == 'bytes'">{{rule.policy.isOkThreshold | bytes}}</span>
-                <span ng-if="rule.policy.unit != 'bytes'">{{rule.policy.isOkThreshold}}</span>
+                <span ng-if="rule.policy.unit != 'bytes'">{{rule.policy.isOkThreshold}}<span ng-if="rule.policy.unit"> {{rule.policy.unit}}</span></span>
                 <span ng-if="rule.policy.isOkThreshold > 0 && rule.policy.isOkThreshold < rule.policy.isBadThreshold">or less</span>
                 <span ng-if="rule.policy.isOkThreshold > rule.policy.isBadThreshold">or more</span>
-                to get the 100/100 score.
+                to get the 100/100 score on this issue.
+            </div>
+            <div class="okThreshold" ng-if="rule.globalScoreIfFixed > result.scoreProfiles.generic.globalScore && rule.globalScoreIfFixed > 0 && result.scoreProfiles.generic.globalScore >= 0">
+                Your new global would increase by {{rule.globalScoreIfFixed - result.scoreProfiles.generic.globalScore}} points ({{rule.globalScoreIfFixed}}/100).
+            </div>
+            <div class="okThreshold" ng-if="rule.globalScoreIfFixed > result.scoreProfiles.generic.globalScore && rule.globalScoreIfFixed > 0 && result.scoreProfiles.generic.globalScore < 0">
+                Your new global would increase by {{rule.globalScoreIfFixed}} points ({{rule.globalScoreIfFixed}}/100).
+            </div>
+            <div class="okThreshold" ng-if="rule.globalScoreIfFixed > result.scoreProfiles.generic.globalScore && rule.globalScoreIfFixed <= 0">
+                Your new global score would increase, but still not enough to reach 0/100. That's embarassing...
+            </div>
+            <div class="okThreshold" ng-if="rule.globalScoreIfFixed == result.scoreProfiles.generic.globalScore && rule.score < 100">
+                Your new global score would slightly increase, but not enough to gain a single point.
             </div>
             <div ng-bind-html="rule.policy.message" class="message"></div>
         </div>
@@ -30,7 +42,7 @@
         <p>This rule reached the abnormality threshold, which means there is a real problem you should care about.</p>
     </div>
     <div class="offenders" ng-if="rule.policy.hasOffenders">
-        <h3 ng-if="rule.offendersObj.count >= 0"><ng-pluralize count="rule.offendersObj.count" when="{'0': 'No offenders', 'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize></h3>
+        <h3 ng-if="rule.offendersObj.count >= 0"><ng-pluralize count="rule.offendersObj.count" when="{'0': 'No offender', 'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize></h3>
 
         <div ng-if="rule.offendersObj.list" class="offendersTable">
             <div ng-repeat="offender in rule.offendersObj.list track by $index">
@@ -39,8 +51,13 @@
                 </div>
                 <div ng-if="!offender.parseError">
 
+                    <div ng-if="policyName === 'iframesCount'">
+                        <span ng-if="offender.url">{{offender.url}}</span>
+                        <span ng-if="!offender.url">an iframe without URL</span>
+                    </div>
+
                     <div ng-if="policyName === 'DOMidDuplicated'">
-                        <b>{{offender.id}}</b>: {{offender.occurrences}} occurrences
+                        <b>{{offender.id}}</b>: {{offender.count}} occurrences
                     </div>
 
                     <div ng-if="policyName === 'DOMqueriesAvoidable'">
@@ -97,9 +114,9 @@
                     </div>
 
                     <div ng-if="policyName === 'cssRules'">
-                        <span ng-if="offender.file === 'inline CSS'">inline CSS</span>
-                        <span ng-if="offender.file !== 'inline CSS'"><url-link url="offender.file" max-length="80"></url-link></span>
-                        : <ng-pluralize count="offender.rules" when="{'0': '0 rule', 'one':'1 rule','other':'{} rules'}"></ng-pluralize>
+                        <span ng-if="offender.url === '[inline CSS]'">inline CSS</span>
+                        <span ng-if="offender.url !== '[inline CSS]'"><url-link url="offender.url" max-length="80"></url-link></span>
+                        : <ng-pluralize count="offender.value" when="{'0': '0 rule', 'one':'1 rule','other':'{} rules'}"></ng-pluralize>
                     </div>
 
                     <div ng-if="policyName === 'similarColors'">
@@ -118,7 +135,7 @@
                     </div>
 
                     <div ng-if="policyName === 'cssOldPropertyPrefixes'">
-                        <b>{{offender.property}} {{offender.message}}</b>
+                        <b>{{offender.property}}</b> {{offender.message}}
                         <div ng-if="offender.rules.length" ng-click="offender.showMore = !offender.showMore" class="offenderButton">
                             <span ng-if="!offender.showMore">show</span>
                             <span ng-if="offender.showMore">hide</span>
@@ -132,7 +149,12 @@
                         </div>
                     </div>
 
-                    <div ng-if="policyName === 'lazyLoadableImagesBelowTheFold' || policyName === 'hiddenImages'">
+                    <div ng-if="policyName === 'lazyLoadableImagesBelowTheFold'">
+                        <img ng-src="{{offender.url | https}}" class="smallPreview checker"></img>
+                        <url-link url="offender.url" max-length="70"></url-link> (offset: {{offender.offset | roundNbr}}px)
+                    </div>
+
+                    <div ng-if="policyName === 'hiddenImages'">
                         <img ng-src="{{offender | https}}" class="smallPreview checker"></img>
                         <url-link url="offender" max-length="100"></url-link>
                     </div>
@@ -148,7 +170,7 @@
                     </div>
 
                     <div ng-if="policyName === 'cachingTooShort'">
-                        <url-link url="offender.file" max-length="100"></url-link>
+                        <url-link url="offender.url" max-length="100"></url-link>
                         cached for <b>{{offender.ttlWithUnit}} {{offender.unit}}</b>
                     </div>
 
@@ -158,12 +180,20 @@
                     </div>
 
                     <div ng-if="policyName === 'globalVariables' || policyName === 'jQueryVersionsLoaded' || policyName === 'synchronousXHR'">
-                        {{offender}}
+                        {{offender.version}}
                     </div>
 
                     <div ng-if="policyName === 'fontsCount'">
                         <url-link url="offender.url" max-length="70"></url-link>
                         ({{offender.size | bytes}})
+                    </div>
+
+                    <div ng-if="policyName === 'oldHttpProtocol'">
+                        <b>{{offender.domain}}</b> sends <span ng-class="offender.requests > 4 ? 'offenderProblem' : ''"><b><ng-pluralize count="offender.requests" when="{'one':'1 request','other':'{} requests'}"></ng-pluralize></b></span> over {{offender.httpVersion}}
+                    </div>
+
+                    <div ng-if="policyName === 'oldTlsProtocol'">
+                        <b>{{offender.domain}}</b> uses {{offender.tlsVersion}} <span ng-if="offender.beforeDomReady === true" class="offenderProblem">and seems to be on the critical path</span>
                     </div>
                 </div>
             </div>
@@ -173,8 +203,8 @@
             <h3>
                 <ng-pluralize count="fileDetails.count" when="{'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize>
                 in
-                <url-link ng-if="fileDetails.url !== 'Inline CSS'" url="fileDetails.url" max-length="80"></url-link>
-                <span ng-if="fileDetails.url === 'Inline CSS'">inline CSS</span>
+                <url-link ng-if="fileDetails.url !== 'Inline CSS' && fileDetails.url !== '[inline CSS]'" url="fileDetails.url" max-length="80"></url-link>
+                <span ng-if="fileDetails.url === 'Inline CSS' || fileDetails.url === '[inline CSS]'">inline CSS</span>
             </h3>
 
             <div class="offendersTable">
@@ -229,19 +259,6 @@
                 <dom-tree tree="rule.offendersObj.tree"></dom-tree>
             </div>
 
-            <div ng-if="policyName === 'DOMaccessesOnScroll' && rule.offendersObj.children.length > 0">
-                <p>The table below shows the interactions between the JavaScript and the DOM on a scroll event.</p>
-                <div class="table" ng-class="{warningsFilterOn: warningsFilterOn}">
-                    <div class="headers">
-                        <div><!-- index --></div>
-                        <div>Type</div>
-                        <div>Params</div>
-                        <div><!-- details --></div>
-                    </div>
-                    <profiler-line ng-repeat="node in rule.offendersObj.children" data-index="$index" node="node"></profiler-line>
-                </div>
-            </div>
-
             <div ng-if="policyName === 'cssColors' && rule.offendersObj.count > 0">
                 <p>This is the colors palette, sized by total occurrences:</p>
                 <div class="colorPalette checker">
@@ -267,6 +284,36 @@
         </div>
     </div>
 
+    <div ng-if="policyName === 'DOMaccesses'">
+        <div ng-repeat="(type, list) in rule.offendersObj.list.byType">
+            <h3>
+                <ng-pluralize count="list.length" when="{'0': 'No offender', 'one': '1 offender', 'other': '{} offenders'}"></ng-pluralize> from
+                <span ng-if="type === 'DOMqueriesById'">getElementById()</span>
+                <span ng-if="type === 'DOMqueriesByTagName'">getElementsByTagName()</span>
+                <span ng-if="type === 'DOMqueriesByClassName'">getElementsByClassName()</span>
+                <span ng-if="type === 'DOMqueriesByQuerySelectorAll'">querySelector() or querySelectorAll()</span>
+                <span ng-if="type === 'DOMinserts'">appendChild() or insertBefore()</span>
+                <span ng-if="type === 'DOMmutationsInserts'">added nodes</span>
+                <span ng-if="type === 'DOMmutationsRemoves'">removed nodes</span>
+                <span ng-if="type === 'DOMmutationsAttributes'">attribute changes</span>
+                <span ng-if="type === 'eventsBound'">addEventListener()</span>
+            </h3>
+            <div class="offendersTable">
+                <div ng-repeat="access in list">
+                    <div ng-if="type === 'DOMqueriesById'">#{{access.id}}</div>
+                    <div ng-if="type === 'DOMqueriesByTagName'">{{access.tag}} <b>on</b> <span title="{{access.node}}">{{access.node | lastDOMNode}}</span></div>
+                    <div ng-if="type === 'DOMqueriesByClassName'">.{{access.class}} <b>on</b> <span title="{{access.node}}">{{access.node | lastDOMNode}}</span></div>
+                    <div ng-if="type === 'DOMqueriesByQuerySelectorAll'">{{access.selector}} <b>on</b> <span title="{{access.node}}">{{access.node | lastDOMNode}}</span></div>
+                    <div ng-if="type === 'DOMinserts'"><span title="{{access.append}}">{{access.append | lastDOMNode}}</span> <b>added to</b> <span title="{{access.node}}">{{access.node | lastDOMNode}}</span></div>
+                    <div ng-if="type === 'DOMmutationsInserts'">{{access.node}} <b>added to</b> {{access.target}}</div>
+                    <div ng-if="type === 'DOMmutationsRemoves'">{{access.node}} <b>removed from</b> {{access.target}}</div>
+                    <div ng-if="type === 'DOMmutationsAttributes'">{{access.attribute}} <b>changed on</b> {{access.node}}</div>
+                    <div ng-if="type === 'eventsBound'">{{access.eventType}} <b>on</b> <span title="{{access.path}}">{{access.path | lastDOMNode}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div ng-if="policyName === 'imageOptimization'">
         <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.images.length" when="{'one': '1 image', 'other': '{} images'}"></ng-pluralize></h3>
         <div class="imageOffenders">
@@ -276,32 +323,40 @@
                     <div><a href="{{image.url}}" target="_blank"><img ng-src="{{image.url | https}}" class="checker" /></a></div>
                 </div>
                 <div>
-                    <p ng-if="!image.afterCompression">Current weight: {{image.original | bytes}}</p>
-                    <p ng-if="image.afterCompression">Current weight: {{image.original | bytes}} ({{image.afterCompression | bytes}} gzipped)</p>
-                    <p ng-if="image.lossless && image.afterOptimizationAndCompression">With a lossless optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} gzipped (<b>-{{image.gain | bytes}}</b> gzipped)</p>
-                    <p ng-if="image.lossless && !image.afterOptimizationAndCompression">With a lossless optimization:<br/>{{image.lossless | bytes}} <span ng-if="!image.lossy">(<b>-{{image.gain | bytes}}</b>)</span></p>
-                    <p ng-if="image.lossy && image.afterOptimizationAndCompression">With a lossy optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} gzipped (<b>-{{image.gain | bytes}} gzipped</b>)</p>
-                    <p ng-if="image.lossy && !image.afterOptimizationAndCompression">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.gain | bytes}}</b>)</p>
+                    <p ng-if="!image.isCompressible || image.isCompressed">Current weight: {{image.originalWeigth | bytes}}</p>
+                    <p ng-if="image.isCompressible && !image.isCompressed">Current weight: {{image.originalWeigth | bytes}} ({{image.originalCompressedWeight | bytes}} compressed)</p>
+
+                    <p ng-if="image.lossless && image.isCompressible">With a lossless optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} compressed (<b>-{{image.gain | bytes}}</b> compressed)</p>
+                    <p ng-if="image.lossless && !image.isCompressible">With a lossless optimization:<br/>{{image.lossless | bytes}} <span ng-if="!image.lossy">(<b>-{{image.gain | bytes}}</b>)</span></p>
+
+                    <p ng-if="image.lossy && image.isCompressible">With a lossy optimization:<br/>{{image.afterOptimizationAndCompression | bytes}} compressed (<b>-{{image.gain | bytes}} compressed</b>)</p>
+                    <p ng-if="image.lossy && !image.isCompressible">With a lossy optimization:<br/>{{image.lossy | bytes}} (<b>-{{image.gain | bytes}}</b>)</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div ng-if="policyName === 'gzipCompression'">
+    <div ng-if="policyName === 'compression'">
         <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.images.length" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize></h3>
         <div class="table">
             <div class="headers">
                 <div>File</div>
                 <div>Current weight</div>
-                <div>Gzipped</div>
+                <div>Gzip</div>
+                <div>Brotli</div>
                 <div>Gain</div>
             </div>
             <div ng-repeat="file in rule.offendersObj.list.files | orderBy:'-gain'">
                 <div>
-                    <url-link url="file.url" max-length="70"></url-link>
+                    <url-link url="file.url" max-length="60"></url-link>
                 </div>
-                <div>{{file.original | bytes}}</div>
-                <div>{{file.gzipped | bytes}}</div>
+                <div>{{file.originalSize | bytes}}</div>
+                
+                <div ng-if="file.wasCompressed"><i>already gzipped</i></div>
+                <div ng-if="!file.wasCompressed">{{file.gzipped | bytes}}</div>
+
+                <div>{{file.brotlified | bytes}}</div>
+                
                 <div><b>-{{file.gain | bytes}}</b></div>
             </div>
         </div>
@@ -318,12 +373,12 @@
             </div>
             <div ng-repeat="file in rule.offendersObj.list.files | orderBy:'-gain'">
                 <div>
-                    <url-link url="file.url" max-length="70"></url-link>
+                    <url-link url="file.url" max-length="60"></url-link>
                 </div>
-                <div ng-if="!file.afterCompression">{{file.original | bytes}} (gzipped)</div>
-                <div ng-if="file.afterCompression">{{file.original | bytes}} ({{file.afterCompression | bytes}} gzipped)</div>
-                <div ng-if="!file.afterCompression">{{file.afterOptimizationAndCompression | bytes}} (gzipped)</div>
-                <div ng-if="file.afterCompression">{{file.optimized | bytes}} ({{file.afterOptimizationAndCompression | bytes}} gzipped)</div>
+                <div ng-if="file.isCompressed">{{file.originalWeigth | bytes}} (compressed)</div>
+                <div ng-if="!file.isCompressed">{{file.originalWeigth | bytes}} ({{file.originalCompressedWeight | bytes}} compressed)</div>
+                <div ng-if="file.isCompressed">{{file.afterOptimizationAndCompression | bytes}} (compressed)</div>
+                <div ng-if="!file.isCompressed">{{file.optimized | bytes}} ({{file.afterOptimizationAndCompression | bytes}} compressed)</div>
                 <div><b>-{{file.gain | bytes}}</b></div>
             </div>
         </div>
@@ -357,51 +412,8 @@
         </div>
     </div>
 
-    <div ng-if="policyName === 'smallRequests'">
-        <div ng-repeat="(type, requests) in rule.offendersObj.list.byType">
-            <h3><ng-pluralize count="requests.length" when="{'0': 'small ' + type + ' file', 'one': '1 small ' + type + ' file', 'other': '{} small ' + type + ' files'}"></ng-pluralize></h3>
-            <p ng-if="type == 'css' && requests.length > 0">Try to inline these styles in the head of the HTML or to merge them with other files.</p>
-            <p ng-if="type == 'js' && requests.length > 0">Try to inline these scripts in the HTML or merge them with other files.</p>
-            <p ng-if="type == 'image' && requests.length > 0">Try to inline these images (with base64 encoding for most image types except SVG that don't need base64 encoding). You can also create sprites.</p>
-            <div class="table">
-                <div class="headers">
-                    <div ng-if="type == 'image'">Preview</div>
-                    <div>File</div>
-                    <div>Weight (bytes)</div>
-                </div>
-                <div ng-repeat="request in requests track by $index">
-                    <div ng-if="type == 'image'"><img ng-src="{{request.url | https}}" class="smallPreview checker" /></div>
-                    <div><url-link url="request.url" max-length="100"></url-link></div>
-                    <div>{{request.size}}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div ng-if="policyName === 'DOMaccesses'">
-        <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="result/{{runId}}/timeline">JS timeline</a>
-    </div>
-
-    <div ng-if="policyName === 'queriesWithoutResults'">
-        <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="result/{{runId}}/timeline#filter=queryWithoutResults">JS timeline, filtered by "Queries without results"</a>
-    </div>
-
-    <div ng-if="policyName === 'jQueryCallsOnEmptyObject'">
-        <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="result/{{runId}}/timeline#filter=jQueryCallOnEmptyObject">JS timeline, filtered by "jQuery calls on empty object"</a>
-    </div>
-
-    <div ng-if="policyName === 'jQueryNotDelegatedEvents'">
-        <h3>{{rule.value}} offenders</h3>
-        Please open the <a href="result/{{runId}}/timeline#filter=eventNotDelegated">JS timeline, filtered by "Events not delegated"</a>
-    </div>
-
     <div ng-if="policyName === 'cssBreakpoints'">
-        <div ng-if="rule.value > 0" class="cssBreakpointsGraph">
-            <h3>Breakpoints distribution graph</h3>
-            <canvas class="chart chart-line" chart-data="breakpointsData" chart-labels="breakpointsLabels" chart-options="breakpointsOptions" chart-colors="breakpointsColours" chart-series="breakpointsSeries" width="600" height="250"></canvas>
+        <div ng-if="rule.value > 0">
             <h3>Breakpoints list</h3>
             <div class="offendersTable">
                 <div ng-repeat="offender in rule.offendersObj | orderBy:'pixels'">
@@ -470,14 +482,22 @@
         </div>
     </div>
 
-    <div ng-if="policyName === 'http2'">
-        <h3>Protocols advertised by the server</h3>
-        <div class="offendersTable">
-            <div ng-repeat="protocol in rule.offendersObj.list">
-                <div>{{protocol}}</div>
+    <div ng-if="policyName === 'nonWoff2Fonts'">
+        <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.fonts.length" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize></h3>
+        <div class="table">
+            <div class="headers">
+                <div>File</div>
+                <div>Current weight</div>
+                <div>WOFF 2 weight</div>
+                <div>Gain</div>
             </div>
-            <div ng-if="!rule.offendersObj || rule.offendersObj.count == 0">
-                <div>none</div>
+            <div ng-repeat="file in rule.offendersObj.list.fonts | orderBy:'-gain'">
+                <div>
+                    <url-link url="file.url" max-length="70"></url-link>
+                </div>
+                <div>{{file.originalSize | bytes}}</div>
+                <div>{{file.woff2Size | bytes}}</div>
+                <div><b>-{{file.gain | bytes}}</b></div>
             </div>
         </div>
     </div>

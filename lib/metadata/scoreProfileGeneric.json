@@ -5,20 +5,19 @@
             "policies": {
                 "totalWeight": 5,
                 "imageOptimization": 2,
-                "imagesTooLarge": 2,
-                "gzipCompression": 2,
-                "fileMinification": 1
+                "imagesTooLarge": 1,
+                "compression": 2,
+                "fileMinification": 2
             }
         },
         "requests": {
             "label": "Requests",
             "policies": {
-                "totalRequests": 5,
+                "totalRequests": 2,
                 "domains": 3,
-                "notFound": 3,
+                "notFound": 2,
                 "identicalFiles": 2,
                 "emptyRequests": 3,
-                "smallRequests": 1,
                 "lazyLoadableImagesBelowTheFold": 2,
                 "hiddenImages": 1
             }
@@ -32,28 +31,20 @@
                 "DOMidDuplicated": 1
             }
         },
-        "domManipulations": {
-            "label": "DOM manipulations",
+        "javascriptComplexity": {
+            "label": "JS complexity",
             "policies": {
-                "DOMaccesses": 3,
-                "queriesWithoutResults": 1,
-                "DOMqueriesAvoidable": 1
-            }
-        },
-        "scroll": {
-            "label": "Scroll bottlenecks",
-            "policies": {
-                "eventsScrollBound": 1,
-                "DOMaccessesOnScroll": 4
+                "scriptDuration": 4,
+                "DOMaccesses": 2,
+                "eventsScrollBound": 1
             }
         },
         "badJavascript": {
-            "label": "Bad JavaScript",
+            "label": "Bad JS",
             "policies": {
                 "jsErrors": 1,
                 "documentWriteCalls": 2,
                 "synchronousXHR": 5,
-                "consoleMessages": 0.5,
                 "globalVariables": 0.5
             }
         },
@@ -61,9 +52,7 @@
             "label": "jQuery",
             "policies": {
                 "jQueryVersion": 2,
-                "jQueryVersionsLoaded": 2,
-                "jQueryCallsOnEmptyObject": 1,
-                "jQueryNotDelegatedEvents": 1
+                "jQueryVersionsLoaded": 2
             }
         },
         "cssComplexity": {
@@ -80,13 +69,13 @@
         "badCSS": {
             "label": "Bad CSS",
             "policies": {
-                "cssParsingErrors": 4,
-                "cssImports": 3,
+                "cssParsingErrors": 3,
+                "cssImports": 4,
                 "cssDuplicatedSelectors": 2,
                 "cssDuplicatedProperties": 1,
                 "cssEmptyRules": 2,
                 "cssExpressions": 1,
-                "cssImportants": 3,
+                "cssImportants": 2,
                 "cssOldIEFixes": 1,
                 "cssOldPropertyPrefixes": 1,
                 "cssRedundantBodySelectors": 1,
@@ -97,14 +86,15 @@
             "label": "Web fonts",
             "policies": {
                 "fontsCount": 1,
-                "heavyFonts": 1,
-                "unusedUnicodeRanges": 1
+                "heavyFonts": 0.5,
+                "nonWoff2Fonts": 0.5
             }
         },
         "serverConfig": {
             "label": "Server config",
             "policies": {
-                "http2": 2,
+                "oldHttpProtocol": 2,
+                "oldTlsProtocol": 2,
                 "closedConnections": 2,
                 "cachingNotSpecified": 1,
                 "cachingDisabled": 1,
@@ -114,14 +104,12 @@
     },
     "globalScore": {
         "pageWeight": 3,
-        "requests": 3,
+        "requests": 2,
         "domComplexity": 2,
-        "domManipulations": 2,
-        "scroll": 1,
+        "javascriptComplexity": 2,
         "badJavascript": 2,
-        "jQuery": 1,
-        "cssSyntaxError": 1,
-        "cssComplexity": 1,
+        "jQuery": 0.5,
+        "cssComplexity": 0.5,
         "badCSS": 1,
         "fonts": 1,
         "serverConfig": 1
