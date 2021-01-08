@@ -78,12 +78,14 @@ If your project is not accessible from outside, or if you want to fork and impro
 ## Author
 Gaël Métais. I'm a webperf freelance. Follow me on Twitter [@gaelmetais](https://twitter.com/gaelmetais), I tweet about Web Performances, Front-end and new versions of YellowLabTools!
 
+<a href='https://ko-fi.com/supportkofi' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy me a coffee' />
+
 I can also help your company about Web Performances, visit [my website](https://www.gaelmetais.com).
 
 
 ## Contributors
 - Achraf Ben Younes [achrafbenyounes](https://github.com/achrafbenyounes)
-- [camlafit](https://github.com/camlafit)
+- Km [camlafit](https://github.com/camlafit)
 - Vincent L. [magikcypress](https://github.com/magikcypress)
 - Ousama Ben Younes [ousamabenyounes](https://github.com/ousamabenyounes)
 
