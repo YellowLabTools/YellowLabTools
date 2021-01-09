@@ -337,12 +337,12 @@
     </div>
 
     <div ng-if="policyName === 'compression'">
-        <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.images.length" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize></h3>
+        <h3 ng-if="rule.value > 0">{{rule.value | bytes}} could be saved on <ng-pluralize count="rule.offendersObj.list.files.length" when="{'one': '1 file', 'other': '{} files'}"></ng-pluralize></h3>
         <div class="table">
             <div class="headers">
                 <div>File</div>
                 <div>Current weight</div>
-                <div>Gzip</div>
+                <div>Gzip weight</div>
                 <div>Brotli</div>
                 <div>Gain</div>
             </div>
