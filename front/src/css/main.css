@@ -151,9 +151,6 @@ a.linkButton {
   position: relative;
   overflow: hidden;
 }
-.screenshotWrapper > div:hover {
-  overflow: auto;
-}
 .screenshotWrapper .screenshotImage {
   width: 100%;
 }
@@ -192,7 +189,7 @@ a.linkButton {
 .screenshotWrapper.desktop > div,
 .screenshotWrapper.desktop-hd > div {
   width: 12em;
-  height: 6.75em;
+  height: 7.5em;
 }
 .screenshotWrapper.phone {
   border: 0.07em solid #CCC;
@@ -239,8 +236,8 @@ a.linkButton {
   content: " ";
 }
 .screenshotWrapper.tablet > div {
-  width: 8.25em;
-  height: 11em;
+  width: 8em;
+  height: 12.8em;
 }
 .table {
   display: table;
