@@ -1,6 +1,11 @@
 .about {
   margin: 3em auto;
-  width: 50%;
+  width: 80%;
+}
+@media (min-width: 640px) {
+  .about {
+    width: 50%;
+  }
 }
 .about p {
   margin: 2em;
