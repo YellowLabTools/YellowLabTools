@@ -158,10 +158,17 @@
   font-size: 0.9em;
   color: #8abfaf;
 }
-.features > div {
-  width: 33.3%;
-  display: table-cell;
-  padding: 0 1.5em;
+@media (min-width: 640px) {
+  .features > div {
+    width: 33.3%;
+    display: table-cell;
+    padding: 0 1.5em;
+  }
+}
+.features h3 {
+  font-size: 1.5em;
+  font-weight: normal;
+  color: #fff;
 }
 input[type=submit],
 input.url {

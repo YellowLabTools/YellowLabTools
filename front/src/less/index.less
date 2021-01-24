@@ -183,9 +183,17 @@
     color: #8abfaf;
 
     > div {
-        width: 33.3%;
-        display: table-cell;
-        padding: 0 1.5em;
+        @media (min-width: 640px) {
+            width: 33.3%;
+            display: table-cell;
+            padding: 0 1.5em;
+        }
+    }
+
+    h3 {
+        font-size: 1.5em;
+        font-weight: normal;
+        color: #fff;
     }
 }
 
