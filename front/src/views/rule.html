@@ -23,10 +23,10 @@
                 to get the 100/100 score on this issue.
             </div>
             <div class="okThreshold" ng-if="rule.globalScoreIfFixed > result.scoreProfiles.generic.globalScore && rule.globalScoreIfFixed > 0 && result.scoreProfiles.generic.globalScore >= 0">
-                Your new global would increase by {{rule.globalScoreIfFixed - result.scoreProfiles.generic.globalScore}} points ({{rule.globalScoreIfFixed}}/100).
+                Your new global score would increase by {{rule.globalScoreIfFixed - result.scoreProfiles.generic.globalScore}} points ({{rule.globalScoreIfFixed}}/100).
             </div>
             <div class="okThreshold" ng-if="rule.globalScoreIfFixed > result.scoreProfiles.generic.globalScore && rule.globalScoreIfFixed > 0 && result.scoreProfiles.generic.globalScore < 0">
-                Your new global would increase by {{rule.globalScoreIfFixed}} points ({{rule.globalScoreIfFixed}}/100).
+                Your new global score would increase by {{rule.globalScoreIfFixed}} points ({{rule.globalScoreIfFixed}}/100).
             </div>
             <div class="okThreshold" ng-if="rule.globalScoreIfFixed > result.scoreProfiles.generic.globalScore && rule.globalScoreIfFixed <= 0">
                 Your new global score would increase, but still not enough to reach 0/100. That's embarassing...
