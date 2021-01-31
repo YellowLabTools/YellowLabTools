@@ -89,7 +89,6 @@
     "grunt-inline-angular-templates": "~0.1.5",
     "grunt-mocha-test": "~0.13.3",
     "grunt-parallel": "~0.5.1",
-    "grunt-replace": "~1.0.1",
     "grunt-usemin": "~3.1.1",
     "matchdep": "~2.0.0",
     "mocha": "~5.2.0",

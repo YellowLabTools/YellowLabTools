@@ -24,25 +24,6 @@ module.exports = function(grunt) {
                 ]
             }
         },
-        replace: {
-            dist: {
-                options: {
-                    patterns: [
-                        {
-                            match: 'googleAnalyticsId',
-                            replacement: '<%= settings.googleAnalyticsId %>'
-                        },
-                        {
-                            match: 'version',
-                            replacement: 'v<%= pkg.version %>'
-                        }
-                    ]
-                },
-                files: [
-                    {expand: true, flatten: true, src: ['front/src/main.html'], dest: 'front/build/'}
-                ]
-            }
-        },
         jshint: {
             all: [
                 '*.js',
@@ -219,7 +200,6 @@ module.exports = function(grunt) {
         'concat',
         'uglify',
         'cssmin',
-        'replace',
         'htmlmin:views',
         'inline_angular_templates',
         'filerev',
