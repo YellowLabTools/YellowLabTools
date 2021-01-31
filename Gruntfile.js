@@ -56,6 +56,7 @@ module.exports = function(grunt) {
         copy: {
             build: {
                 files: [
+                    {src: ['./front/src/main.html'], dest: './front/build/main.html'},
                     {src: ['./front/src/img/favicon.png'], dest: './front/build/img/favicon.png'},
                     {src: ['./front/src/img/logo-large.png'], dest: './front/build/img/logo-large.png'},
                 ]
