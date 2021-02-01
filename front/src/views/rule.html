@@ -234,11 +234,6 @@
                         <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
                     </div>
 
-                    <div ng-if="policyName === 'cssExpressions'">
-                        {{offender.rule}} {{ '{' + offender.property}}: <b>expression(</b>{{offender.expression}}<b>)</b>}
-                        <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>
-                    </div>
-
                     <div ng-if="policyName === 'cssImportants'">
                         {{offender.rule}} {{ '{' + offender.property}}: {{offender.value}} <b>!important</b>}
                         <span ng-if="offender.line !== null && offender.column !== null"> @ {{offender.line}}:{{offender.column}}</span>

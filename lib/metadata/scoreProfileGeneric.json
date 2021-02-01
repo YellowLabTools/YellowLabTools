@@ -74,7 +74,6 @@
                 "cssDuplicatedSelectors": 2,
                 "cssDuplicatedProperties": 1,
                 "cssEmptyRules": 2,
-                "cssExpressions": 1,
                 "cssImportants": 2,
                 "cssOldIEFixes": 1,
                 "cssOldPropertyPrefixes": 1,
