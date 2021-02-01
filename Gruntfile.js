@@ -60,6 +60,13 @@ module.exports = function(grunt) {
                     {src: ['./front/src/img/favicon.png'], dest: './front/build/img/favicon.png'},
                     {src: ['./front/src/img/logo-large.png'], dest: './front/build/img/logo-large.png'},
                 ]
+            },
+            favicons: {
+                files: [
+                    {src: ['./front/src/img/favicon.png'], dest: './front/build/img/favicon.png'},
+                    {src: ['./front/src/img/favicon-fail.png'], dest: './front/build/img/favicon-fail.png'},
+                    {src: ['./front/src/img/favicon-success.png'], dest: './front/build/img/favicon-success.png'},
+                ]
             }
         },
         mochaTest: {
@@ -206,7 +213,8 @@ module.exports = function(grunt) {
         'filerev',
         'usemin',
         'htmlmin:main',
-        'clean:tmp'
+        'clean:tmp',
+        'copy:favicons'
     ]);
 
     grunt.registerTask('hint', [
