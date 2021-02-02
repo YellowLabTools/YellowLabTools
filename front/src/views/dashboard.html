@@ -60,23 +60,11 @@
     <% } %>
 
     <%if (sponsoring.dashboard) { %>
-        <div ng-if="!error && !fromSocialShare" class="sponsor"><%- sponsoring.dashboard %></div>
+        <div ng-if="!error" class="sponsor"><%- sponsoring.dashboard %></div>
     <% } %>
+
     
-
-    <div class="tweet" ng-if="!error && !fromSocialShare">
-        <form ng-submit="sendTweet()">
-            <input type="text" class="tweetText" ng-model="tweetText">
-            <input type="submit" class="tweetButton" value="Tweet this!" ng-click="shareOnTwitter(tweetText)">
-            <input type="submit" class="linkedinButton" value="LinkedIn this!" ng-click="shareOnLinkedin(tweetText)">
-        </form>
-    </div>
-
-    <div class="fromShare" ng-if="!error && fromSocialShare">
-        <p>Yellow Lab Tools is a free online tool that analyzes performance and front-end quality.</p>
-        <a class="linkButton" href="" ng-click="seeFullReport()">See the full report for this page</a>
-        <a class="linkButton" href="<%= baseUrl %>">Test another webpage</a>
-    </div>
+    
 
     <div ng-if="error">
         <h2>Run failed / Run not found</h2>

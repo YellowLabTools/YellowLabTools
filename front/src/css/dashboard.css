@@ -202,40 +202,6 @@
 .summary .notations .criteria .info svg {
   fill: transparent;
 }
-.summary .fromShare {
-  margin-bottom: 3em;
-}
-.summary .tweet {
-  display: none;
-}
-@media (min-width: 820px) {
-  .summary .tweet {
-    display: block;
-  }
-}
-.summary .tweet .tweetText {
-  color: #212240;
-  background: #F2F2F2;
-  border: none;
-  width: 25em;
-  padding: 0.4em;
-  border-radius: 0.5em;
-  box-shadow: 0.05em 0.1em 0 0 #999;
-}
-.summary .tweet .tweetButton,
-.summary .tweet .linkedinButton {
-  color: #212240;
-  background: #F2F2F2;
-  margin-right: 0;
-}
-.summary .tweet .tweetButton:hover,
-.summary .tweet .linkedinButton:hover {
-  color: #F2F2F2;
-  background: #e74c3c;
-}
-.summary .tweet input {
-  font-size: 0.9em;
-}
 .summary .sponsor {
   font-size: 0.9em;
   margin-bottom: 4em;
