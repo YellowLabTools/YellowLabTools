@@ -14,7 +14,7 @@ Analyzes a webpage and detects **performance** or **front-end code quality** iss
             <a href="https://yellowlab.tools" target="_blank">https://yellowlab.tools</a>
         </td>
         <td width="30%">
-            <img src="./doc/img/YLT-animated.gif"></img>
+            <img src="./doc/img/home.png"></img>
         </td>
     </tr>
     <tr>
@@ -58,9 +58,9 @@ Analyzes a webpage and detects **performance** or **front-end code quality** iss
 
 ## How it works
 
-The tool loads the given URL via [PhantomJS](http://phantomjs.org/) (a headless browser) and collects various metrics and statistics with the help of [Phantomas](https://github.com/macbre/phantomas). These metrics are then categorized and transformed into scores. It also gives in-depth details so developpers can fix the detected issues.
+The tool loads the given URL and collects various metrics and statistics with the help of [Phantomas](https://github.com/macbre/phantomas). These metrics are then categorized and transformed into scores. It also gives in-depth details so developpers can fix the detected issues.
 
-By the way, it's free because we are geeks, not businessmen. All we want is a ★ on GitHub, it will boost our motivation to add more awesome features!!!
+By the way, it's free because I am a geek, not businessmen. In return, you can add a ★ on GitHub, it will boost my motivation to add more awesome features!!!
 
 ![example dashboard screenshot](./doc/img/screenshot.png)
 
@@ -78,12 +78,14 @@ If your project is not accessible from outside, or if you want to fork and impro
 ## Author
 Gaël Métais. I'm a webperf freelance. Follow me on Twitter [@gaelmetais](https://twitter.com/gaelmetais), I tweet about Web Performances, Front-end and new versions of YellowLabTools!
 
+<a href='https://ko-fi.com/gaelmetais' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy me a coffee' /><a>
+
 I can also help your company about Web Performances, visit [my website](https://www.gaelmetais.com).
 
 
 ## Contributors
 - Achraf Ben Younes [achrafbenyounes](https://github.com/achrafbenyounes)
-- [camlafit](https://github.com/camlafit)
+- Km [camlafit](https://github.com/camlafit)
 - Vincent L. [magikcypress](https://github.com/magikcypress)
 - Ousama Ben Younes [ousamabenyounes](https://github.com/ousamabenyounes)
 

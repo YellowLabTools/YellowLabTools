@@ -11,21 +11,6 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         settings: grunt.file.readJSON('./server_config/settings.json'),
         
-        webfont: {
-            icons: {
-                src: 'front/src/fonts/svg-icons/*.svg',
-                dest: 'tmp',
-                destCss: 'front/src/less',
-                options: {
-                    engine: 'node',
-                    types: 'woff',
-                    stylesheet: 'less',
-                    embed: true,
-                    htmlDemo: false,
-                    syntax: 'bootstrap'
-                }
-            }
-        },
         less: {
             all: {
                 files: [
@@ -36,25 +21,6 @@ module.exports = function(grunt) {
                         dest: 'front/src/css/',
                         ext: '.css'
                     }
-                ]
-            }
-        },
-        replace: {
-            dist: {
-                options: {
-                    patterns: [
-                        {
-                            match: 'googleAnalyticsId',
-                            replacement: '<%= settings.googleAnalyticsId %>'
-                        },
-                        {
-                            match: 'version',
-                            replacement: 'v<%= pkg.version %>'
-                        }
-                    ]
-                },
-                files: [
-                    {expand: true, flatten: true, src: ['front/src/main.html'], dest: 'front/build/'}
                 ]
             }
         },
@@ -71,7 +37,10 @@ module.exports = function(grunt) {
                 'test/core/*.js',
                 'test/fixtures/*.js',
                 'front/src/js/**/*.js'
-            ]
+            ],
+            options: {
+                esversion: 6
+            }
         },
         clean: {
             tmp: {
@@ -87,8 +56,16 @@ module.exports = function(grunt) {
         copy: {
             build: {
                 files: [
+                    {src: ['./front/src/main.html'], dest: './front/build/main.html'},
                     {src: ['./front/src/img/favicon.png'], dest: './front/build/img/favicon.png'},
                     {src: ['./front/src/img/logo-large.png'], dest: './front/build/img/logo-large.png'},
+                ]
+            },
+            favicons: {
+                files: [
+                    {src: ['./front/src/img/favicon.png'], dest: './front/build/img/favicon.png'},
+                    {src: ['./front/src/img/favicon-fail.png'], dest: './front/build/img/favicon-fail.png'},
+                    {src: ['./front/src/img/favicon-success.png'], dest: './front/build/img/favicon-success.png'},
                 ]
             }
         },
@@ -103,7 +80,7 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec',
                 },
-                src: ['test/api/apiTest.js']
+                src: ['test/core/mediaQueriesCheckerTest.js']
             }
         },
         env: {
@@ -222,12 +199,6 @@ module.exports = function(grunt) {
         process.env.IS_TEST = true;
     });
 
-    grunt.registerTask('icons', [
-        'webfont:icons',
-        'less',
-        'clean:tmp'
-    ]);
-
     grunt.registerTask('build', [
         'jshint',
         'clean:build',
@@ -237,13 +208,13 @@ module.exports = function(grunt) {
         'concat',
         'uglify',
         'cssmin',
-        'replace',
         'htmlmin:views',
         'inline_angular_templates',
         'filerev',
         'usemin',
         'htmlmin:main',
-        'clean:tmp'
+        'clean:tmp',
+        'copy:favicons'
     ]);
 
     grunt.registerTask('hint', [

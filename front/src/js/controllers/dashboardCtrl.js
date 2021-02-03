@@ -3,7 +3,6 @@ var dashboardCtrl = angular.module('dashboardCtrl', ['resultsFactory', 'menuServ
 dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Results', 'API', 'Menu', function($scope, $rootScope, $routeParams, $location, Results, API, Menu) {
     $scope.runId = $routeParams.runId;
     $scope.Menu = Menu.setCurrentPage('dashboard', $scope.runId);
-    $scope.fromSocialShare = $location.search().share;
     
     function loadResults() {
         // Load result if needed
@@ -33,28 +32,6 @@ dashboardCtrl.controller('DashboardCtrl', ['$scope', '$rootScope', '$routeParams
     $scope.testAgain = function() {
         API.relaunchTest($scope.result);
     };
-
-    // When comming from a social shared link, the user needs to click on "See full report" button to display the full dashboard.
-    $scope.seeFullReport = function() {
-        $scope.fromSocialShare = false;
-        $location.search({});
-    };
-
-    $scope.shareOnTwitter = function(message) {
-        openSocialPopup('https://twitter.com/intent/tweet?text=' + encodeURIComponent(message + 'https://yellowlab.tools'));
-    };
-
-    $scope.shareOnLinkedin = function(message) {
-        openSocialPopup('https://www.linkedin.com/shareArticle?mini=true&url=https://yellowlab.tools&title=' + encodeURIComponent(message) + '&summary=' + encodeURIComponent('YellowLabTools is a free online tool that analyzes performance and front-end quality of a webpage.'));
-    };
-
-    function openSocialPopup(url) {
-        var winHeight = 400;
-        var winWidth = 600;
-        var winTop = (screen.height / 2) - (winHeight / 2);
-        var winLeft = (screen.width / 2) - (winWidth / 2);
-        window.open(url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
-    }
 
     loadResults();
 }]);

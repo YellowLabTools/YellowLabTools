@@ -22,7 +22,7 @@
         background: #e74c3c;
     }
     &.disabled {
-        background: #deaca6;
+        background: #f1bd70;
         &:focus {
             color: #ddd;
         }
@@ -59,27 +59,35 @@
         text-decoration: none;
         font-size: 0.8em;
 
+        > svg {
+            display: block;
+            margin: 0.6em auto 0.3em;
+            fill: #fff;
+        }
+
         &.active {
             color: #ffa319;
             border: 2px solid #ffa319;
             padding: 0;
+
+            > svg {
+                fill: #ffa319;
+            }
         }
 
         &:hover {
             color: #ffa319;
-        }
 
-        > div {
-            margin: 0.2em 0 0.1em;
-            font-size: 3em;
+            > svg {
+                fill: #ffa319;
+            }
         }
     }
 }
 
 .settingsTooltip {
     position: relative;
-    span {
-        font-size: 0.8em;
+    svg {
         vertical-align: text-top;
     }
     
@@ -94,6 +102,8 @@
         border-radius: 1em;
         border: 2px solid #ffa319;
         white-space: normal;
+        word-break: break-all;
+        word-break: break-word;
         z-index: 2;
     }
 
@@ -171,12 +181,20 @@
     width: 50%;
     margin: 6em auto 0;
     font-size: 0.9em;
-    color: #413;
+    color: #8abfaf;
 
     > div {
-        width: 33.3%;
-        display: table-cell;
-        padding: 0 1.5em;
+        @media (min-width: 640px) {
+            width: 33.3%;
+            display: table-cell;
+            padding: 0 1.5em;
+        }
+    }
+
+    h3 {
+        font-size: 1.5em;
+        font-weight: normal;
+        color: #fff;
     }
 }
 
@@ -187,7 +205,6 @@ input[type=submit], input.url {
     height: 2em;
     border: 0 solid;
     border-radius: 0.5em;
-    box-shadow: 0.1em 0.2em 0 0 #5e2846;
     outline: none;
 }
 input[type=submit]:hover {

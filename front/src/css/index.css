@@ -20,7 +20,7 @@
   background: #e74c3c;
 }
 .launchBtn.disabled {
-  background: #deaca6;
+  background: #f1bd70;
 }
 .launchBtn.disabled:focus {
   color: #ddd;
@@ -55,23 +55,29 @@
   text-decoration: none;
   font-size: 0.8em;
 }
+.device .item > svg {
+  display: block;
+  margin: 0.6em auto 0.3em;
+  fill: #fff;
+}
 .device .item.active {
   color: #ffa319;
   border: 2px solid #ffa319;
   padding: 0;
 }
+.device .item.active > svg {
+  fill: #ffa319;
+}
 .device .item:hover {
   color: #ffa319;
 }
-.device .item > div {
-  margin: 0.2em 0 0.1em;
-  font-size: 3em;
+.device .item:hover > svg {
+  fill: #ffa319;
 }
 .settingsTooltip {
   position: relative;
 }
-.settingsTooltip span {
-  font-size: 0.8em;
+.settingsTooltip svg {
   vertical-align: text-top;
 }
 .settingsTooltip div {
@@ -85,6 +91,8 @@
   border-radius: 1em;
   border: 2px solid #ffa319;
   white-space: normal;
+  word-break: break-all;
+  word-break: break-word;
   z-index: 2;
 }
 .settingsTooltip:hover div {
@@ -149,12 +157,19 @@
   width: 50%;
   margin: 6em auto 0;
   font-size: 0.9em;
-  color: #413;
+  color: #8abfaf;
 }
-.features > div {
-  width: 33.3%;
-  display: table-cell;
-  padding: 0 1.5em;
+@media (min-width: 640px) {
+  .features > div {
+    width: 33.3%;
+    display: table-cell;
+    padding: 0 1.5em;
+  }
+}
+.features h3 {
+  font-size: 1.5em;
+  font-weight: normal;
+  color: #fff;
 }
 input[type=submit],
 input.url {
@@ -164,7 +179,6 @@ input.url {
   height: 2em;
   border: 0 solid;
   border-radius: 0.5em;
-  box-shadow: 0.1em 0.2em 0 0 #5e2846;
   outline: none;
 }
 input[type=submit]:hover {

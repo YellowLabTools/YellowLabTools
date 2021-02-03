@@ -7,15 +7,7 @@
 }
 
 .summary .globalScore {
-    display: table;
-    width: 60%;
     margin: 3em auto;
-
-    > div {
-        display: table-cell;
-        width: 50%;
-        vertical-align: middle;
-    }
 
     .globalGrade {
         margin: 0.5 auto;
@@ -24,12 +16,10 @@
         line-height: 2.5em;
         border-radius: 0.5em;
         font-size: 3em;
-        font-weight: bold;
         vertical-align: middle;
     }
     .on100 {
         font-size: 1.2em;
-        font-weight: bold;
         margin: 0.5em 0 1em;
     }
 
@@ -61,40 +51,77 @@
         top: 1.5em;
         left: 0.9em;
     }
+
+    @media (min-width: 820px) {
+        width: 65%;
+        display: table;
+
+        > div {
+            display: table-cell;
+            width: 50%;
+            vertical-align: middle;
+        }
+    }
 }
 
 .summary .notations {
+    width: 100%;
     display: table;
-    width: 80%;
-    margin: 0 10% 1.5em;
-    border-spacing: 1em;
+    margin: 0 0 1.5em;
+    border-spacing: 0 1em;
+
+    @media (min-width: 820px) {
+        width: 80%;
+        margin: 0 10% 1.5em;
+        border-spacing: 1em;
+    }
 }
 .summary .notations > div {
     display: table-row;
 }
 .summary .notations > div > div {
-    display: table-cell;
-    height: 2.5em;
     vertical-align: middle;
+
+    @media (min-width: 820px) {
+        display: table-cell;
+        height: 2.5em;
+    }
 }
 .summary .notations .category {
-    font-weight: bold;
-    text-align: center;
-    width: 20%;
+    font-size: 1.2em;
+    width: 50%;
+    float: left;
+    text-align: left;
+    margin: 0.5em 0.25em;
+
+    @media (min-width: 820px) {
+        width: 20%;
+        text-align: center;
+        float: none;
+    }
 }
 .summary .notations .criteria {
     font-weight: normal;
-    width: 75%;
+
+    @media (min-width: 820px) {
+        width: 75%;
+    }
 }
 .A, .B, .C, .D, .E, .F, .NA {
     .summary .notations &.categoryScore {
         width: 2.5em;
         max-width: 2.5em;
         min-width: 2.5em;
-        font-size: 2em;
+        margin: 0.2em;
+        font-size: 1.5em;
         text-align: center;
         border-radius: 0.5em;
-        font-weight: bold;
+        float: right;
+
+        @media (min-width: 820px) {
+            float: none;
+            font-size: 2em;
+        }
     }
     .summary .notations .grade & {
         width: 1em;
@@ -113,12 +140,12 @@
         color: inherit;
     }
     > a:hover > div {
-        background: #EBD8E2;
+        background: #d8ebe0;
         cursor: pointer;
         &.info {
             background: #FFF;
-            .icon-question {
-                color: #EBD8E2;
+            svg {
+                fill: #d8ebe0;
             }
         }
     }
@@ -134,58 +161,38 @@
 }
 .summary .notations .criteria .result {
     width: 18%;
-    font-weight: bold;
     white-space: nowrap;
     text-align: center;
     vertical-align: middle;
 }
-.summary .notations .warning .label, .summary .notations .warning .result, .summary .notations .icon-warning {
+.summary .notations .warning .label, .summary .notations .warning .result {
     color: #FF1919;
 }
+.summary .notations .icon-warning svg {
+    fill: #FF1919;
+    margin: -2px 0;
+}
 .summary .notations .criteria .info {
-    width: 2%;
-    text-align: center;
-    vertical-align: middle;
-    background: #FFF;
-    padding-left: 0.1em;
-    padding-right: 0.1em;
-}
-.summary .notations .criteria .icon-question {
-    color: transparent;
-}
+    display: none;
 
-.summary .fromShare {
-    margin-bottom: 3em;
+    @media (min-width: 820px) {
+        display: table-cell;
+        width: 2%;
+        text-align: center;
+        vertical-align: middle;
+        background: #FFF;
+        padding-left: 0.1em;
+        padding-right: 0.1em;
+    }
 }
-
-.summary .tweet {
-    .tweetText {
-        color: #413;
-        background: #F2F2F2;
-        border: none;
-        width: 25em;
-        padding: 0.4em;
-        border-radius: 0.5em;
-        box-shadow: 0.05em 0.1em 0 0 #999;
-    }
-    .tweetButton, .linkedinButton {
-        color: #413;
-        background: #F2F2F2;
-        margin-right: 0;
-        &:hover {
-            color: #F2F2F2;
-            background: #e74c3c;
-        }
-    }
-    input {
-        font-size: 0.9em;
-    }
+.summary .notations .criteria .info svg {
+    fill: transparent;
 }
 
 .summary .sponsor {
     font-size: 0.9em;
     margin-bottom: 4em;
-    color: #413;
+    color: #ffa319;
     a {
         color: inherit;
     }

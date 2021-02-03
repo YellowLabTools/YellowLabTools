@@ -13,20 +13,20 @@ var cli = meow({
         '  yellowlabtools <url> <options>',
         '',
         'Options:',
-        '  --device             Use "phone" or "tablet" to simulate a mobile device (by user-agent and viewport size).',
+        '  --device             Simulates a device. Choose between phone (default), tablet, desktop and desktop-hd.',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
         //'  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
         '  --proxy              Sets an HTTP proxy to pass through. Syntax is "host:port".',
         '  --cookie             Adds a cookie on the main domain.',
         '  --auth-user          Basic HTTP authentication username.',
         '  --auth-pass          Basic HTTP authentication password.',
-        '  --block-domain       Disallow requests to given (comma-separated) domains - aka blacklist.',
-        '  --allow-domain       Only allow requests to given (comma-separated) domains - aka whitelist.',
+        '  --block-domain       Disallow requests to given (comma-separated) domains.',
+        '  --allow-domain       Only allow requests to given (comma-separated) domains.',
         '  --no-externals       Block all domains except the main one.',
         '  --reporter           The output format: "json" or "xml". Default is "json".',
         ''
     ].join('\n'),
-    pkg: '../package.json'
+    pkg: require('../package.json')
 });
 
 
@@ -55,7 +55,7 @@ if (screenshot) {
 }
 
 // Device simulation
-options.device = cli.flags.device || 'desktop';
+options.device = cli.flags.device || 'mobile';
 
 // Wait for CSS selector
 options.waitForSelector = cli.flags.waitForSelector || null;
