@@ -30,7 +30,7 @@
     "async": "2.6.1",
     "body-parser": "1.18.3",
     "chart.js": "2.7.3",
-    "clean-css": "4.2.1",
+    "clean-css": "4.1.11",
     "color-diff": "1.1.0",
     "compression": "1.7.3",
     "cors": "2.8.5",
