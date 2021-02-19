@@ -179,8 +179,16 @@
                         (<ng-pluralize count="offender.requests" when="{'one':'1 request','other':'{} requests'}"></ng-pluralize>)
                     </div>
 
-                    <div ng-if="policyName === 'globalVariables' || policyName === 'jQueryVersionsLoaded' || policyName === 'synchronousXHR'">
+                    <div ng-if="policyName === 'globalVariables'">
+                        {{offender}}
+                    </div>
+
+                    <div ng-if="policyName === 'jQueryVersionsLoaded'">
                         {{offender.version}}
+                    </div>
+
+                    <div ng-if="policyName === 'synchronousXHR'">
+                        {{offender.url}}
                     </div>
 
                     <div ng-if="policyName === 'fontsCount'">
