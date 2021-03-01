@@ -68,7 +68,7 @@
     "request": "2.88.0",
     "rimraf": "2.6.3",
     "temporary": "0.0.8",
-    "ttf2woff2": "3.0.0",
+    "ttf2woff2": "4.0.1",
     "uglify-js": "3.4.9",
     "woff-tools": "0.1.0"
   },
