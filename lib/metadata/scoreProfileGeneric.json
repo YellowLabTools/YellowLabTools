@@ -86,7 +86,8 @@
             "policies": {
                 "fontsCount": 1,
                 "heavyFonts": 0.5,
-                "nonWoff2Fonts": 0.5
+                "nonWoff2Fonts": 0.5,
+                "unusedUnicodeRanges": 0.1
             }
         },
         "serverConfig": {
