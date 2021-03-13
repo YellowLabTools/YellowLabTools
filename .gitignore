@@ -8,3 +8,4 @@ coverage
 front/build
 package-lock.json
 har.json
+.idea/
