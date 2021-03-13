@@ -7,4 +7,6 @@ results/*
 coverage
 front/build
 package-lock.json
+yarn.lock
 har.json
+server_config/aws
