@@ -1,16 +1,18 @@
 {
     "serverPort": 8383,
+    "baseUrl": "/",
+    
     "googleAnalyticsId": "",
+    
     "screenshotWidth": {
         "phone": 360,
         "tablet": 420,
         "desktop": 600,
         "desktop-hd": 600
     },
-    "baseUrl": "/",
-    "authorizedKeys": {
-        
-    },
+    "screenshotTempPath": "/tmp/",
+    
+    "authorizedKeys": {},
     "maxAnonymousRunsPerDay": 99999999,
     "maxAnonymousCallsPerDay": 99999999,
     "blockedUrls": [],
