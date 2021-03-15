@@ -1,0 +1,35 @@
+FROM public.ecr.aws/lambda/nodejs:12
+
+ENV DOCKERIZED yes
+
+RUN yum install -y \
+        git gcc make gcc-c++ zlib-devel libjpeg-turbo-devel nasm automake autoconf libtool \
+        ca-certificates freetype freetype-devel harfbuzz nss \
+        cups-libs dbus-glib libXrandr libXcursor libXinerama cairo cairo-gobject pango && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/a/atk-2.26.0-1.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/a/at-spi2-atk-2.26.0-1.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/a/at-spi2-core-2.26.0-1.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/l/libxkbcommon-0.7.1-5.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/l/libXcomposite-0.4.4-11.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/a/alsa-lib-1.1.4.1-3.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/l/libXi-1.7.9-4.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/l/libXtst-1.2.3-4.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/l/libxkbcommon-x11-0.7.1-5.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/g/gtk3-3.22.24-1.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/l/libepoxy-1.4.3-3.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/l/libwayland-cursor-1.14.0-1.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/m/mesa-libwayland-egl-17.2.2-4.fc27.x86_64.rpm && \
+    rpm -ivh --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/g/gdk-pixbuf2-2.36.11-1.fc27.x86_64.rpm && \
+    rpm -ivh --force --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/l/libpng-1.6.31-1.fc27.x86_64.rpm && \
+    rpm -ivh --force --nodeps http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/27/Everything/x86_64/os/Packages/z/zlib-1.2.11-4.fc27.x86_64.rpm && \
+    yum clean all && \
+    rm -rf /var/cache/yum
+
+ADD . /var/task
+
+RUN rm -rf node_modules && \
+    npm install jpegoptim-bin --unsafe-perm=true --allow-root && \
+    NODE_ENV=development && npm install --only=prod && \
+    sed -i 's@"--disable-dev-shm-usage"@"--disable-dev-shm-usage", "--no-sandbox", "--no-zygote", "--disable-gpu", "--user-data-dir=/tmp/user-data", "--data-path=/tmp/data-path", "--homedir=/tmp", "--disk-cache-dir=/tmp/cache-dir", "--single-process"@' node_modules/phantomas/lib/browser.js
+
+CMD [ "bin/lambda.runner" ]
