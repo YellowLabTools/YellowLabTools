@@ -17,11 +17,11 @@
     </div>
     <div ng-if="status.statusCode == 'running'">
         <div class="status">Test is running...</div>
-        <div class="progress">
+        <!--<div class="progress">
             <div class="progressBarEmpty">
                 <div class="progressBarFilled" ng-style="{'width': (progress.estimatedProgress*100) + '%'}"></div>
             </div>
-        </div>
+        </div>-->
         <p class="statusSubMessage" ng-if="!progress">(Phantomas launched)</p>
         <p class="statusSubMessage" ng-if="progress.milestone == 'domReady'">(DOM Ready fired)</p>
         <p class="statusSubMessage" ng-if="progress.milestone == 'domComplete'">(page loaded, waiting for late requests)</p>
