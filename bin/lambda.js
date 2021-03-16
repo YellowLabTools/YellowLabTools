@@ -1,4 +1,5 @@
-const s3 = new require('aws-sdk').S3();
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
 const ylt = require('..');
 
 // noinspection JSUnusedLocalSymbols
