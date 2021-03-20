@@ -30,6 +30,6 @@ ADD . /var/task
 RUN rm -rf node_modules && \
     npm install jpegoptim-bin --unsafe-perm=true --allow-root && \
     NODE_ENV=development && npm install --only=prod && \
-    sed -i 's@"--disable-dev-shm-usage"@"--disable-dev-shm-usage", "--no-sandbox", "--no-zygote", "--disable-gpu", "--user-data-dir=/tmp/user-data", "--data-path=/tmp/data-path", "--homedir=/tmp", "--disk-cache-dir=/tmp/cache-dir", "--single-process"@' node_modules/phantomas/lib/browser.js
+    sed -i 's@"--disable-dev-shm-usage"@"--disable-dev-shm-usage", "--no-sandbox", "--no-zygote", "--disable-gpu", "--single-process"@' node_modules/phantomas/lib/browser.js
 
 CMD [ "bin/lambda.runner" ]
