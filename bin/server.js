@@ -25,14 +25,13 @@ app.engine('.html', require('ejs').__express);
 app.set('view engine', 'ejs');
 
 
-// Initialize the controllers
-var apiController           = require('../lib/server/controllers/apiController')(app);
-var frontController         = require('../lib/server/controllers/frontController')(app);
-
-
 // Let's start the server!
 if (!process.env.GRUNTED) {
     var settings = require('../server_config/settings.json');
+
+    // Initialize the controllers
+    var apiController = settings.awsHosting ? require('../lib/server/controllers/awsApiController')(app) : require('../lib/server/controllers/apiController')(app);
+    var frontController = require('../lib/server/controllers/frontController')(app);
 
     app.locals.baseUrl = settings.baseUrl;
 
