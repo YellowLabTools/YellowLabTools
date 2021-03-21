@@ -5,11 +5,18 @@ const ylt = require('..');
 // noinspection JSUnusedLocalSymbols
 async function runner({id, url, options = {}}, context) {
     console.log(`Processing run #${id} on ${url}`);
+    
     const bucket = process.env.RESULT_BUCKET_NAME;
     const keyPrefix = `results/${id}`;
+
     const saveFile = async (path, content) => s3.putObject({Bucket: bucket, Key: `${keyPrefix}/${path}`, Body: content})
         .promise();
-    await saveFile('results.json', JSON.stringify(await ylt(url, {...options, saveFile})));
+    
+    const results = JSON.stringify(await ylt(url, {...options, saveFile}));
+    results.runId = id;
+    
+    await saveFile('results.json', results);
+    
     return {status: 'processed', id, bucket, keyPrefix};
 }
 
