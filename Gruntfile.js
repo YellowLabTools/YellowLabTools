@@ -200,7 +200,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', [
-        'jshint',
+        //'jshint',
         'clean:build',
         'copy:build',
         'less',
