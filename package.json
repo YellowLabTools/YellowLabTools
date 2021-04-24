@@ -63,7 +63,6 @@
     "meow": "5.0.0",
     "parse-color": "1.0.0",
     "phantomas": "github:macbre/phantomas#devel",
-    "ps-node": "0.1.6",
     "q": "1.5.1",
     "request": "2.88.0",
     "rimraf": "2.6.3",
