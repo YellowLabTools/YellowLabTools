@@ -1,7 +1,7 @@
 {
   "name": "yellowlabtools",
-  "version": "2.0.0",
-  "description": "Online tool to audit a webpage for performance and front-end quality issues",
+  "version": "2.1.0",
+  "description": "A tool that audits a webpage for performance and front-end quality issues",
   "license": "GPL-2.0",
   "author": {
     "name": "Gaël Métais",
@@ -20,25 +20,12 @@
   },
   "main": "./lib/index.js",
   "dependencies": {
-    "angular": "1.7.7",
-    "angular-animate": "1.7.7",
-    "angular-chart.js": "1.1.1",
-    "angular-local-storage": "0.7.1",
-    "angular-resource": "1.7.7",
-    "angular-route": "1.7.7",
-    "angular-sanitize": "1.7.7",
     "async": "2.6.1",
-    "body-parser": "1.18.3",
-    "chart.js": "2.7.3",
     "clean-css": "4.2.1",
     "color-diff": "1.1.0",
-    "compression": "1.7.3",
-    "cors": "2.8.5",
     "css-mq-parser": "0.0.3",
     "debug": "4.1.1",
     "easyxml": "2.0.1",
-    "ejs": "2.6.1",
-    "express": "4.16.4",
     "fontkit": "1.7.8",
     "html-minifier": "4.0.0",
     "image-size": "0.7.1",
@@ -58,45 +45,24 @@
     "is-webp": "1.0.1",
     "is-woff": "1.0.3",
     "is-woff2": "1.0.0",
-    "jimp": "0.6.0",
     "md5": "2.2.1",
     "meow": "5.0.0",
     "parse-color": "1.0.0",
-    "phantomas": "github:macbre/phantomas#devel",
+    "phantomas": "2.2.0",
     "q": "1.5.1",
     "request": "2.88.0",
-    "rimraf": "2.6.3",
     "ttf2woff2": "4.0.1",
     "uglify-js": "3.4.9",
     "woff-tools": "0.1.0"
   },
   "devDependencies": {
     "chai": "~4.2.0",
-    "grunt": "~1.0.3",
-    "grunt-contrib-clean": "~2.0.0",
-    "grunt-contrib-concat": "~1.0.1",
-    "grunt-contrib-copy": "~1.0.0",
-    "grunt-contrib-cssmin": "~3.0.0",
-    "grunt-contrib-htmlmin": "~3.0.0",
-    "grunt-contrib-jshint": "~2.0.0",
-    "grunt-contrib-less": "~2.0.0",
-    "grunt-contrib-uglify": "~4.0.0",
-    "grunt-contrib-watch": "~1.1.0",
-    "grunt-env": "~0.4.4",
-    "grunt-express": "~1.4.1",
-    "grunt-filerev": "~2.3.1",
-    "grunt-inline-angular-templates": "~0.1.5",
-    "grunt-mocha-test": "~0.13.3",
-    "grunt-parallel": "~0.5.1",
-    "grunt-usemin": "~3.1.1",
-    "matchdep": "~2.0.0",
     "mocha": "~5.2.0",
     "sinon": "~7.2.3",
     "sinon-chai": "~3.3.0"
   },
   "scripts": {
-    "test": "grunt test",
-    "build": "grunt build"
+    "test": "todo"
   },
   "keywords": [
     "performance",
@@ -104,6 +70,7 @@
     "webperf",
     "pagespeed",
     "budget",
-    "phantomas"
+    "phantomas",
+    "puppeteer"
   ]
 }
