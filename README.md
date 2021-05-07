@@ -70,7 +70,7 @@ By the way, it's free because I am a geek, not businessmen. In return, you can a
 
 If your project is not accessible from outside or if you want to test your localhost, you might want to run your own instance of Yellow Lab Tools.
 
-The classical way is to clone the project's GitHub repository and run it on Linux of MacOS. The documentation is [here](https://github.com/YellowLabTools/YellowLabTools/wiki/Install-your-private-server).
+The classical way is to clone the YLT server's GitHub repository and run it on Linux or MacOS. The documentation is [here](https://github.com/YellowLabTools/YellowLabTools/wiki/Install-your-private-server).
 
 The new recommended solution is to run Yellow Lab Tools inside a Docker virtual machine. My friend Ousama Ben Younes maintains [this ready-to-use Docker image based on Alpine](https://github.com/ousamabenyounes/docker-yellowlabtools)).
 
