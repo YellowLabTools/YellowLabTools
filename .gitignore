@@ -2,10 +2,7 @@ node_modules
 package-lock.json
 .tmp
 tmp
-.vagrant
-results/*
 coverage
-front/build
 package-lock.json
 yarn.lock
 har.json
