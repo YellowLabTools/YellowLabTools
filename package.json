@@ -20,6 +20,8 @@
   },
   "main": "./lib/index.js",
   "dependencies": {
+    "@influxdata/influxdb-client": "^1.24.0",
+    "@influxdata/influxdb-client-apis": "^1.24.0",
     "async": "2.6.1",
     "clean-css": "4.2.1",
     "color-diff": "1.1.0",
