@@ -32,6 +32,7 @@ var cli = meow({
         '  --indfluxdb-org      With influxdb as reporter, set influxdb org (mandatory with influxdb as reporter)',
         '  --indfluxdb-token    With influxdb as reporter, set influxdb token (mandatory with influxdb as reporter)',
         '  --indfluxdb-bucket   With influxdb as reporter, set influxdb bucket (mandatory with influxdb as reporter)',
+        '  --indfluxdb-offenders   With influxdb as reporter, if set generate a json report with offenders',
     ].join('\n'),
     pkg: require('../package.json')
 });
@@ -105,7 +106,8 @@ if(cli.flags.reporter && cli.flags.reporter === "influxdb"){
         port: parseInt(cli.flags.influxdbPort) || 8086,
         org: cli.flags.influxdbOrg,
         token: cli.flags.influxdbToken,
-        bucket: cli.flags.influxdbBucket
+        bucket: cli.flags.influxdbBucket,
+        offendersReport: !!cli.flags.influxdbOffenders
     };
 }
 else if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !== 'xml') {
