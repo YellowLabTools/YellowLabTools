@@ -20,6 +20,8 @@
   },
   "main": "./lib/index.js",
   "dependencies": {
+    "@influxdata/influxdb-client": "^1.24.0",
+    "@influxdata/influxdb-client-apis": "^1.24.0",
     "async": "2.6.1",
     "clean-css": "4.2.1",
     "color-diff": "1.1.0",
@@ -45,6 +47,7 @@
     "is-webp": "1.0.1",
     "is-woff": "1.0.3",
     "is-woff2": "1.0.0",
+    "json-stream-stringify": "^2.0.4",
     "md5": "2.2.1",
     "meow": "5.0.0",
     "parse-color": "1.0.0",
