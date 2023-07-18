@@ -49,7 +49,7 @@ describe('colorDiff', function() {
             {url:'file.css', value: {message: '#5bc0de (2 times)'}},
             {url:'file.css', value: {message: 'rgba(0,0,0,0.075) (100 times)'}},
             {url:'file.css', value: {message: 'rgb(91,192,222) (1000 times)'}},
-            {url:'file.css', value: {message: 'rgba(0,0,2,1) (1 times)'}},
+            {url:'file.css', value: {message: 'rgba(0,0,1,1) (1 times)'}},
             {url:'file.css', value: {message: 'rgba(99,99,99,1) (1 times)'}},
             {url:'file.css', value: {message: 'rgba(100,100,100,1) (1 times)'}}
         ];
@@ -73,7 +73,7 @@ describe('colorDiff', function() {
         newData.toolsResults.colorDiff.offenders.should.have.a.property('similarColors').that.deep.equals([
             {
                 color1: '#000',
-                color2: 'rgba(0,0,2,1)',
+                color2: 'rgba(0,0,1,1)',
                 isDark: true
             },
             {
