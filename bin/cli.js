@@ -23,6 +23,8 @@ var cli = meow({
         '  --allow-domain       Only allow requests to given (comma-separated) domains.',
         '  --no-externals       Block all domains except the main one.',
         '  --reporter           The output format: "json" or "xml". Default is "json".',
+        '  --local-storage      Ability to set a local storage, key-value pairs (e.g. "bar=foo;domain=url")',
+        '  --session-storage    Ability to set a session storage, key-value pairs (e.g. "bar=foo;domain=url")',
         ''
     ].join('\n'),
     pkg: require('../package.json')
@@ -73,6 +75,10 @@ options.authPass = cli.flags.authPass || null;
 options.blockDomain =  cli.flags.blockDomain || null;
 options.allowDomain =  cli.flags.allowDomain || null;
 options.noExternals =  cli.flags.noExternals || null;
+
+// Storage injection
+options.localStorage = cli.flags.localStorage;
+options.sessionStorage = cli.flags.sessionStorage;
 
 // Output format
 if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !== 'xml') {
