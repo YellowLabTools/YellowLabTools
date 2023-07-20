@@ -89,9 +89,9 @@ describe('redownload', function() {
             data.toolsResults.redownload.offenders.should.have.a.property('imagesTooLarge');
             data.toolsResults.redownload.offenders.imagesTooLarge.length.should.equal(0);
 
-            data.toolsResults.redownload.offenders.should.have.a.property('gzipCompression');
-            data.toolsResults.redownload.offenders.gzipCompression.totalGain.should.be.above(0);
-            data.toolsResults.redownload.offenders.gzipCompression.files.length.should.equal(5);
+            data.toolsResults.redownload.offenders.should.have.a.property('compression');
+            data.toolsResults.redownload.offenders.compression.totalGain.should.be.above(0);
+            data.toolsResults.redownload.offenders.compression.files.length.should.equal(5);
 
             data.toolsResults.redownload.offenders.should.have.a.property('fileMinification');
             data.toolsResults.redownload.offenders.fileMinification.totalGain.should.be.above(0);
@@ -224,7 +224,8 @@ describe('redownload', function() {
             },
             status: 302,
             isHTML: true,
-            contentLength: 999
+            contentLength: 999,
+            notFound: true
         };
 
         redownload.redownloadEntry(entry)

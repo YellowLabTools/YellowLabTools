@@ -15,7 +15,6 @@ var cli = meow({
         'Options:',
         '  --device             Simulates a device. Choose between phone (default), tablet, desktop and desktop-hd.',
         '  --screenshot         Will take a screenshot and use this value as the output path. It needs to end with ".png".',
-        //'  --wait-for-selector  Once the page is loaded, Phantomas will wait until the given CSS selector matches some elements.',
         '  --proxy              Sets an HTTP proxy to pass through. Syntax is "host:port".',
         '  --cookie             Adds a cookie on the main domain.',
         '  --auth-user          Basic HTTP authentication username.',
@@ -104,7 +103,6 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
 
                     // Remove some heavy parts of the results object
                     delete data.toolsResults;
-                    delete data.javascriptExecutionTree;
 
                     var xmlOutput = serializer.render(data);
 

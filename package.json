@@ -1,6 +1,6 @@
 {
   "name": "yellowlabtools",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "A tool that audits a webpage for performance and front-end quality issues",
   "license": "GPL-2.0",
   "author": {
@@ -16,24 +16,24 @@
     "yellowlabtools": "./bin/cli.js"
   },
   "engines": {
-    "node": ">= 12.0"
+    "node": ">= 16.0"
   },
   "main": "./lib/index.js",
   "dependencies": {
     "async": "2.6.1",
     "clean-css": "4.2.1",
-    "color-diff": "1.1.0",
+    "color-diff": "1.4.0",
     "css-mq-parser": "0.0.3",
-    "debug": "4.1.1",
+    "debug": "4.3.4",
     "easyxml": "2.0.1",
-    "fontkit": "1.7.8",
+    "fontkit": "2.0.2",
     "html-minifier": "4.0.0",
-    "image-size": "0.7.1",
+    "image-size": "1.0.2",
     "imagemin": "7.0.1",
     "imagemin-jpegoptim": "7.0.0",
     "imagemin-jpegtran": "7.0.0",
     "imagemin-optipng": "8.0.0",
-    "imagemin-svgo": "8.0.0",
+    "imagemin-svgo": "9.0.0",
     "is-eot": "1.0.0",
     "is-gif": "3.0.0",
     "is-jpg": "2.0.0",
@@ -45,24 +45,25 @@
     "is-webp": "1.0.1",
     "is-woff": "1.0.3",
     "is-woff2": "1.0.0",
-    "md5": "2.2.1",
+    "jimp": "0.22.8",
+    "md5": "2.3.0",
     "meow": "5.0.0",
     "parse-color": "1.0.0",
-    "phantomas": "2.4.0",
+    "phantomas": "2.8.0",
     "q": "1.5.1",
-    "request": "2.88.0",
-    "ttf2woff2": "4.0.1",
-    "uglify-js": "3.4.9",
+    "request": "2.88.2",
+    "ttf2woff2": "5.0.0",
+    "uglify-js": "3.17.4",
     "woff-tools": "0.1.0"
   },
   "devDependencies": {
-    "chai": "~4.2.0",
-    "mocha": "~5.2.0",
-    "sinon": "~7.2.3",
-    "sinon-chai": "~3.3.0"
+    "chai": "~4.3.7",
+    "mocha": "~10.2.0",
+    "sinon": "~15.2.0",
+    "sinon-chai": "3.7.0"
   },
   "scripts": {
-    "test": "todo"
+    "test": "mocha './test/core/**.js'"
   },
   "keywords": [
     "performance",

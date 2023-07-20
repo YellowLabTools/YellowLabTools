@@ -4,4 +4,6 @@ package-lock.json
 tmp
 coverage
 package-lock.json
+yarn.lock
 har.json
+.idea/

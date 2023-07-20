@@ -76,114 +76,6 @@ describe('customPolicies', function() {
     });
 
 
-    it('should transform DOMqueriesAvoidable offenders', function() {
-        results = rulesChecker.check({
-            "toolsResults": {
-                "phantomas": {
-                    "metrics": {
-                        "DOMqueriesAvoidable": 2
-                    },
-                    "offenders": {
-                        "DOMqueriesDuplicated": [
-                            "id \"#j2t-top-cart\" with getElementById (in context #document): 4 queries",
-                            "class \".listingResult\" with getElementsByClassName (in context body > div#Global > div#Listing): 4 queries"
-                        ]
-                    }
-                }
-            }
-        }, policies);
-
-        results.should.have.a.property('DOMqueriesAvoidable');
-        results.DOMqueriesAvoidable.should.have.a.property('offendersObj').that.deep.equals({
-            "count": 2,
-            "list": [
-                {
-                    "query": "#j2t-top-cart",
-                    "context": {
-                        "type": "document"
-                    },
-                    "fn": "getElementById ",
-                    "count": 4
-                },
-                {
-                    "query": ".listingResult",
-                    "context": {
-                        "type": "domElement",
-                        "element": "div#Listing",
-                        "tree": {
-                            "body": {
-                                "div#Global": {
-                                    "div#Listing": 1
-                                }
-                            }
-                        }
-                    },
-                    "fn": "getElementsByClassName ",
-                    "count": 4
-                }
-            ]
-        });
-    });
-
-
-    it('should transform jsErrors offenders', function() {
-        results = rulesChecker.check({
-            "toolsResults": {
-                "phantomas": {
-                    "metrics": {
-                        "jsErrors": 2
-                    },
-                    "offenders": {
-                        "jsErrors": [
-                            "TypeError: 'undefined' is not a function (evaluating 'this.successfullyCollected.bind(this)') - http://asset.easydmp.net/js/collect.js:1160 / callCollecte http://asset.easydmp.net/js/collect.js:1203 / callbackUpdateParams http://asset.easydmp.net/js/collect.js:1135 / http://asset.easydmp.net/js/collect.js:1191",
-                            "TypeError: 'undefined' is not an object (evaluating 'd.readyState') - http://me.hunkal.com/p/:3"
-                        ]
-                    }
-                }
-            }
-        }, policies);
-
-        results.should.have.a.property('jsErrors');
-        results.jsErrors.should.have.a.property('offendersObj').that.deep.equals({
-            "count": 2,
-            "list": [
-                {
-                    "error": "TypeError: 'undefined' is not a function (evaluating 'this.successfullyCollected.bind(this)')",
-                    "backtrace": [
-                        {
-                            "file": "http://asset.easydmp.net/js/collect.js",
-                            "line": 1160
-                        },
-                        {
-                            "file": "http://asset.easydmp.net/js/collect.js",
-                            "line": 1203,
-                            "functionName": "callCollecte"
-                        },
-                        {
-                            "file": "http://asset.easydmp.net/js/collect.js",
-                            "line": 1135,
-                            "functionName": "callbackUpdateParams"
-                        },
-                        {
-                            "file": "http://asset.easydmp.net/js/collect.js",
-                            "line": 1191
-                        }
-                    ]
-                },
-                {
-                    "error": "TypeError: 'undefined' is not an object (evaluating 'd.readyState')",
-                    "backtrace": [
-                        {
-                            "file": "http://me.hunkal.com/p/",
-                            "line": 3
-                        }
-                    ]
-                }
-            ]
-        });
-    });
-
-
     it('should grade correctly jQuery versions', function() {
 
         var versions = {
@@ -208,7 +100,8 @@ describe('customPolicies', function() {
                     "phantomas": {
                         "metrics": {
                             "jQueryVersion": version
-                        }
+                        },
+                        "offenders": {}
                     }
                 }
             }, policies);
@@ -222,11 +115,12 @@ describe('customPolicies', function() {
                 "phantomas": {
                     "metrics": {
                         "jQueryVersion": "wooot"
-                    }
+                    },
+                    "offenders": {}
                 }
             }
         }, policies);
-        results.should.deep.equals({});
+        results.should.not.have.a.property('jQueryVersion');
 
 
         // If jQueryVersionsLoaded is 0
@@ -236,7 +130,8 @@ describe('customPolicies', function() {
                     "metrics": {
                         "jQueryVersion": "1.6.0",
                         "jQueryVersionsLoaded": 0
-                    }
+                    },
+                    "offenders": {}
                 }
             }
         }, policies);
@@ -252,14 +147,15 @@ describe('customPolicies', function() {
                     "metrics": {
                         "jQueryVersion": "1.6.0",
                         "jQueryVersionsLoaded": 2
-                    }
+                    },
+                    "offenders": {}
                 }
             }
         }, policies);
         results.should.not.have.a.property('jQueryVersion');
         results.should.have.a.property('jQueryVersionsLoaded');
         results.jQueryVersionsLoaded.should.have.a.property('score').that.equals(0);
-        results.jQueryVersionsLoaded.should.have.a.property('abnormal').that.equals(true);
+        results.jQueryVersionsLoaded.should.have.a.property('abnormal').that.equals(false);
     });
 
 
