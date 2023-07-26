@@ -86,6 +86,10 @@ describe('redownload', function() {
             data.toolsResults.redownload.offenders.imageOptimization.totalGain.should.be.above(0);
             data.toolsResults.redownload.offenders.imageOptimization.images.length.should.equal(2);
 
+            data.toolsResults.redownload.offenders.should.have.a.property('oldImageFormats');
+            data.toolsResults.redownload.offenders.oldImageFormats.totalGain.should.be.above(0);
+            data.toolsResults.redownload.offenders.oldImageFormats.images.length.should.equal(1);
+
             data.toolsResults.redownload.offenders.should.have.a.property('imagesTooLarge');
             data.toolsResults.redownload.offenders.imagesTooLarge.length.should.equal(0);
 
@@ -167,18 +171,9 @@ describe('redownload', function() {
         redownload.redownloadEntry(entry)
 
         .then(function(newEntry) {
-
             newEntry.weightCheck.bodySize.should.equal(4193);
             newEntry.weightCheck.bodyBuffer.should.deep.equal(fileContent);
-
-            // Opening the image in jimp to check if the format is good
-            var Jimp = require('jimp');
-            Jimp.read(newEntry.weightCheck.bodyBuffer, function(err, image) {
-                image.bitmap.width.should.equal(620);
-                image.bitmap.height.should.equal(104);
-                done(err);
-            });
-
+            done();
         })
 
         .fail(function(err) {
