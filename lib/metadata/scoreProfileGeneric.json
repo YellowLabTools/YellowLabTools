@@ -5,6 +5,7 @@
             "policies": {
                 "totalWeight": 5,
                 "imageOptimization": 2,
+                "oldImageFormats": 2,
                 "imagesTooLarge": 1,
                 "compression": 2,
                 "fileMinification": 2
