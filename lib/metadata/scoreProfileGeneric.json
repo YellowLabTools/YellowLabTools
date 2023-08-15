@@ -16,19 +16,20 @@
             "label": "Network",
             "policies": {
                 "totalWeight": 5,
+                "totalRequests": 2,
+                "domains": 3,
                 "compression": 2,
                 "fileMinification": 2,
                 "identicalFiles": 2,
                 "emptyRequests": 3,
                 "notFound": 2,
-                "domains": 3
             }
         },
         "images": {
             "label": "Images",
             "policies": {
                 "imagesNotOptimized": 2,
-                "imagesOldFormat": 2,
+                "imagesOldFormat": 1,
                 "imagesScaledDown": 2,
                 "imagesExcessiveDensity": 0.25,
                 "imagesWithIncorrectSizesParam": 1,
