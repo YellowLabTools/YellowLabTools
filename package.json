@@ -16,7 +16,7 @@
     "yellowlabtools": "./bin/cli.js"
   },
   "engines": {
-    "node": ">= 16.0"
+    "node": ">= 18.0"
   },
   "main": "./lib/index.js",
   "dependencies": {
@@ -40,10 +40,10 @@
     "md5": "2.3.0",
     "meow": "5.0.0",
     "parse-color": "1.0.0",
-    "phantomas": "gmetais/phantomas#gmetais-analyze-images",
+    "phantomas": "2.10.0",
     "q": "1.5.1",
     "request": "2.88.2",
-    "sharp": "0.32.3",
+    "sharp": "0.32.6",
     "ttf2woff2": "5.0.0",
     "uglify-js": "3.17.4",
     "woff-tools": "0.1.0"
