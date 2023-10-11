@@ -1,23 +1,38 @@
 {
+    "globalScore": {
+        "pageWeight": 2,
+        "images": 2,
+        "domComplexity": 1,
+        "javascriptComplexity": 2,
+        "badJavascript": 2,
+        "jQuery": 0.5,
+        "cssComplexity": 0.5,
+        "badCSS": 1,
+        "fonts": 1,
+        "serverConfig": 1
+    },
     "categories": {
         "pageWeight": {
-            "label": "Page weight",
+            "label": "Network",
             "policies": {
                 "totalWeight": 5,
-                "imageOptimization": 2,
-                "imagesTooLarge": 1,
-                "compression": 2,
-                "fileMinification": 2
-            }
-        },
-        "requests": {
-            "label": "Requests",
-            "policies": {
                 "totalRequests": 2,
                 "domains": 3,
-                "notFound": 2,
+                "compression": 2,
+                "fileMinification": 2,
                 "identicalFiles": 2,
                 "emptyRequests": 3,
+                "notFound": 2
+            }
+        },
+        "images": {
+            "label": "Images",
+            "policies": {
+                "imagesNotOptimized": 2,
+                "imagesOldFormat": 1,
+                "imagesScaledDown": 2,
+                "imagesExcessiveDensity": 0.25,
+                "imagesWithIncorrectSizesParam": 1,
                 "lazyLoadableImagesBelowTheFold": 2,
                 "hiddenImages": 1
             }
@@ -101,17 +116,5 @@
                 "cachingTooShort": 1
             }
         }
-    },
-    "globalScore": {
-        "pageWeight": 3,
-        "requests": 2,
-        "domComplexity": 2,
-        "javascriptComplexity": 2,
-        "badJavascript": 2,
-        "jQuery": 0.5,
-        "cssComplexity": 0.5,
-        "badCSS": 1,
-        "fonts": 1,
-        "serverConfig": 1
     }
 }

@@ -82,13 +82,6 @@ describe('redownload', function() {
             data.toolsResults.redownload.offenders.totalWeight.byType.image.requests.length.should.equal(2);
             data.toolsResults.redownload.offenders.totalWeight.byType.other.requests.length.should.equal(1);
 
-            data.toolsResults.redownload.offenders.should.have.a.property('imageOptimization');
-            data.toolsResults.redownload.offenders.imageOptimization.totalGain.should.be.above(0);
-            data.toolsResults.redownload.offenders.imageOptimization.images.length.should.equal(2);
-
-            data.toolsResults.redownload.offenders.should.have.a.property('imagesTooLarge');
-            data.toolsResults.redownload.offenders.imagesTooLarge.length.should.equal(0);
-
             data.toolsResults.redownload.offenders.should.have.a.property('compression');
             data.toolsResults.redownload.offenders.compression.totalGain.should.be.above(0);
             data.toolsResults.redownload.offenders.compression.files.length.should.equal(5);
