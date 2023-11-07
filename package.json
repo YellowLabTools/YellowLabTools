@@ -20,7 +20,7 @@
   },
   "main": "./lib/index.js",
   "dependencies": {
-    "async": "2.6.1",
+    "async": "2.6.4",
     "clean-css": "4.2.1",
     "color-diff": "1.4.0",
     "css-mq-parser": "0.0.3",
