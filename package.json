@@ -1,6 +1,6 @@
 {
   "name": "yellowlabtools",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A tool that audits a webpage for performance and front-end quality issues",
   "license": "GPL-2.0",
   "author": {
