@@ -36,7 +36,7 @@
     "imagemin-optipng": "8.0.0",
     "imagemin-svgo": "9.0.0",
     "is-json": "2.0.1",
-    "is-svg": "3.0.0",
+    "is-svg": "4.3.0",
     "md5": "2.3.0",
     "meow": "5.0.0",
     "parse-color": "1.0.0",
