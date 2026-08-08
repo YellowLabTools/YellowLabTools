@@ -23,6 +23,7 @@ var cli = meow({
         '  --allow-domain       Only allow requests to given (comma-separated) domains.',
         '  --no-externals       Block all domains except the main one.',
         '  --reporter           The output format: "json" or "xml". Default is "json".',
+        '  --profile            The scoring profile to use: "generic" or "nextjs". Default is "generic".',
         '  --local-storage      Ability to set a local storage, key-value pairs (e.g. "bar=foo;domain=url")',
         '  --session-storage    Ability to set a session storage, key-value pairs (e.g. "bar=foo;domain=url")',
         ''
@@ -86,6 +87,12 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
     process.exit(1);
 }
 
+// Profile
+if (cli.flags.profile && cli.flags.profile !== 'generic' && cli.flags.profile !== 'nextjs') {
+    console.error('Incorrect parameters: profile has to be "generic" or "nextjs"');
+    process.exit(1);
+}
+options.profile = cli.flags.profile || 'generic';
 
 (function execute(url, options) {
     'use strict';
