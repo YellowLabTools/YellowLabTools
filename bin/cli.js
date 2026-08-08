@@ -88,8 +88,9 @@ if (cli.flags.reporter && cli.flags.reporter !== 'json' && cli.flags.reporter !=
 }
 
 // Profile
-if (cli.flags.profile && cli.flags.profile !== 'generic' && cli.flags.profile !== 'nextjs') {
-    console.error('Incorrect parameters: profile has to be "generic" or "nextjs"');
+const allowedProfiles = ['generic', 'nextjs'];
+if (cli.flags.profile && !allowedProfiles.includes(cli.flags.profile)) {
+    console.error(`Incorrect parameters: profile has to be one of: ${allowedProfiles.join(', ')}`);
     process.exit(1);
 }
 options.profile = cli.flags.profile || 'generic';
