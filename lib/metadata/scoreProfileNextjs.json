@@ -1,0 +1,120 @@
+{
+    "globalScore": {
+        "pageWeight": 2,
+        "images": 2,
+        "domComplexity": 1,
+        "javascriptComplexity": 2,
+        "badJavascript": 2,
+        "jQuery": 0.5,
+        "cssComplexity": 0.5,
+        "badCSS": 1,
+        "fonts": 1,
+        "serverConfig": 1
+    },
+    "categories": {
+        "pageWeight": {
+            "label": "Network",
+            "policies": {
+                "totalWeight": 5,
+                "totalRequests": 2,
+                "domains": 3,
+                "compression": 2,
+                "fileMinification": 2,
+                "identicalFiles": 2,
+                "emptyRequests": 3,
+                "notFound": 2
+            }
+        },
+        "images": {
+            "label": "Images",
+            "policies": {
+                "imagesNotOptimized": 2,
+                "imagesOldFormat": 1,
+                "imagesScaledDown": 2,
+                "imagesExcessiveDensity": 0.25,
+                "imagesWithIncorrectSizesParam": 1,
+                "lazyLoadableImagesBelowTheFold": 2,
+                "hiddenImages": 1
+            }
+        },
+        "domComplexity": {
+            "label": "DOM complexity",
+            "policies": {
+                "DOMelementsCount": 1,
+                "DOMelementMaxDepth": 0.2,
+                "iframesCount": 1,
+                "DOMidDuplicated": 1
+            }
+        },
+        "javascriptComplexity": {
+            "label": "JS complexity",
+            "policies": {
+                "scriptDuration": 1,
+                "DOMaccesses": 1,
+                "eventsScrollBound": 1
+            }
+        },
+        "badJavascript": {
+            "label": "Bad JS",
+            "policies": {
+                "jsErrors": 1,
+                "documentWriteCalls": 2,
+                "synchronousXHR": 5,
+                "globalVariables": 0.1
+            }
+        },
+        "jQuery": {
+            "label": "jQuery",
+            "policies": {
+                "jQueryVersion": 2,
+                "jQueryVersionsLoaded": 2
+            }
+        },
+        "cssComplexity": {
+            "label": "CSS complexity",
+            "policies": {
+                "cssRules": 2,
+                "cssComplexSelectors": 2,
+                "cssColors": 0.5,
+                "similarColors": 0.5,
+                "cssBreakpoints": 0.5,
+                "cssMobileFirst": 1
+            }
+        },
+        "badCSS": {
+            "label": "Bad CSS",
+            "policies": {
+                "cssParsingErrors": 3,
+                "cssImports": 4,
+                "cssDuplicatedSelectors": 2,
+                "cssDuplicatedProperties": 1,
+                "cssEmptyRules": 2,
+                "cssImportants": 2,
+                "cssOldIEFixes": 1,
+                "cssOldPropertyPrefixes": 1,
+                "cssRedundantBodySelectors": 1,
+                "cssRedundantChildNodesSelectors": 1
+            }
+        },
+        "fonts": {
+            "label": "Web fonts",
+            "policies": {
+                "fontsCount": 1,
+                "heavyFonts": 0.5,
+                "unusedUnicodeRanges": 0.5,
+                "nonWoff2Fonts": 0.5
+            }
+        },
+        "serverConfig": {
+            "label": "Server config",
+            "policies": {
+                "oldHttpProtocol": 2,
+                "oldTlsProtocol": 2,
+                "closedConnections": 2,
+                "cachingNotSpecified": 1,
+                "cachingDisabled": 1,
+                "cachingTooShort": 1
+            }
+        }
+    }
+}
