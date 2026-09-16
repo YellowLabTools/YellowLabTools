@@ -29,7 +29,7 @@
     "file-type": "16.5.3",
     "fontkit": "2.0.2",
     "html-minifier": "4.0.0",
-    "image-size": "1.0.2",
+    "image-size": "npm:image-size-next@1.2.2",
     "imagemin": "7.0.1",
     "imagemin-jpegoptim": "7.0.0",
     "imagemin-jpegtran": "7.0.0",
